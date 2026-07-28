@@ -45,3 +45,22 @@ guards/ship_gate.sh|wall-clock-time
 
 # SAMPLE_TIMES is a tuple of frame indices for probe sampling, not a cron.
 probes/drift_probe.py|cron-expression
+
+# The copyright line in the license, and the license reference in the README
+# byline. A license with no copyright holder is not a license, so this name is
+# load-bearing rather than incidental. Scoped to these two paths only.
+LICENSE|owner-identity-token
+
+# The commit-author email in git metadata.
+#
+# NOT suppressed because it is harmless. Suppressed because it is already
+# public: the same address is the commit identity on several existing public
+# repositories under this account, so withholding it here would hide nothing
+# from anyone and would only make this repo's gate look cleaner than the
+# author's actual exposure. A suppression that flatters the scan is worse
+# than the finding.
+#
+# The real remedy is account-wide (a noreply commit identity, plus the choice
+# of whether to rewrite existing public history), not a per-repo suppression.
+# Recorded here so that decision stays visible instead of being closed quietly.
+.git|personal-email-in-commit-identity

@@ -81,6 +81,38 @@ The two constraint rows are the same rule measured two ways. The gap between the
 
 ---
 
+## Running it
+
+The pipeline itself needs my vendor accounts and a light-field panel, so it is not the part you can run. The **measurement layer is**, and that is the part worth reading anyway.
+
+```
+pip install -r requirements.txt          # opencv-python, numpy. Guards need jq.
+
+python3 probes/sync_probe.py             # no args: prints what it measures and why
+python3 probes/sync_probe.py clip.mp4    # measures lip-sync lag on your own clip
+python3 probes/eye_eval.py --validate    # scores the harness against its labelled set
+                                         # (the labelled clips are not published, so this
+                                         #  reports an empty set on a fresh clone)
+```
+
+Every probe with no arguments prints its own derivation: what it measures, the exemplars its threshold came from, and in several cases the earlier versions of itself that were falsified and why. That is deliberate. A threshold you cannot interrogate is a magic number.
+
+To reproduce the fail-open finding in [`docs/ENFORCEMENT.md`](docs/ENFORCEMENT.md), take away a guard's dependency and read its exit code:
+
+```
+PROP_GATE=/nonexistent bash guards/pre_render_sanity.sh </dev/null; echo $?   # 0, and it says why
+IDENTITY_PINS=/nonexistent bash guards/block_unpinned_identity.sh </dev/null; echo $?
+```
+
+The privacy gate that ran before this repo was published is also here and also runnable:
+
+```
+git config core.hooksPath .githooks       # one line per clone, see .githooks/pre-commit
+bash tools/pii_scan.sh                    # deterministic layer
+```
+
+---
+
 ## Read next
 
 - [`docs/RELIABILITY.md`](docs/RELIABILITY.md), why the quality gate stopped blocking and what replaced it
@@ -91,4 +123,4 @@ The two constraint rows are the same rule measured two ways. The gap between the
 
 ---
 
-Built by James Niu.
+Built by James Niu. Licensed [MIT](LICENSE).

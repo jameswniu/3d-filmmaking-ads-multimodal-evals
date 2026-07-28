@@ -389,10 +389,20 @@ fi
 # ---------------------------------------------------------------------------
 if git -C "$REPO_ROOT" rev-parse --verify HEAD >/dev/null 2>&1; then
   ident="$(git -C "$REPO_ROOT" log --format='%an|%ae|%cn|%ce' 2>/dev/null | sort -u)"
+  # These two go through is_allowlisted like every other rule. They used to call
+  # record directly, which meant a finding on git metadata could not be
+  # suppressed by any mechanism the tool documents, so the gate stayed red
+  # forever on a repo whose author email is already public. An unsuppressible
+  # finding is not a strict gate, it is a broken one: it trains the operator to
+  # bypass the whole hook rather than to answer the finding.
+  record_identity() {
+    if is_allowlisted "$1" 0 "$4"; then SUPPRESSED=$((SUPPRESSED + 1)); return 0; fi
+    record "$1" 0 "$2" "$3" "$4"
+  }
   printf '%s' "$ident" | grep -qE '@(gmail|icloud|proton|protonmail|outlook|hotmail|yahoo|me)\.' \
-    && record "$REPO_ROOT/.git" 0 "CLASS3-FIRST-PARTY" "HIGH" "personal-email-in-commit-identity"
+    && record_identity "$REPO_ROOT/.git" "CLASS3-FIRST-PARTY" "HIGH" "personal-email-in-commit-identity"
   if [ -n "$ROSTER_PATTERN" ] && printf '%s' "$ident" | grep -qE "$ROSTER_PATTERN"; then
-    record "$REPO_ROOT/.git" 0 "CLASS4-THIRD-PARTY" "HIGH" "person-name-in-commit-identity"
+    record_identity "$REPO_ROOT/.git" "CLASS4-THIRD-PARTY" "HIGH" "person-name-in-commit-identity"
   fi
 
   msgs="$TMPDIR_RUN/commit-messages.txt"
