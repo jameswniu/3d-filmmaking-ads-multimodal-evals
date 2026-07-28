@@ -1,0 +1,47 @@
+# tools/pii_allowlist.txt
+#
+# Deliberate suppressions for tools/pii_scan.sh.
+#
+# Format, one per line:
+#   <path-substring>|<label>
+#
+# <path-substring> is matched anywhere in the finding's absolute path.
+# <label> is the exact label from the finding, the fifth field of the
+# path:line:CLASS:SEVERITY:label output line.
+#
+# Example, if the author byline in the README is intentional and reviewed:
+#   README.md|owner-identity-token
+#
+# There are deliberately NO active entries here. Every suppression is a decision
+# that something identifying is being published on purpose, so each one should
+# arrive in a diff a human read. Prefer the inline marker where you can: putting
+# the text pii-allow on the offending line suppresses only that line, where an
+# entry here suppresses that label across the whole matched path.
+#
+# Lines beginning with # are comments. Blank lines are ignored.
+
+# --- active suppressions, each reviewed 2026-07-28 ---
+
+# The author byline. This is a portfolio repo published under my own name; the
+# name is the point, not a leak. Scoped to the README so the same token stays
+# blocked everywhere else, which is what caught it in the guard comments.
+README.md|owner-identity-token
+
+# The scheduled cadence ("every morning", "three times a day") describes the
+# SYSTEM's schedule, which is the product being documented. It is not a claim
+# about when a human is present. Scoped to the README only; the same label
+# stays live in the guards, where it correctly flagged real work-hour clocks.
+#
+# NARROWED 2026-07-28. This entry originally also suppressed wall-clock-time on
+# the README, which was too broad: it hid a sentence pairing 07:30 with "while
+# you are asleep", which IS a presence claim and not a system schedule. The
+# judgement layer caught it after the deterministic gate had gone green. The
+# sentence was rewritten and the wall-clock suppression removed, so any future
+# clock time in the README fails the gate again.
+README.md|presence-or-routine-prose
+
+# ffmpeg filter arguments (scale=64:64, scale=48:48) parse as HH:MM.
+guards/ship_gate.sh|wall-clock-time
+
+# SAMPLE_TIMES is a tuple of frame indices for probe sampling, not a cron.
+probes/drift_probe.py|cron-expression

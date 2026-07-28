@@ -1,0 +1,32 @@
+*.mp4
+*.mov
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.quilt
+# synthesized audio and the subtitle track, which carries the full script text
+*.mp3
+*.wav
+*.m4a
+*.srt
+*.vtt
+.venv/
+.venv-*/
+__pycache__/
+*.pyc
+models/
+renders/
+state/
+*.env
+.env
+*.log
+.DS_Store
+# never commit real ids
+pins.json
+
+# pre-publish PII gate: local-only inputs, never committed
+# project-specific words (employer, product, repo, place names)
+tools/pii_context.txt
+# third-party person names used for the class 4 check
+tools/pii_names.txt
