@@ -6,7 +6,7 @@
 # hard config PINNED down" / "can we harden this voice miss!"). On 2026-07-27 a
 # 2-minute training render shipped in the WRONG voice. The pins live in prose
 # across the pipeline spec and the golden-set spec, and the assistant read a value out of a
-# STALE BACKUP (SKILL-backup-20260722-*.md) instead of the live file, using
+# STALE dated BACKUP COPY of the spec instead of the live file, using
 # <pinned-voice-id> (two generations old) on the wrong model with the wrong
 # settings and a single blind TTS draw. Prose cannot stop that. This can.
 #
