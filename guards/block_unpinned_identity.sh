@@ -1,5 +1,6 @@
 #!/bin/bash
 # Block renders that use a voice or avatar which is not the PINNED clone.
+# "her" throughout refers to the rendered character; see the README disclosure.
 #
 # WHY (2026-07-27: "everything must use cloned voice and cloned avatar
 # hard config PINNED down" / "can we harden this voice miss!"). On 2026-07-27 a

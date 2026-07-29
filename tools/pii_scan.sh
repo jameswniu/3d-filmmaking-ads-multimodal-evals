@@ -103,6 +103,21 @@ build_filelist() {
   esac
 }
 
+# The two local-only inputs hold real third-party names and project words BY
+# DESIGN, so their single wall is .gitignore. Nothing asserted that wall held
+# until the judgement layer flagged both files in a tree review; a one-line
+# gitignore regression (or a git add -f) would have published the roster. So
+# the wall itself is now a check: if either file exists AND is not ignored,
+# that is a BLOCKER before any content scanning happens.
+if git -C "$REPO_ROOT" rev-parse --git-dir >/dev/null 2>&1; then
+  for _lo in "$CONTEXT_FILE" "$NAMES_FILE"; do
+    [ -f "$_lo" ] || continue
+    if ! git -C "$REPO_ROOT" check-ignore -q "$_lo" 2>/dev/null; then
+      record "$_lo" 0 "CLASS4-THIRD-PARTY" "BLOCKER" "local-only-scanner-input-not-gitignored"
+    fi
+  done
+fi
+
 build_filelist \
   | grep -v -e '/\.git/' \
   | grep -v -e '/tools/pii_scan\.sh$' -e '/tools/pii_allowlist\.txt$' \

@@ -39,6 +39,8 @@ Both classes were then written into the local rule file, so the cheap layer catc
 - a reference to an issue-tracker hook from unrelated professional work, which is the one genuine workplace trace in the repo
 - one uppercase pronoun the earlier rewrite missed, because that pass matched lowercase only
 
+Both were fixed before the first commit, and the sleep-schedule phrase quoted above no longer appears anywhere in the tree (verified by the deterministic scan, which now fails on any README clock time).
+
 Everything else on pass 2 was a false alarm, and the reviewer was clearly saturating.
 
 ## Dismissed, with reasons
@@ -60,9 +62,30 @@ Dismissed by hand, per the instruction in the reviewer's own output. Not by loos
 
 The last one is the interesting dismissal. A reviewer tuned for confidentiality reads "here is the incident that produced this number" as a leak. In a repository whose entire claim is that thresholds were derived rather than typed, deleting the derivations would leave the numbers unfalsifiable. The incidents stay.
 
+## The redesign, same day
+
+The saturating reviewer described above was rebuilt rather than demoted, and the rebuild was calibrated before it was trusted. The full ablation is preserved because most of it was me being wrong in public:
+
+| change | recall on a seeded corpus of known-real classes |
+|---|---|
+| original chunk-verdict tool | caught everything, buried in ~90% noise |
+| per-finding redesign, dismissed classes listed in the prompt | **1 of 7, exit 0: would have published a named attorney** |
+| dismissals removed from prompt, recall mandate added | still 1 of 7 |
+| same prompt, stronger reviewer | still 1 |
+| **parser bug fixed** | **7 of 7, exit 1, two high/high blocks** |
+
+The failures were never the models. A `head -1` in my extraction code kept each reviewer's first finding and silently discarded the rest, which made three different models all appear to return exactly one finding, and made me write a confident and entirely wrong paragraph about model tiers. The lesson this repo keeps re-learning: count what the system actually did, not what the summary shows.
+
+Two rules survived the ablation and are now written into the tool:
+
+- **Recall lives in the prompt, precision lives in the post-filter.** Listing human-dismissed classes in the prompt taught the reviewer to ignore adjacent real findings. The ledger (`tools/pii_review_ledger.txt`, tracked, reasoned, tab-separated) is applied only after the model answers and is never shown to it.
+- **A per-call-billed privacy gate prices itself out of use.** The reviewer seat runs on the operator's flat-rate subscription (`tools/reviewers/claude_cli.sh`), because a gate with a marginal cost per run is a gate you learn to skip.
+
+Calibrated result on this tree: 14 chunks, 0 blockers, 5 low-severity advisories, 3 findings absorbed by the ledger, 0 unavailable. The gate blocks only on a high-severity, high-confidence finding that survives the ledger, and the first thing the calibrated reviewer caught was this repo's own tooling: the gitignored roster of third-party names sat one `.gitignore` line away from publication, with nothing asserting that line held. The deterministic scanner now blocks if that wall ever falls.
+
 ## Honest limits
 
-The judgement layer never returned clean and probably cannot on this content, because at sufficient caution every specific technical detail reads as internal. Its value was concentrated in pass 1, on classes the regex could not express. Treating a persistently red reviewer as a blocker would mean stripping the repo of the specificity that makes it worth reading, so it is used as a **reader, not a gate**, and its output is triaged here in public rather than in private.
+At sufficient caution every specific technical detail reads as internal, so the reviewer still over-reads at the advisory tier; advisories are deliberately cheap to emit and cost one line of human reading each. The blocking tier is the calibrated one.
 
 The deterministic layer is the gate. It is the one wired to block a commit, and the one that must stay at zero.
 
