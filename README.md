@@ -15,12 +15,12 @@
 <table>
   <tr>
     <td width="50%" align="center">
-      <img src="assets/glass-photo.jpg" alt="The physical light-field display showing a rendered frame" width="100%"><br>
-      <sub><b>The end of the pipe, physically.</b> A light-field panel showing the morning render. 77 views per frame, so the image holds depth as you move.</sub>
-    </td>
-    <td width="50%" align="center">
       <img src="assets/render-demo.gif" alt="Four seconds of a rendered narration clip" width="100%"><br>
       <sub><b>The render itself.</b> Cloned voice drives the character; the still that seeded her is the only reproducibility control the vendor allows.</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="assets/render-frame.jpg" alt="A single frame from a governed render" width="100%"><br>
+      <sub><b>One governed frame.</b> Generated character, disclosed as generated. Nine invariants scored this clip before it shipped.</sub>
     </td>
   </tr>
   <tr>
