@@ -24,7 +24,7 @@ The obvious fix, fitting a line through the two measured points, was rejected on
 
 So the router now returns **NULL for any duration it has not actually billed**, with a `credits_basis` field naming what is known. A NULL makes the caller ask. A confident 5 makes it spend 43. This is the same rule as the rest of the repo: an unmeasured number presented confidently is worse than an admitted gap.
 
-New measurements are cheap to add: read the vendor's remaining-credit balance, render one clip at the target length, read it again, and record the delta as the measured cost at that length.
+New measurements are cheap to add: read the vendor's credit meter, render one clip at the target length, read it again, and record the delta as the measured cost at that length. Record the delta only. The absolute reading is account state and does not belong in a public repository, which is a distinction this file got wrong once and the pre-publish gate caught.
 
 ## Voice synthesis
 
