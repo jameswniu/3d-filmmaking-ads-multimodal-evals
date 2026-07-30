@@ -38,6 +38,14 @@ jobs:
       # materializes them from secrets when they exist. When they do not, the
       # affected checks are SKIPPED, the scan says so, and the step below
       # turns that into a visible warning rather than a silent pass.
+      # Class 7 (media metadata) needs a real metadata reader. Without one the
+      # scanner fails CLOSED on every media file, which is correct behaviour
+      # and a red CI, so the reader is installed rather than the check skipped.
+      # The repo now tracks curated, metadata-stripped exhibits in assets/,
+      # and this step is what lets CI verify the stripping actually held.
+      - name: Install media metadata reader
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq libimage-exiftool-perl
+
       - name: Materialize local-only context
         env:
           PII_CONTEXT: ${{ secrets.PII_CONTEXT }}

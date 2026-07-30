@@ -30,3 +30,11 @@ pins.json
 tools/pii_context.txt
 # third-party person names used for the class 4 check
 tools/pii_names.txt
+
+# assets/ carries the README's visual evidence: metadata-stripped stills, one
+# GIF, and the hero SVG. The blanket media excludes above exist to keep RENDER
+# OUTPUT out of git; these are curated, stripped, reviewed exhibits, which is
+# a different thing. gitignore is last-match-wins, so these negations re-admit
+# exactly this directory and nothing else.
+!assets/
+!assets/**

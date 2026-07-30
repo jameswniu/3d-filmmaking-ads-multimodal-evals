@@ -1,10 +1,41 @@
-# agentic-video-pipeline-evals
+<p align="center">
+  <img src="assets/hero.svg" alt="agentic-video-pipeline-evals: an unattended pipeline that ships a narrated hologram daily, with nobody watching" width="100%">
+</p>
 
-**An agent pipeline that produces a narrated video every morning and puts it on a physical display, with nobody watching it happen.**
+<p align="center">
+  <img alt="runs unsupervised" src="https://img.shields.io/badge/runs-unsupervised-0ea5e9?style=for-the-badge&labelColor=0a1630">
+  <img alt="render cost" src="https://img.shields.io/badge/render-1_credit_flat-38bdf8?style=for-the-badge&labelColor=0a1630">
+  <img alt="probes" src="https://img.shields.io/badge/probes-12-7dd3fc?style=for-the-badge&labelColor=0a1630">
+  <img alt="guards" src="https://img.shields.io/badge/guards-4-60a5fa?style=for-the-badge&labelColor=0a1630">
+  <img alt="license" src="https://img.shields.io/badge/license-MIT-93c5fd?style=for-the-badge&labelColor=0a1630">
+</p>
 
-It runs three times a day on a schedule, against metered vendor APIs, unsupervised. That constraint is the entire project. An agent you are watching can be corrected. An agent spending money on a schedule with nobody in front of the screen cannot, so most of this repo is guards, evals, and measurements rather than rendering code.
+**Every morning, with nobody watching, this pipeline writes a script, speaks it in a cloned voice, renders a character, estimates depth on a local GPU, and puts 77 views of her on a physical light-field display.** Most of this repo is not the rendering. It is the guards, evals, and measurements that make spending real money unattended survivable.
 
-> The character in the rendered video is generated. She is not a real person and not a likeness of one. This repo is about the pipeline around her.
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <img src="assets/glass-photo.jpg" alt="The physical light-field display showing a rendered frame" width="100%"><br>
+      <sub><b>The end of the pipe, physically.</b> A light-field panel showing the morning render. 77 views per frame, so the image holds depth as you move.</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="assets/render-demo.gif" alt="Four seconds of a rendered narration clip" width="100%"><br>
+      <sub><b>The render itself.</b> Cloned voice drives the character; the still that seeded her is the only reproducibility control the vendor allows.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="assets/quilt.png" alt="The 7x11 view array a light-field frame is built from" width="100%"><br>
+      <sub><b>What the display actually eats.</b> One frame of a real morning brief as its 7x11 quilt: 77 tiles, the same instant from 77 eye positions.</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="assets/depth.png" alt="Monocular depth estimate of a render frame" width="100%"><br>
+      <sub><b>Depth, inferred locally.</b> Monocular depth on the GPU is what turns one flat render into 77 views. This map is the whole trick.</sub>
+    </td>
+  </tr>
+</table>
+
+> The character is generated. She is not a real person and not a likeness of one. This repo is about the pipeline around her.
 
 ---
 
@@ -15,9 +46,7 @@ script  ->  cloned-voice synthesis  ->  look generation  ->  video render
         ->  local GPU depth estimation  ->  view array  ->  physical display
 ```
 
-Seven stages, scheduled, unattended. A nine-invariant eval harness scores the output. Runtime guards block bad calls before they reach a paid API. Per-run counters catch overspend.
-
-The output target is a light-field panel, which is why the pipeline renders 77 views per frame instead of one. It renders view arrays rather than flat frames specifically so the display device can change without touching the render path.
+Seven stages, scheduled, unattended, against metered vendor APIs. A nine-invariant eval harness scores the output. Runtime guards block bad calls before they reach a paid API. Per-run counters catch overspend. The display device can change without touching the render path, because the pipeline ships view arrays rather than flat frames.
 
 ---
 
@@ -63,6 +92,21 @@ The two constraint rows are the same rule measured two ways. The gap between the
 
 ---
 
+## Cost
+
+The one-row version: **render on HeyGen Avatar 3.0** (`avatar_iii` in this repo's probes), which billed **1 credit flat** at both ~11 seconds and ~126 seconds, while the premium tiers billed 5 and 43 at the same two lengths. A daily 2-minute clip costs the same credit a 9-second one does.
+
+| engine tier | ~11s | ~126s | shape |
+|---|---|---|---|
+| Avatar 3.0 flat tier | 1 credit | 1 credit | flat, two measured points |
+| premium tiers | 5 credits | 43 credits | not flat, not knowably linear |
+
+The cost router refuses to interpolate between measured points: an earlier confident estimate understated a premium batch by 8.6x and burned 344 credits before anyone noticed. NULL makes a caller ask; a confident 5 makes it spend 43.
+
+Voice is metered per character and audio costs zero render credits, so the pipeline draws 3 voice takes per script (single draws drift audibly) and renders once. Consumption model, tier-sizing math for both vendors, and the full incident: [`docs/COST.md`](docs/COST.md).
+
+---
+
 ## How it is built
 
 **Voice.** A cloned voice model synthesizes the narration from a written script. Synthesis happens before rendering, so the audio drives the video rather than the reverse. Every draw is metered by character count against a per-run ceiling.
@@ -77,7 +121,7 @@ The two constraint rows are the same rule measured two ways. The gap between the
 
 **Orchestration.** Three scheduled stages, each a headless agent run under a budget guard and a wall-clock timeout. Failures degrade to a known-good clip rather than showing a broken frame, and anything that is not a clean success raises an alert. The alerting test is inverted deliberately: it fires on everything that is not success, rather than on an enumerated list of known failures, so an unanticipated failure mode is loud on day one.
 
-**Cost.** Every metered call is counted per run. The engine tier is pinned to the flat-rate option, which costs the same for a 9 second clip as for a 126 second one, while the premium tiers cost 43x more for identical output.
+**Cost.** Every metered call is counted per run. The engine tier is pinned to the flat-rate option; the table above is the whole argument.
 
 ---
 
@@ -111,10 +155,14 @@ git config core.hooksPath .githooks       # one line per clone, see .githooks/pr
 bash tools/pii_scan.sh                    # deterministic layer
 ```
 
+Want the same pipeline with your own voice and your own character? [`docs/SETUP.md`](docs/SETUP.md) is the build order, with the consent line up top and the measured reasons behind each step.
+
 ---
 
 ## Read next
 
+- [`docs/SETUP.md`](docs/SETUP.md), clone your voice, generate your character, pin both, in the order that works
+- [`docs/COST.md`](docs/COST.md), the measured credit schedule, the 344-credit incident, and which vendor tiers to buy
 - [`docs/RELIABILITY.md`](docs/RELIABILITY.md), why the quality gate stopped blocking and what replaced it
 - [`docs/ENFORCEMENT.md`](docs/ENFORCEMENT.md), the four guards, which three fail open, and how I found out
 - [`docs/EVIDENCE.md`](docs/EVIDENCE.md), every number above traced to the file and command that produced it

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="agentic video pipeline evals">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050b1a"/>
+      <stop offset="55%" stop-color="#0a1630"/>
+      <stop offset="100%" stop-color="#0d2147"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#38bdf8" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="50%" stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="0%" r="90%">
+      <stop offset="0%" stop-color="#1d4ed8" stop-opacity=".55"/>
+      <stop offset="60%" stop-color="#1d4ed8" stop-opacity=".12"/>
+      <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#38bdf8" stroke-opacity=".07" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="300" fill="url(#bg)"/>
+  <rect width="1200" height="300" fill="url(#grid)"/>
+  <rect width="1200" height="300" fill="url(#glow)"/>
+
+  <g stroke="#38bdf8" stroke-width="1">
+    <line x1="985" y1="150" x2="1165" y2="40"  stroke-opacity=".55"/>
+    <line x1="985" y1="150" x2="1180" y2="75"  stroke-opacity=".40"/>
+    <line x1="985" y1="150" x2="1190" y2="115" stroke-opacity=".30"/>
+    <line x1="985" y1="150" x2="1192" y2="150" stroke-opacity=".55"/>
+    <line x1="985" y1="150" x2="1190" y2="185" stroke-opacity=".30"/>
+    <line x1="985" y1="150" x2="1180" y2="225" stroke-opacity=".40"/>
+    <line x1="985" y1="150" x2="1165" y2="260" stroke-opacity=".55"/>
+  </g>
+  <rect x="955" y="115" width="60" height="70" rx="6" fill="none" stroke="#7dd3fc" stroke-width="2"/>
+  <rect x="963" y="123" width="44" height="54" rx="3" fill="#38bdf8" fill-opacity=".14"/>
+
+  <line x1="60" y1="228" x2="920" y2="228" stroke="url(#beam)" stroke-width="2"/>
+  <g fill="#0ea5e9">
+    <circle cx="120" cy="228" r="5"/>
+    <circle cx="250" cy="228" r="5"/>
+    <circle cx="380" cy="228" r="5"/>
+    <circle cx="510" cy="228" r="5"/>
+    <circle cx="640" cy="228" r="5"/>
+    <circle cx="770" cy="228" r="5"/>
+    <circle cx="900" cy="228" r="5"/>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#93c5fd" text-anchor="middle">
+    <text x="120" y="252">script</text>
+    <text x="250" y="252">voice</text>
+    <text x="380" y="252">look</text>
+    <text x="510" y="252">render</text>
+    <text x="640" y="252">depth</text>
+    <text x="770" y="252">77 views</text>
+    <text x="900" y="252">glass</text>
+  </g>
+
+  <text x="60" y="105" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="44" font-weight="700" fill="url(#title)" letter-spacing="1">agentic-video-pipeline-evals</text>
+  <text x="60" y="145" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" fill="#7dd3fc" opacity=".92">an unattended pipeline that ships a narrated hologram daily, with nobody watching</text>
+  <text x="60" y="172" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#60a5fa" opacity=".8">guards that block bad spend &#183; evals that overrule vibes &#183; numbers that carry their n</text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">
+    <rect x="60"  y="38" rx="10" width="132" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
+    <text x="126" y="53" fill="#7dd3fc" text-anchor="middle">unsupervised</text>
+    <rect x="202" y="38" rx="10" width="150" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
+    <text x="277" y="53" fill="#7dd3fc" text-anchor="middle">metered vendors</text>
+    <rect x="362" y="38" rx="10" width="168" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
+    <text x="446" y="53" fill="#7dd3fc" text-anchor="middle">1 credit per render</text>
+  </g>
+</svg>
