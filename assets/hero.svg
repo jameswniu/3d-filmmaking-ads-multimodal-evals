@@ -37,12 +37,12 @@
     <rect x="350" y="34" rx="10" width="162" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
     <text x="431" y="49" fill="#7dd3fc" text-anchor="middle">1 credit per render</text>
     <rect x="522" y="34" rx="10" width="150" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
-    <text x="597" y="49" fill="#7dd3fc" text-anchor="middle">9 invariants gate</text>
+    <text x="597" y="49" fill="#7dd3fc" text-anchor="middle">113 labelled stills</text>
   </g>
 
-  <text x="56" y="112" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="42" font-weight="700" fill="url(#title)" letter-spacing="1">3d-filmmaking-ads-multimodal-evals</text>
-  <text x="56" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.5" fill="#7dd3fc" opacity=".95">an unattended pipeline that ships a narrated hologram daily, with nobody watching</text>
-  <text x="56" y="176" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13.5" fill="#60a5fa" opacity=".85">guards that block bad spend &#183; evals that overrule vibes &#183; numbers that carry their n</text>
+  <text x="56" y="112" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="35" font-weight="700" fill="url(#title)" letter-spacing="1">3d-filmmaking-ads-multimodal-evals</text>
+  <text x="56" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.5" fill="#7dd3fc" opacity=".95">taste captured as labels, compiled into thresholds, enforced by gates</text>
+  <text x="56" y="176" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13.5" fill="#60a5fa" opacity=".85">advertising-grade avatar video &#183; cloned voice &#183; 77-view light field &#183; evals lead</text>
 
   <g>
     <rect x="948" y="72" width="196" height="118" rx="8" fill="#0a1630" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="2"/>
