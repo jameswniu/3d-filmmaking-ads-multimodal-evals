@@ -213,6 +213,7 @@ Capture depth or infer it? Capture wants a depth camera pointed at a real subjec
 
 - [`pipeline/depth_infer.py`](pipeline/depth_infer.py). On the frame above: model load 1.9 seconds, inference 0.4 seconds.
 - Frames are batched with a stride and interpolated between, which is where the measured speedup actually comes from. Worth stating plainly: the 2.5x was real and the explanation I first wrote for it was wrong, because the setting meant to run ten things at once was running one.
+- **Depth is normalized once across the whole clip, and that costs memory rather than accuracy.** A per-frame or per-chunk range would let the near plane drift between segments, which reads as the depth pulsing and the parallax flickering. Holding one range means holding every frame, so peak memory scales with clip length: the 128-second clip on this page ran to 13.4 GB resident and pushed 16.6 GB to swap on a 64 GB machine. It completed, and a four-minute clip at this resolution would not. The fix is to infer at reduced resolution and upscale the maps, since depth is smooth and tolerates that where colour would not, and it is a fix rather than a workaround because it keeps the single global range. Chunking is the tempting option and it is the wrong one: it trades a visible artifact for an invisible ceiling.
 
 ### 8. Quilt
 
