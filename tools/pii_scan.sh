@@ -279,6 +279,18 @@ add_owner() {
   [ -n "$t" ] || return 0
   case "$t" in *[!A-Za-z0-9._-]*) return 0 ;; esac
   [ "${#t}" -ge 3 ] || return 0
+  # Platform-default usernames identify no one, so they must not become owner
+  # tokens. On a GitHub runner `id -un` is literally "runner", and because the
+  # owner rule matches case-insensitively (a real name is not case-stable in
+  # prose), the derived token matched RUNNER_TEMP in the workflow file itself:
+  # the scanner flagged the platform's own vocabulary as the operator's
+  # identity. An owner check exists to catch the OPERATOR's name; a username
+  # shared by every tenant of the platform asserts nothing about them. When
+  # this filter leaves the pattern empty, the check is SKIPPED and says so,
+  # which is the honest state: CI genuinely does not know the operator's name.
+  case "$(printf '%s' "$t" | tr 'A-Z' 'a-z')" in
+    runner|root|admin|user|ubuntu|debian|ec2-user|jenkins|ci|build|builder|github|actions|worker|agent) return 0 ;;
+  esac
   t="$(printf '%s' "$t" | sed 's/[.]/\\./g')"
   if [ -z "$OWNER_PATTERN" ]; then OWNER_PATTERN="$t"; else OWNER_PATTERN="$OWNER_PATTERN|$t"; fi
 }

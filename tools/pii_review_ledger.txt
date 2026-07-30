@@ -26,5 +26,5 @@ hardware-categories	*	(apple silicon|mps|light[- ]field|gpu architecture|display
 generated-scene-labels	*	(smooth-beach|regen-beach|smooth-bakery|human-bakery|calm wave|take[0-9]-final-pro|fix-beach)	labels of generated video content, not real venues
 author-byline	README	author'?s? (full )?name	the deliberate byline on a portfolio repository
 license-holder	LICENSE	copyright	the license needs a named holder to be a license
-credits-not-currency	*	(personal account usage|cost described in prose|vendor credits?|credit balance|daily (render )?cost)	cost published deliberately in vendor credits, never currency; see docs/NOT-MEASURED.md
+credits-not-currency	*	(personal account usage|cost described in prose|vendor credits?|credit balance|daily (render )?cost)	cost published deliberately in vendor credits, never currency; see docs/NOT-MEASURED.md (pii-allow: this line is a rule ABOUT credit-balance prose; the phrase here is the pattern, not an account state)
 incident-derivations	*	((internal|development|production) (incident|history)|calibration (date|history))	the documented derivation behind each threshold, which is the artifact itself; see docs/PII-REVIEW.md
