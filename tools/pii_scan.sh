@@ -224,7 +224,12 @@ BLOCKER	CLASS5-WORKPLACE	tenant-issue-tracker-host	[A-Za-z0-9-]+\.atlassian\.net
 BLOCKER	CLASS5-WORKPLACE	tenant-chat-archive-link	[A-Za-z0-9-]+\.slack\.com/archives
 HIGH	CLASS5-WORKPLACE	tenant-monitoring-host	[A-Za-z0-9-]+\.(airbrake|datadoghq|pagerduty|postman)\.(io|com|co)
 HIGH	CLASS5-WORKPLACE	sprint-reference	\bSprint[[:space:]]+[0-9]+\b
-HIGH	CLASS5-WORKPLACE	internal-cluster-reference	\bEKS\b|\bnamespace[[:space:]]+[a-z0-9-]{6,}|staging[0-9]{1,3}\b
+# internal-cluster-reference: the namespace arm requires a digit or hyphen in
+# the following token. It used to accept any 6+ letter word, so ordinary prose
+# ("the environment-variable namespace matched") in a commit message failed CI
+# as a workplace cluster reference. An identifier shape, not an English word,
+# is what makes it a cluster ref.
+HIGH	CLASS5-WORKPLACE	internal-cluster-reference	\bEKS\b|\bnamespace[[:space:]]+([a-z0-9-]*[0-9][a-z0-9-]*|[a-z0-9]+(-[a-z0-9]+)+)\b|staging[0-9]{1,3}\b
 MEDIUM	CLASS5-WORKPLACE	forge-repository-link	(bitbucket\.org|gitlab\.com|dev\.azure\.com)/[A-Za-z0-9._-]+/
 HIGH	CLASS6-BEHAVIORAL	wall-clock-time	\b([01][0-9]|2[0-3]):[0-5][0-9]\b
 HIGH	CLASS6-BEHAVIORAL	timestamped-event	20[0-9]{2}-[01][0-9]-[0-3][0-9][ T]([01][0-9]|2[0-3]):[0-5][0-9]
