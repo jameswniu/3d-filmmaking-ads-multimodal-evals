@@ -5,72 +5,100 @@
       <stop offset="55%" stop-color="#0a1630"/>
       <stop offset="100%" stop-color="#0d2147"/>
     </linearGradient>
-    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%"  stop-color="#38bdf8" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#38bdf8" stop-opacity=".9"/>
-      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
-    </linearGradient>
     <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#7dd3fc"/>
       <stop offset="50%" stop-color="#e0f2fe"/>
       <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="0%" r="90%">
-      <stop offset="0%" stop-color="#1d4ed8" stop-opacity=".55"/>
-      <stop offset="60%" stop-color="#1d4ed8" stop-opacity=".12"/>
+    <radialGradient id="glow" cx="78%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#1d4ed8" stop-opacity=".5"/>
+      <stop offset="60%" stop-color="#1d4ed8" stop-opacity=".1"/>
       <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0"/>
     </radialGradient>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#38bdf8" stroke-opacity=".07" stroke-width="1"/>
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#38bdf8" stroke-opacity=".06" stroke-width="1"/>
     </pattern>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity=".18"/>
+    </linearGradient>
   </defs>
 
   <rect width="1200" height="300" fill="url(#bg)"/>
   <rect width="1200" height="300" fill="url(#grid)"/>
   <rect width="1200" height="300" fill="url(#glow)"/>
-
-  <g stroke="#38bdf8" stroke-width="1">
-    <line x1="985" y1="150" x2="1165" y2="40"  stroke-opacity=".55"/>
-    <line x1="985" y1="150" x2="1180" y2="75"  stroke-opacity=".40"/>
-    <line x1="985" y1="150" x2="1190" y2="115" stroke-opacity=".30"/>
-    <line x1="985" y1="150" x2="1192" y2="150" stroke-opacity=".55"/>
-    <line x1="985" y1="150" x2="1190" y2="185" stroke-opacity=".30"/>
-    <line x1="985" y1="150" x2="1180" y2="225" stroke-opacity=".40"/>
-    <line x1="985" y1="150" x2="1165" y2="260" stroke-opacity=".55"/>
-  </g>
-  <rect x="955" y="115" width="60" height="70" rx="6" fill="none" stroke="#7dd3fc" stroke-width="2"/>
-  <rect x="963" y="123" width="44" height="54" rx="3" fill="#38bdf8" fill-opacity=".14"/>
-
-  <line x1="60" y1="228" x2="920" y2="228" stroke="url(#beam)" stroke-width="2"/>
-  <g fill="#0ea5e9">
-    <circle cx="120" cy="228" r="5"/>
-    <circle cx="250" cy="228" r="5"/>
-    <circle cx="380" cy="228" r="5"/>
-    <circle cx="510" cy="228" r="5"/>
-    <circle cx="640" cy="228" r="5"/>
-    <circle cx="770" cy="228" r="5"/>
-    <circle cx="900" cy="228" r="5"/>
-  </g>
-  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#93c5fd" text-anchor="middle">
-    <text x="120" y="252">script</text>
-    <text x="250" y="252">voice</text>
-    <text x="380" y="252">look</text>
-    <text x="510" y="252">render</text>
-    <text x="640" y="252">depth</text>
-    <text x="770" y="252">77 views</text>
-    <text x="900" y="252">glass</text>
-  </g>
-
-  <text x="60" y="105" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="44" font-weight="700" fill="url(#title)" letter-spacing="1">agentic-video-pipeline-evals</text>
-  <text x="60" y="145" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" fill="#7dd3fc" opacity=".92">an unattended pipeline that ships a narrated hologram daily, with nobody watching</text>
-  <text x="60" y="172" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#60a5fa" opacity=".8">guards that block bad spend &#183; evals that overrule vibes &#183; numbers that carry their n</text>
+  <rect x="0" y="0" width="1200" height="2.5" fill="#38bdf8" opacity=".85"/>
 
   <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">
-    <rect x="60"  y="38" rx="10" width="132" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
-    <text x="126" y="53" fill="#7dd3fc" text-anchor="middle">unsupervised</text>
-    <rect x="202" y="38" rx="10" width="150" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
-    <text x="277" y="53" fill="#7dd3fc" text-anchor="middle">metered vendors</text>
-    <rect x="362" y="38" rx="10" width="168" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
-    <text x="446" y="53" fill="#7dd3fc" text-anchor="middle">1 credit per render</text>
+    <rect x="56"  y="34" rx="10" width="128" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
+    <text x="120" y="49" fill="#7dd3fc" text-anchor="middle">unsupervised</text>
+    <rect x="194" y="34" rx="10" width="146" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
+    <text x="267" y="49" fill="#7dd3fc" text-anchor="middle">metered vendors</text>
+    <rect x="350" y="34" rx="10" width="162" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
+    <text x="431" y="49" fill="#7dd3fc" text-anchor="middle">1 credit per render</text>
+    <rect x="522" y="34" rx="10" width="150" height="22" fill="#0ea5e9" fill-opacity=".13" stroke="#38bdf8" stroke-opacity=".5"/>
+    <text x="597" y="49" fill="#7dd3fc" text-anchor="middle">9 invariants gate</text>
   </g>
+
+  <text x="56" y="112" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="42" font-weight="700" fill="url(#title)" letter-spacing="1">agentic-video-pipeline-evals</text>
+  <text x="56" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.5" fill="#7dd3fc" opacity=".95">an unattended pipeline that ships a narrated hologram daily, with nobody watching</text>
+  <text x="56" y="176" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13.5" fill="#60a5fa" opacity=".85">guards that block bad spend &#183; evals that overrule vibes &#183; numbers that carry their n</text>
+
+  <g>
+    <rect x="948" y="72" width="196" height="118" rx="8" fill="#0a1630" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="2"/>
+    <g>
+      <rect x="958" y="82"  width="24" height="30" rx="2" fill="url(#tile)" opacity=".95"/>
+      <rect x="986" y="82"  width="24" height="30" rx="2" fill="url(#tile)" opacity=".8"/>
+      <rect x="1014" y="82" width="24" height="30" rx="2" fill="url(#tile)" opacity=".65"/>
+      <rect x="1042" y="82" width="24" height="30" rx="2" fill="url(#tile)" opacity=".5"/>
+      <rect x="1070" y="82" width="24" height="30" rx="2" fill="url(#tile)" opacity=".65"/>
+      <rect x="1098" y="82" width="24" height="30" rx="2" fill="url(#tile)" opacity=".8"/>
+      <rect x="958" y="116" width="24" height="30" rx="2" fill="url(#tile)" opacity=".7"/>
+      <rect x="986" y="116" width="24" height="30" rx="2" fill="url(#tile)" opacity=".9"/>
+      <rect x="1014" y="116" width="24" height="30" rx="2" fill="url(#tile)" opacity=".75"/>
+      <rect x="1042" y="116" width="24" height="30" rx="2" fill="url(#tile)" opacity=".6"/>
+      <rect x="1070" y="116" width="24" height="30" rx="2" fill="url(#tile)" opacity=".75"/>
+      <rect x="1098" y="116" width="24" height="30" rx="2" fill="url(#tile)" opacity=".9"/>
+      <rect x="958" y="150" width="24" height="30" rx="2" fill="url(#tile)" opacity=".85"/>
+      <rect x="986" y="150" width="24" height="30" rx="2" fill="url(#tile)" opacity=".6"/>
+      <rect x="1014" y="150" width="24" height="30" rx="2" fill="url(#tile)" opacity=".95"/>
+      <rect x="1042" y="150" width="24" height="30" rx="2" fill="url(#tile)" opacity=".7"/>
+      <rect x="1070" y="150" width="24" height="30" rx="2" fill="url(#tile)" opacity=".9"/>
+      <rect x="1098" y="150" width="24" height="30" rx="2" fill="url(#tile)" opacity=".55"/>
+    </g>
+    <text x="1046" y="207" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#60a5fa" text-anchor="middle" opacity=".9">77 views &#183; one instant</text>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">
+    <rect x="55"   y="228" rx="7" width="92" height="26" fill="#0ea5e9" fill-opacity=".10" stroke="#38bdf8" stroke-opacity=".55"/>
+    <text x="101"  y="245" fill="#93c5fd" text-anchor="middle">wake</text>
+    <text x="153"  y="245" fill="#38bdf8">&#8250;</text>
+    <rect x="163"  y="228" rx="7" width="92" height="26" fill="#0ea5e9" fill-opacity=".10" stroke="#38bdf8" stroke-opacity=".55"/>
+    <text x="209"  y="245" fill="#93c5fd" text-anchor="middle">script</text>
+    <text x="261"  y="245" fill="#38bdf8">&#8250;</text>
+    <rect x="271"  y="228" rx="7" width="92" height="26" fill="#0ea5e9" fill-opacity=".10" stroke="#38bdf8" stroke-opacity=".55"/>
+    <text x="317"  y="245" fill="#93c5fd" text-anchor="middle">voice x3</text>
+    <text x="369"  y="245" fill="#38bdf8">&#8250;</text>
+    <rect x="379"  y="228" rx="7" width="92" height="26" fill="#0ea5e9" fill-opacity=".10" stroke="#38bdf8" stroke-opacity=".55"/>
+    <text x="425"  y="245" fill="#93c5fd" text-anchor="middle">look</text>
+    <text x="477"  y="245" fill="#38bdf8">&#8250;</text>
+    <rect x="487"  y="228" rx="7" width="92" height="26" fill="#0ea5e9" fill-opacity=".10" stroke="#38bdf8" stroke-opacity=".55"/>
+    <text x="533"  y="245" fill="#93c5fd" text-anchor="middle">render</text>
+    <text x="585"  y="245" fill="#38bdf8">&#8250;</text>
+    <rect x="595"  y="228" rx="7" width="92" height="26" fill="#0ea5e9" fill-opacity=".10" stroke="#38bdf8" stroke-opacity=".55"/>
+    <text x="641"  y="245" fill="#93c5fd" text-anchor="middle">nobg</text>
+    <text x="693"  y="245" fill="#38bdf8">&#8250;</text>
+    <rect x="703"  y="228" rx="7" width="92" height="26" fill="#0ea5e9" fill-opacity=".10" stroke="#38bdf8" stroke-opacity=".55"/>
+    <text x="749"  y="245" fill="#93c5fd" text-anchor="middle">evals</text>
+    <text x="801"  y="245" fill="#38bdf8">&#8250;</text>
+    <rect x="811"  y="228" rx="7" width="92" height="26" fill="#0ea5e9" fill-opacity=".10" stroke="#38bdf8" stroke-opacity=".55"/>
+    <text x="857"  y="245" fill="#93c5fd" text-anchor="middle">depth</text>
+    <text x="909"  y="245" fill="#38bdf8">&#8250;</text>
+    <rect x="919"  y="228" rx="7" width="92" height="26" fill="#0ea5e9" fill-opacity=".10" stroke="#38bdf8" stroke-opacity=".55"/>
+    <text x="965"  y="245" fill="#93c5fd" text-anchor="middle">quilt</text>
+    <text x="1017" y="245" fill="#38bdf8">&#8250;</text>
+    <rect x="1027" y="228" rx="7" width="92" height="26" fill="#0ea5e9" fill-opacity=".16" stroke="#7dd3fc" stroke-opacity=".9"/>
+    <text x="1073" y="245" fill="#e0f2fe" text-anchor="middle">glass</text>
+  </g>
+  <text x="55" y="280" font-family="ui-monospace, Menlo, monospace" font-size="11.5" fill="#475569">10 stages, scheduled &#183; every gate fires before the credit is spent &#183; anything not a clean success pings loud</text>
 </svg>

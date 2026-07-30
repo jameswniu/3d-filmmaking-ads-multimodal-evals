@@ -14,28 +14,66 @@
 
 <table>
   <tr>
-    <td width="50%" align="center">
-      <img src="assets/render-demo.gif" alt="Four seconds of a rendered narration clip" width="100%"><br>
-      <sub><b>The render itself.</b> Cloned voice drives the character; the still that seeded her is the only reproducibility control the vendor allows.</sub>
+    <td width="55%" align="center">
+      <img src="assets/glass-feed-demo.gif" alt="The final product: tonight's governed render, the clip the light-field panel plays" width="100%"><br>
+      <sub><b>The final product.</b> Tonight's governed render, cloned voice and all, exactly as the light-field panel receives it. GIFs are mute, so: <b><a href="assets/glass-feed-demo.mp4">&#9654; watch it with sound (mp4)</a></b></sub>
     </td>
-    <td width="50%" align="center">
-      <img src="assets/render-frame.jpg" alt="A single frame from a governed render" width="100%"><br>
-      <sub><b>One governed frame.</b> Generated character, disclosed as generated. Nine invariants scored this clip before it shipped.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" align="center">
-      <img src="assets/quilt.png" alt="The 7x11 view array a light-field frame is built from" width="100%"><br>
-      <sub><b>What the display actually eats.</b> One frame of a real morning brief as its 7x11 quilt: 77 tiles, the same instant from 77 eye positions.</sub>
-    </td>
-    <td width="50%" align="center">
-      <img src="assets/depth.png" alt="Monocular depth estimate of a render frame" width="100%"><br>
-      <sub><b>Depth, inferred locally.</b> Monocular depth on the GPU is what turns one flat render into 77 views. This map is the whole trick.</sub>
+    <td width="45%" align="center">
+      <img src="assets/quilt.png" alt="The same pipeline's 7x11 view array" width="100%"><br>
+      <sub><b>The same pipe, as the display eats it.</b> A real morning brief as its 7x11 quilt: 77 tiles, one instant, 77 eye positions. This is why it reads as 3D on the panel.</sub>
     </td>
   </tr>
 </table>
 
 > The character is generated. She is not a real person and not a likeness of one. This repo is about the pipeline around her.
+
+## Every stage, visually
+
+Ten stages, numbered 0 to 9, every cell from real pipeline output. Different renders across the cells on purpose; one clip everywhere would hide that the harness governs a *distribution*, not a lucky take. Stages 8 and 9, the quilt and the glass feed, are the pair at the top of the page, and the code behind each stage is in [`pipeline/`](pipeline/).
+
+<table>
+  <tr>
+    <td width="33%" align="center">
+      <img src="assets/stage-wake.svg" alt="Stage 0: the scheduled wake" width="100%"><br>
+      <sub><b>0. Wake.</b> Stage zero is a timer, not a person: a headless agent starts under a budget, a timeout, and armed guards.</sub>
+    </td>
+    <td width="33%" align="center">
+      <img src="assets/stage-script.svg" alt="Stage 1: the script" width="100%"><br>
+      <sub><b>1. Script.</b> Written on schedule, kept above 250 characters because shorter scripts measurably brighten the voice.</sub>
+    </td>
+    <td width="33%" align="center">
+      <img src="assets/voice-wave.png" alt="Stage 2: the cloned-voice waveform" width="100%"><br>
+      <sub><b>2. Voice.</b> Three takes drawn per script, consensus-picked; this waveform is tonight's winning take.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" align="center">
+      <img src="assets/look-still.jpg" alt="Stage 3: a generated look" width="100%"><br>
+      <sub><b>3. Look.</b> A generated appearance from the pinned avatar group; the still is the reproducibility seed.</sub>
+    </td>
+    <td width="33%" align="center">
+      <img src="assets/render-demo.gif" alt="Stage 4: the animated render" width="100%"><br>
+      <sub><b>4. Render.</b> Audio drives the animation; a different golden-set look than the cells beside it, on purpose.</sub>
+    </td>
+    <td width="33%" align="center">
+      <img src="assets/stage-nobg.jpg" alt="Stage 5: background removal, before and after" width="100%"><br>
+      <sub><b>5. Matte.</b> Background removal on the same instant, before and after; the hair is where this stage earns its keep.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" align="center">
+      <img src="assets/render-frame.jpg" alt="Stage 6: a frame under evaluation" width="100%"><br>
+      <sub><b>6. Evals.</b> Nine invariants score every clip; a third distinct look, from a take the harness passed.</sub>
+    </td>
+    <td width="33%" align="center">
+      <img src="assets/depth.png" alt="Stage 7: the inferred depth map" width="100%"><br>
+      <sub><b>7. Depth.</b> Monocular depth inferred on the local GPU; this map is what turns one frame into 77 views.</sub>
+    </td>
+    <td width="33%" align="center" valign="middle">
+      <sub><b>8. Quilt and 9. Glass</b> are the pair at the top of this page.<br><br>The module behind every stage ships in <a href="pipeline/"><b>pipeline/</b></a>: matte, depth, quilt, and the cost router whose refusal to guess is the story in <a href="docs/COST.md">COST.md</a>.</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -124,6 +162,19 @@ Voice is metered per character and audio costs zero render credits, so the pipel
 **Cost.** Every metered call is counted per run. The engine tier is pinned to the flat-rate option; the table above is the whole argument.
 
 ---
+
+## The pipeline code
+
+Each demoed stage above maps to a real module in [`pipeline/`](pipeline/), ported from the working tree with identities parameterized, the same treatment the guards got:
+
+| stage | module | what it is |
+|---|---|---|
+| 5, matte | `pipeline/matte_video.py` | background removal tuned for hair, with the dated verdicts that shaped each threshold |
+| 7, depth | `pipeline/depth_infer.py` | per-frame monocular depth on Apple Silicon MPS |
+| 8, quilt | `pipeline/quilt.py`, `pipeline/quilt_video.py` | parallax warp and the 7x11 view array |
+| cost | `pipeline/pick_engine.sh`, `pipeline/route_engine.sh` | the engine router that returns NULL rather than guess a price |
+
+These are reference code, not a turnkey app: the Python stages carry their own heavy dependencies (torch, an open depth model, a matting model) that are deliberately not in `requirements.txt`, which stays scoped to the probes.
 
 ## Running it
 

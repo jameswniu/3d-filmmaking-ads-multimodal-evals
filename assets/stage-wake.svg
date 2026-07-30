@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="stage 0: the scheduled wake">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050b1a"/>
+      <stop offset="100%" stop-color="#0d2147"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#38bdf8" stroke-opacity=".06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+
+  <rect x="90" y="70" width="1020" height="535" rx="14" fill="#0a1630" stroke="#38bdf8" stroke-opacity=".45" stroke-width="1.5"/>
+  <circle cx="130" cy="108" r="7" fill="#ef4444" opacity=".8"/>
+  <circle cx="156" cy="108" r="7" fill="#f59e0b" opacity=".8"/>
+  <circle cx="182" cy="108" r="7" fill="#22c55e" opacity=".8"/>
+  <text x="220" y="114" font-family="ui-monospace, Menlo, monospace" font-size="18" fill="#60a5fa">scheduler</text>
+
+  <g font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#93c5fd">
+    <text x="130" y="190" fill="#475569"># stage zero is not a person. it is a timer.</text>
+    <text x="130" y="248">on schedule  <tspan fill="#38bdf8">&#8250;</tspan>  wake a headless agent</text>
+    <text x="130" y="292">             <tspan fill="#38bdf8">&#8250;</tspan>  under a spend budget</text>
+    <text x="130" y="336">             <tspan fill="#38bdf8">&#8250;</tspan>  under a wall-clock timeout</text>
+    <text x="130" y="380">             <tspan fill="#38bdf8">&#8250;</tspan>  with every guard armed</text>
+    <text x="130" y="446" fill="#475569"># no operator present. correction is impossible,</text>
+    <text x="130" y="480" fill="#475569"># so prevention is the whole design:</text>
+    <text x="130" y="534">anything not a clean success <tspan fill="#e0f2fe">pings loud</tspan>.</text>
+    <text x="130" y="576">silence is never evidence<tspan fill="#38bdf8">_</tspan></text>
+  </g>
+
+  <text x="90" y="650" font-family="ui-monospace, Menlo, monospace" font-size="20" fill="#38bdf8">stage 0 / 9 : wake</text>
+</svg>
