@@ -142,7 +142,9 @@ Clone a real voice or license a synthetic one? Cloning is better and carries a c
 
 Your own footage or a generated character? Own footage means filming yourself: a real face, at the cost of roughly two minutes of usable material and a consent step. A generated character means no shoot, unlimited wardrobe, and a disclosure obligation that never lapses. This pipeline uses a generated character and discloses it on every public surface, including this page.
 
-> Every look is prompt-generated but anchored to one pinned identity group, so all 302 approved looks are provably the same person rather than a family of lookalikes. A frontier image model can supply a reference still instead, for art direction a text prompt will not hold.
+> Every look is prompt-generated but anchored to one pinned identity group, so every approved look is provably the same person rather than a family of lookalikes. A frontier image model can supply a reference still instead, for art direction a text prompt will not hold.
+
+The group held 302 looks when this run refreshed its allowlist. That number is deliberately not treated as a constant anywhere in this repo: the scheduled job mints a fresh look per render, so it climbs on its own, and prose pinned to it would be wrong by the next morning. Where a count matters it is stamped with the run that measured it.
 
 - Judge the look *before* spending anything: `bg_detail` must clear the labelled band, and a frozen-prop probe asks whether anything in frame becomes implausible if it never moves for thirty seconds. A steaming cup fails that. A plant is fine.
 - Then the identity guard checks the look against the pin allowlist. It fired during this very rebuild: a freshly generated look was correctly refused until the allowlist was refreshed, which is the guard preferring a blocked render over an unverified face.

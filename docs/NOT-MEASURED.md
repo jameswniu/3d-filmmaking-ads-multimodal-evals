@@ -52,6 +52,16 @@ The **explanation** I originally wrote for it was wrong. I attributed the gain t
 
 The number survived. The causal story did not. Both are left in the repo rather than quietly corrected, because the gap between them is the more useful artifact.
 
+## How much of the look library would fail the wardrobe check
+
+**Not claimed.** Two looks were measured against the black matte, not the library. A dark top cleared the fill by 22 luma where the face cleared it by 134, so the torso dissolved; the replacement cream top cleared it by 171. That is n=2, and it is enough to establish that the failure is real and not enough to establish a rate.
+
+The tempting sentence was "most of the library would fail this." The evidence for it is genuinely weak: the *names* of the 50 most recent looks lean heavily dark, carrying "in the Void" four times, "Rimmed" or "Rim-Lit" fourteen times, "on Black" twice, plus "of Shadow" and "Black Tee". A name is not a measurement. It is the art direction I asked for, which makes it a description of my prompts rather than of the pixels, and the one look whose name says "Cream Cable-Knit, Golden-Silver Rim-Lit **on Black**" would very likely pass while sounding like it fails.
+
+To claim it: read the torso band of all 304 look previews, apply the same separation bar, and report the count with its denominator. That is one loop over an endpoint that already returns every preview URL, so the reason this is unmeasured is that I noticed the pattern after the run, not that it is hard.
+
+The related structural point does not need the rate to be true: the fill colour and the wardrobe are one decision, and no probe in the suite knew that.
+
 ## Known open bugs
 
 Stated here rather than fixed silently before publishing:
@@ -59,5 +69,6 @@ Stated here rather than fixed silently before publishing:
 1. The parallel worker setting does not take effect. 4 of 6 production runs measured at the serial rate.
 2. Three of four guards fail open when a dependency is missing, and report success while doing it.
 3. The depth speedup is attributed to the wrong mechanism, per above.
+4. Nothing checks that the presenter is distinguishable from the background she is composited onto. Eleven probes score her face, her motion and her timing; the twelfth measures background detail, which is a property of the backdrop rather than of the contrast between her and it. A dark garment on a zero-luma fill passes every gate and ships a floating head.
 
 None of these are fixed in this snapshot. A repo whose headline claim is "count attempts, not outcomes" would be a poor place to hide its own open findings.

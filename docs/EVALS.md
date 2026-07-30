@@ -70,6 +70,23 @@ When the eye and the instrument disagree, the disagreement is the data. It has r
 
 **When every predictor inverts, stop steering.** On the day the ten models died, look selection was handed to seeded random, numbers were printed as reports rather than verdicts, and the human labelled fresh ground truth. Optimizing a proxy degrades the target. The eye stays the apex judge by design, not by courtesy.
 
+## 5. The failure class none of this catches
+
+Everything above is about metrics that were wrong: inverted, unstable, circular, or measuring the wrong physics. Each was found because a metric and a label disagreed, and a disagreement needs two parties.
+
+A missing metric has no second party. It cannot disagree with anything, so no amount of relabelling surfaces it.
+
+One shipped. The matte stage fills the background with pure black, and a look was chosen wearing a black top. Measured afterward on the delivered frame, her face cleared the fill by 134 levels of luma and her torso cleared it by **22**, so the body dissolved into the background and left a floating head. Twelve probes ran on that clip and every one passed. They were not broken. Eleven of them score the subject (face level, motion, jerk, timing, drift, hands, seams) and the twelfth scores the *backdrop*, which is a property of one side of the boundary rather than of the contrast across it. Nothing in the suite held both sides at once.
+
+The eye caught it in about a second, which is the usual ratio and not a comforting one.
+
+Two things follow, and only the second is a fix:
+
+1. The immediate repair is a separation check: torso band against fill, on the delivered frame. The replacement look measures 171 against a bar of 60.
+2. The general lesson is that **the fill colour and the wardrobe are one decision**, and the suite was organized as though they were two. Choosing black is simultaneously the strongest available separation for a lit face and the weakest for dark clothing. A probe taxonomy that scores "the subject" and "the background" as separate families will keep missing the class of defect that lives in the relationship between them.
+
+The honest counting rule from the top of this document applies to the fix as well: n=2 looks measured, which is enough to establish that the failure is real and not enough to establish how much of the library shares it. That gap is stated in [NOT-MEASURED.md](NOT-MEASURED.md) rather than closed with an estimate.
+
 ---
 
 ## Case study: cloning a voice by ear
