@@ -59,6 +59,8 @@ Dismissed by hand, per the instruction in the reviewer's own output. Not by loos
 | "verbatim quotation of private feedback" | my own words, quoted by me, in my own repository | dismissed |
 | "personal account usage and cost" | published deliberately, in credits and never in currency, see NOT-MEASURED.md | dismissed |
 | "internal incident history" | the documented reasoning behind each threshold, which is the artifact | dismissed |
+| "reference to an unnamed second private repository" (raised twice, once per companion project) | both are credited on purpose and named nowhere; the withheld name is the published decision, so there is no identifier present to leak | dismissed |
+| "describes a consent-gate workflow requiring a two-minute training video of a real person" | describes the gate and the footage it requires, and identifies nobody; documenting that the gate exists, and that no agent may clear it, is the entire point of mentioning it | dismissed |
 
 The last one is the interesting dismissal. A reviewer tuned for confidentiality reads "here is the incident that produced this number" as a leak. In a repository whose entire claim is that thresholds were derived rather than typed, deleting the derivations would leave the numbers unfalsifiable. The incidents stay.
 
