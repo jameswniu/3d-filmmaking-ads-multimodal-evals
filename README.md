@@ -3,12 +3,12 @@
 </p>
 
 <p align="center">
-  <img alt="evals lead" src="https://img.shields.io/badge/evals-lead_this-0ea5e9?style=for-the-badge&labelColor=0a1630">
-  <img alt="labelled" src="https://img.shields.io/badge/labelled-113_stills_%C2%B7_67_clips-38bdf8?style=for-the-badge&labelColor=0a1630">
-  <img alt="probes" src="https://img.shields.io/badge/probes-12-7dd3fc?style=for-the-badge&labelColor=0a1630">
-  <img alt="guards" src="https://img.shields.io/badge/guards-4-60a5fa?style=for-the-badge&labelColor=0a1630">
-  <img alt="views" src="https://img.shields.io/badge/views-77_per_frame-93c5fd?style=for-the-badge&labelColor=0a1630">
-  <img alt="license" src="https://img.shields.io/badge/license-MIT-cbd5e1?style=for-the-badge&labelColor=0a1630">
+  <img alt="labelled: 113 stills, 67 clips" src="https://img.shields.io/badge/labelled-113_stills_%C2%B7_67_clips-0ea5e9?style=flat-square&labelColor=0f172a">
+  <img alt="probes: 12, each derived from labels" src="https://img.shields.io/badge/probes-12_derived-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="gates: 4, blocking" src="https://img.shields.io/badge/gates-4_blocking-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="views: 77 per frame" src="https://img.shields.io/badge/views-77_per_frame-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="cost: 1 credit per render" src="https://img.shields.io/badge/cost-1_credit_%2F_render-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="license: MIT" src="https://img.shields.io/badge/license-MIT-164e63?style=flat-square&labelColor=0f172a">
 </p>
 
 **An advertising-grade AI filmmaking pipeline where the evals are the product.** It writes a script, speaks it in a cloned voice, renders a consistent generated presenter, separates her from her background, infers depth, and emits 77 views of a single instant for a light-field display. It does this on a schedule, against metered vendor APIs, with nobody watching. What makes that survivable is not the render path. It is that one person's taste was captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
@@ -73,6 +73,10 @@ Pre-spend, the same run: voice drawn 3 times (128.08 / 128.16 / 124.16s, median 
 
 The filmmaking claim, in one frame: this is not one generative model producing a video. It is four separations, each independently gated, which is what makes any of it controllable.
 
+<p align="center">
+  <img src="assets/separations.svg" alt="Four separations: voice from animation, person from background, flat from depth, one view into 77" width="100%">
+</p>
+
 | | what comes apart | why it matters | governed by |
 |---|---|---|---|
 | **1** | **The voice from the animation.** Audio is synthesized first and drives the render, never the reverse. | The performance is fixed and inspectable before a frame exists. A bad read costs characters, not credits. | 3-draw median, transcript diff, settle beat |
@@ -86,7 +90,7 @@ Separation is why the evals can exist at all. A single end-to-end model would le
 
 ## The suite, stage by stage
 
-Ten stages. Each gets three layers: **conceptual** (the decision anyone building this has to make), **structural** (what I chose and the measured reason), **physical** (the literal steps). Every image below is from the single run at the top of this page.
+Ten stages, and each one reads at three depths: the paragraph is the decision anyone building this has to make, the indented line is what I chose and the measurement that forced it, and the bullets are the literal mechanics. Skim the paragraphs for the argument, drop into the bullets when you want the file and the number. Every image below is from the single run at the top of this page.
 
 <table>
   <tr>
@@ -98,21 +102,33 @@ Ten stages. Each gets three layers: **conceptual** (the decision anyone building
 
 ### 0. Wake
 
-- **Conceptual.** Supervised or unattended? Everything downstream follows from this. A supervised pipeline can be corrected mid-flight and needs no gates; an unattended one cannot, and needs all of them.
-- **Structural.** Unattended, on a timer, because the interesting failures only appear when nobody is watching. Each run is a headless agent under a spend budget and a wall-clock timeout.
-- **Physical.** A scheduled job fires the run, a lock prevents two runs racing, a budget guard caps spend, a timeout kills a wedged leg. The alert test is inverted deliberately: it fires on everything that is not a clean success, rather than on an enumerated list of known failures, so a novel failure is loud on day one.
+Supervised or unattended? Everything downstream follows from this one answer. A supervised pipeline can be corrected mid-flight and needs no gates at all; an unattended one cannot be corrected, so it needs every gate in this repository.
+
+> Unattended, on a timer, because the interesting failures only appear when nobody is watching. Each run is a headless agent under a spend budget and a wall-clock timeout.
+
+- A scheduled job fires the run, a lock keeps two runs from racing, a budget guard caps spend, a timeout kills a wedged leg.
+- The alert test is inverted on purpose: it fires on everything that is **not** a clean success, rather than on a list of known failures. An enumerated list can only catch what you already thought of, so a novel failure would have been silent. This way it is loud on day one.
 
 ### 1. Script
 
-- **Conceptual.** Whose words? Generic ad copy is safe and forgettable; real material is specific and risky. In production the script is written from my own working notes and roadmaps, which is the difference between a presenter reading marketing and a presenter saying something.
-- **Structural.** A separate script-author agent owns the words, on the principle that the thing writing the copy should not also be the thing spending the render budget. *(That agent has its own repository. Available on request.)* The clip on this page is the deliberate exception, and says so: for a public demo she explains the pipeline itself rather than anything private.
-- **Physical.** Script written, then held above 250 characters, because shorter scripts measured about 110 Hz brighter and less consistent on this voice. Padding a short script is quality control, not filler.
+Whose words, and whose register? Generic ad copy is safe and forgettable; real material is specific and risky. Those are two separable problems, and conflating them is why most generated presenters sound like a press release read aloud.
+
+> So they are split across two agents. One assembles **what** to say, out of my actual working notes and roadmaps, which is the difference between a presenter reading marketing and a presenter saying something. A second agent, trained on years of my own prompts, then shapes **how** it sounds: the register, the cadence, the places a real person would hedge or land hard. It rewrites for voice, not for content. Keeping them apart also keeps the thing writing the copy from being the thing that spends the render budget.
+
+- The voice-shaping agent is a separate project with its own repository. **Available on request** (not yet public, so no dead link here).
+- The clip on this page is a deliberate exception and says so out loud: for a public demo she explains the pipeline itself rather than anything from my notes.
+- Scripts are held above 250 characters, because shorter ones measured about 110 Hz brighter and less consistent on this voice. Padding a short script is quality control, not filler.
 
 ### 2. Voice
 
-- **Conceptual.** Clone a real voice or use a licensed synthetic one? Cloning is better and carries a consent obligation that never expires: clone only your own voice, or one whose owner gave written permission.
-- **Structural.** An instant clone from a single **continuous** source take. More audio lost this argument twice: a 69-second stitched reference pitched the voice up (242 and 235 Hz against 216) and scored lower on timbre similarity (0.857 to 0.867 against 0.925 to 0.939) than a 10-second continuous original, and its clips were then rejected by ear independently. Continuity of the source beat quantity of it. Fourteen candidate clones were built; the final pick was made by ear on a grid that moved exactly one variable, and the runner-up measured 0.08 percent away, so the design made it legible that this was taste.
-- **Physical.** Draw 3 takes of the same script and keep the **median by duration**, since a single blind draw lands somewhere on a 6 to 37 percent spread and roughly one in three lands on a tail. Transcribe the winner and diff it against the intended script, because proper nouns are where synthesis fails and no render can fix audio that was already wrong. Add a 0.6-second settle beat, since the synthesizer returns zero trailing silence and the render ends exactly at the audio, leaving a mouth mid-motion on the final frame.
+Clone a real voice or license a synthetic one? Cloning is better and carries a consent obligation that never expires. Clone only your own voice, or one whose owner gave written permission, and treat that as permanent rather than per-project.
+
+> An instant clone from a single **continuous** source take. More audio lost this argument twice: a 69-second stitched reference pitched the voice up (242 and 235 Hz against 216) and scored lower on timbre similarity (0.857 to 0.867 against 0.925 to 0.939) than a 10-second continuous original, and its clips were then rejected by ear, independently, afterward. Continuity of the source beat quantity of it, twice.
+
+- Fourteen candidate clones were built. The winner was picked by ear on a grid that moved exactly one variable at a time, and the runner-up measured 0.08 percent away, so the design made it legible that this was taste rather than measurement.
+- Draw 3 takes of the same script and keep the **median by duration**. A single blind draw lands somewhere on a 6 to 37 percent spread, and roughly one in three lands on a tail. This run drew 128.08, 128.16 and 124.16 seconds, a 3.2 percent spread, and kept the median.
+- Transcribe the winner and diff it against the intended script. Proper nouns are where synthesis fails, and no render can repair audio that was already wrong.
+- Add a 0.6-second settle beat, because the synthesizer returns zero trailing silence and the render ends exactly at the audio, which leaves a mouth mid-motion on the final frame.
 
 <table>
   <tr>
@@ -124,15 +140,41 @@ Ten stages. Each gets three layers: **conceptual** (the decision anyone building
 
 ### 3. Look
 
-- **Conceptual.** Your own footage or a generated character? Own footage means filming yourself: a real face, at the cost of about two minutes of usable material and a consent step. A generated character means no shoot, unlimited wardrobe, and a permanent disclosure obligation. This pipeline uses a generated character and discloses it on every public surface.
-- **Structural.** A prompt-generated look, always anchored to one pinned identity group, so all 279 approved looks are provably the same person. A frontier image model can supply a reference still instead, when a text prompt will not hold the art direction. The live interactive variant, which needs a two-minute training video of a real person, is deliberately **parked at its consent gate**: a human confirms the person in the footage is themselves, and no agent is allowed to click that.
-- **Physical.** Generate the look, then judge it before spending: `bg_detail` must clear the labelled band, and a frozen-prop probe asks whether anything in frame becomes implausible if it never moves for thirty seconds (a steaming cup fails; a plant is fine). Then the identity guard checks the look against the pin allowlist. **Say nothing about hands.** Five successive hand-posing rules each produced a rejected clip within one render, because the engine drives mouth and head from the audio while hands free-run, so mandated hand activity is motion uncorrelated with speech.
+Your own footage or a generated character? Own footage means filming yourself: a real face, at the cost of roughly two minutes of usable material and a consent step. A generated character means no shoot, unlimited wardrobe, and a disclosure obligation that never lapses. This pipeline uses a generated character and discloses it on every public surface, including this page.
+
+> Every look is prompt-generated but anchored to one pinned identity group, so all 302 approved looks are provably the same person rather than a family of lookalikes. A frontier image model can supply a reference still instead, for art direction a text prompt will not hold.
+
+- Judge the look *before* spending anything: `bg_detail` must clear the labelled band, and a frozen-prop probe asks whether anything in frame becomes implausible if it never moves for thirty seconds. A steaming cup fails that. A plant is fine.
+- Then the identity guard checks the look against the pin allowlist. It fired during this very rebuild: a freshly generated look was correctly refused until the allowlist was refreshed, which is the guard preferring a blocked render over an unverified face.
+- **Say nothing about hands.** Five successive hand-posing rules each produced a rejected clip within one render. The engine drives mouth and head from the audio while hands free-run, so any mandated hand activity is motion uncorrelated with speech.
+- Wardrobe has to clear the matte, and nothing was checking that. The first pass put a black top on a presenter whose background is matted to pure black: her face cleared the fill by 134 levels of luma and her torso cleared it by **22**, so the body dissolved and left a floating head. Re-shot in cream, the torso now measures **171**. The lesson is the shape of the miss, not the fix: eleven probes scored her face, her motion and her timing, and not one of them asked whether you could see her.
 
 ### 4. Render
 
-- **Conceptual.** Text-to-video or audio-driven avatar? General video models are spectacular and unpredictable per frame; an audio-driven avatar is narrow, repeatable, and cheap enough to run daily. For advertising work, where the same presenter must appear identical on Tuesday and Thursday, repeatability wins.
-- **Structural.** Audio drives the animation from a fixed still, which is the only reproducibility control available: the vendor exposes no seed, so the still *is* the seed. The flat-rate tier is the scheduled default because it bills the same for a 9-second clip as for a 2-minute one.
-- **Physical.** Upload the finished audio as an asset, create the video against the pinned look, poll for completion, download, square-crop, burn subtitles. The clip on this page ran 128.66 seconds.
+Text-to-video or audio-driven avatar? General video models are spectacular and unpredictable frame to frame; an audio-driven avatar is narrow, repeatable, and cheap enough to run every day. Advertising needs the same presenter to be identical on Tuesday and Thursday, so repeatability beats spectacle here.
+
+> Audio drives the animation from a fixed still, which is the only reproducibility control on offer: the vendor exposes no seed, so **the still is the seed**. The flat-rate engine is the scheduled default because it bills the same for a 9-second clip as for a 2-minute one, and that single pricing fact is what makes a daily unattended run affordable at all.
+
+- Upload the finished audio as an asset, create the video against the pinned look, poll to completion, download, square-crop, burn subtitles. The clip on this page ran 128.7 seconds and billed 1 credit.
+- Cost is measured per engine and never extrapolated. The flat engine billed 1 credit at 11 seconds and 1 credit at 126. The premium engines billed 5 at 11 seconds and **43** at 126, so a plausible-looking `ceil(sec/11) * 5` predicts 60 for the render that actually cost 43. The router returns null for any duration it has not measured, because null makes a caller ask and a confident wrong number makes it spend.
+- Geometry gets measured on the delivered file, not trusted from the request flag. A 1:1 request against a landscape look letterboxes unless fit is set, and padding is static by construction, so a corner-sampling check would return a confident false clean.
+
+---
+
+## The fork, and why the evals only work on one side of it
+
+Everything up to here is shared: the schedule, the words, the cloned voice, the pinned face, the animated render. At this point the same presenter becomes two different products, and they are not variations on a theme. They are separated by whether the output exists before anyone sees it.
+
+> **Rendered** output is finished before it ships, so every gate in this repository can run in the gap between "the file exists" and "a human sees it." That gap is the entire reason this pipeline can be trusted unattended. **Live** output has no such gap: the voice is synthesized in the moment, mid-conversation, and there is no frame to inspect before it is already on someone's screen. So the gating doctrine here does not port across the fork. It is not that the live path needs different thresholds. It is that pre-spend review, the mechanism all nine invariants rest on, does not exist there at all.
+
+**The rendered path, stages 5 through 9 below.** Matte, evaluate, infer depth, build the 77-view quilt, cast to glass. Fully built, runs on a timer, and is what the rest of this page documents. Latency is irrelevant, which is exactly what buys room for twelve probes and four blocking guards.
+
+**The live path.** A real-time conversational avatar, its speech driven by a streaming voice agent rather than a rendered audio file. Two things are true about it and neither is a boast:
+
+- It is **parked at its consent gate**, deliberately. The interactive avatar requires a two-minute training video of a real person, and the gate asks a human to confirm the person in that footage is themselves. No agent in this system is permitted to click it, and that is a design decision rather than an unfinished feature.
+- The streaming voice-agent side is a separate project with its own regression suite and its own repository. **Available on request** (not yet public, so no dead link here).
+
+Everything below this line is the rendered path.
 
 <table>
   <tr>
@@ -144,33 +186,50 @@ Ten stages. Each gets three layers: **conceptual** (the decision anyone building
 
 ### 5. Matte
 
-- **Conceptual.** Keep the room or separate the person? Keeping it is free and reads as dead, because the engine animates only her and every frozen edge behind her becomes a tell. Separating her costs a matting pass and buys a background you control completely.
-- **Structural.** A matting pass to pure black, tuned specifically at the hair, which is where every earlier attempt failed. Black is the one solid fill that reads as intentional; a colored fill behind a matted head reads as a cheap green screen, a mistake this pipeline shipped exactly once.
-- **Physical.** [`pipeline/matte_video.py`](pipeline/matte_video.py), which carries its own dated tuning history in comments, including the verdicts that moved each threshold.
+Keep the room or separate the person? Keeping it is free and reads as dead, because the engine animates only her, so every frozen edge behind her becomes a tell within seconds. Separating her costs a matting pass and buys a background you control completely.
+
+> Matte to pure black, tuned specifically at the hair, which is where every earlier attempt failed. Black is the one solid fill that reads as intentional. A colored fill behind a matted head reads as a cheap green screen, a mistake this pipeline shipped exactly once and never again.
+
+- [`pipeline/matte_video.py`](pipeline/matte_video.py) carries its own dated tuning history in comments, including the verdict that moved each threshold.
+- Choosing black is what created the wardrobe trap in stage 3. A fill of zero is the strongest possible separation for a lit face and the weakest possible separation for dark clothing, and those are the same decision. Deciding the background also decides what the presenter is allowed to wear, which nothing in the suite knew until it was measured.
 
 ### 6. Evals
 
-- **Conceptual.** Gate on the outcome or on the attempt? Outcome metrics are what dashboards show, and they cannot distinguish a system that complied from a system that was stopped.
-- **Structural.** Nine invariants, twelve probes, thresholds derived from labelled exemplars, blind judging, and a hard separation between metrics that **gate** and metrics that **report**. A metric must be stable within a single clip before it earns authority over spend.
-- **Physical.** Probes run against the rendered clip and its subtitle track; the ship gate refuses to pass on geometry failures and demands an explicit reason for judgement calls it cannot make itself. Every threshold's derivation is in [`docs/EVALS.md`](docs/EVALS.md).
+Gate on the outcome or on the attempt? Outcome metrics are what dashboards show, and they cannot tell a system that complied apart from a system that was stopped. Measured at the outcome, one constraint here held 14 runs out of 15. Measured at the first attempt, the same constraint held 6 out of 15. Both numbers are true, and only the second one tells you the rule was being ignored and then caught.
+
+> Nine invariants, twelve probes, every threshold derived from a labelled pass exemplar and a labelled fail exemplar, judging done blind, and a hard wall between metrics that **gate** and metrics that only **report**. A metric has to be stable *within* a single clip before it earns any authority over spend, because agreement with a small labelled set is cheap and noise reproduces it easily.
+
+- Probes run against the rendered clip and its subtitle track. The ship gate refuses outright on geometry failures, and for judgement calls it cannot make itself it demands an explicit written reason rather than a boolean.
+- Every threshold's derivation, including the ten scoring models that died in a single day, is in [`docs/EVALS.md`](docs/EVALS.md).
+- The gates are ranked by what happens when they are violated, not by how important they feel. Nothing here is allowed to be a check in name only: four guards were deliberately broken to find out, and three of them approved everything when a single config file went missing while still reporting green.
 
 ### 7. Depth
 
-- **Conceptual.** Capture depth or infer it? Capture needs a depth camera and a real subject, neither of which exists here, since the subject was generated. Inference works on any frame including a synthetic one, and is the only option that composes with a generated presenter.
-- **Structural.** Monocular depth estimation running **locally** on the GPU (Apple Silicon MPS), not through a cloud API, because it runs on every frame of every clip and a per-frame API call would price the pipeline out of daily use.
-- **Physical.** [`pipeline/depth_infer.py`](pipeline/depth_infer.py). On the frame above: model load 1.9 seconds, inference 0.4 seconds. Batched with a stride and interpolated between, which is where the measured pipeline speedup actually comes from.
+Capture depth or infer it? Capture wants a depth camera pointed at a real subject, and neither exists here, because the subject was generated. Inference works on any frame including a synthetic one, which makes it the only option that composes with a generated presenter at all.
+
+> Monocular depth estimation running **locally** on the GPU (Apple Silicon MPS) rather than through a cloud API. This runs on every frame of every clip, so a per-frame API call would price the whole pipeline out of daily use. Keeping it local is a cost decision that happens to also be a latency and privacy one.
+
+- [`pipeline/depth_infer.py`](pipeline/depth_infer.py). On the frame above: model load 1.9 seconds, inference 0.4 seconds.
+- Frames are batched with a stride and interpolated between, which is where the measured speedup actually comes from. Worth stating plainly: the 2.5x was real and the explanation I first wrote for it was wrong, because the setting meant to run ten things at once was running one.
 
 ### 8. Quilt
 
-- **Conceptual.** Ship a flat frame or a view array? A flat frame is universally compatible and cannot hold parallax. A view array only works on light-field hardware, and it decouples the render path from the display: change the panel, change the geometry, leave the renderer alone.
-- **Structural.** 7 columns by 11 rows, 77 views, sampled across the display's view cone by a parallax warp driven by the depth map.
-- **Physical.** [`pipeline/quilt.py`](pipeline/quilt.py), 77 views in 0.8 seconds at 3360 by 3360. The geometry is a flag now, and that is a fix: the constants were pinned at the legacy 8 by 6 (48 views) while production had moved to 7 by 11, and a hardcoded constant cannot disagree with the pipeline around it, so nothing failed. The output was simply built at a geometry the display no longer expected.
+Ship a flat frame or a view array? A flat frame is universally compatible and can never hold parallax. A view array runs on light-field hardware only, and in exchange it decouples the renderer from the display: change the panel, change the geometry, leave the render path untouched.
+
+> 7 columns by 11 rows, 77 views, sampled across the display's view cone by a parallax warp driven by the depth map. One instant, seen from 77 positions at once, which is the whole trick the panel needs in order to give depth back.
+
+- [`pipeline/quilt.py`](pipeline/quilt.py) builds 77 views in 0.8 seconds at 3360 by 3360.
+- The geometry is a parameter now, and making it one *was* the fix. The constants had been pinned at a legacy 8 by 6, meaning 48 views, while production had long since moved to 7 by 11. Nothing failed and nothing alerted, because a hardcoded constant has no way to disagree with the pipeline around it. The output was simply built, cleanly and confidently, at a geometry the display no longer expected.
+- That is the quietest failure mode in the whole repo and it is worth naming as a class: a wrong number that is *consistent with itself* produces no error anywhere. It was found by reading the code against the display's own filename law, not by any probe. The same drift had also reached this file's prose and a sibling module's docstring, both of which still described 48 views while importing the corrected 77.
 
 ### 9. Glass
 
-- **Conceptual.** Screen or light field? A screen is everywhere, and flat. A light-field panel is one device on one desk, and holds real depth, which is the entire reason the previous nine stages are shaped the way they are.
-- **Structural.** The panel is fed the quilt and does the lenticular work itself. Failures degrade to a known-good clip rather than showing a broken frame, and the degradation pings rather than passing silently.
-- **Physical.** Transfer the quilt and cast. A pre-ship gate checks the delivered geometry, since a letterboxed clip on this panel is a hard failure.
+Screen or light field? A screen is everywhere, and flat. A light-field panel is one device on one desk, and it holds real depth, which is the entire reason the preceding nine stages are shaped the way they are. Remove this stage and most of the pipeline's constraints stop making sense.
+
+> The panel is fed the quilt and does the lenticular work itself. When something goes wrong it degrades to a known-good clip rather than showing a broken frame, and the degradation **pings** instead of passing silently, because a silent fallback is indistinguishable from success.
+
+- Transfer the quilt and cast. A pre-ship gate checks the delivered geometry, since a letterboxed clip on this panel is a hard failure rather than a cosmetic one.
+- The shipped product is a quilt **video**, not a still: every frame carries its own 77 views, so the parallax holds while she speaks. That is 77 warps per output frame, which is why the still is what you tune on and the video is what you commit to once the look has settled.
 
 ---
 
@@ -293,7 +352,7 @@ Want the same pipeline with your own voice and character? [`docs/SETUP.md`](docs
 - [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md), what this repo does not claim, and why
 - [`docs/PII-REVIEW.md`](docs/PII-REVIEW.md), the pre-publish privacy gate, what it caught, and every finding dismissed by hand
 
-A companion pipeline for real-time voice agents, with its own regression suite, has its own repository. Available on request.
+Two companion projects are referenced above and are not public yet: the agent that shapes her register, and the streaming voice-agent pipeline behind the live path. Both **available on request**.
 
 ---
 

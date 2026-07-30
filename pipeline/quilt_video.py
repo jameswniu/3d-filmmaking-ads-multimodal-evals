@@ -1,14 +1,23 @@
 #!/usr/bin/env python3
-"""Build a Looking Glass quilt VIDEO: one 8x6 quilt per source frame.
+"""Build a Looking Glass quilt VIDEO: one quilt per source frame.
 
 Same geometry and warp as quilt.py, applied per frame instead of to a single
 still, then encoded as an mp4 that Bridge's player accepts directly. The
 source clip's own audio is muxed back on so she actually speaks.
 
-Cost note: every output frame is 48 warps, so this is ~48x the work of a still.
-Roughly 4s per frame on an M4 Max, i.e. minutes for a short clip. That is why
-this is a separate entry point rather than a flag on quilt.py: you tune on
-stills, then commit to a video render once the look is settled.
+GEOMETRY IS IMPORTED, NEVER RESTATED. COLS and ROWS come from quilt.py, so
+this file cannot drift away from the renderer the way its own docstring once
+did: it described an 8x6 / 48-view build while importing the corrected 7x11 /
+77-view constants, and nothing failed, because prose has no way to disagree
+with the code beside it. Any view count mentioned here would be a second
+source of truth, so there isn't one.
+
+Cost note: every output frame costs COLS*ROWS warps, so this is that many times
+the work of a single still. Roughly 4s per frame on an M4 Max at the legacy
+48-view geometry, and it scales with the view count, i.e. minutes for even a
+short clip. That is why this is a separate entry point rather than a flag on
+quilt.py: you tune on stills, then commit to a video render once the look is
+settled.
 """
 import argparse
 import shutil

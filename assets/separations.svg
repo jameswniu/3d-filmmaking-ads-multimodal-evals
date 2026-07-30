@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="250" viewBox="0 0 1200 250" role="img" aria-label="Four separations: voice from animation, person from background, depth from flat, one view into 77.">
+  <defs>
+    <linearGradient id="pbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1526"/><stop offset="100%" stop-color="#071120"/>
+    </linearGradient>
+    <linearGradient id="dep" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e0f2fe"/><stop offset="100%" stop-color="#0c2740"/>
+    </linearGradient>
+    <linearGradient id="flat" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3f5c78"/><stop offset="100%" stop-color="#3f5c78"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="250" fill="#040914"/>
+  <rect x="24" y="0" width="276" height="250" rx="10" fill="url(#pbg)" stroke="#1e4a6d" stroke-opacity=".8"/>
+  <circle cx="50" cy="30" r="12" fill="#0ea5e9" fill-opacity=".18" stroke="#38bdf8" stroke-opacity=".7"/>
+  <text x="50" y="35" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" fill="#7dd3fc" text-anchor="middle">1</text>
+  <text x="70" y="35" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" font-weight="700" fill="#e0f2fe">VOICE / ANIMATION</text>
+  <polyline points="46,94.0 50,103.7 54,101.1 58,105.2 62,99.8 66,106.7 70,105.3 74,108.1 78,105.7 82,108.1 86,105.3 90,106.7 94,99.8 98,105.2 102,101.1 106,103.7 110,94.0 114,103.7 118,101.1 122,105.2 126,99.8 130,106.7 134,105.3 138,108.1" fill="none" stroke="#38bdf8" stroke-opacity=".9" stroke-width="1.7"/>
+  <polyline points="46,130.0 50,120.3 54,122.9 58,118.8 62,124.2 66,117.3 70,118.7 74,115.9 78,118.3 82,115.9 86,118.7 90,117.3 94,124.2 98,118.8 102,122.9 106,120.3 110,130.0 114,120.3 118,122.9 122,118.8 126,124.2 130,117.3 134,118.7 138,115.9" fill="none" stroke="#38bdf8" stroke-opacity=".45" stroke-width="1.4"/>
+  <path d="M 148 112 L 170 112" stroke="#38bdf8" stroke-opacity=".75" stroke-width="1.6"/>
+  <path d="M 170 112 l -6 -4 l 0 8 z" fill="#38bdf8" fill-opacity=".85"/>
+  <circle cx="210" cy="101.5" r="15.6" fill="#0ea5e9" fill-opacity=".30" stroke="#7dd3fc" stroke-opacity=".65"/>
+  <path d="M 186.6 140.5 q 23.4 -25.5 46.8 0 z" fill="#0ea5e9" fill-opacity=".30" stroke="#7dd3fc" stroke-opacity=".65"/>
+  <text x="42" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">audio is synthesized first</text>
+  <text x="42" y="205" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">and drives the render.</text>
+  <text x="42" y="222" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">a bad read costs characters,</text>
+  <text x="42" y="239" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">never credits.</text>
+  <rect x="316" y="0" width="276" height="250" rx="10" fill="url(#pbg)" stroke="#1e4a6d" stroke-opacity=".8"/>
+  <circle cx="342" cy="30" r="12" fill="#0ea5e9" fill-opacity=".18" stroke="#38bdf8" stroke-opacity=".7"/>
+  <text x="342" y="35" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" fill="#7dd3fc" text-anchor="middle">2</text>
+  <text x="362" y="35" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" font-weight="700" fill="#e0f2fe">PERSON / BACKGROUND</text>
+  <rect x="336" y="82" width="76" height="62" rx="4" fill="#24405c" fill-opacity=".55" stroke="#4a7ba4" stroke-opacity=".6"/>
+  <rect x="344" y="90" width="22" height="18" rx="2" fill="#4a7ba4" fill-opacity=".45"/>
+  <circle cx="388" cy="113.0" r="10.4" fill="#0ea5e9" fill-opacity=".22" stroke="#7dd3fc" stroke-opacity=".65"/>
+  <path d="M 372.4 139.0 q 15.6 -17.0 31.2 0 z" fill="#0ea5e9" fill-opacity=".22" stroke="#7dd3fc" stroke-opacity=".65"/>
+  <path d="M 424 112 L 446 112" stroke="#38bdf8" stroke-opacity=".75" stroke-width="1.6"/>
+  <path d="M 446 112 l -6 -4 l 0 8 z" fill="#38bdf8" fill-opacity=".85"/>
+  <rect x="462" y="82" width="76" height="62" rx="4" fill="#000000" stroke="#38bdf8" stroke-opacity=".55"/>
+  <circle cx="500" cy="113.0" r="10.4" fill="#0ea5e9" fill-opacity=".34" stroke="#7dd3fc" stroke-opacity=".65"/>
+  <path d="M 484.4 139.0 q 15.6 -17.0 31.2 0 z" fill="#0ea5e9" fill-opacity=".34" stroke="#7dd3fc" stroke-opacity=".65"/>
+  <text x="334" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">a matting pass lifts her</text>
+  <text x="334" y="205" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">off the room. hair is where</text>
+  <text x="334" y="222" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">this is won or lost, and the</text>
+  <text x="334" y="239" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">fill decides her wardrobe.</text>
+  <rect x="608" y="0" width="276" height="250" rx="10" fill="url(#pbg)" stroke="#1e4a6d" stroke-opacity=".8"/>
+  <circle cx="634" cy="30" r="12" fill="#0ea5e9" fill-opacity=".18" stroke="#38bdf8" stroke-opacity=".7"/>
+  <text x="634" y="35" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" fill="#7dd3fc" text-anchor="middle">3</text>
+  <text x="654" y="35" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" font-weight="700" fill="#e0f2fe">FLAT / DEPTH</text>
+  <rect x="630" y="84" width="72" height="58" rx="3" fill="url(#flat)" stroke="#4a7ba4" stroke-opacity=".6"/>
+  <text x="666" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#0a1526" text-anchor="middle">one plane</text>
+  <path d="M 714 113 L 736 113" stroke="#38bdf8" stroke-opacity=".75" stroke-width="1.6"/>
+  <path d="M 736 113 l -6 -4 l 0 8 z" fill="#38bdf8" fill-opacity=".85"/>
+  <rect x="752" y="84" width="72" height="58" rx="3" fill="url(#dep)" stroke="#7dd3fc" stroke-opacity=".6"/>
+  <line x1="758" y1="84" x2="758" y2="142" stroke="#040914" stroke-opacity=".28"/>
+  <line x1="772" y1="84" x2="772" y2="142" stroke="#040914" stroke-opacity=".28"/>
+  <line x1="786" y1="84" x2="786" y2="142" stroke="#040914" stroke-opacity=".28"/>
+  <line x1="800" y1="84" x2="800" y2="142" stroke="#040914" stroke-opacity=".28"/>
+  <line x1="814" y1="84" x2="814" y2="142" stroke="#040914" stroke-opacity=".28"/>
+  <text x="788" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#071120" text-anchor="middle">near &#8594; far</text>
+  <text x="626" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">a monocular model infers</text>
+  <text x="626" y="205" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">geometry no camera</text>
+  <text x="626" y="222" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">captured. this is the step</text>
+  <text x="626" y="239" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">where 2D becomes 3D.</text>
+  <rect x="900" y="0" width="276" height="250" rx="10" fill="url(#pbg)" stroke="#1e4a6d" stroke-opacity=".8"/>
+  <circle cx="926" cy="30" r="12" fill="#0ea5e9" fill-opacity=".18" stroke="#38bdf8" stroke-opacity=".7"/>
+  <text x="926" y="35" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" fill="#7dd3fc" text-anchor="middle">4</text>
+  <text x="946" y="35" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.5" font-weight="700" fill="#e0f2fe">ONE / 77</text>
+  <rect x="924" y="96" width="34" height="34" rx="3" fill="#0ea5e9" fill-opacity=".55" stroke="#7dd3fc" stroke-opacity=".7"/>
+  <path d="M 970 113 L 992 113" stroke="#38bdf8" stroke-opacity=".75" stroke-width="1.6"/>
+  <path d="M 992 113 l -6 -4 l 0 8 z" fill="#38bdf8" fill-opacity=".85"/>
+  <rect x="1010.0" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1025.6" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1041.2" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1056.8" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1072.4" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1088.0" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.880"/>
+  <rect x="1103.6" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1119.2" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1134.8" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1150.4" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1166.0" y="76.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1010.0" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1025.6" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1041.2" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1056.8" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1072.4" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1088.0" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.880"/>
+  <rect x="1103.6" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1119.2" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1134.8" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1150.4" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1166.0" y="87.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1010.0" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1025.6" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1041.2" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1056.8" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1072.4" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1088.0" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.880"/>
+  <rect x="1103.6" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1119.2" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1134.8" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1150.4" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1166.0" y="97.9" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1010.0" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1025.6" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1041.2" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1056.8" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1072.4" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1088.0" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.880"/>
+  <rect x="1103.6" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1119.2" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1134.8" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1150.4" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1166.0" y="108.5" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1010.0" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1025.6" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1041.2" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1056.8" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1072.4" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1088.0" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.880"/>
+  <rect x="1103.6" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1119.2" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1134.8" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1150.4" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1166.0" y="119.1" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1010.0" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1025.6" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1041.2" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1056.8" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1072.4" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1088.0" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.880"/>
+  <rect x="1103.6" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1119.2" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1134.8" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1150.4" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1166.0" y="129.7" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1010.0" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <rect x="1025.6" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1041.2" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1056.8" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1072.4" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1088.0" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.880"/>
+  <rect x="1103.6" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.771"/>
+  <rect x="1119.2" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.659"/>
+  <rect x="1134.8" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.543"/>
+  <rect x="1150.4" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.421"/>
+  <rect x="1166.0" y="140.3" width="14" height="9" rx="1" fill="#38bdf8" fill-opacity="0.280"/>
+  <text x="918" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">the warp samples 77 camera</text>
+  <text x="918" y="205" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">positions (11 x 7) across the</text>
+  <text x="918" y="222" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">view cone. a flat frame</text>
+  <text x="918" y="239" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#8fb6d9">cannot hold parallax.</text>
+</svg>
