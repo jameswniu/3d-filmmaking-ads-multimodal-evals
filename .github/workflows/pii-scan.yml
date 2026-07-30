@@ -69,10 +69,14 @@ jobs:
       # report. The exit status is still the scan's own.
       - name: Deterministic PII scan
         run: |
+          # Output goes OUTSIDE the work tree. Redirecting into the repo
+          # created an empty scan.out before the scan built its file list;
+          # the empty file classified as unreadable media and failed the
+          # run as its own finding. A scanner must not scan its own output.
           set +e
-          bash tools/pii_scan.sh > scan.out 2>&1
+          bash tools/pii_scan.sh > "$RUNNER_TEMP/scan.out" 2>&1
           rc=$?
-          cat scan.out
+          cat "$RUNNER_TEMP/scan.out"
           exit "$rc"
 
       # A skipped check is not a passing check. The scan already prints this;
@@ -84,12 +88,12 @@ jobs:
           {
             echo "### PII gate"
             echo ""
-            grep -E '^totals:' scan.out || true
+            grep -E '^totals:' "$RUNNER_TEMP/scan.out" || true
             echo ""
-            if grep -q 'CHECKS SKIPPED' scan.out; then
+            if grep -q 'CHECKS SKIPPED' "$RUNNER_TEMP/scan.out"; then
               echo "**Skipped checks (not passing checks):**"
               echo ""
-              sed -n '/CHECKS SKIPPED/,/^$/p' scan.out | sed 's/^/    /'
+              sed -n '/CHECKS SKIPPED/,/^$/p' "$RUNNER_TEMP/scan.out" | sed 's/^/    /'
               echo ""
               echo "Set the PII_CONTEXT and PII_NAMES repository secrets to arm these."
             else

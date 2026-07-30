@@ -137,6 +137,13 @@ fi
 
 : > "$TEXTLIST"; : > "$MEDIALIST"
 while IFS= read -r f; do
+  # A zero-byte file is neither text nor media: no content, no embedded
+  # metadata. Without this test an empty file fails the text probe and lands
+  # in the media list, where a machine with no metadata reader fails closed
+  # on it. That exact chain fired in CI when the workflow's own (empty at
+  # list-build time) output redirect landed inside the tree, and the scanner
+  # reported its own log file as an unverifiable HIGH finding.
+  [ -s "$f" ] || continue
   [ -f "$f" ] || continue
   case "$f" in
     *.png|*.jpg|*.jpeg|*.webp|*.gif|*.heic|*.tif|*.tiff|*.mp4|*.mov|*.m4v|*.webm\
