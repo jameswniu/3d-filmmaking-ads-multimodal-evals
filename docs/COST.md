@@ -6,11 +6,13 @@ Two vendors meter this pipeline: HeyGen bills **credits per render**, ElevenLabs
 
 ## The render schedule, as actually measured
 
-| engine tier | ~11s clip | ~126s clip | shape |
-|---|---|---|---|
-| `avatar_iii` (flat tier) | **1 credit** | **1 credit** | flat with length, two measured points |
-| `avatar_iv` | 5 credits | 43 credits | NOT flat, and not knowably linear |
-| `avatar_v` | 5 credits | 43 credits | same as iv at both measured points |
+| engine tier | ~11s clip | ~126s clip | ~169s clip | shape |
+|---|---|---|---|---|
+| `avatar_iii` (flat tier) | **1 credit** | **1 credit** | **1 credit** | flat with length, three measured points |
+| `avatar_iv` | 5 credits | 43 credits | **58 credits** | NOT flat, and not knowably linear |
+| `avatar_v` | 5 credits | 43 credits | **58 credits** | same as iv at every measured point |
+
+The 169-second column was NULL until a run measured it, and it has now been measured twice on independent pairs of renders, each pair costing 116 credits. 58 credits each, both times. Before the first pair the estimate published in advance was "plausibly 58 each, and the scaling law is unmeasured". The estimate landing does not make it a measurement, and it was labelled as an estimate for that reason. Note also what the new column does to the naive model: 126s to 169s is 34 percent more clip for 35 percent more credits, which looks linear, while 11s to 126s was 11x the clip for 8.6x the credits, which is not. Two segments with different slopes is exactly the shape a single fitted line would have hidden.
 
 The recommendation falls straight out of the first row: **default every scheduled render to the flat tier.** A 2-minute daily clip on `avatar_iii` costs exactly what a 9-second one costs. The premium tiers cost 43x more at 2 minutes for output whose quality difference the eval harness in this repo was built to judge, and for scheduled unattended work the flat tier passes.
 

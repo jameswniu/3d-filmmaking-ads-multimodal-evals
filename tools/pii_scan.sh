@@ -414,8 +414,19 @@ if [ -s "$MEDIALIST" ]; then
         && record "$f" 0 "CLASS7-MEDIA-METADATA" "HIGH" "embedded-author-or-copyright"
       printf '%s' "$meta" | grep -qiE 'make|camera|lens|software|host computer|encoder' \
         && record "$f" 0 "CLASS7-MEDIA-METADATA" "HIGH" "embedded-device-or-software"
-      printf '%s' "$meta" | grep -qiE 'date/?time|createdate|creation_time|usercomment|xmp' \
-        && record "$f" 0 "CLASS7-MEDIA-METADATA" "MEDIUM" "embedded-timestamp-or-xmp"
+      # A timestamp field only leaks if it carries a VALUE. ffmpeg's -fflags +bitexact
+      # zeroes these to 0000:00:00 00:00:00 rather than removing the field, because the
+      # container requires it structurally. Flagging the field name alone made a
+      # correctly-scrubbed file indistinguishable from a leaky one, which trains a
+      # reviewer to wave the finding through. So: match the field, then require a
+      # non-zero value before recording. usercomment and xmp are free text and stay
+      # flagged on presence, since any content there is authored rather than structural.
+      if printf '%s' "$meta" | grep -qiE 'usercomment|xmp'; then
+        record "$f" 0 "CLASS7-MEDIA-METADATA" "MEDIUM" "embedded-timestamp-or-xmp"
+      elif printf '%s' "$meta" | grep -iE 'date/?time|createdate|creation_time' \
+           | grep -qvE '0000:00:00|1970:01:01|: *$'; then
+        record "$f" 0 "CLASS7-MEDIA-METADATA" "MEDIUM" "embedded-timestamp-or-xmp"
+      fi
     done < "$MEDIALIST"
   fi
 fi

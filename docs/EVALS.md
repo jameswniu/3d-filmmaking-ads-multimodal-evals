@@ -70,6 +70,30 @@ When the eye and the instrument disagree, the disagreement is the data. It has r
 
 **When every predictor inverts, stop steering.** On the day the ten models died, look selection was handed to seeded random, numbers were printed as reports rather than verdicts, and the human labelled fresh ground truth. Optimizing a proxy degrades the target. The eye stays the apex judge by design, not by courtesy.
 
+## 4b. Two failures a metric cannot report, because they are upstream of it
+
+Both surfaced in one session, both were caught by a person rather than by the suite, and neither is a threshold problem.
+
+**A wrong configuration does not error, it just reads flatter.** Nine clips shipped on the wrong text-to-speech model. Nothing failed. The words were correct, the voice was the right clone, the durations were plausible, and every probe passed, because no probe compares a delivered clip against the human recording the voice was cloned from. The only detector was a person saying it sounded flat.
+
+Measured afterward on three axes against that human reference:
+
+| | pitch range | loudness variation | **rest** |
+|---|---|---|---|
+| human reference | 44.9 Hz | 0.701 | **19.0 percent** |
+| wrong model | 26.8 Hz | 0.635 | **11.4 percent** |
+| pinned model | 35.6 Hz | 0.652 | 15.3 percent |
+
+The axis that mattered was **rest**, not pitch. She never stopped talking: 11.4 percent silence against a human's 19. No breath, no beat, nothing landing. This repository already knew that, in a different form. Its own rest meter was discarded as useless, then reinstated inverted once robotic takes measured 2 to 8 percent rest against a human reference at 10 to 17. The finding existed, the probe existed, and nobody ran it on the shipped clips.
+
+The general lesson is not "check the model". It is that a pipeline which only ever measures its output against **thresholds** cannot detect a defect that shifts the whole output distribution. Something has to compare the artifact to the source it is imitating.
+
+**A confident number from a region with no information is worse than no number.** A backdrop-motion probe reported "24 px of camera travel, 0 direction reversals" on three separate clips. The reading was identical every time because the sampled region was a featureless black field: with no texture, every candidate shift ties at zero residual, and `min()` returns the first, which is the edge of the search range. The probe was reporting its own search boundary as a measurement.
+
+The fix is not a better correlation. It is a confidence gate: measure whether the region carries signal at all, and emit INCONCLUSIVE when it does not. The repository's older `drift_probe` already does this and says so on textureless corners. The new one had to relearn it.
+
+Both failures share a shape worth naming: **a probe that cannot fail is not a probe.** One passed everything because it compared nothing external; the other passed everything because it always returned the same number. Neither was miscalibrated. Both were structurally incapable of disagreeing.
+
 ## 5. The failure class none of this catches
 
 Everything above is about metrics that were wrong: inverted, unstable, circular, or measuring the wrong physics. Each was found because a metric and a label disagreed, and a disagreement needs two parties.

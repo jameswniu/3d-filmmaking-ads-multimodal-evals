@@ -62,6 +62,21 @@ To claim it: read the torso band of all 304 look previews, apply the same separa
 
 The related structural point does not need the rate to be true: the fill colour and the wardrobe are one decision, and no probe in the suite knew that.
 
+## Why the lip-sync figure moves
+
+**Not explained.** Across a grid of three looks, three voice clones and three engine tiers, `lipsync_probe` reported dropped-onset rates from 19 to 43 percent with no clean association to any of the three variables.
+
+Two causes were proposed with confidence and both were wrong. The first blamed the still, reasoning that the still is the animation seed. A control run then showed the low-scoring comparison clip had been rendered on a different engine entirely, so the comparison had never been like for like. The second blamed the engine. A third look on a third engine then read 43 percent again.
+
+Two possibilities remain, and this repository cannot currently distinguish them:
+
+1. The probe's 0.8-second response window is too tight for this voice's pacing, in which case the metric is mismeasuring a clip that is fine.
+2. Every clip in the grid genuinely drops phrases at this rate, and the eye tolerates it because a viewer does not audit onsets.
+
+The second is the uncomfortable one and it is not ruled out. Settling this needs frame-level annotation of mouth openings against audio onsets on a labelled clip, which is the same move that resolved the gesture-timing question after thirteen metrics found nothing: stop correlating and go describe the physics.
+
+Until then the figure is reported and does not gate.
+
 ## Known open bugs
 
 Stated here rather than fixed silently before publishing:

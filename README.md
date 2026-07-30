@@ -17,7 +17,7 @@
   <tr>
     <td width="36%" align="center">
       <img src="assets/parallax-wiggle.gif" alt="The rendered presenter under a swaying virtual camera, nearer pixels shifting further than far ones" width="100%"><br>
-      <sub><b>Depth, on a flat screen.</b> A virtual camera sways across the inferred depth map. Her torso shifts <b>28 px</b> between the extreme views and her face <b>23 px</b>; that 5 px differential is the parallax, because a flat pan would move both by the same amount.</sub>
+      <sub><b>Depth, on a flat screen.</b> A virtual camera sways across the inferred depth map. Her torso shifts <b>22 px</b> between the extreme views and her face <b>20 px</b>. The 2 px differential is the parallax: a flat pan would move both by the same amount. It is smaller here than on the previous clip, which measured 5 px, because this is a closer seated framing with less front-to-back depth in it. Choosing a look for expression can cost you depth range, and the number says so.</sub>
     </td>
     <td width="30%" align="center">
       <img src="assets/quilt-video.gif" alt="The clip as a moving 7 by 11 array of 77 views" width="100%"><br>
@@ -25,7 +25,7 @@
     </td>
     <td width="34%" align="center">
       <img src="assets/glass-feed-demo.gif" alt="The presenter explaining the pipeline that renders her" width="100%"><br>
-      <sub><b>And she explains her own pipeline.</b> One pass, start to finish. GIFs are mute and the voice is half the point: <b><a href="assets/glass-feed-demo.mp4">&#9654; watch with sound (2:08)</a></b></sub>
+      <sub><b>And she explains her own pipeline.</b> One pass, start to finish. GIFs are mute and the voice is half the point: <b><a href="assets/glass-feed-demo.mp4">&#9654; watch with sound (2:49)</a></b></sub>
     </td>
   </tr>
 </table>
@@ -56,34 +56,35 @@ label  ->  derive  ->  gate  ->  render  ->  relabel
 
 ## The clip above, scored by this repo's own probes
 
-**This clip does not pass. That is the most useful thing on the page, so it leads instead of hiding at the bottom.**
+**This clip does not pass everything, and the failures are the most useful thing on the page, so they lead instead of hiding at the bottom.**
 
-The presenter was re-shot for a measured reason: the previous look wore black against a matte filled to pure black, and 30.7 percent of her was within 30 luma of the background. She read as a floating head. The re-shoot fixes exactly that, and breaks three other things. Both columns are the same audio, the same engine, the same script, and the same pipeline. The only variable is the still.
+It was picked by eye from a grid: one script rendered across three looks, three voice clones and three engine tiers, one variable moved per cell. Here is what the suite says about the winner.
 
-| probe | previous look | **this clip** | bar |
+| probe | reading | bar | verdict |
 |---|---|---|---|
-| `separation_probe` | 30.71 percent dissolved, **FAIL** | **2.80 percent, PASS** | fail at 12 percent |
-| `sync_probe` | lag -100ms | lag **-240ms**, early side, IN BAND | late fails at +80ms, early is forgiven |
-| `scene_simplicity` | 3.61 | **6.71 SIMPLE** | target 7.5, cleanest measured 2.68 |
-| `bg_detail` | 1.93 | **4.14** | labelled passes 3.61 to 4.27, rejects 7.05 to 12.06 |
-| `lipsync_probe` | dropped 7/36 (19 percent), REVIEW | dropped **15/41 (37 percent), FAIL** | no mouth response within 0.8s of an onset |
-| `level_probe` | face wander 6.8, CONSTANT | face wander **37.0, WANDERING** | 8.0 |
-| `eye_eval` | bg 2.84, **PASS** | bg **5.30, REJECT** | max 4.5 |
-| `drift_probe` | PASS every corner | **INCONCLUSIVE** | every corner is textureless black, so it cannot tell static from moving |
-| `hand_probe` | not recorded | gesture ratio 0.345 | **reported, not judged** |
-| `spasm_probe` | energy 2.02, ratio 0.63 | energy 5.49 | **reported, not judged**, per the retraction above |
+| `sync_probe` | lag **-240ms**, early side | late fails at +80ms, early is forgiven | IN BAND |
+| `eye_eval` | bg **2.48** | max 4.5 | **PASS** |
+| `scene_simplicity` | **4.22** | target 7.5, cleanest measured 2.68 | SIMPLE |
+| `bg_detail` | **2.71** | max 5.5 | SIMPLE |
+| `separation_probe` | **10.42 percent** of her within 30 luma of the fill | fail at 12 percent | **PASS, by 1.6 points** |
+| `hand_probe` | gesture ratio **0.506** | reported, never judged | highest measured |
+| `level_probe` | face wander **35.1**, face vs body **93.6** | 8.0 / 12.5 | **FAIL** |
+| `lipsync_probe` | dropped **25 of 58** onsets, 43 percent | no mouth response within 0.8s | **FAIL** |
+| `drift_probe` | flat corners, nothing to track | needs texture | **INCONCLUSIVE**, by construction |
 
-Three failures, and they are not the same kind of thing. Separating them is the entire skill this repo is trying to demonstrate.
+**The gesture number is worth pausing on.** 0.506 is the highest ratio measured across the whole grid, against 0.182 to 0.345 for everything else. It moved because the still was changed deliberately: earlier looks had folded arms or hands out of frame, this one has open palms in frame. The engine drives mouth and head from the audio while hands free-run, so the only lever on gesture is what the still hands it. That is the "the still is the seed" claim showing up as a measurement rather than an assertion.
 
-**One is circular, and the bar is the suspect.** `eye_eval` rejects on a background figure of 5.30 against a bar of 4.5. That bar was derived from labelled dark stills, where the worst accepted clip read 3.30 and the best rejected one read 5.32. This clip reads 5.30, two hundredths under the best thing ever rejected. The bar is behaving exactly as the retired brightness bar of 8.0 did: quietly meaning *resemble the look I labelled on*. It is not widened here, because widening a threshold so it admits the clip you just made is the same circularity running the other way. It stays failing until there are labels for a warm-lit look, and those have to come from the eye, not from me.
+**The tightest pass is worth more attention than the failures.** `separation_probe` clears its bar by 1.6 points. That probe was written this session, after a clip shipped in which 30.7 percent of the presenter sat within 30 luma of the black matte and she read as a floating head. The cream-top look that replaced it measured 2.80 percent. This look wears a mid-grey cardigan, so it lands at 10.42 percent: passing, and much nearer the edge than anything else here. A bar derived from two labelled points, n=2, is being asked to adjudicate a case sitting between them. It is reported with its margin rather than as a green tick, because a pass with 1.6 points of room is a different fact from a pass with 9.
 
-**One is real, and caused by the lighting.** Face wander of 37.0 against a bar of 8.0. The warm directional key genuinely swings her face luminance as she turns her head, where flat rim light held it constant. The metric is measuring something true. Whether 8.0 is the right bar for directional lighting is unknown, because no labelled exemplar is lit this way.
+**One failure is real and explainable.** Face wander of 35.1 against a bar of 8.0. This look is lit by a window from one side, so her face luminance genuinely swings as she turns. The metric measures something true. Whether 8.0 is the right bar for directional light is unknown, because every labelled exemplar behind that number is flat-lit, and widening a threshold so it admits the clip you just made is the same circularity this repo already retired once.
 
-**One is real, and is the actual cost.** Lip-sync dropped phrases doubled, 19 to 37 percent. This is not a brightness bar and cannot be argued away: it counts audio onsets that get no mouth response inside 0.8 seconds, and 15 of 41 got none. My own compression was ruled out as the cause before this was written down, because that was the convenient explanation: re-encoded at crf 18 and crf 25 the reading is identical at 15/41, and face wander moves by 0.1. Same engine, same audio, different still. The still is the seed, so the seed changed the animation.
+**One failure survived every explanation I offered, which makes it the honest centrepiece.** Lip-sync drops read 43 percent here. I named a cause twice and was wrong twice. First the still, on the reasoning that the still is the seed. Then a control run revealed the comparison clip had been a different engine all along, so I blamed the engine instead. This clip is a third look on a third engine and still reads 43 percent, so neither story held. Across the grid the figure ranges 19 to 43 percent with no clean association to look, engine or voice.
 
-The honest summary is a sentence most portfolios would not print. **Fixing a defect the suite could not see cost quality the suite can see, and the trade was made on purpose with the numbers in front of me.**
+Two possibilities remain and I cannot separate them from here: the metric's 0.8-second window may be too tight for this voice's pacing, or every clip in the grid genuinely drops phrases and the eye tolerates it. The second is uncomfortable and is not ruled out. What is ruled out is both of my confident explanations, and this repo's own history says that is precisely when to stop theorising and go measure the physics, the way thirteen gesture metrics found nothing until someone described the problem as lag rather than correlation.
 
-Pre-spend, the same run: voice drawn 3 times (128.08 / 128.16 / 124.16s, median kept, 3.2 percent spread), transcript diffed against the script before any render, a 0.6s settle beat added, the generated look scored at `bg_detail 3.54` and attested against the frozen-prop rule, and identity checked against the pin allowlist, which held 314 looks when this run refreshed it.
+So the summary is one most portfolios would not print. **The clip on this page fails two of its own gates: one for a reason I can defend, and one I have now guessed wrong about twice.**
+
+Pre-spend, the same run: voice drawn 3 times (156.88 / 168.96 / 168.64s, median kept, 7.7 percent spread), the synthesized audio transcribed and diffed against the script before any render (541 of 541 words, similarity 1.0000), a 0.6s settle beat added, the look attested against the frozen-prop rule, and identity checked against the pin allowlist.
 
 Two of those gates fired for real rather than rubber-stamping. The identity guard refused the freshly generated look until the allowlist was refreshed, preferring a blocked render to an unverified face. The frozen-prop gate would not accept an attestation without a named finding, so the backdrop travel risk had to be written down before the spend and then discharged after it: measured across 26 samples spanning the full clip, the frozen wall shifts **0 px** with **0** direction reversals, so the one claim her body could not have paid was never made.
 
@@ -148,8 +149,9 @@ Clone a real voice or license a synthetic one? Cloning is better and carries a c
 > An instant clone from a single **continuous** source take. More audio lost this argument twice: a 69-second stitched reference pitched the voice up (242 and 235 Hz against 216) and scored lower on timbre similarity (0.857 to 0.867 against 0.925 to 0.939) than a 10-second continuous original, and its clips were then rejected by ear, independently, afterward. Continuity of the source beat quantity of it, twice.
 
 - Fourteen candidate clones were built. The winner was picked by ear on a grid that moved exactly one variable at a time, and the runner-up measured 0.08 percent away, so the design made it legible that this was taste rather than measurement.
-- Draw 3 takes of the same script and keep the **median by duration**. A single blind draw lands somewhere on a 6 to 37 percent spread, and roughly one in three lands on a tail. This run drew 128.08, 128.16 and 124.16 seconds, a 3.2 percent spread, and kept the median.
-- Transcribe the winner and diff it against the intended script. Proper nouns are where synthesis fails, and no render can repair audio that was already wrong.
+- Draw 3 takes of the same script and keep the **median by duration**. A single blind draw lands somewhere on a 6 to 37 percent spread, and roughly one in three lands on a tail. This run drew 156.88, 168.96 and 168.64 seconds, a 7.7 percent spread, and kept the median.
+- Transcribe the winner and diff it against the intended script. Proper nouns are where synthesis fails, and no render can repair audio that was already wrong. This clip scored 541 of 541 words at similarity 1.0000. The check earns its keep by what it catches on a *bad* run, so it is worth stating that it was skipped on nine earlier renders here and only reinstated after the fact.
+- **The synthesis model is pinned, and getting that wrong is silent.** Nine clips shipped on the wrong text-to-speech model before anyone noticed, because a wrong model does not error: it just returns a flatter reading of the correct words. Measured against the human reference on three axes, the wrong model held pitch range at 26.8 Hz against the reference's 44.9, and rested 11.4 percent of the time against the reference's 19.0. The pinned model reads 35.6 and 15.3. Nothing in the pipeline compared a delivered clip to the source recording, so the only detector was a person saying it sounded flat.
 - Add a 0.6-second settle beat, because the synthesizer returns zero trailing silence and the render ends exactly at the audio, which leaves a mouth mid-motion on the final frame.
 
 <table>
@@ -179,8 +181,9 @@ Text-to-video or audio-driven avatar? General video models are spectacular and u
 
 > Audio drives the animation from a fixed still, which is the only reproducibility control on offer: the vendor exposes no seed, so **the still is the seed**. The flat-rate engine is the scheduled default because it bills the same for a 9-second clip as for a 2-minute one, and that single pricing fact is what makes a daily unattended run affordable at all.
 
-- Upload the finished audio as an asset, create the video against the pinned look, poll to completion, download, square-crop, burn subtitles. The clip on this page ran 128.7 seconds and billed 1 credit.
-- Cost is measured per engine and never extrapolated. The flat engine billed 1 credit at 11 seconds and 1 credit at 126. The premium engines billed 5 at 11 seconds and **43** at 126, so a plausible-looking `ceil(sec/11) * 5` predicts 60 for the render that actually cost 43. The router returns null for any duration it has not measured, because null makes a caller ask and a confident wrong number makes it spend.
+- Upload the finished audio as an asset, create the video against the pinned look, poll to completion, download, burn subtitles from the transcriber's own word timings so the captions cannot drift from the audio. The clip on this page runs 169.2 seconds.
+- Cost is measured per engine and never extrapolated. The flat engine billed 1 credit at 11 seconds, at 126, and again at 169. The premium engines billed 5 at 11 seconds, **43** at 126, and **58** at 169. A plausible-looking `ceil(sec/11) * 5` predicts 60 for the render that actually cost 43, so the router returns null for any unmeasured duration rather than guess: null makes a caller ask, a confident wrong number makes it spend.
+- **The clip on this page is the premium tier, chosen by eye at 58 times the cost of the default.** The same still and the same audio were rendered on all three tiers and picked by watching them. That is defensible for a portfolio clip watched closely once, and the wrong call for a job that runs every morning forever, which is why the scheduled pipeline stays on the flat tier. The page does not pretend those are the same decision.
 - Geometry gets measured on the delivered file, not trusted from the request flag. A 1:1 request against a landscape look letterboxes unless fit is set, and padding is static by construction, so a corner-sampling check would return a confident false clean.
 
 ---
@@ -235,7 +238,8 @@ Capture depth or infer it? Capture wants a depth camera pointed at a real subjec
 
 - [`pipeline/depth_infer.py`](pipeline/depth_infer.py). On the frame above: model load 1.9 seconds, inference 0.4 seconds.
 - Frames are batched with a stride and interpolated between, which is where the measured speedup actually comes from. Worth stating plainly: the 2.5x was real and the explanation I first wrote for it was wrong, because the setting meant to run ten things at once was running one.
-- **Depth is normalized once across the whole clip, and that costs memory rather than accuracy.** A per-frame or per-chunk range would let the near plane drift between segments, which reads as the depth pulsing and the parallax flickering. Holding one range means holding every frame, so peak memory scales with clip length: the 128-second clip on this page ran to 13.4 GB resident and pushed 16.6 GB to swap on a 64 GB machine. It completed, and a four-minute clip at this resolution would not. The fix is to infer at reduced resolution and upscale the maps, since depth is smooth and tolerates that where colour would not, and it is a fix rather than a workaround because it keeps the single global range. Chunking is the tempting option and it is the wrong one: it trades a visible artifact for an invisible ceiling.
+- **Depth is normalized once across the whole clip, and that costs memory rather than accuracy.** A per-frame or per-chunk range would let the near plane drift between segments, which reads as the depth pulsing and the parallax flickering. Holding one range means holding every frame, so peak memory scales with clip length. A 128-second clip at full resolution ran to 13.4 GB resident and pushed 16.6 GB to swap on a 64 GB machine. It completed; a longer one at that resolution would not have.
+- **The fix was written down before it was needed, then actually applied.** Infer at half resolution and upscale the maps: depth is smooth and tolerates that where colour would not, and the single global range survives. The clip on this page is 4230 frames, 32 percent longer than the one that nearly exhausted memory, and it ran to **3.3 GB peak with zero swap**, roughly a quarter of the cost. Chunking is the tempting alternative and it is the wrong one: it trades a visible artifact for an invisible ceiling.
 
 ### 8. Quilt
 
@@ -291,10 +295,15 @@ Measured, not estimated. Every figure carries its sample size, because a rate wi
 | Full chain completion | 4 of 7 | n=7, across 2 days |
 | Constraint held, outcome vs first attempt | 14 of 15 vs 6 of 15 | n=15 |
 | Quality gate true positives | 0 of 7 evaluations | n=7 |
-| Voice draw spread, this clip | 3.2 percent across 3 draws | median kept |
+| Voice draw spread, this clip | 7.7 percent across 3 draws | median kept |
+| Transcript check, this clip | 541 of 541 words, similarity 1.0000 | run before the spend |
+| Rest, this clip vs the human reference | 15.3 percent vs 19.0 percent | the axis that reads as flat |
+| Rest, on the wrong synthesis model | 11.4 percent | nine clips shipped before it was caught |
 | Depth on one frame | load 1.9s, inference 0.4s | local GPU |
+| Depth peak memory, 3216 frames at full res | 13.4 GB resident, 16.6 GB swapped | the ceiling |
+| Depth memory, 4230 frames at half res | 3.3 GB peak, 0 swap, 458s | the documented fix, applied |
 | Quilt build | 77 views in 0.8s at 3360px | n=1 |
-| Demo run cost | 89 credits | balance measured before and after |
+| Comparison run cost | 205 credits | balance measured before and after |
 
 **What I cannot tell you:** any dollar figure, because no credit-to-currency rate was recorded at measurement time. Time saved, because no manual baseline was ever measured. Both are in [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) with what it would take to get them honestly.
 
@@ -304,16 +313,20 @@ Measured, not estimated. Every figure carries its sample size, because a rate wi
 
 ## Cost
 
-The scheduled pipeline renders on the **flat tier**: 1 credit, measured at both 11 seconds and 125.7 seconds. The premium tiers billed 5 credits at 11 seconds and 43 at 125.7, so the multiple on a 2-minute clip is 43x, not 5x.
+The scheduled pipeline renders on the **flat tier**: 1 credit, now measured at three lengths. The premium tiers scale hard, so the multiple on a 3-minute clip is 58x, not 5x.
 
-| engine tier | ~11s | ~126s | shape |
-|---|---|---|---|
-| flat tier (scheduled default) | 1 credit | 1 credit | flat with length, two measured points |
-| premium tiers | 5 credits | 43 credits | scales, and not knowably linear |
+| engine tier | ~11s | ~126s | ~169s | shape |
+|---|---|---|---|---|
+| flat tier (scheduled default) | 1 credit | 1 credit | 1 credit | flat with length, three measured points |
+| premium tiers | 5 credits | 43 credits | **58 credits** | scales, and not knowably linear |
 
-The cost router refuses to interpolate between measured points, because an earlier confident estimate understated a premium batch by 8.6x and burned 344 credits before anyone noticed. A null makes a caller ask; a confident 5 makes it spend 43.
+Every cell there is a balance delta read before and after a real render. None is interpolated. The 169-second column was null until this run measured it, and it was then measured a second time on an independent pair of renders: 58 credits each, both times.
 
-**The demo run on this page cost 89 credits**, measured as a balance delta. It rendered the same audio on three tiers in order to compare them, plus one look generation. That is deliberately not the scheduled cost: the daily path is the flat tier. Full model, the incident, and tier-sizing for both vendors: [`docs/COST.md`](docs/COST.md).
+The router refuses to interpolate between measured points, because an earlier confident estimate understated a premium batch by 8.6x and burned 344 credits before anyone noticed. A null makes a caller ask; a confident 5 makes it spend 43.
+
+The discipline paid out again here. Before the two premium renders that produced this page's clip, the estimate published in advance was "plausibly 58 each, and the scaling law is unmeasured." The balance moved by 116 across the two, so 58 each exactly. The estimate was right, and it was still published as an estimate with the reason it could be wrong, because a number that happens to land is not the same as a number that was known.
+
+**The full comparison run on this page cost 205 credits**, measured as a balance delta across the session: the same script rendered on three engine tiers, across three looks and several voice clones, in order to pick one of each by eye and ear. That is emphatically not the scheduled cost. The daily path renders once, on the flat tier, for 1 credit. Full model, the incident, and tier-sizing for both vendors: [`docs/COST.md`](docs/COST.md).
 
 Voice is metered per character and synthesis costs zero render credits, which is why the pipeline draws three voice takes and renders once.
 
