@@ -15,13 +15,17 @@
 
 <table>
   <tr>
-    <td width="55%" align="center">
-      <img src="assets/glass-feed-demo.gif" alt="The presenter explaining the pipeline that renders her" width="100%"><br>
-      <sub><b>The product, one pass, start to finish.</b> She is explaining the pipeline that renders her. GIFs are mute and the voice is half the point, so: <b><a href="assets/glass-feed-demo.mp4">&#9654; watch it with sound (2:08 mp4)</a></b></sub>
+    <td width="36%" align="center">
+      <img src="assets/parallax-wiggle.gif" alt="The rendered presenter under a swaying virtual camera, nearer pixels shifting further than far ones" width="100%"><br>
+      <sub><b>Depth, on a flat screen.</b> A virtual camera sways across the inferred depth map. Her torso shifts <b>28 px</b> between the extreme views and her face <b>23 px</b>; that 5 px differential is the parallax, because a flat pan would move both by the same amount.</sub>
     </td>
-    <td width="45%" align="center">
-      <img src="assets/quilt.png" alt="The same frame as a 7x11 array of 77 views" width="100%"><br>
-      <sub><b>The same instant, 77 times.</b> One frame of that clip as its 7x11 quilt: 77 camera positions across the view cone, which is what the panel turns back into depth.</sub>
+    <td width="30%" align="center">
+      <img src="assets/quilt-video.gif" alt="The clip as a moving 7 by 11 array of 77 views" width="100%"><br>
+      <sub><b>The file the panel actually eats.</b> Not a still: every frame carries its own 77 views, so parallax holds while she speaks. 77 warps per output frame. <b><a href="assets/quilt-video.mp4">&#9654; full quilt video</a></b></sub>
+    </td>
+    <td width="34%" align="center">
+      <img src="assets/glass-feed-demo.gif" alt="The presenter explaining the pipeline that renders her" width="100%"><br>
+      <sub><b>And she explains her own pipeline.</b> One pass, start to finish. GIFs are mute and the voice is half the point: <b><a href="assets/glass-feed-demo.mp4">&#9654; watch with sound (2:08)</a></b></sub>
     </td>
   </tr>
 </table>
@@ -52,18 +56,34 @@ label  ->  derive  ->  gate  ->  render  ->  relabel
 
 ## The clip above, scored by this repo's own probes
 
-Not a claim that it is good. The output of the gates that let it ship.
+**This clip does not pass. That is the most useful thing on the page, so it leads instead of hiding at the bottom.**
 
-| probe | reading | bar |
-|---|---|---|
-| `sync_probe` | lag **-200ms**, early side, IN BAND | late fails at +80ms; early is forgiven |
-| `level_probe` | face 7.6, scene 0.7, face-vs-body 8.7, CONSTANT | 8.0 / 5.0 / 12.5 |
-| `drift_probe` | PASS, every corner | textureless black gives nothing to track |
-| `scene_simplicity` | 3.61 SIMPLE | target 7.5; the cleanest measured clip ran 2.68 |
-| `bg_detail` | 1.93 | labelled passes 3.61 to 4.27; labelled rejects 7.05 to 12.06 |
-| `spasm_probe` | energy 2.02, ratio 0.63 | **reported, not judged**, per the retraction above |
+The presenter was re-shot for a measured reason: the previous look wore black against a matte filled to pure black, and 30.7 percent of her was within 30 luma of the background. She read as a floating head. The re-shoot fixes exactly that, and breaks three other things. Both columns are the same audio, the same engine, the same script, and the same pipeline. The only variable is the still.
 
-Pre-spend, the same run: voice drawn 3 times (128.08 / 128.16 / 124.16s, median kept, 3.2 percent spread), transcript diffed against the script before any render, a 0.6s settle beat added, the generated look scored at `bg_detail 1.66` and attested against the frozen-prop rule, and identity checked against the pin allowlist, which held 302 looks when this run refreshed it.
+| probe | previous look | **this clip** | bar |
+|---|---|---|---|
+| `separation_probe` | 30.71 percent dissolved, **FAIL** | **2.80 percent, PASS** | fail at 12 percent |
+| `sync_probe` | lag -100ms | lag **-240ms**, early side, IN BAND | late fails at +80ms, early is forgiven |
+| `scene_simplicity` | 3.61 | **6.71 SIMPLE** | target 7.5, cleanest measured 2.68 |
+| `bg_detail` | 1.93 | **4.14** | labelled passes 3.61 to 4.27, rejects 7.05 to 12.06 |
+| `lipsync_probe` | dropped 7/36 (19 percent), REVIEW | dropped **15/41 (37 percent), FAIL** | no mouth response within 0.8s of an onset |
+| `level_probe` | face wander 6.8, CONSTANT | face wander **37.0, WANDERING** | 8.0 |
+| `eye_eval` | bg 2.84, **PASS** | bg **5.30, REJECT** | max 4.5 |
+| `drift_probe` | PASS every corner | **INCONCLUSIVE** | every corner is textureless black, so it cannot tell static from moving |
+| `hand_probe` | not recorded | gesture ratio 0.345 | **reported, not judged** |
+| `spasm_probe` | energy 2.02, ratio 0.63 | energy 5.49 | **reported, not judged**, per the retraction above |
+
+Three failures, and they are not the same kind of thing. Separating them is the entire skill this repo is trying to demonstrate.
+
+**One is circular, and the bar is the suspect.** `eye_eval` rejects on a background figure of 5.30 against a bar of 4.5. That bar was derived from labelled dark stills, where the worst accepted clip read 3.30 and the best rejected one read 5.32. This clip reads 5.30, two hundredths under the best thing ever rejected. The bar is behaving exactly as the retired brightness bar of 8.0 did: quietly meaning *resemble the look I labelled on*. It is not widened here, because widening a threshold so it admits the clip you just made is the same circularity running the other way. It stays failing until there are labels for a warm-lit look, and those have to come from the eye, not from me.
+
+**One is real, and caused by the lighting.** Face wander of 37.0 against a bar of 8.0. The warm directional key genuinely swings her face luminance as she turns her head, where flat rim light held it constant. The metric is measuring something true. Whether 8.0 is the right bar for directional lighting is unknown, because no labelled exemplar is lit this way.
+
+**One is real, and is the actual cost.** Lip-sync dropped phrases doubled, 19 to 37 percent. This is not a brightness bar and cannot be argued away: it counts audio onsets that get no mouth response inside 0.8 seconds, and 15 of 41 got none. My own compression was ruled out as the cause before this was written down, because that was the convenient explanation: re-encoded at crf 18 and crf 25 the reading is identical at 15/41, and face wander moves by 0.1. Same engine, same audio, different still. The still is the seed, so the seed changed the animation.
+
+The honest summary is a sentence most portfolios would not print. **Fixing a defect the suite could not see cost quality the suite can see, and the trade was made on purpose with the numbers in front of me.**
+
+Pre-spend, the same run: voice drawn 3 times (128.08 / 128.16 / 124.16s, median kept, 3.2 percent spread), transcript diffed against the script before any render, a 0.6s settle beat added, the generated look scored at `bg_detail 3.54` and attested against the frozen-prop rule, and identity checked against the pin allowlist, which held 314 looks when this run refreshed it.
 
 Two of those gates fired for real rather than rubber-stamping. The identity guard refused the freshly generated look until the allowlist was refreshed, preferring a blocked render to an unverified face. The frozen-prop gate would not accept an attestation without a named finding, so the backdrop travel risk had to be written down before the spend and then discharged after it: measured across 26 samples spanning the full clip, the frozen wall shifts **0 px** with **0** direction reversals, so the one claim her body could not have paid was never made.
 
