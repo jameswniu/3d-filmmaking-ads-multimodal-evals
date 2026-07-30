@@ -19,7 +19,7 @@ Every number in the README, with where it came from and what you can check yours
 | Daily cost 2 credits | Vendor usage page | Read at 4 different clip lengths | No |
 | Latency median 33 min | 4 timed end-to-end runs | Wall clock, first stage start to display update | No |
 | Benchmark 229s to 89s | One A/B on the same input | Output compared byte for byte | Partly, the code is here |
-| Nine invariants, ~12 probes | This repository | `ls probes/` | **Yes** |
+| Nine invariants, 13 probes | This repository | `ls probes/` | **Yes** |
 | Three of four guards fail open | This repository | Method below, reproducible | **Yes** |
 
 ---

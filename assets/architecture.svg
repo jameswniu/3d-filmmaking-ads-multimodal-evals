@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 812" width="1480" height="812" role="img" aria-label="System architecture of the render and eval pipeline">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#38bdf8"/></marker><marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f0b429"/></marker><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#081228"/><stop offset="1" stop-color="#04091a"/></linearGradient></defs>
+<rect width="1480" height="812" fill="url(#bg)"/>
+<text x="38" y="46" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="25" fill="#e0f2fe" font-weight="700" text-anchor="start">Architecture</text>
+<text x="38" y="70" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#7c9ec4" font-weight="normal" text-anchor="start">One unattended run, left to right. Gates are the row that can stop it.</text>
+<text x="1442" y="46" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12" fill="#7c9ec4" font-weight="normal" text-anchor="end">13 probes  ·  4 blocking gates  ·  77 views  ·  1 credit / scheduled render</text>
+<line x1="38" y1="88" x2="1442" y2="88" stroke="#1e3a64"/>
+<line x1="38" y1="96" x2="1442" y2="96" stroke="#1e3a64" stroke-dasharray="2 5" opacity="0.55"/>
+<text x="38" y="110" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#0ea5e9" font-weight="700" text-anchor="start">METERED</text>
+<text x="38" y="124" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9" fill="#7c9ec4" font-weight="normal" text-anchor="start">billed per call</text>
+<line x1="38" y1="224" x2="1442" y2="224" stroke="#1e3a64" stroke-dasharray="2 5" opacity="0.55"/>
+<text x="38" y="238" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#38bdf8" font-weight="700" text-anchor="start">PIPELINE</text>
+<text x="38" y="252" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9" fill="#7c9ec4" font-weight="normal" text-anchor="start">ten stages</text>
+<line x1="38" y1="534" x2="1442" y2="534" stroke="#1e3a64" stroke-dasharray="2 5" opacity="0.55"/>
+<text x="38" y="548" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#8b8cf0" font-weight="700" text-anchor="start">LOCAL</text>
+<text x="38" y="562" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9" fill="#7c9ec4" font-weight="normal" text-anchor="start">no vendor cost</text>
+<line x1="38" y1="656" x2="1442" y2="656" stroke="#1e3a64" stroke-dasharray="2 5" opacity="0.55"/>
+<text x="38" y="670" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#f0b429" font-weight="700" text-anchor="start">GATES</text>
+<text x="38" y="684" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9" fill="#7c9ec4" font-weight="normal" text-anchor="start">these can stop it</text>
+<rect x="684" y="100" width="232" height="74" rx="6" fill="#0a1930" stroke="#0ea5e9" stroke-width="1"/>
+<text x="698" y="122" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#0ea5e9" font-weight="700" text-anchor="start">text-to-speech</text>
+<text x="698" y="140" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#e0f2fe" font-weight="normal" text-anchor="start">pinned model</text>
+<text x="698" y="154" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#7c9ec4" font-weight="normal" text-anchor="start">3 takes, median kept</text>
+<text x="698" y="168" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#f0b429" font-weight="normal" text-anchor="start">0 render credits</text>
+<line x1="800.0" y1="176" x2="800.0" y2="246" stroke="#0ea5e9" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="1200" y="100" width="232" height="74" rx="6" fill="#0a1930" stroke="#0ea5e9" stroke-width="1"/>
+<text x="1214" y="122" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#0ea5e9" font-weight="700" text-anchor="start">avatar render</text>
+<text x="1214" y="140" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#e0f2fe" font-weight="normal" text-anchor="start">engine router</text>
+<text x="1214" y="154" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#7c9ec4" font-weight="normal" text-anchor="start">flat tier scheduled</text>
+<text x="1214" y="168" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#f0b429" font-weight="normal" text-anchor="start">1, 43 or 58 credits</text>
+<line x1="1316.0" y1="176" x2="1316.0" y2="246" stroke="#0ea5e9" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="168" y="246" width="232" height="118" rx="6" fill="#0c1a30" stroke="#1e3a64" stroke-width="1"/>
+<rect x="168" y="246" width="4" height="118" rx="2" fill="#38bdf8"/>
+<text x="184" y="268" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="start">0</text>
+<text x="206" y="269" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e0f2fe" font-weight="700" text-anchor="start">WAKE</text>
+<text x="184" y="288" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="start" opacity="0.85">a timer, not a person</text>
+<text x="184" y="310" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· lock, budget cap, timeout</text>
+<text x="184" y="325" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· alerts on not-success</text>
+<text x="184" y="340" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· so novel failures are loud</text>
+<line x1="404" y1="305" x2="420" y2="305" stroke="#38bdf8" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="426" y="246" width="232" height="118" rx="6" fill="#0c1a30" stroke="#1e3a64" stroke-width="1"/>
+<rect x="426" y="246" width="4" height="118" rx="2" fill="#38bdf8"/>
+<text x="442" y="268" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="start">1</text>
+<text x="464" y="269" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e0f2fe" font-weight="700" text-anchor="start">SCRIPT</text>
+<text x="442" y="288" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="start" opacity="0.85">two agents, kept apart</text>
+<text x="442" y="310" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· one picks what to say</text>
+<text x="442" y="325" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· one shapes how it sounds</text>
+<text x="442" y="340" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· held above 250 chars</text>
+<line x1="662" y1="305" x2="678" y2="305" stroke="#38bdf8" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="684" y="246" width="232" height="118" rx="6" fill="#0c1a30" stroke="#1e3a64" stroke-width="1"/>
+<rect x="684" y="246" width="4" height="118" rx="2" fill="#38bdf8"/>
+<text x="700" y="268" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="start">2</text>
+<text x="722" y="269" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e0f2fe" font-weight="700" text-anchor="start">VOICE</text>
+<text x="700" y="288" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="start" opacity="0.85">clone, one continuous take</text>
+<text x="700" y="310" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· draw 3, keep median secs</text>
+<text x="700" y="325" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· spread here 7.7%</text>
+<text x="700" y="340" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· 541/541 words @ 1.0000</text>
+<line x1="920" y1="305" x2="936" y2="305" stroke="#38bdf8" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="942" y="246" width="232" height="118" rx="6" fill="#0c1a30" stroke="#1e3a64" stroke-width="1"/>
+<rect x="942" y="246" width="4" height="118" rx="2" fill="#38bdf8"/>
+<text x="958" y="268" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="start">3</text>
+<text x="980" y="269" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e0f2fe" font-weight="700" text-anchor="start">LOOK</text>
+<text x="958" y="288" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="start" opacity="0.85">generated, one pinned identity</text>
+<text x="958" y="310" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· fresh look per render</text>
+<text x="958" y="325" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· 302 in group at this run</text>
+<text x="958" y="340" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· wardrobe must clear matte</text>
+<line x1="1178" y1="305" x2="1194" y2="305" stroke="#38bdf8" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="1200" y="246" width="232" height="118" rx="6" fill="#0c1a30" stroke="#1e3a64" stroke-width="1"/>
+<rect x="1200" y="246" width="4" height="118" rx="2" fill="#38bdf8"/>
+<text x="1216" y="268" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="start">4</text>
+<text x="1238" y="269" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e0f2fe" font-weight="700" text-anchor="start">RENDER</text>
+<text x="1216" y="288" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="start" opacity="0.85">audio drives a fixed still</text>
+<text x="1216" y="310" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· the still IS the seed</text>
+<text x="1216" y="325" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· no seed exposed by vendor</text>
+<text x="1216" y="340" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· 169.2s delivered</text>
+<line x1="1316.0" y1="364" x2="1316.0" y2="392" stroke="#38bdf8" stroke-width="1.6"/>
+<text x="1304.0" y="380" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="end">one render, two destinations</text>
+<path d="M1316.0,392 L1316.0,408 L284.0,408 L284.0,434" fill="none" stroke="#38bdf8" stroke-width="1.6" marker-end="url(#ah)"/>
+<path d="M1316.0,392 L1316.0,408 L1316.0,408 L1316.0,434" fill="none" stroke="#8b8cf0" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+<rect x="168" y="434" width="232" height="88" rx="6" fill="#0c1a30" stroke="#1e3a64" stroke-width="1"/>
+<rect x="168" y="434" width="4" height="88" rx="2" fill="#38bdf8"/>
+<text x="184" y="456" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="start">5</text>
+<text x="206" y="457" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e0f2fe" font-weight="700" text-anchor="start">MATTE</text>
+<text x="184" y="476" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="start" opacity="0.85">the room comes out</text>
+<text x="184" y="496" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· pure black fill</text>
+<line x1="404" y1="478" x2="420" y2="478" stroke="#38bdf8" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="426" y="434" width="232" height="88" rx="6" fill="#0c1a30" stroke="#1e3a64" stroke-width="1"/>
+<rect x="426" y="434" width="4" height="88" rx="2" fill="#38bdf8"/>
+<text x="442" y="456" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="start">6</text>
+<text x="464" y="457" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e0f2fe" font-weight="700" text-anchor="start">DEPTH</text>
+<text x="442" y="476" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="start" opacity="0.85">colour becomes distance</text>
+<text x="442" y="496" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· local GPU, half-res</text>
+<line x1="662" y1="478" x2="678" y2="478" stroke="#38bdf8" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="684" y="434" width="232" height="88" rx="6" fill="#0c1a30" stroke="#1e3a64" stroke-width="1"/>
+<rect x="684" y="434" width="4" height="88" rx="2" fill="#38bdf8"/>
+<text x="700" y="456" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="start">7</text>
+<text x="722" y="457" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e0f2fe" font-weight="700" text-anchor="start">PARALLAX</text>
+<text x="700" y="476" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="start" opacity="0.85">distance spent sideways</text>
+<text x="700" y="496" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· near travels further</text>
+<line x1="920" y1="478" x2="936" y2="478" stroke="#38bdf8" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="942" y="434" width="232" height="88" rx="6" fill="#0c1a30" stroke="#1e3a64" stroke-width="1"/>
+<rect x="942" y="434" width="4" height="88" rx="2" fill="#38bdf8"/>
+<text x="958" y="456" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="start">8</text>
+<text x="980" y="457" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e0f2fe" font-weight="700" text-anchor="start">QUILT</text>
+<text x="958" y="476" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="start" opacity="0.85">11 x 7 = 77 views</text>
+<text x="958" y="496" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· one frame, all views</text>
+<rect x="1200" y="434" width="232" height="88" rx="6" fill="#0a1930" stroke="#38bdf8" stroke-width="1"/>
+<rect x="1200" y="434" width="4" height="88" rx="2" fill="#38bdf8"/>
+<text x="1216" y="456" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="start">9</text>
+<text x="1238" y="457" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e0f2fe" font-weight="700" text-anchor="start">CAST</text>
+<text x="1216" y="476" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#38bdf8" font-weight="normal" text-anchor="start" opacity="0.85">light-field panel</text>
+<text x="1216" y="496" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· one view per eye</text>
+<line x1="1194" y1="478" x2="1194" y2="478" stroke="#38bdf8" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="1200" y="434" width="232" height="88" rx="6" fill="#0a1428" stroke="#8b8cf0" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="1216" y="457" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8b8cf0" font-weight="700" text-anchor="start">REAL-TIME ARM</text>
+<text x="1216" y="476" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#8b8cf0" font-weight="normal" text-anchor="start" opacity="0.8">interactive, low latency</text>
+<text x="1216" y="496" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">· none of these gates apply</text>
+<rect x="168" y="538" width="232" height="46" rx="6" fill="#0b1428" stroke="#8b8cf0" stroke-width="1"/>
+<text x="182" y="558" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#8b8cf0" font-weight="700" text-anchor="start">matting model</text>
+<text x="182" y="574" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">runs on this machine</text>
+<rect x="426" y="538" width="232" height="46" rx="6" fill="#0b1428" stroke="#8b8cf0" stroke-width="1"/>
+<text x="440" y="558" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#8b8cf0" font-weight="700" text-anchor="start">depth model</text>
+<text x="440" y="574" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">runs on this machine</text>
+<rect x="684" y="538" width="232" height="46" rx="6" fill="#0b1428" stroke="#8b8cf0" stroke-width="1"/>
+<text x="698" y="558" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#8b8cf0" font-weight="700" text-anchor="start">warp + interleave</text>
+<text x="698" y="574" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">numpy, no model</text>
+<rect x="942" y="538" width="232" height="46" rx="6" fill="#0b1428" stroke="#8b8cf0" stroke-width="1"/>
+<text x="956" y="558" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#8b8cf0" font-weight="700" text-anchor="start">13 probes</text>
+<text x="956" y="574" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">score, mostly disclose</text>
+<rect x="168" y="660" width="232" height="62" rx="6" fill="#1a1406" stroke="#f0b429" stroke-width="1"/>
+<rect x="168" y="660" width="4" height="62" rx="2" fill="#f0b429"/>
+<text x="184" y="680" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" fill="#f0b429" font-weight="700" text-anchor="start">separation</text>
+<text x="184" y="697" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#e0f2fe" font-weight="normal" text-anchor="start">she must clear the fill</text>
+<text x="184" y="712" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">on stage 5, matte</text>
+<line x1="284.0" y1="658" x2="284.0" y2="618" stroke="#f0b429" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#ahg)"/>
+<rect x="684" y="660" width="232" height="62" rx="6" fill="#1a1406" stroke="#f0b429" stroke-width="1"/>
+<rect x="684" y="660" width="4" height="62" rx="2" fill="#f0b429"/>
+<text x="700" y="680" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" fill="#f0b429" font-weight="700" text-anchor="start">transcript diff</text>
+<text x="700" y="697" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#e0f2fe" font-weight="normal" text-anchor="start">audio wrong -&gt; stop</text>
+<text x="700" y="712" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">on stage 2, before spend</text>
+<line x1="800.0" y1="658" x2="800.0" y2="618" stroke="#f0b429" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#ahg)"/>
+<rect x="942" y="660" width="232" height="62" rx="6" fill="#1a1406" stroke="#f0b429" stroke-width="1"/>
+<rect x="942" y="660" width="4" height="62" rx="2" fill="#f0b429"/>
+<text x="958" y="680" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" fill="#f0b429" font-weight="700" text-anchor="start">identity pin</text>
+<text x="958" y="697" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#e0f2fe" font-weight="normal" text-anchor="start">unknown face -&gt; stop</text>
+<text x="958" y="712" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">on stage 3, before spend</text>
+<line x1="1058.0" y1="658" x2="1058.0" y2="618" stroke="#f0b429" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#ahg)"/>
+<rect x="1200" y="660" width="232" height="62" rx="6" fill="#1a1406" stroke="#f0b429" stroke-width="1"/>
+<rect x="1200" y="660" width="4" height="62" rx="2" fill="#f0b429"/>
+<text x="1216" y="680" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" fill="#f0b429" font-weight="700" text-anchor="start">PII scan</text>
+<text x="1216" y="697" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#e0f2fe" font-weight="normal" text-anchor="start">two layers, then ship</text>
+<text x="1216" y="712" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9.5" fill="#7c9ec4" font-weight="normal" text-anchor="start">at publish</text>
+<line x1="1316.0" y1="658" x2="1316.0" y2="618" stroke="#f0b429" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#ahg)"/>
+<line x1="38" y1="756" x2="1442" y2="756" stroke="#1e3a64"/>
+<text x="38" y="778" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#7c9ec4" font-weight="normal" text-anchor="start">The blocking gates are the ones that would have prevented a real failure. Everything else reports and lets the run continue.</text>
+<text x="1442" y="778" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="#7c9ec4" font-weight="normal" text-anchor="end">every figure here is measured, none extrapolated</text>
+</svg>

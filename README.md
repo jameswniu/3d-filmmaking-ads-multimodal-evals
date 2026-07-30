@@ -4,7 +4,7 @@
 
 <p align="center">
   <img alt="labelled: 113 stills, 67 clips" src="https://img.shields.io/badge/labelled-113_stills_%C2%B7_67_clips-0ea5e9?style=flat-square&labelColor=0f172a">
-  <img alt="probes: 12, each derived from labels" src="https://img.shields.io/badge/probes-12_derived-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="probes: 13, each derived from labels" src="https://img.shields.io/badge/probes-13_derived-164e63?style=flat-square&labelColor=0f172a">
   <img alt="gates: 4, blocking" src="https://img.shields.io/badge/gates-4_blocking-164e63?style=flat-square&labelColor=0f172a">
   <img alt="views: 77 per frame" src="https://img.shields.io/badge/views-77_per_frame-164e63?style=flat-square&labelColor=0f172a">
   <img alt="cost: 1 credit per render" src="https://img.shields.io/badge/cost-1_credit_%2F_render-164e63?style=flat-square&labelColor=0f172a">
@@ -31,6 +31,30 @@
 </table>
 
 > The presenter is generated. She is not a real person and not a likeness of one. Her voice is a clone of a consented source. Every asset on this page comes from **one** run of the pipeline, deliberately, because a montage of lucky takes would hide the thing this repo is about.
+
+---
+
+## What actually happens to her
+
+Every image below is the **same frame**, `t = 63s`, of the same render. That constraint is the point: if two panels disagree, it is the stage that changed her, not a different take, a different day or a luckier moment.
+
+<p align="center">
+  <img src="assets/journey.png" alt="One frame of the presenter carried through six stages: the seed still, the render, the matte, the depth map, the parallax pair, and the 77-view quilt" width="100%">
+</p>
+
+<table>
+  <tr>
+    <td width="34%" align="center">
+      <img src="assets/journey.gif" alt="The same six stages cut in sequence on one locked frame" width="100%"><br>
+      <sub><b>The same six stages, cut.</b> A grid invites you to compare compositions. A cut on a locked frame shows only what the stage changed.</sub>
+    </td>
+    <td>
+      <b>Why some frames on this page have a background and some do not.</b> Stages 1 and 2 still carry the room, because the room is part of the photograph and no render can move it. Stage 3 takes it out and replaces it with pure black, which is the strongest available separation for a lit face and the weakest for dark clothing. Those two facts are one decision, and this repository shipped a floating head before noticing that.<br><br>
+      <b>Stage 4 is where she stops being a picture of a person and becomes a measurement.</b> Depth is inferred locally, per frame, from a flat image no camera ever ranged. Stage 5 spends that depth sideways, moving near pixels further than far ones, which is the only step that produces something two eyes can disagree about. Stage 6 packs all 77 of those disagreements into one frame.<br><br>
+      The chain ends there on purpose. What the panel does with that frame is hand a different view to each of your eyes, and no screenshot can reproduce that honestly, so the pictures stop rather than pretend.
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -111,6 +135,22 @@ Separation is why the evals can exist at all. A single end-to-end model would le
 
 ---
 
+## Architecture
+
+<p align="center">
+  <img src="assets/architecture.svg" alt="System architecture: metered vendors, ten pipeline stages, the fork to the real-time arm, local models, and the four blocking gates" width="100%">
+</p>
+
+Four rows, and the reason they are separate rows is the interesting part. **Metered** is anything a run can spend money on, which is exactly two vendors. **Local** is everything that runs on this machine for free, which is why a daily render's marginal cost is one credit and not a model bill. **Gates** sit under the stage they act on, and only four of the thirteen probes are down there: the rest report a number and let the run continue, because a metric that has not proven itself stable inside a single clip has not earned the authority to stop one.
+
+Every figure in the diagram is a measurement published elsewhere in this repository, and the generator refuses to write the file if those figures are no longer in the README, so the picture cannot quietly become a second source of truth.
+
+**Interactive version: [`docs/architecture.html`](docs/architecture.html)**, the same map with every box clickable to show the failure that forced it. Standalone, no dependencies. GitHub renders `.html` as source, so open it locally with `open docs/architecture.html`.
+
+<p align="center">
+  <img src="assets/band-stages.svg" alt="The build: ten stages, each one a decision" width="100%">
+</p>
+
 ## The suite, stage by stage
 
 Ten stages, and each one reads at three depths: the paragraph is the decision anyone building this has to make, the indented line is what I chose and the measurement that forced it, and the bullets are the literal mechanics. Skim the paragraphs for the argument, drop into the bullets when you want the file and the number. Every image below is from the single run at the top of this page.
@@ -188,13 +228,17 @@ Text-to-video or audio-driven avatar? General video models are spectacular and u
 
 ---
 
+<p align="center">
+  <img src="assets/band-fork.svg" alt="The fork: one render, two destinations" width="100%">
+</p>
+
 ## The fork, and why the evals only work on one side of it
 
 Everything up to here is shared: the schedule, the words, the cloned voice, the pinned face, the animated render. At this point the same presenter becomes two different products, and they are not variations on a theme. They are separated by whether the output exists before anyone sees it.
 
 > **Rendered** output is finished before it ships, so every gate in this repository can run in the gap between "the file exists" and "a human sees it." That gap is the entire reason this pipeline can be trusted unattended. **Live** output has no such gap: the voice is synthesized in the moment, mid-conversation, and there is no frame to inspect before it is already on someone's screen. So the gating doctrine here does not port across the fork. It is not that the live path needs different thresholds. It is that pre-spend review, the mechanism all nine invariants rest on, does not exist there at all.
 
-**The rendered path, stages 5 through 9 below.** Matte, evaluate, infer depth, build the 77-view quilt, cast to glass. Fully built, runs on a timer, and is what the rest of this page documents. Latency is irrelevant, which is exactly what buys room for twelve probes and four blocking guards.
+**The rendered path, stages 5 through 9 below.** Matte, evaluate, infer depth, build the 77-view quilt, cast to glass. Fully built, runs on a timer, and is what the rest of this page documents. Latency is irrelevant, which is exactly what buys room for thirteen probes and four blocking guards.
 
 **The live path.** A real-time conversational avatar, its speech driven by a streaming voice agent rather than a rendered audio file. Two things are true about it and neither is a boast:
 
@@ -224,7 +268,7 @@ Keep the room or separate the person? Keeping it is free and reads as dead, beca
 
 Gate on the outcome or on the attempt? Outcome metrics are what dashboards show, and they cannot tell a system that complied apart from a system that was stopped. Measured at the outcome, one constraint here held 14 runs out of 15. Measured at the first attempt, the same constraint held 6 out of 15. Both numbers are true, and only the second one tells you the rule was being ignored and then caught.
 
-> Nine invariants, twelve probes, every threshold derived from a labelled pass exemplar and a labelled fail exemplar, judging done blind, and a hard wall between metrics that **gate** and metrics that only **report**. A metric has to be stable *within* a single clip before it earns any authority over spend, because agreement with a small labelled set is cheap and noise reproduces it easily.
+> Nine invariants, thirteen probes, every threshold derived from a labelled pass exemplar and a labelled fail exemplar, judging done blind, and a hard wall between metrics that **gate** and metrics that only **report**. A metric has to be stable *within* a single clip before it earns any authority over spend, because agreement with a small labelled set is cheap and noise reproduces it easily.
 
 - Probes run against the rendered clip and its subtitle track. The ship gate refuses outright on geometry failures, and for judgement calls it cannot make itself it demands an explicit written reason rather than a boolean.
 - Every threshold's derivation, including the ten scoring models that died in a single day, is in [`docs/EVALS.md`](docs/EVALS.md).
@@ -262,6 +306,10 @@ Screen or light field? A screen is everywhere, and flat. A light-field panel is 
 
 ---
 
+<p align="center">
+  <img src="assets/band-findings.svg" alt="The findings: what measuring it actually turned up" width="100%">
+</p>
+
 ## What I found by measuring it
 
 The general lesson on the left, what actually happened on the right.
@@ -279,6 +327,10 @@ The general lesson on the left, what actually happened on the right.
 Most of those are me finding my own work was not what I had written down. That is the point of the repo.
 
 ---
+
+<p align="center">
+  <img src="assets/band-numbers.svg" alt="The numbers: counts, never rates" width="100%">
+</p>
 
 ## The numbers
 
@@ -310,6 +362,10 @@ Measured, not estimated. Every figure carries its sample size, because a rate wi
 **Honest scope:** one operator, one machine, one panel, one labeller. The labels are internally consistent and externally unvalidated, and a second labeller is the single most valuable thing this repository is missing.
 
 ---
+
+<p align="center">
+  <img src="assets/band-cost.svg" alt="The cost: measured per engine, never extrapolated" width="100%">
+</p>
 
 ## Cost
 
@@ -344,6 +400,10 @@ Each demoed stage maps to a module in [`pipeline/`](pipeline/), ported from the 
 | cost | `pick_engine.sh`, `route_engine.sh` | the engine router that returns null rather than guess a price |
 
 Reference code, not a turnkey app: the Python stages need torch, an open depth model, and a matting model, which are deliberately not in `requirements.txt` (that stays scoped to the probes).
+
+<p align="center">
+  <img src="assets/band-run.svg" alt="Running it: what it takes to reproduce this" width="100%">
+</p>
 
 ## Running it
 

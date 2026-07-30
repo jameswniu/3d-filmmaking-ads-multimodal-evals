@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Architecture &middot; agentic video pipeline evals</title>
+<style>
+  :root{
+    --ink:#04091a; --panel:#0c1a30; --edge:#1e3a64; --cyan:#38bdf8; --deep:#0ea5e9;
+    --pale:#e0f2fe; --dim:#7c9ec4; --amber:#f0b429; --violet:#8b8cf0;
+    --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(#081228,#04091a 60%);color:var(--pale);
+       font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:38px 22px 80px}
+  h1{font-size:30px;margin:0 0 6px}
+  .sub{color:var(--dim);font-size:14px;margin:0 0 4px}
+  .stamp{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin:14px 0 0}
+  hr{border:0;border-top:1px solid var(--edge);margin:22px 0 26px}
+  .lane{margin:0 0 30px}
+  .lane-h{display:flex;align-items:baseline;gap:12px;margin:0 0 12px}
+  .lane-h b{font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px}
+  .lane-h span{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
+  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--edge);border-left:4px solid var(--cyan);
+        border-radius:7px;padding:13px 15px;cursor:pointer;transition:.14s;position:relative}
+  .card:hover,.card:focus-visible{background:#102340;border-color:var(--cyan);
+        outline:none;transform:translateY(-2px)}
+  .card[aria-expanded=true]{background:#102340;border-color:var(--cyan)}
+  .card .n{font-family:var(--mono);font-size:11px;color:var(--cyan);font-weight:700}
+  .card .t{font-size:14.5px;font-weight:700;margin:3px 0 5px}
+  .card .d{font-size:11.5px;color:var(--cyan);opacity:.85;line-height:1.4}
+  .card .why{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--edge);
+              font-size:12px;color:var(--dim);line-height:1.55}
+  .card[aria-expanded=true] .why{display:block}
+  .card .why code{font-family:var(--mono);font-size:11px;color:var(--pale);
+                   background:#08152b;padding:1px 5px;border-radius:3px}
+  .metered{border-left-color:var(--deep)}
+  .metered .n,.metered .d{color:var(--deep)}
+  .gate{border-left-color:var(--amber);background:#1a1406}
+  .gate .n,.gate .d{color:var(--amber)}
+  .local{border-left-color:var(--violet);background:#0b1428}
+  .local .n,.local .d{color:var(--violet)}
+  .offscope{border-style:dashed;border-left-style:solid;border-left-color:var(--violet);
+            background:#0a1428}
+  .offscope .n,.offscope .d{color:var(--violet)}
+  .hint{font-family:var(--mono);font-size:11px;color:var(--dim);margin:0 0 20px}
+  .fork{display:flex;align-items:center;gap:10px;margin:26px 0 18px;color:var(--cyan);
+        font-family:var(--mono);font-size:11.5px}
+  .fork:before,.fork:after{content:"";flex:1;height:1px;background:var(--edge)}
+  footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--edge);
+         color:var(--dim);font-size:12.5px;line-height:1.6}
+  a{color:var(--cyan)}
+  @media(prefers-color-scheme:light){
+    body{background:#f4f8fd;color:#0b1c3d}
+    .card{background:#fff;border-color:#cfe0f2}
+    .card:hover,.card[aria-expanded=true]{background:#eef6ff}
+    .sub,.stamp,.card .why,.hint,footer,.lane-h span{color:#4a6a8f}
+    .gate{background:#fff8e6}.local,.offscope{background:#f6f5ff}
+    hr,footer{border-color:#cfe0f2}
+    .card .why code{background:#eef3fa;color:#0b1c3d}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Architecture</h1>
+<p class="sub">One unattended run, top to bottom. The gates are the row that can stop it.</p>
+<p class="stamp">13 probes &middot; 4 blocking gates &middot; 77 views &middot; 1 credit per scheduled render</p>
+<hr>
+<p class="hint">Every box states a measurement. Click one to see what forced it.</p>
+
+<div class="lane">
+  <div class="lane-h"><b style="color:var(--deep)">METERED</b><span>billed per call, never extrapolated</span></div>
+  <div class="row" id="metered"></div>
+</div>
+
+<div class="lane">
+  <div class="lane-h"><b style="color:var(--cyan)">PIPELINE</b><span>ten stages, one lock, one budget</span></div>
+  <div class="row" id="spine"></div>
+</div>
+
+<div class="fork">one render, two destinations</div>
+
+<div class="lane">
+  <div class="row" id="holo"></div>
+</div>
+
+<div class="lane">
+  <div class="lane-h"><b style="color:var(--violet)">LOCAL</b><span>no vendor, no per-run cost</span></div>
+  <div class="row" id="local"></div>
+</div>
+
+<div class="lane">
+  <div class="lane-h"><b style="color:var(--amber)">GATES</b><span>block before spend, or before ship</span></div>
+  <div class="row" id="gates"></div>
+</div>
+
+<footer>
+  The blocking gates are the ones that would have prevented a real failure. Everything else
+  reports a number and lets the run continue, because a metric that has not proven itself
+  stable inside a single clip has not earned the authority to stop one.
+  <br><br>
+  Full reasoning in <a href="EVALS.md">EVALS.md</a>,
+  what is deliberately not claimed in <a href="NOT-MEASURED.md">NOT-MEASURED.md</a>,
+  and what the guards actually enforce in <a href="ENFORCEMENT.md">ENFORCEMENT.md</a>.
+</footer>
+
+</div>
+<script>
+// Data tracks assets/architecture.svg. Both are generated from the same measurements;
+// where a number appears in this file it also appears in the README.
+const D = {
+  metered:[
+    ["text-to-speech","pinned model, 3 takes, median kept","0 render credits",
+     "A wrong model does not error, it just reads flatter. Nine clips shipped on the wrong one before a person said it sounded flat. Measured after: <code>11.4%</code> rest against the human reference's <code>19.0%</code>. Nothing compared the delivered clip to the source recording."],
+    ["avatar render","engine router, flat tier scheduled","1, 43 or 58 credits",
+     "The flat engine billed <code>1</code> credit at 11s, at 126s and at 169s. The premium engines billed <code>5</code>, <code>43</code> and <code>58</code>. A plausible <code>ceil(sec/11)*5</code> predicts 60 for the render that actually cost 43, so the router returns null for any unmeasured duration rather than guess."]],
+  spine:[
+    ["0","WAKE","a timer, not a person",
+     "The alert test is inverted on purpose: it fires on everything that is <b>not</b> a clean success. An enumerated list of known failures can only catch what you already thought of, so a novel failure would have been silent."],
+    ["1","SCRIPT","two agents, kept apart",
+     "One agent assembles what to say, a second shapes how it sounds. Keeping them apart also keeps the thing writing the copy from being the thing that spends the render budget."],
+    ["2","VOICE","clone, one continuous take",
+     "More audio lost this argument twice. A 69s stitched reference pitched the voice up (<code>242</code> and <code>235 Hz</code> against <code>216</code>) and scored lower on timbre similarity than a 10s continuous original. Draw 3 takes, keep the median by duration; this run spread <code>7.7%</code>."],
+    ["3","LOOK","generated, one pinned identity",
+     "Every look is prompt-generated but anchored to one pinned identity group, so an approved look is provably the same person rather than a family of lookalikes. The guard fired during this very rebuild and refused a fresh look until the allowlist was refreshed."],
+    ["4","RENDER","audio drives a fixed still",
+     "The vendor exposes no seed, so <b>the still is the seed</b>. Geometry is measured on the delivered file rather than trusted from the request flag, because a 1:1 request against a landscape look letterboxes unless fit is set."]],
+  holo:[
+    ["5","MATTE","the room comes out",
+     "The fill is pure black: the strongest available separation for a lit face and the weakest for dark clothing. Those are one decision, and the suite was organised as though they were two."],
+    ["6","DEPTH","colour becomes distance",
+     "Runs locally per frame. Half-resolution inference then upscale, which preserves the global normalize range that holding every frame in RAM was costing: <code>4230</code> frames at <code>3.3 GB</code> and zero swap, against <code>13.4 GB</code> plus <code>16.6 GB</code> swap before."],
+    ["7","PARALLAX","distance spent sideways",
+     "Near things travel further than far ones. This is the only step that turns an inferred depth map into something two eyes can disagree about."],
+    ["8","QUILT","11 x 7 = 77 views",
+     "All views interleave into a single frame. This is the literal artifact the panel is handed."],
+    ["9","CAST","light-field panel",
+     "One view per eye. This is the only stage no screenshot can honestly reproduce, which is why the repository stops showing pictures here."]],
+  local:[
+    ["matting model","runs on this machine","no per-run cost",
+     "Local inference means the daily run's marginal cost is the render credit and nothing else."],
+    ["depth model","runs on this machine","no per-run cost",
+     "Same. The speedup this stage got was real (<code>229s</code> to <code>89s</code>, byte-identical output) but the explanation published for it was wrong, and the retraction is kept rather than quietly corrected."],
+    ["warp + interleave","numpy, no model","no per-run cost",
+     "Deterministic arithmetic. Nothing here can drift between runs."],
+    ["13 probes","score, mostly disclose","the gates block, not these",
+     "A metric that agrees with your labels is not yet a metric. It has to be stable <b>within</b> a clip before it may gate anything, because agreement on a small labelled set is cheap and noise reproduces it easily."]],
+  gates:[
+    ["separation","she must clear the fill","on stage 5, matte",
+     "This gate did not exist until it was needed. A black top on a black fill measured <code>22</code> luma of torso clearance against <code>134</code> at the face, so the body dissolved and left a floating head. Twelve probes passed that clip; eleven scored her, one scored the backdrop, none held both sides of the boundary at once."],
+    ["transcript diff","wrong audio means stop","on stage 2, before spend",
+     "Transcribe the synthesized audio and diff it against the intended script before spending a render. Proper nouns are where synthesis fails, and no render can repair audio that was already wrong. This clip scored <code>541/541</code> words at similarity <code>1.0000</code>."],
+    ["identity pin","unknown face means stop","on stage 3, before spend",
+     "Checks a generated look against the pin allowlist. It prefers a blocked render over an unverified face, and it blocked this rebuild until the allowlist was refreshed."],
+    ["PII scan","two layers, then ship","at publish",
+     "A deterministic scanner plus a review pass, with a dismissal ledger. It blocked this repository's own commits three times: encoder metadata, then a zeroed-timestamp false positive that sharpened the scanner, then timestamps in a commit message."]]
+};
+const mk=(cls,n,t,d,why)=>{
+  const el=document.createElement("div");
+  el.className="card "+cls; el.tabIndex=0; el.setAttribute("role","button");
+  el.setAttribute("aria-expanded","false");
+  el.innerHTML=`<div class="n">${n}</div><div class="t">${t}</div>`+
+               `<div class="d">${d}</div><div class="why">${why}</div>`;
+  const tog=()=>el.setAttribute("aria-expanded",
+              el.getAttribute("aria-expanded")==="true"?"false":"true");
+  el.addEventListener("click",tog);
+  el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tog();}});
+  return el;
+};
+D.metered.forEach(([t,d,c,w])=>metered.append(mk("metered",c,t,d,w)));
+D.spine.forEach(([n,t,d,w])=>spine.append(mk("",n,t,d,w)));
+D.holo.forEach(([n,t,d,w])=>holo.append(mk("",n,t,d,w)));
+D.local.forEach(([t,d,c,w])=>local.append(mk("local",c,t,d,w)));
+D.gates.forEach(([t,d,c,w])=>gates.append(mk("gate",c,t,d,w)));
+// The real-time arm is drawn last and marked out of scope, because none of the gates
+// above apply to it and a diagram that implied otherwise would be the useful lie.
+holo.append(mk("offscope","fork","REAL-TIME ARM","interactive, low latency",
+  "The other side of the fork. It is genuinely part of the system and genuinely outside this repository's claims: none of the gates above run on it, so nothing here should be read as evidence about it."));
+</script>
+</body>
+</html>
