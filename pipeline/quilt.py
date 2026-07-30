@@ -8,14 +8,22 @@ produces real parallax instead of the flat-screen fake in wiggle_*.py.
 
 Portrait geometry (device-level published spec, not per-unit calibration):
 
-    grid    8 columns x 6 rows
-    views   48
+    grid    7 columns x 11 rows   (--cols / --rows; production default)
+    views   77
     quilt   3360 x 3360 px
-    tile    420 x 560 px  (3360/8 x 3360/6)
-    aspect  0.75          (420/560, matching the panel's 3:4 portrait shape)
+    tile    480 x 305 px          (3360/7 x 3360/11)
 
-The 48 views are the SAME warp used by the wiggle preview, just sampled at 48
-camera positions across the view cone instead of swept over time. warp_frame
+The geometry is a PARAMETER, and it defaults to what production ships. The
+constants here were pinned at 8 x 6 (48 views) while the pipeline calling
+them had moved to 7 x 11: the newest quilts on disk carry `_qs7x11a0.75`, the
+glass stage names "7x11 views" as its default, and the eval gate's filename
+law treats 7x11 as current with "legacy files default 8x6". A hardcoded
+constant cannot disagree with the pipeline around it, so nothing failed; the
+output was simply built at a geometry the display no longer expected. Passing
+--cols 8 --rows 6 reproduces the legacy grid.
+
+The views are the SAME warp used by the wiggle preview, just sampled at that
+many camera positions across the view cone instead of swept over time. warp_frame
 is imported rather than reimplemented so the quilt inherits the exact
 occlusion and hole-fill behavior already tuned and eyeballed at max_shift=44.
 
@@ -49,11 +57,24 @@ from wiggle_preview import warp_frame
 ROOT = Path(__file__).resolve().parents[1]
 
 # Portrait device spec.
-COLS, ROWS = 8, 6
-VIEWS = COLS * ROWS          # 48
+#
+# GEOMETRY IS A PARAMETER HERE, AND THE DEFAULT IS THE PRODUCTION ONE.
+# In the working tree this was two hardcoded constants at 8x6 (77 views),
+# while production had already moved to 7x11 (77 views): the newest quilts on
+# disk carry `_qs7x11a0.75`, the glass stage documents "7x11 views" as the
+# pipeline default, and the eval gate's filename law reads 7x11 as current
+# with "legacy files default 8x6". So the module was two generations behind
+# the pipeline that calls it, and nothing failed, because a hardcoded
+# constant cannot disagree with anything.
+#
+# That is the same defect class this repository documents elsewhere: config
+# drift that produces plausible output at the wrong setting. Fixed by making
+# it an argument (--cols/--rows) and defaulting to what production ships.
+COLS, ROWS = 7, 11
+VIEWS = COLS * ROWS          # 77
 QUILT_W, QUILT_H = 3360, 3360
-TILE_W, TILE_H = QUILT_W // COLS, QUILT_H // ROWS   # 420 x 560
-ASPECT = TILE_W / TILE_H     # 0.75
+TILE_W, TILE_H = QUILT_W // COLS, QUILT_H // ROWS
+ASPECT = TILE_W / TILE_H
 
 
 def grab_frame(video: Path, index: int, gray: bool) -> np.ndarray:
@@ -102,7 +123,7 @@ def build_quilt(color: np.ndarray, depth: np.ndarray, max_shift: float,
                 span: float, view_order: str, invert_views: bool = False,
                 depth_smooth: int = 0, guide_radius: int = 0, warp_scale: float = 0.52,
                 progress: bool = True) -> Image.Image:
-    """Render 48 views across the cone and tile them into one quilt image.
+    """Render 77 views across the cone and tile them into one quilt image.
 
     invert_views reverses the camera sweep. This unit's calibration reports
     invView=1, meaning it expects views in inverted order; feeding them
@@ -134,7 +155,7 @@ def build_quilt(color: np.ndarray, depth: np.ndarray, max_shift: float,
     cams = np.linspace(span, -span, VIEWS) if invert_views else np.linspace(-span, span, VIEWS)
 
     # Batched: the depth sort is hoisted out of the view loop (identical across
-    # all 48 views of a frame, it was being recomputed 48 times), and pixels are
+    # all 77 views of a frame, it was being recomputed 48 times), and pixels are
     # warped straight at tile resolution instead of full res then downscaled.
     # Measured 3.32s -> 0.63s per frame, 5.3x, and the eval scores the result
     # indistinguishable from full res (d_rgb 2.51 vs 2.45).
@@ -155,11 +176,16 @@ def build_quilt(color: np.ndarray, depth: np.ndarray, max_shift: float,
 
 
 def main() -> int:
+    # Declared up front: the argparse defaults below read these, so the
+    # declaration cannot come after first use.
+    global COLS, ROWS, VIEWS, TILE_W, TILE_H, ASPECT
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--color", default=str(ROOT / "renders" / "sample-color.mp4"))
     ap.add_argument("--depth", default=str(ROOT / "renders" / "sample-depth.mp4"))
     ap.add_argument("--out", default=None,
-                    help="output quilt path (default: renders/<color stem>_qs8x6a0.75.png)")
+                    help="output quilt path (default: renders/<color stem>_qs<cols>x<rows>a<aspect>.png)")
+    ap.add_argument("--cols", type=int, default=COLS, help=f"quilt columns (default {COLS}, production)")
+    ap.add_argument("--rows", type=int, default=ROWS, help=f"quilt rows (default {ROWS}, production)")
     ap.add_argument("--frame", type=int, default=None, help="source frame index (default: middle frame)")
     ap.add_argument("--max-shift", type=float, default=44.0,
                     help="peak horizontal shift in px at full depth and full sway (default 44, the tuned preview value)")
@@ -187,6 +213,16 @@ def main() -> int:
         if not p.is_file():
             print(f"no such file: {p}", file=sys.stderr)
             return 1
+
+    # Bind the geometry args to the module constants the builder reads. Declared
+    # flags that never reach the code they name are worse than no flags: they
+    # read as configurable and behave as fixed.
+    if (args.cols, args.rows) != (COLS, ROWS):
+        COLS, ROWS = args.cols, args.rows
+        VIEWS = COLS * ROWS
+        TILE_W, TILE_H = QUILT_W // COLS, QUILT_H // ROWS
+        ASPECT = TILE_W / TILE_H
+        print(f"[quilt] geometry overridden to {COLS}x{ROWS} = {VIEWS} views")
 
     idx = args.frame if args.frame is not None else frame_count(color_path) // 2
     print(f"[quilt] source frame {idx} from {color_path.name}")

@@ -17,16 +17,17 @@
   <circle cx="182" cy="108" r="7" fill="#22c55e" opacity=".8"/>
   <text x="220" y="114" font-family="ui-monospace, Menlo, monospace" font-size="18" fill="#60a5fa">brief-script.txt</text>
 
-  <g font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#93c5fd">
-    <text x="130" y="185" fill="#475569"># written by the scheduled agent, no human awake</text>
-    <text x="130" y="240">Good morning. Three things worth your</text>
-    <text x="130" y="282">attention today, and one number that</text>
-    <text x="130" y="324">moved overnight.</text>
-    <text x="130" y="390" fill="#475569"># kept above 250 chars: shorter scripts</text>
-    <text x="130" y="424" fill="#475569"># measured ~110 Hz brighter than the</text>
-    <text x="130" y="458" fill="#475569"># calibrated voice. padding is quality.</text>
-    <text x="130" y="524">First, the build that finished while</text>
-    <text x="130" y="566">you slept<tspan fill="#38bdf8">_</tspan></text>
+  <g font-family="ui-monospace, Menlo, monospace" font-size="23" fill="#93c5fd">
+    <text x="130" y="180" fill="#475569"># authored by the script-author agent</text>
+    <text x="130" y="232">Every clip of me is on probation.</text>
+    <text x="130" y="272">I want to tell you what that means,</text>
+    <text x="130" y="312">because the pipeline that renders me</text>
+    <text x="130" y="352">does not trust itself, and that is</text>
+    <text x="130" y="392">its best feature.</text>
+    <text x="130" y="454" fill="#475569"># 350 words, 1929 chars. held above 250:</text>
+    <text x="130" y="490" fill="#475569"># shorter scripts measured ~110 Hz</text>
+    <text x="130" y="526" fill="#475569"># brighter and less consistent.</text>
+    <text x="130" y="578">Start with my voice<tspan fill="#38bdf8">_</tspan></text>
   </g>
 
   <text x="90" y="650" font-family="ui-monospace, Menlo, monospace" font-size="20" fill="#38bdf8">stage 1 / 9 : script</text>
