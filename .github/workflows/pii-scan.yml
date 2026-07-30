@@ -57,12 +57,19 @@ jobs:
           fi
 
       # The status is captured explicitly rather than taken from a pipeline.
-      # Piping the scan into tee makes the step's exit status tee's, which is
-      # always 0, so a failing scan would report a passing job. That is the
-      # exact fail-open shape this repository is about, so it is spelled out
-      # here instead of being written the short way.
+      # Two bugs have lived in this one step, in opposite directions, and both
+      # are kept on record here:
+      #   1. FAIL-OPEN: piping the scan into tee made the step exit with tee's
+      #      status, always 0, so a failing scan reported a passing job.
+      #   2. FAIL-SILENT: the rewrite that fixed (1) forgot that Actions runs
+      #      `bash -e`, so the scan's nonzero exit killed the step BEFORE the
+      #      `cat`, and the very first CI failure on this repository shipped
+      #      no diagnostics at all: a gate that says no without saying why.
+      # `set +e` makes the capture-then-report sequence actually reach the
+      # report. The exit status is still the scan's own.
       - name: Deterministic PII scan
         run: |
+          set +e
           bash tools/pii_scan.sh > scan.out 2>&1
           rc=$?
           cat scan.out
