@@ -50,6 +50,9 @@ probes/drift_probe.py|cron-expression
 # byline. A license with no copyright holder is not a license, so this name is
 # load-bearing rather than incidental. Scoped to these two paths only.
 LICENSE|owner-identity-token
+# NOTICE carries the same copyright holder, in the form the Apache-2.0 license
+# itself prescribes for it.
+NOTICE|owner-identity-token
 
 # The commit-author email in git metadata.
 #

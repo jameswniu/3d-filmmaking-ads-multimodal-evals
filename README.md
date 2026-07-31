@@ -10,7 +10,7 @@
   <img alt="gates: 4, blocking" src="https://img.shields.io/badge/gates-4_blocking-164e63?style=flat-square&labelColor=0f172a">
   <img alt="views: 77 per frame" src="https://img.shields.io/badge/views-77_per_frame-164e63?style=flat-square&labelColor=0f172a">
   <img alt="cost: 1 credit per render" src="https://img.shields.io/badge/cost-1_credit_%2F_render-164e63?style=flat-square&labelColor=0f172a">
-  <img alt="license: MIT" src="https://img.shields.io/badge/license-MIT-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="license: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-164e63?style=flat-square&labelColor=0f172a">
 </p>
 
 **An advertising-grade AI filmmaking pipeline where the evals are the product.** It writes a script, speaks it in a cloned voice, renders a consistent generated presenter, separates her from her background, infers depth, and emits 77 views of a single instant for a light-field display. It does this on a schedule, against metered vendor APIs, with nobody watching. What makes that survivable is not the render path. It is that one person's taste was captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
@@ -149,7 +149,7 @@ Four rows, and the reason they are separate rows is the interesting part. **Mete
 
 Every figure in the diagram is a measurement published elsewhere in this repository, and the generator refuses to write the file if those figures are no longer in the README, so the picture cannot quietly become a second source of truth.
 
-**Interactive version: [jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/architecture.html](https://jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/architecture.html)**, the same map with every box clickable to show the failure that forced it. Self-contained, no dependencies, light and dark aware, keyboard reachable. Source: [`docs/architecture.html`](docs/architecture.html).
+**Interactive version: [jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/architecture.html](https://jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/architecture.html)**, the same map with every box clickable to show the failure that forced it. Standalone, no dependencies, no build step; the source is [`docs/architecture.html`](docs/architecture.html).
 
 <p align="center">
   <img src="assets/band-stages.svg" alt="The build: ten stages, each one a decision" width="100%">
@@ -480,4 +480,4 @@ None of this is built. It is listed here because the parts it would be built fro
 
 ---
 
-Built by James Niu. Licensed [MIT](LICENSE).
+Built by James Niu. Licensed [Apache-2.0](LICENSE).
