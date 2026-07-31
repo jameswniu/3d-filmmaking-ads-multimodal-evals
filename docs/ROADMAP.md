@@ -63,10 +63,27 @@ regenerating from over there would quietly reinstate claims this repository had
 already retired, and no check here could have seen it happen.
 
 `tools/render_diagrams.py` now lives here and emits `assets/architecture.svg`,
-and CI fails if the committed file is not what it produces. So the back-port for
-this one runs the other way: the private copy should be deleted in favour of
-this one, not merged with it. Keeping a second generator would restore exactly
-the hazard the test named.
+and CI fails if the committed file is not what it produces. So this one item
+runs against the direction of everything above it: nothing is copied INTO the
+private tree, something is removed FROM it.
+
+That private generator wrote both SVGs, so removing it is two decisions with
+very different costs, and they should not be made as one.
+
+**The architecture half is superseded. Delete it.** The generator here
+reproduces the published file byte for byte, so nothing is lost by dropping the
+other one. Keeping both is worse than redundant: CI can only guarantee that
+`architecture.svg` is what the generator emits while ONE thing emits it, and a
+second writer is an unguarded path to a guarded file. That is the same shape as
+the two hole fillers above, where one caller got the fix and the other did not.
+
+**The hero half is a real decision, and it is not free.** Nothing here
+regenerates `assets/hero.svg`; it is audited for its counts and scanned for
+retired claims, but it is not produced from them. Deleting the private generator
+therefore makes `hero.svg` a hand-edited file permanently. That is defensible,
+since the two checks cover the ways it actually went wrong before, but the
+alternative is porting hero generation into `tools/render_diagrams.py` and it is
+worth choosing on purpose rather than discovering later.
 
 ### Done means
 
