@@ -96,9 +96,11 @@
         border-radius:11px;padding:15px 34px 15px 16px;cursor:pointer;
         box-shadow:var(--lift);text-align:left;font:inherit;color:inherit;
         display:block;width:100%;
-        transition:border-color .16s,background .16s,transform .16s,box-shadow .16s}
-  .card:hover{border-color:var(--accent);background:var(--panel-2);
-              transform:translateY(-2px)}
+        transition:border-color .16s,background .16s}
+  /* Hover changes colour only. A lift on hover made the box jump under the
+     cursor while its neighbours held still, which reads as the grid twitching
+     rather than as the card responding. */
+  .card:hover{border-color:var(--accent);background:var(--panel-2)}
   .card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .card[aria-expanded=true]{background:var(--panel-2);border-color:var(--accent);
         grid-column:1/-1;cursor:default}
@@ -188,7 +190,6 @@
   .fork{animation-delay:.14s}
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
-    .card:hover{transform:none}
   }
   @media (max-width:640px){
     .wrap{padding:40px 18px 72px}
