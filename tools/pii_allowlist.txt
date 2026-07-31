@@ -64,3 +64,10 @@ LICENSE|owner-identity-token
 # of whether to rewrite existing public history), not a per-repo suppression.
 # Recorded here so that decision stays visible instead of being closed quietly.
 .git|personal-email-in-commit-identity
+
+# The GitHub user-attachments asset id behind the inline narration player. A
+# user-attachments UUID is public by construction (it IS the published URL),
+# unlike the vendor asset ids this class exists to catch. Scoped to the README;
+# a HeyGen or ElevenLabs id would still be caught everywhere, including here,
+# under its own vendor-prefixed label. Reviewed 2026-07-31.
+README.md|uuid

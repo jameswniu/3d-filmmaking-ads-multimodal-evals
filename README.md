@@ -159,10 +159,9 @@ Ten stages, and each one reads at three depths: the paragraph is the decision an
   <img src="assets/stage-wake-script.svg" alt="Stage 0, the scheduled wake, beside stage 1, the script" width="100%">
 </p>
 
-<p align="center">
-  <a href="assets/voice-narration.m4a"><img src="assets/voice-wave.png" alt="Stage 2, the cloned voice waveform. Click to hear the narration itself" width="100%"></a><br>
-  <sub><b>The waveform is a link.</b> Click it for the actual soundtrack: 169 seconds of the cloned voice, the kept median take. Images are mute and the voice is half the product.</sub>
-</p>
+https://github.com/user-attachments/assets/5c58f2e3-1752-4a85-a4ef-b0515d4ead74
+
+<p align="center"><sub><b>Press play: the actual soundtrack.</b> 169 seconds of the cloned voice, the kept median take, under its own waveform. The raw audio also lives in the repo: <a href="assets/voice-narration.m4a">voice-narration.m4a</a>.</sub></p>
 
 ### 0. Wake
 
