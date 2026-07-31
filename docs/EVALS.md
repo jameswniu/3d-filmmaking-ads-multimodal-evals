@@ -34,7 +34,7 @@ Nothing in this repository treats a label as noise to be smoothed. The labels ar
 
 ## 2. Derive
 
-Five of the fifteen named gating thresholds in [`../probes/`](../probes/) are computed from a labelled pass exemplar and a labelled fail exemplar. The other ten were typed by hand. [`../evals/derive.py`](../evals/derive.py) prints that split and holds each derived constant inside the interval its own labels imply.
+Ten of the sixteen named gating thresholds in [`../probes/`](../probes/) are computed from a labelled pass exemplar and a labelled fail exemplar. The other six were typed by hand. [`../evals/derive.py`](../evals/derive.py) prints that split and holds each derived constant inside the interval its own labels imply.
 
 This paragraph used to claim all of them were derived and that none was typed from intuition. That was false: `lipsync_probe.py` alone refuses clips on nine hand-picked inline numbers. The count above is prose and can go stale like any other sentence, so `tests/test_suite.py` pins it and CI fails when it moves. Where intuition was tried against the labels, it lost:
 

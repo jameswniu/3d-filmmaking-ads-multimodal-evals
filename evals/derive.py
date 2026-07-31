@@ -66,6 +66,7 @@ GATES = [
     ("seam_check",       "LUMA_STEP",      "seam_luma",       CEILING, 1.0,  True),
     # Floors: a clip is refused for sitting BELOW these.
     ("coherence_probe",  "REST_MIN",       "rest_fraction",   FLOOR,   1.0,  True),
+    ("drift_probe",      "THRESH_PX",      "corner_travel_px", CEILING, 1.0, True),
     ("drift_probe",      "RESP_MIN",       "corner_response", FLOOR,   1.0,  True),
     ("drift_probe",      "TEX_MIN",        "corner_texture",  FLOOR,   1.0,  True),
     ("mirror_probe",     "CONTROL_FLOOR",  "replay_signal",   FLOOR,   1.0,  True),

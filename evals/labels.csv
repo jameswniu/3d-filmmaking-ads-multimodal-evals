@@ -55,3 +55,18 @@ sync_probe,G5b,reject,240,mouth_lag_ms,withheld,human verdict "the lip sync is a
 level_probe,scene-pass-low,pass,3.70,scene_level,withheld,SCENE_MAX re-derived 2026-07-26
 level_probe,scene-pass-high,pass,3.80,scene_level,withheld,in the golden set
 level_probe,scene-reject,reject,7.70,scene_level,withheld,best of the rejects
+drift_probe,frozen-control,pass,0.00,corner_travel_px,withheld,frozen by construction; every corner 0.0px
+drift_probe,indoor-take,pass,8.80,corner_travel_px,withheld,"clip I did NOT flag"; worst corner
+drift_probe,ocean,reject,35.00,corner_travel_px,withheld,fails on coherence
+drift_probe,coastal-wide,reject,39.50,corner_travel_px,withheld,"clip I FLAGGED"; also 53.8 on a second corner
+drift_probe,tight-portrait,reject,46.10,corner_travel_px,withheld,also 39.9 on a second corner
+mirror_probe,iv-benchmark,pass,0.74,repeat_distance,withheld,share of the unrelated-frame distance
+mirror_probe,refill-reject-a,reject,0.00,repeat_distance,withheld,scene refills
+mirror_probe,refill-reject-b,reject,0.15,repeat_distance,withheld,best of the rejects
+mirror_probe,iv-benchmark-lo,pass,0.31,replay_distance,withheld,iv benchmark band 0.31 to 0.41
+mirror_probe,iii-reject-hi,reject,0.14,replay_distance,withheld,iii rejects band 0.02 to 0.14
+level_probe,iv-standard-face,pass,4.20,face_level,withheld,"the standard I set"; docstring also states 7.9 for this clip
+level_probe,iv-standard-face-alt,pass,7.90,face_level,withheld,the conflicting figure for the SAME clip; kept as the worst pass so the bracket is the tight one
+level_probe,iii-night-face,reject,22.00,face_level,withheld,avatar_iii raw on a hard-rim night look
+level_probe,iv-standard-relation,pass,10.30,relation_level,withheld,"the standard I set"
+level_probe,iii-night-relation,reject,24.00,relation_level,withheld,avatar_iii raw on a hard-rim night look
