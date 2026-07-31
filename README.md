@@ -6,7 +6,7 @@
 
 <p align="center">
   <img alt="labelled: 113 stills, 67 clips" src="https://img.shields.io/badge/labelled-113_stills_%C2%B7_67_clips-0ea5e9?style=flat-square&labelColor=0f172a">
-  <img alt="probes: 13, and 10 of 16 named gating thresholds derived from labelled exemplars" src="https://img.shields.io/badge/probes-13_%C2%B7_10%2F16_derived-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="probes: 13, and 13 of 16 named gating thresholds derived from labelled exemplars" src="https://img.shields.io/badge/probes-13_%C2%B7_13%2F16_derived-164e63?style=flat-square&labelColor=0f172a">
   <img alt="gates: 4, three of which fail open" src="https://img.shields.io/badge/gates-4_%C2%B7_3_fail_open-164e63?style=flat-square&labelColor=0f172a">
   <img alt="views: 77 per frame" src="https://img.shields.io/badge/views-77_per_frame-164e63?style=flat-square&labelColor=0f172a">
   <img alt="cost: 1 credit per render" src="https://img.shields.io/badge/cost-1_credit_%2F_render-164e63?style=flat-square&labelColor=0f172a">
@@ -74,7 +74,7 @@ label  ->  derive  ->  gate  ->  render  ->  relabel
 
 **Label.** 113 hand-labelled stills. 67 labelled clips. 174 frame-level identity records. 677 pairwise A/B verdicts. A render ledger of 14 renders, 7 kept and 3 rejected. Plain-language verdicts, kept as data.
 
-**Derive.** Ten of the sixteen named gating thresholds in [`probes/`](probes/) come from a labelled pass exemplar and a labelled fail exemplar. The other six were typed by hand. Run [`evals/derive.py`](evals/derive.py) and it prints that split, and refuses any constant sitting outside the interval its own labels imply. The eye model's background bar (4.5) is one of the ten: it sits between the worst labelled pass (3.30) and the best labelled reject (5.32).
+**Derive.** Thirteen of the sixteen named gating thresholds in [`probes/`](probes/) come from a labelled pass exemplar and a labelled fail exemplar, and [`evals/derive.py`](evals/derive.py) holds each one inside the interval its labels imply. Move a threshold out of its bracket and CI goes red. The eye model's background bar (4.5) is one of the thirteen: it sits between the worst labelled pass (3.30) and the best labelled reject (5.32). The other three were typed by hand, and the tool names which.
 
 **Gate.** Thresholds become guards that run before money is spent. Judging is blind. Gates are ranked by what happens when they are violated, which is why the same constraint held 14 of 15 runs at the outcome and only 6 of 15 at the first attempt: the gap is a pre-call hook, not better prose.
 
@@ -330,7 +330,7 @@ Keep the room or separate the person? Keeping it is free and reads as dead, beca
 
 Gate on the outcome or on the attempt? Outcome metrics are what dashboards show, and they cannot tell a system that complied apart from a system that was stopped. Measured at the outcome, one constraint here held 14 runs out of 15. Measured at the first attempt, the same constraint held 6 out of 15. Both numbers are true, and only the second one tells you the rule was being ignored and then caught.
 
-> Nine invariants, thirteen probes, ten of the sixteen named gating thresholds derived from a labelled pass and fail exemplar and the other six honestly marked as typed, judging done blind, and a hard wall between metrics that **gate** and metrics that only **report**. A metric has to be stable *within* a single clip before it earns any authority over spend, because agreement with a small labelled set is cheap and noise reproduces it easily.
+> Nine invariants, thirteen probes, thirteen of the sixteen named gating thresholds derived from a labelled pass and fail exemplar and the other three marked as typed, judging done blind, and a hard wall between metrics that **gate** and metrics that only **report**. A metric has to be stable *within* a single clip before it earns any authority over spend, because agreement with a small labelled set is cheap and noise reproduces it easily.
 
 - Probes run against the rendered clip and its subtitle track. The ship gate refuses outright on geometry failures, and for judgement calls it cannot make itself it demands an explicit written reason rather than a boolean.
 - The derivations that exist, including the ten scoring models that died in a single day, is in [`docs/EVALS.md`](docs/EVALS.md).
@@ -498,14 +498,14 @@ seam_check.PICTURE_FACTOR                    6.00   ceiling          -          
 bg_detail.MAX_DETAIL                         5.50   ceiling       4.27        7.05  DERIVED
 sync_probe.LAG_MAX                          80.00   ceiling      40.00      120.00  DERIVED  (not a gate)
 
-10 of 16 NAMED gating thresholds are DERIVED from a labelled pass/reject pair on the same axis.
-6 are AUTHORED: typed by hand, no exemplar pair in evals/labels.csv.
+13 of 16 NAMED gating thresholds are DERIVED from a labelled pass/reject pair on the same axis.
+3 are AUTHORED: typed by hand, no exemplar pair in evals/labels.csv.
 ```
 
-**Ten of sixteen.** This page used to say every threshold was derived and none was
-typed, which grep disproves in about four minutes. The honest number is worse than the
-claim and more useful than it. `tests/test_suite.py` pins it, so CI goes red when the
-count moves in either direction and the number here has to be updated with it.
+**Thirteen of sixteen.** The count is enforced rather than asserted.
+`tests/test_suite.py` reads it from the tool and checks every sentence on this page
+against it, so the number cannot drift out of date and a threshold cannot quietly leave
+its bracket. The three that remain typed by hand are printed as such on every run.
 
 Fifteen is named constants that can refuse a clip on their own. It is NOT every way the
 suite can refuse one: `lipsync_probe` gates on nine inline literals and `spasm_probe` on

@@ -71,3 +71,17 @@ level_probe,iii-night-face,reject,22.00,face_level,withheld,avatar_iii raw on a 
 level_probe,iv-standard-relation,pass,10.30,relation_level,withheld,"the standard I set"
 level_probe,iii-night-relation,reject,24.00,relation_level,withheld,avatar_iii raw on a hard-rim night look
 scene_simplicity,assets/look-still.jpg,pass,3.03,scene_gradient,assets/look-still.jpg,shipped as the stage-3 look on the landing page; accepted output
+coherence_probe,r16-human-anchor,pass,0.116,rest_fraction,withheld,eye verified band 0.10 to 0.17
+coherence_probe,human-bakery,pass,0.106,rest_fraction,withheld,the tune-down round measurably raised it
+coherence_probe,smooth-bakery,reject,0.065,rest_fraction,withheld,best of the rejects
+coherence_probe,smooth-beach,reject,0.007,rest_fraction,withheld,called robotic
+coherence_probe,regen-beach,reject,0.000,rest_fraction,withheld,called robotic
+coherence_probe,calm-wave,out-of-domain,0.130,rest_fraction,withheld,KNOWN CONFOUND in the probe's own docstring: rejected on another axis while passing rest at 0.11 to 0.15
+drift_probe,indoor-corner-lock,pass,0.948,corner_response,withheld,a lock trustworthy enough to accuse a clip
+drift_probe,t11-phasecorr,pass,0.990,corner_response,withheld,templateMatch quality
+drift_probe,t19-phasecorr,pass,1.000,corner_response,withheld,templateMatch quality
+drift_probe,wall-clip-noise,reject,0.687,corner_response,withheld,claimed 44.0px; noise, produced a false FAIL at a 0.30 floor
+drift_probe,indoor-br-noise,reject,0.505,corner_response,withheld,claimed 84.0px; noise, produced a false FAIL at a 0.30 floor
+drift_probe,wall-br-flat,out-of-domain,0.877,corner_response,withheld,cleared quality on a FLAT patch (tex=7); the case TEX_MIN exists for, not a response verdict
+drift_probe,indoor-textured,pass,539.0,corner_texture,withheld,plenty to lock onto
+drift_probe,wall-br-flat-tex,reject,7.0,corner_texture,withheld,flat means unmeasurable, full stop
