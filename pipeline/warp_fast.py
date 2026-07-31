@@ -29,36 +29,18 @@ occlusion rule, same hole fill. Only (2) changes pixels, and only by resampling.
 import numpy as np
 from PIL import Image
 
-from wiggle_preview import fill_holes  # noqa: F401  (legacy callers)
+try:
+    from holes import fill_background
+except ImportError:                      # imported from outside pipeline/
+    import sys as _sys, os as _os
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from holes import fill_background
 
 
-def _fill_bg(rgb, mask, dview):
-    """Fill disocclusion holes from the BACKGROUND side only.
+# The implementation moved to holes.py so wiggle_preview can use the same one.
+# Kept as an alias because callers import this name.
+_fill_bg = fill_background
 
-    Nearest-neighbor fill smears whichever pixel is closest, which at her
-    silhouette is HER: outlines break first as budgets rise (budget 78 died
-    there; MPI v1's cure was worse). A revealed gap is by definition showing
-    what is BEHIND the subject, so of the two horizontal neighbors flanking a
-    hole, copy the one whose depth is FARTHER. Same cost, right prior.
-    """
-    h, w = mask.shape
-    idx = np.arange(w)[None, :].repeat(h, 0)
-    # nearest valid index to the left / right of every pixel
-    li = np.where(mask, idx, -1)
-    li = np.maximum.accumulate(li, axis=1)
-    ri = np.where(mask, idx, w)
-    ri = np.minimum.accumulate(ri[:, ::-1], axis=1)[:, ::-1]
-    rows = np.arange(h)[:, None]
-    li_c = np.clip(li, 0, w - 1)
-    ri_c = np.clip(ri, 0, w - 1)
-    ld = np.where(li >= 0, dview[rows, li_c], np.inf)   # farther = smaller
-    rd = np.where(ri < w, dview[rows, ri_c], np.inf)
-    use_left = ld <= rd
-    src = np.where(use_left, li_c, ri_c)
-    out = rgb.copy()
-    holes = ~mask
-    out[holes] = rgb[rows.repeat(w, 1)[holes], src[holes]]
-    return out
 
 
 def warp_views(color: np.ndarray, depth: np.ndarray, max_shift: float,
@@ -173,6 +155,10 @@ if __name__ == "__main__":
     print(f"  original ({len(cams)} warps)     {t_old:6.2f}s")
     print(f"  hoisted sort, full res   {t_new:6.2f}s   {t_old/t_new:4.1f}x")
     print(f"  hoisted + tile res       {t_half:6.2f}s   {t_old/t_half:4.1f}x   (resampled, check eval)")
-    print(f"  views identical to the naive path: {sum(1 for n in diffs if n == 0)}/{len(diffs)}")
-    print(f"  worst view differs on {worst} of {frame_px} px "
-          f"({100.0 * worst / frame_px:.1f}%), all of it inside disocclusion holes")
+    same = sum(1 for n in diffs if n == 0)
+    print(f"  views identical to the naive path: {same}/{len(diffs)}")
+    if worst:
+        print(f"  worst view differs on {worst} of {frame_px} px "
+              f"({100.0 * worst / frame_px:.1f}%), inside disocclusion holes")
+    else:
+        print("  no view differs by a single pixel; both paths share holes.fill_background")

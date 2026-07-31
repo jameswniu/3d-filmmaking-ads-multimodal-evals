@@ -300,11 +300,11 @@ if [ -n "$DIRECTIONAL" ] && [ -z "$ARROWOK" ]; then
   SLIT="/tmp/slit-$(basename "$F").png"
   DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$F")
   T0=$(python3 -c "print(max(0,float('$DUR')-11))"); T1=$(python3 -c "print(float('$DUR')-1)")
-  ffmpeg -y -v error -ss "$T0" -to "$T1" -i "$F" -vf "crop=2:ih*0.4:iw*0.8:ih*0.25,scale=2:200" -f rawvideo -pix_fmt gray /tmp/.slit.raw
+  ffmpeg -y -v error -ss "$T0" -to "$T1" -i "$F" -vf "crop=2:ih*0.4:iw*0.8:ih*0.25,scale=2:200" -f rawvideo -pix_fmt gray "${TMPDIR:-/tmp}/.slit.$$.raw"
   python3 - "$SLIT" <<'PY'
 import numpy as np, sys
 from PIL import Image
-raw = np.fromfile("/tmp/.slit.raw", dtype=np.uint8)
+raw = np.fromfile(""${TMPDIR:-/tmp}/.slit.$$.raw"", dtype=np.uint8)
 n = len(raw)//400
 xt = raw[:n*400].reshape(n,200,2).mean(axis=2).T
 Image.fromarray(xt.astype(np.uint8)).resize((n*3,600), Image.NEAREST).save(sys.argv[1])

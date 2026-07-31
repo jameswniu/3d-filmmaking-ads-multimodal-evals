@@ -39,6 +39,13 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+try:
+    from holes import fill_background
+except ImportError:                      # imported from outside pipeline/
+    import sys as _sys, os as _os
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from holes import fill_background
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -104,7 +111,8 @@ def warp_frame(color: np.ndarray, depth: np.ndarray, max_shift: float, cam: floa
     source columns are visited far to near (ascending depth argsort) so a later
     write overwrites an earlier one at any destination column two pixels land
     on together, i.e. near occludes far. Uncovered destination columns are
-    filled by fill_holes above.
+    filled from the BACKGROUND side by holes.fill_background, the same function the
+    quilt renderer uses, so this preview shows what the renderer will produce.
     """
     h, w = depth.shape
     norm_depth = depth.astype(np.float32) / 255.0
@@ -119,12 +127,17 @@ def warp_frame(color: np.ndarray, depth: np.ndarray, max_shift: float, cam: floa
     flat_dest = (rows * w + dest_x).reshape(-1)
     out_flat = np.zeros((h * w, 3), dtype=np.uint8)
     mask_flat = np.zeros(h * w, dtype=bool)
+    dbuf_flat = np.zeros(h * w, dtype=np.float32)
     out_flat[flat_dest] = color_sorted.reshape(-1, 3)
     mask_flat[flat_dest] = True
+    # The warped DEPTH, scattered the same way as the colour. This buffer was
+    # never built here, which is the only reason this path could not use the
+    # background side fill and ended up on plain nearest neighbour instead.
+    dbuf_flat[flat_dest] = (norm_depth[rows, order]).reshape(-1)
 
     warped = out_flat.reshape(h, w, 3)
     mask = mask_flat.reshape(h, w)
-    return fill_holes(warped, mask)
+    return fill_background(warped, mask, dbuf_flat.reshape(h, w))
 
 
 def main() -> int:

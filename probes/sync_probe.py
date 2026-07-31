@@ -61,6 +61,11 @@ import sys
 import numpy as np
 
 FPS = 25
+# The band is two sided. Gating only the upper edge let a mouth running far
+# AHEAD of the sound through, which the docstring's own band excludes: a lead
+# is as wrong as a trail, it just looks different. -4 frames is the -160ms the
+# labelled passes bottom out at.
+LAG_MIN = -4
 LAG_MAX = 2          # frames (+80ms); my goods run -4..+1, my rejects +3 and +6
 SEARCH = 6           # +/- frames to search
 
@@ -124,7 +129,7 @@ def main():
         sys.exit(64)
     corr, lag = r
     ms = lag * 1000 // FPS
-    ok = lag <= LAG_MAX
+    ok = LAG_MIN <= lag <= LAG_MAX
     out = {"clip": sys.argv[1], "lag_frames": lag, "lag_ms": ms,
             "corr": round(corr, 3), "verdict": "IN BAND" if ok else "MOUTH TRAILS"}
     if "--json" in sys.argv:

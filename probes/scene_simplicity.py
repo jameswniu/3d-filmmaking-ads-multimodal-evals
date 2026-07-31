@@ -25,24 +25,51 @@ import numpy as np
 
 III_MAX = 7.5
 
+def _frames(path):
+    """Grey 160x160 frames. Falls back to a single frame for a still.
+
+    The usage line advertises images, but the fps=2 filter yields ZERO frames
+    from one, so every still exited 64 "unreadable" while claiming to support
+    them. A still is not unreadable, it is one frame, and one frame is all this
+    metric needs.
+    """
+    def grab(vf):
+        return subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-i", path,
+                               "-vf", vf, "-f", "rawvideo", "pipe:1"],
+                              capture_output=True).stdout
+    raw = grab("fps=2,scale=160:160,format=gray")
+    if len(raw) // 25600 < 1:
+        raw = grab("scale=160:160,format=gray")          # a still, or a very short clip
+    n = len(raw) // 25600
+    if n < 1:
+        raise ValueError(path)
+    return np.frombuffer(raw[:n * 25600], dtype=np.uint8).reshape(n, 160, 160).astype(np.float32)
+
+
+def measure(path):
+    """Mean spatial gradient of the side thirds, which is the whole metric.
+
+    Lifted out of main() so evals/derive.py can recompute a labelled frame with
+    the SAME function the verdict uses. While it lived inline, nothing could.
+    """
+    fr = _frames(path)
+    bg = np.concatenate([fr[:, :, :50], fr[:, :, 110:]], axis=2)
+    return float((np.abs(np.diff(bg, axis=2)).mean() + np.abs(np.diff(bg, axis=1)).mean()) / 2)
+
+
 def main():
     positional = [a for a in sys.argv[1:] if not a.startswith("-")]
     if len(positional) < 1:
         print("usage: scene_simplicity.py IMAGE-or-VIDEO", file=sys.stderr)
         return 2
     p = positional[0]
-    raw = subprocess.run(["ffmpeg","-nostdin","-v","error","-i",p,"-vf",
-                          "fps=2,scale=160:160,format=gray","-f","rawvideo","pipe:1"],
-                         capture_output=True).stdout
-    n = len(raw)//25600
-    if n < 1:
-        print(f"scene_simplicity: unreadable {p}"); sys.exit(64)
-    fr = np.frombuffer(raw[:n*25600],dtype=np.uint8).reshape(n,160,160).astype(np.float32)
-    bg = np.concatenate([fr[:,:,:50], fr[:,:,110:]], axis=2)
-    busy = (np.abs(np.diff(bg,axis=2)).mean() + np.abs(np.diff(bg,axis=1)).mean())/2
+    try:
+        busy = measure(p)
+    except ValueError:
+        print(f"scene_simplicity: unreadable {p}"); return 64
     ok = busy <= III_MAX
     print(f"{'SIMPLE ' if ok else 'TOO BUSY'} {busy:6.2f}  (iii target <= {III_MAX}; my perfect clip 2.68)  {p.split('/')[-1]}")
-    sys.exit(0 if ok else 1)
+    return 0 if ok else 1
 
 if __name__ == "__main__":
     sys.exit(main())

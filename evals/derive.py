@@ -28,6 +28,11 @@ They cannot be bracketed until they are named, so they are absent from GATES and
 absent from the denominator. The count below is therefore NOT "every way this
 suite can refuse a clip". It is "every NAMED constant that can".
 
+The bracket is also one sided by construction, so a TWO sided band does not fit
+it. sync_probe accepts a lag between LAG_MIN and LAG_MAX, and neither edge alone
+is the threshold; only LAG_MAX is scored here. Forcing the pair into a ceiling
+would report a number that is arithmetically fine and means nothing.
+
 Exit 0 all checks pass / 1 a check failed / 2 the labels could not be read.
 
     python3 evals/derive.py
@@ -85,6 +90,7 @@ GATES = [
 # How to re-measure a labelled frame, per probe.
 RECOMPUTE = {
     "bg_detail": lambda m, path: m.detail(path),
+    "scene_simplicity": lambda m, path: m.measure(path),
 }
 
 

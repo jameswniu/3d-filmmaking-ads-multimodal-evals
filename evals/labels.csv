@@ -70,3 +70,4 @@ level_probe,iv-standard-face-alt,pass,7.90,face_level,withheld,the conflicting f
 level_probe,iii-night-face,reject,22.00,face_level,withheld,avatar_iii raw on a hard-rim night look
 level_probe,iv-standard-relation,pass,10.30,relation_level,withheld,"the standard I set"
 level_probe,iii-night-relation,reject,24.00,relation_level,withheld,avatar_iii raw on a hard-rim night look
+scene_simplicity,assets/look-still.jpg,pass,3.03,scene_gradient,assets/look-still.jpg,shipped as the stage-3 look on the landing page; accepted output
