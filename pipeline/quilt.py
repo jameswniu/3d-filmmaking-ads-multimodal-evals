@@ -59,7 +59,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # Portrait device spec.
 #
 # GEOMETRY IS A PARAMETER HERE, AND THE DEFAULT IS THE PRODUCTION ONE.
-# In the working tree this was two hardcoded constants at 8x6 (77 views),
+# In the working tree this was two hardcoded constants at 8x6 (48 views),
 # while production had already moved to 7x11 (77 views): the newest quilts on
 # disk carry `_qs7x11a0.75`, the glass stage documents "7x11 views" as the
 # pipeline default, and the eval gate's filename law reads 7x11 as current
