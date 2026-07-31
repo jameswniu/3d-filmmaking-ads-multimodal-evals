@@ -217,6 +217,39 @@ def test_labelled_pixels_exist():
     assert not missing, "labels reference missing files: " + ", ".join(missing)
 
 
+def test_pipeline_default_inputs_are_tracked():
+    """A default input that git ignores makes the pipeline unrunnable on a clone.
+
+    samples/ was generated, verified locally, and skipped in silence by
+    `git add -A`, because .gitignore's first line is a blanket *.mp4 and only
+    assets/ had a negation. Every local run passed, because the files were on
+    that machine. CI caught it only because the runner had no local copy, and
+    the tell in the commit output was a quiet "media=0".
+
+    Existing on disk is not the property that matters. Being in the repository
+    is. This checks the second one.
+    """
+    tracked = set(subprocess.run(
+        ["git", "ls-files"], cwd=ROOT, capture_output=True, text=True).stdout.split())
+    # Whatever the pipeline modules default to under samples/ must be committed.
+    wanted = set()
+    for name in sorted(os.listdir(os.path.join(ROOT, "pipeline"))):
+        if not name.endswith(".py"):
+            continue
+        src = open(os.path.join(ROOT, "pipeline", name)).read()
+        for stem in ("sample-color.mp4", "sample-depth.mp4"):
+            if stem in src:
+                wanted.add(f"samples/{stem}")
+    assert wanted, "no pipeline module references a samples/ default any more"
+    problems = []
+    for rel in sorted(wanted):
+        if rel not in tracked:
+            problems.append(f"{rel} is referenced as a default but is NOT tracked by git")
+        elif not os.path.exists(os.path.join(ROOT, rel)):
+            problems.append(f"{rel} is tracked but missing from the working tree")
+    assert not problems, "; ".join(problems)
+
+
 # --- constants must be live --------------------------------------------------
 
 def test_no_dead_gating_constants():
