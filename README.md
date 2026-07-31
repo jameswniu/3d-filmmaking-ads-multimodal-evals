@@ -18,12 +18,12 @@
 <table>
   <tr>
     <td width="36%" align="center">
-      <img src="assets/parallax-wiggle.gif" alt="The rendered presenter under a swaying virtual camera, nearer pixels shifting further than far ones" width="100%"><br>
-      <sub><b>Depth, on a flat screen.</b> A virtual camera sways across the inferred depth map. Her torso shifts <b>22 px</b> between the extreme views and her face <b>20 px</b>. The 2 px differential is the parallax: a flat pan would move both by the same amount. It is smaller here than on the previous clip, which measured 5 px, because this is a closer seated framing with less front-to-back depth in it. Choosing a look for expression can cost you depth range, and the number says so.</sub>
+      <img src="assets/parallax-amplified.gif" alt="The presenter under a swaying virtual camera, nearer pixels travelling further than far ones, amplified four times" width="100%"><br>
+      <sub><b>Depth, on a flat screen.</b> A virtual camera sways across the inferred depth map, near pixels travelling further than far ones. <b>This clip is exaggerated 4x and says so on the frame.</b> The real sweep across all 77 views moves her <b>19 px</b> inside a 480 px tile, about 4 percent, which is honest and nearly invisible at this size. The amber tick is fixed, because without something stationary the eye tracks her and cancels the very displacement the clip exists to show.</sub>
     </td>
     <td width="30%" align="center">
-      <img src="assets/quilt-video.gif" alt="The clip as a moving 7 by 11 array of 77 views" width="100%"><br>
-      <sub><b>The file the panel actually eats.</b> Not a still: every frame carries its own 77 views, so parallax holds while she speaks. 77 warps per output frame. <b><a href="assets/quilt-video.mp4">&#9654; full quilt video</a></b></sub>
+      <img src="assets/views-sweep.gif" alt="Six of the 77 camera views of one instant, cycled" width="100%"><br>
+      <sub><b>Six of the 77 views, one instant.</b> Spread across the whole sweep rather than neighbours, because adjacent views differ by <b>0.25 px</b> and a block of them reads as one photo repeated. Every frame of the clip carries its own 77. <b><a href="assets/quilt-video.mp4">&#9654; full quilt video</a></b></sub>
     </td>
     <td width="34%" align="center">
       <img src="assets/glass-feed-demo.gif" alt="The presenter explaining the pipeline that renders her" width="100%"><br>
