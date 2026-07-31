@@ -22,10 +22,12 @@
       <sub><b>What the glass is like.</b> One view at a time, the camera walking the same cone the quilt samples; at the panel your head does the walking and each eye gets its own view. Sweep exaggerated <b>4x</b> and labelled on the frame, because the true 19 px is nearly invisible at this size. Subtitles are burned after the warp, so they hold still while she sways. GIFs are mute: <b><a href="assets/hologram-final.mp4">&#9654; watch with sound (0:05)</a></b></sub>
     </td>
     <td width="33%" align="center" valign="top">
+      <br>
       <img src="assets/views-sweep.gif" alt="Six of the 77 camera views of one instant, cycled" width="100%"><br>
       <sub><b>Six of the 77 views, one instant.</b> Spread across the whole sweep rather than neighbours, because adjacent views differ by <b>0.25 px</b> and a block of them reads as one photo repeated. These are warped at the full square framing rather than cropped out of the quilt, so they sit at the same scale as the clips beside them; the panel's own tiles trim top and bottom to a 1.57 aspect. Every frame of the clip carries its own 77. <b><a href="assets/quilt-video.mp4">&#9654; full quilt video</a></b></sub>
     </td>
     <td width="33%" align="center" valign="top">
+      <br><br>
       <img src="assets/glass-feed-demo.gif" alt="The presenter explaining the pipeline that renders her" width="100%"><br>
       <sub><b>And she explains her own pipeline.</b> One pass, start to finish. This is a single view, not the 77: a quilt is what the panel eats, not something a person can watch. On a flat screen there is no final product, which is the whole argument. GIFs are mute and the voice is half the point: <b><a href="assets/glass-feed-demo.mp4">&#9654; watch with sound (2:49)</a></b></sub>
     </td>
