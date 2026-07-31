@@ -258,7 +258,7 @@ Everything below this line is the rendered path.
     <td width="33%" align="center"><img src="assets/render-frame.jpg" alt="Stage 6, a frame under evaluation" width="100%"></td>
     <td width="33%" align="center"><img src="assets/depth.png" alt="Stage 7, the inferred depth map" width="100%"></td>
     <td width="33%" align="center"><img src="assets/views-six.png" alt="Six of the 77 camera views of a single instant, spread across the sweep" width="100%"><br>
-      <sub><b>8. Quilt and 9. Glass.</b> Six of the 77, spread across the sweep rather than neighbours. All of them interleave into the one frame the panel is handed.</sub></td>
+      <sub><b>8. Quilt and 9. Glass.</b> Five of the 77, spread across the sweep rather than neighbours, plus the proof: the amber cell is view 1 minus view 77, so her silhouette lights up exactly where the sweep moved her. No single tile shows parallax, because it lives between tiles. All 77 interleave into the one frame the panel is handed.</sub></td>
   </tr>
 </table>
 
