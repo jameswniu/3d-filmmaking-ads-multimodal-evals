@@ -23,8 +23,8 @@
     </td>
     <td width="33%" align="center" valign="top">
       <br>
-      <img src="assets/views-sweep.gif" alt="Six of the 77 camera views of one instant, cycled" width="100%"><br>
-      <sub><b>Six of the 77 views, one instant.</b> Spread across the whole sweep rather than neighbours, because adjacent views differ by <b>0.25 px</b> and a block of them reads as one photo repeated. These are warped at the full square framing rather than cropped out of the quilt, so they sit at the same scale as the clips beside them; the panel's own tiles trim top and bottom to a 1.57 aspect. Every frame of the clip carries its own 77. <b><a href="assets/quilt-video.mp4">&#9654; full quilt video</a></b></sub>
+      <img src="assets/views-sweep.gif" alt="All 77 camera views of one instant, played in order" width="100%"><br>
+      <sub><b>All 77 views, one instant, in order.</b> The counter walks 1 to 77 while she never moves: every frame is the same moment from the next camera position, and the sway you see against the fixed amber tick is the parallax between views, at true amplitude. No view carries depth alone; the panel hands two of these to your two eyes and the difference is the 3D. <b><a href="assets/quilt-video.mp4">&#9654; full quilt video</a></b></sub>
     </td>
     <td width="33%" align="center" valign="top">
       <br><br>
