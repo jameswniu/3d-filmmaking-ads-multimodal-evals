@@ -147,7 +147,7 @@ Four rows, and the reason they are separate rows is the interesting part. **Mete
 
 Every figure in the diagram is a measurement published elsewhere in this repository, and the generator refuses to write the file if those figures are no longer in the README, so the picture cannot quietly become a second source of truth.
 
-**Interactive version: [`docs/architecture.html`](docs/architecture.html)**, the same map with every box clickable to show the failure that forced it. Standalone, no dependencies. GitHub renders `.html` as source, so open it locally with `open docs/architecture.html`.
+**Interactive version: [jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/architecture.html](https://jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/architecture.html)**, the same map with every box clickable to show the failure that forced it. Self-contained, no dependencies, light and dark aware, keyboard reachable. Source: [`docs/architecture.html`](docs/architecture.html).
 
 <p align="center">
   <img src="assets/band-stages.svg" alt="The build: ten stages, each one a decision" width="100%">
