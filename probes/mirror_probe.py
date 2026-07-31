@@ -123,6 +123,19 @@ def mirror_scan(bg):
     return control, best[0] / max(control, 1e-9), best[1]
 
 
+def control(path):
+    """The unrelated-frame distance, which is exactly what CONTROL_FLOOR gates.
+
+    A region below that floor has no signal, so it cannot clear a clip and the
+    verdict is UNJUDGEABLE rather than a pass. Until now the number that decided
+    that was computed and never exposed, so nothing could check it.
+    """
+    fr = decode(path)
+    if fr is None:
+        raise ValueError(path)
+    return round(float(repeat_scan(scene(fr))[0]), 1)
+
+
 def main():
     if len(sys.argv) < 2:
         print(__doc__.strip())

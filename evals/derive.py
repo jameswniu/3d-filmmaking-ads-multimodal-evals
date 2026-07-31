@@ -90,9 +90,15 @@ GATES = [
 ]
 
 # How to re-measure a labelled frame, per probe.
+# Each takes (module, path, row). The row is passed because a measurement can
+# need a parameter the label carries: seam_check measures AT a join, and the two
+# seam axes come from one call.
 RECOMPUTE = {
-    "bg_detail": lambda m, path: m.detail(path),
-    "scene_simplicity": lambda m, path: m.measure(path),
+    "bg_detail": lambda m, path, row: m.detail(path),
+    "scene_simplicity": lambda m, path, row: m.measure(path),
+    "mirror_probe": lambda m, path, row: m.control(path),
+    "seam_check": lambda m, path, row: m.measure(path, 2.5)[
+        0 if row["axis"] == "seam_picture" else 1],
 }
 
 
@@ -192,7 +198,7 @@ def main():
                 failures.append(f"{probe}: {r['pixels']} is listed but missing")
                 repro.append({"item": r["item"], "ok": False, "why": "missing"})
                 continue
-            got = RECOMPUTE[probe](mod, path)
+            got = RECOMPUTE[probe](mod, path, r)
             # 0.05, not 0.02, and the number is measured rather than guessed.
             # These metrics decode through ffmpeg, and swscale is not identical
             # across builds: look-still.jpg reads 3.035 on macOS and 3.051 on the
@@ -209,7 +215,11 @@ def main():
             #
             # So "recomputable" here means to about two decimals, not bit exact. A
             # threshold drifting for real moves the value far more than 0.05.
-            ok = abs(got - r["measured"]) <= 0.05
+            # Relative above 5, absolute below it. An 0.05 window is right for a
+            # gradient near 3 and absurd for a control distance near 545, where
+            # decode noise alone moves the value more than that.
+            tol = max(0.05, 0.01 * abs(r["measured"]))
+            ok = abs(got - r["measured"]) <= tol
             if not ok:
                 failures.append(f"{probe}: {r['item']} recomputes {got:.2f}, "
                                 f"label says {r['measured']:.2f}")

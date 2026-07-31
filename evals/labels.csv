@@ -85,3 +85,10 @@ drift_probe,indoor-br-noise,reject,0.505,corner_response,withheld,claimed 84.0px
 drift_probe,wall-br-flat,out-of-domain,0.877,corner_response,withheld,cleared quality on a FLAT patch (tex=7); the case TEX_MIN exists for, not a response verdict
 drift_probe,indoor-textured,pass,539.0,corner_texture,withheld,plenty to lock onto
 drift_probe,wall-br-flat-tex,reject,7.0,corner_texture,withheld,flat means unmeasurable, full stop
+seam_check,seam-continuous-picture,pass,0.35,seam_picture,samples/seam-continuous.mp4,one unbroken take; ground truth is how the file was cut
+seam_check,seam-joined-picture,reject,23.50,seam_picture,samples/seam-joined.mp4,her cut to the quilt grid; ground truth is the concat
+seam_check,seam-continuous-luma,pass,0.13,seam_luma,samples/seam-continuous.mp4,one unbroken take
+seam_check,seam-joined-luma,reject,5.38,seam_luma,samples/seam-joined.mp4,a real cut between two shots
+mirror_probe,frozen-control,reject,0.20,replay_signal,samples/frozen-control.mp4,one frame held for 40s; no signal by construction
+mirror_probe,live-take,pass,545.50,replay_signal,assets/hologram-full.mp4,a real take with a moving scene
+mirror_probe,static-band-incident,reject,0.60,replay_signal,withheld,recorded in the probe's docstring: a control of 0.6 exonerated a clip that ping-ponged at t=80

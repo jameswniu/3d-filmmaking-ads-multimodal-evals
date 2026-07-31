@@ -37,6 +37,32 @@ def mse(a, b) -> float:
     return float(((a - b) ** 2).mean())
 
 
+def measure(path, join):
+    """Return (picture_ratio, luma_step) at one join.
+
+    Lifted out of main() so evals/derive.py can recompute a fixture with the same
+    code the verdict uses. The RATIO is what PICTURE_FACTOR gates, not the raw
+    picture delta: a film with a lot of its own motion has a high baseline and a
+    cut has to clear THAT, not a constant.
+    """
+    dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                                "-of", "csv=p=0", path], capture_output=True, text=True).stdout.strip() or 0)
+    base = []
+    for frac in (0.12, 0.28, 0.45, 0.62, 0.8):
+        t = dur * frac
+        if abs(t - join) < 1.0:
+            continue
+        a, b = frame(path, t - GAP / 2), frame(path, t + GAP / 2)
+        if a is not None and b is not None:
+            base.append(mse(a, b))
+    typical = float(np.median(base)) if base else 25.0
+    a, b = frame(path, join - GAP / 2), frame(path, join + GAP / 2)
+    if a is None or b is None:
+        raise ValueError(path)
+    return (mse(a, b) / typical if typical else float("inf"),
+            abs(float(a.mean()) - float(b.mean())))
+
+
 def main():
     if len(sys.argv) < 3:
         print(__doc__.strip())

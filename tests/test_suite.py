@@ -134,7 +134,9 @@ def test_documented_counts_match_the_tool():
         (r"(\d+)%2F(\d+)_derived", (d, m), True),
         (r"(\d+) of (\d+) NAMED gating thresholds are DERIVED", (d, m), True),
         (r"\*\*(\w+) of (\w+)\.\*\*", (d, m), True),
-        (r"[Tt]he other (\w+) were typed by hand", (a,), True),
+        # Required only while some threshold is still authored; the sentence
+        # has no sensible form at zero.
+        (r"[Tt]he other (\w+) were typed by hand", (a,), a > 0),
         (r"(\d+) are AUTHORED", (a,), True),
         (r"is one of the (\w+):", (d,), False),
     ]
