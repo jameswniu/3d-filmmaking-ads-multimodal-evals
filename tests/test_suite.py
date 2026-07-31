@@ -177,7 +177,7 @@ def test_no_retired_claim_survives_on_any_surface():
     # gets muted, so these match the retired CLAIM shapes only.
     retired = [
         (r"every threshold (?:in|comes|derived|is derived)",
-         "the derived count is 5 of 15, not all of them"),
+         "the count is whatever derive.py prints, and is not all of them"),
         (r"never typed", "ten of the fifteen were typed by hand"),
         (r"each derived from", "not every probe threshold is derived from labels"),
         (r"probes,\s*each derived", "not every probe threshold is derived"),
