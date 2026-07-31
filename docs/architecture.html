@@ -81,7 +81,10 @@
   .lane-h b{font-family:var(--mono);font-size:12px;font-weight:700;
             letter-spacing:.2em;color:var(--accent)}
   .lane-h span{font-family:var(--mono);font-size:11.5px;color:var(--faint)}
-  .row{display:grid;gap:14px;
+  /* align-items:start, not the default stretch. Under stretch, opening one card
+     dragged every sibling in its row to the open card's height, so a click on
+     one box resized four others. */
+  .row{display:grid;gap:14px;align-items:start;
        grid-template-columns:repeat(auto-fit,minmax(198px,1fr))}
   /* Both stage groups hold exactly five, and auto-fit was orphaning the fifth
      onto a row of its own once the branch indent ate the last column. */
@@ -102,8 +105,10 @@
      rather than as the card responding. */
   .card:hover{border-color:var(--accent);background:var(--panel-2)}
   .card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-  .card[aria-expanded=true]{background:var(--panel-2);border-color:var(--accent);
-        grid-column:1/-1;cursor:default}
+  /* An open card keeps its column. Spanning the full row made the box change
+     width under the click, which moves every card after it; the card grows
+     downward instead. It stays cursor:pointer because clicking it closes it. */
+  .card[aria-expanded=true]{background:var(--panel-2);border-color:var(--accent)}
 
   /* Stage numbers are a true sequence, 0 through 9, so they are set as an index
      rather than as another line of text at body size. */
@@ -116,7 +121,10 @@
        margin:0 0 8px;line-height:1.35}
   .card .t{font-size:15px;font-weight:700;color:var(--pale);
            letter-spacing:-.01em;margin:0 0 5px}
-  .card .d{font-size:12.5px;color:var(--dim);line-height:1.45}
+  /* Two lines are reserved whether or not the second is used. Without stretch
+     to equalise them, the one-line and two-line cards in a row would otherwise
+     sit at different heights; the only variance between them is this line. */
+  .card .d{font-size:12.5px;color:var(--dim);line-height:1.45;min-height:2.9em}
 
   .ex{position:absolute;top:15px;right:14px;width:11px;height:11px;opacity:.45;
       transition:transform .18s,opacity .16s}
@@ -127,9 +135,11 @@
   .card:hover .ex{opacity:1}
   .card[aria-expanded=true] .ex{transform:rotate(45deg);opacity:1}
 
+  /* In a single column the evidence text is narrow, so a long unbroken token
+     would otherwise push the card wider than its track. */
   .why{display:none;margin-top:13px;padding-top:13px;
        border-top:1px solid var(--edge);font-size:13.5px;color:var(--text);
-       line-height:1.62;max-width:78ch}
+       line-height:1.62;max-width:78ch;overflow-wrap:break-word}
   .card[aria-expanded=true] .why{display:block}
   .why code{font-size:12px;color:var(--pale);background:var(--code-ground);
             border:1px solid var(--rule);padding:1px 5px;border-radius:4px;
