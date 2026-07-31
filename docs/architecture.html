@@ -3,110 +3,257 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
 <title>Architecture &middot; agentic video pipeline evals</title>
 <style>
+  /* Palette is the one assets/architecture.svg draws with, so the interactive page
+     and the static diagram are visibly the same instrument. Every colour below
+     appears in that file. */
   :root{
-    --ink:#04091a; --panel:#0c1a30; --edge:#1e3a64; --cyan:#38bdf8; --deep:#0ea5e9;
-    --pale:#e0f2fe; --dim:#7c9ec4; --amber:#f0b429; --violet:#8b8cf0;
-    --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+    --bg-a:#0a1630; --bg-b:#04091a;
+    --panel:#0c1a30; --panel-2:#122744; --edge:#1e3a64; --rule:#16294a;
+    --cyan:#38bdf8; --deep:#0ea5e9; --violet:#8b8cf0; --amber:#f0b429;
+    --pale:#e0f2fe; --text:#cfe6fa; --dim:#8fb4d8; --faint:#6d8fb6;
+    --gate-ground:#16110a; --local-ground:#0b1329; --code-ground:#08152b;
+    --lift:0 1px 0 rgba(255,255,255,.04), 0 14px 30px -20px rgba(0,0,0,.95);
+    --idx-fade:.55;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   }
+  @media (prefers-color-scheme: light){
+    /* Built, not inverted. Each accent is re-picked to hold contrast on a light
+       ground; the cyan the dark theme uses reads at about 2:1 on white. */
+    :root{
+      --bg-a:#f8fbfe; --bg-b:#e9f1f9;
+      --panel:#ffffff; --panel-2:#f1f7ff; --edge:#cddef1; --rule:#dfeaf5;
+      --cyan:#0369a1; --deep:#0369a1; --violet:#5348c9; --amber:#8a5a06;
+      --pale:#0a1830; --text:#12294a; --dim:#4f6f92; --faint:#6b87a8;
+      --gate-ground:#fffaef; --local-ground:#f8f7ff; --code-ground:#eaf1f9;
+      --lift:0 1px 2px rgba(16,40,74,.06), 0 12px 26px -18px rgba(16,40,74,.4);
+    --idx-fade:.78;
+    }
+  }
+
   *{box-sizing:border-box}
-  body{margin:0;background:linear-gradient(#081228,#04091a 60%);color:var(--pale);
-       font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1180px;margin:0 auto;padding:38px 22px 80px}
-  h1{font-size:30px;margin:0 0 6px}
-  .sub{color:var(--dim);font-size:14px;margin:0 0 4px}
-  .stamp{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin:14px 0 0}
-  hr{border:0;border-top:1px solid var(--edge);margin:22px 0 26px}
-  .lane{margin:0 0 30px}
-  .lane-h{display:flex;align-items:baseline;gap:12px;margin:0 0 12px}
-  .lane-h b{font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px}
-  .lane-h span{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
-  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:14px}
-  .card{background:var(--panel);border:1px solid var(--edge);border-left:4px solid var(--cyan);
-        border-radius:7px;padding:13px 15px;cursor:pointer;transition:.14s;position:relative}
-  .card:hover,.card:focus-visible{background:#102340;border-color:var(--cyan);
-        outline:none;transform:translateY(-2px)}
-  .card[aria-expanded=true]{background:#102340;border-color:var(--cyan)}
-  .card .n{font-family:var(--mono);font-size:11px;color:var(--cyan);font-weight:700}
-  .card .t{font-size:14.5px;font-weight:700;margin:3px 0 5px}
-  .card .d{font-size:11.5px;color:var(--cyan);opacity:.85;line-height:1.4}
-  .card .why{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--edge);
-              font-size:12px;color:var(--dim);line-height:1.55}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;color:var(--text);font-family:var(--sans);
+       background:var(--bg-b);
+       background-image:linear-gradient(var(--bg-a),var(--bg-b) 62%);
+       background-attachment:fixed;
+       -webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:1120px;margin:0 auto;padding:56px 24px 96px}
+  a{color:var(--cyan);text-underline-offset:3px;text-decoration-thickness:1px}
+  code{font-family:var(--mono)}
+
+  /* ---- header ------------------------------------------------------- */
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+           color:var(--faint);margin:0 0 18px;text-transform:uppercase}
+  h1{font-size:clamp(38px,5.2vw,54px);line-height:1.02;letter-spacing:-.025em;
+     font-weight:700;color:var(--pale);margin:0;text-wrap:balance}
+  .sub{color:var(--dim);font-size:17px;margin:14px 0 0;max-width:52ch;
+       text-wrap:balance}
+
+  /* The four headline figures. They were a dot separated 11px line; they are the
+     page's summary, so they are set as data and read before any card does. */
+  .stats{display:grid;gap:1px;margin:34px 0 0;background:var(--rule);
+         border:1px solid var(--rule);border-radius:12px;overflow:hidden;
+         grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}
+  .stat{background:var(--panel);padding:16px 18px 15px}
+  .stat b{display:block;font-family:var(--mono);font-size:30px;font-weight:700;
+          line-height:1;letter-spacing:-.02em;color:var(--cyan);
+          font-variant-numeric:tabular-nums}
+  .stat span{display:block;margin-top:8px;font-size:12.5px;color:var(--dim)}
+  .stat:nth-child(2) b{color:var(--amber)}
+  .stat:nth-child(3) b{color:var(--violet)}
+  .stat:nth-child(4) b{color:var(--deep)}
+
+  .hint{font-family:var(--mono);font-size:12px;color:var(--faint);
+        margin:36px 0 34px;padding-top:26px;border-top:1px solid var(--rule)}
+
+  /* ---- lanes -------------------------------------------------------- */
+  /* Each lane is a system, not a row. The rail carries its identity down the
+     whole group so four kinds of thing stop looking like one kind of thing. */
+  .lane{position:relative;padding-left:22px;margin:0 0 40px}
+  .lane::before{content:"";position:absolute;left:0;top:5px;bottom:4px;width:2px;
+                border-radius:2px;opacity:.65;
+                background:linear-gradient(var(--accent) 0 64%,transparent)}
+  .lane-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 14px}
+  .lane-h b{font-family:var(--mono);font-size:12px;font-weight:700;
+            letter-spacing:.2em;color:var(--accent)}
+  .lane-h span{font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+  .row{display:grid;gap:14px;
+       grid-template-columns:repeat(auto-fit,minmax(198px,1fr))}
+  /* Both stage groups hold exactly five, and auto-fit was orphaning the fifth
+     onto a row of its own once the branch indent ate the last column. */
+  .row-stage{grid-template-columns:repeat(5,minmax(0,1fr))}
+  @media (max-width:960px){
+    .row-stage{grid-template-columns:repeat(auto-fit,minmax(164px,1fr))}
+  }
+
+  /* ---- cards -------------------------------------------------------- */
+  .card{--accent:var(--cyan);
+        position:relative;background:var(--panel);border:1px solid var(--edge);
+        border-radius:11px;padding:15px 34px 15px 16px;cursor:pointer;
+        box-shadow:var(--lift);text-align:left;font:inherit;color:inherit;
+        display:block;width:100%;
+        transition:border-color .16s,background .16s,transform .16s,box-shadow .16s}
+  .card:hover{border-color:var(--accent);background:var(--panel-2);
+              transform:translateY(-2px)}
+  .card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .card[aria-expanded=true]{background:var(--panel-2);border-color:var(--accent);
+        grid-column:1/-1;cursor:default}
+
+  /* Stage numbers are a true sequence, 0 through 9, so they are set as an index
+     rather than as another line of text at body size. */
+  .idx{font-family:var(--mono);font-size:26px;font-weight:700;line-height:1;
+       letter-spacing:-.03em;color:var(--accent);opacity:var(--idx-fade);
+       font-variant-numeric:tabular-nums;margin:0 0 9px}
+  /* Everything else in that slot is a measurement, not an index. Different
+     thing, different treatment. */
+  .tag{font-family:var(--mono);font-size:11px;color:var(--accent);
+       margin:0 0 8px;line-height:1.35}
+  .card .t{font-size:15px;font-weight:700;color:var(--pale);
+           letter-spacing:-.01em;margin:0 0 5px}
+  .card .d{font-size:12.5px;color:var(--dim);line-height:1.45}
+
+  .ex{position:absolute;top:15px;right:14px;width:11px;height:11px;opacity:.45;
+      transition:transform .18s,opacity .16s}
+  .ex::before,.ex::after{content:"";position:absolute;background:var(--accent);
+      border-radius:1px}
+  .ex::before{left:0;right:0;top:5px;height:1.5px}
+  .ex::after{top:0;bottom:0;left:5px;width:1.5px}
+  .card:hover .ex{opacity:1}
+  .card[aria-expanded=true] .ex{transform:rotate(45deg);opacity:1}
+
+  .why{display:none;margin-top:13px;padding-top:13px;
+       border-top:1px solid var(--edge);font-size:13.5px;color:var(--text);
+       line-height:1.62;max-width:78ch}
   .card[aria-expanded=true] .why{display:block}
-  .card .why code{font-family:var(--mono);font-size:11px;color:var(--pale);
-                   background:#08152b;padding:1px 5px;border-radius:3px}
-  .metered{border-left-color:var(--deep)}
-  .metered .n,.metered .d{color:var(--deep)}
-  .gate{border-left-color:var(--amber);background:#1a1406}
-  .gate .n,.gate .d{color:var(--amber)}
-  .local{border-left-color:var(--violet);background:#0b1428}
-  .local .n,.local .d{color:var(--violet)}
-  .offscope{border-style:dashed;border-left-style:solid;border-left-color:var(--violet);
-            background:#0a1428}
-  .offscope .n,.offscope .d{color:var(--violet)}
-  .hint{font-family:var(--mono);font-size:11px;color:var(--dim);margin:0 0 20px}
-  .fork{display:flex;align-items:center;gap:10px;margin:26px 0 18px;color:var(--cyan);
-        font-family:var(--mono);font-size:11.5px}
-  .fork:before,.fork:after{content:"";flex:1;height:1px;background:var(--edge)}
-  footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--edge);
-         color:var(--dim);font-size:12.5px;line-height:1.6}
-  a{color:var(--cyan)}
-  @media(prefers-color-scheme:light){
-    body{background:#f4f8fd;color:#0b1c3d}
-    .card{background:#fff;border-color:#cfe0f2}
-    .card:hover,.card[aria-expanded=true]{background:#eef6ff}
-    .sub,.stamp,.card .why,.hint,footer,.lane-h span{color:#4a6a8f}
-    .gate{background:#fff8e6}.local,.offscope{background:#f6f5ff}
-    hr,footer{border-color:#cfe0f2}
-    .card .why code{background:#eef3fa;color:#0b1c3d}
+  .why code{font-size:12px;color:var(--pale);background:var(--code-ground);
+            border:1px solid var(--rule);padding:1px 5px;border-radius:4px;
+            font-variant-numeric:tabular-nums}
+  .why b{color:var(--pale)}
+
+  .metered{--accent:var(--deep)}
+  .local{--accent:var(--violet);background:var(--local-ground)}
+  /* The gates are the only row that can stop a run, so they carry weight the
+     other rows do not. No per card badge: three of the four fail open, and a
+     label saying otherwise on each one would be the exact kind of claim this
+     repository exists to avoid. */
+  .gate{--accent:var(--amber);background:var(--gate-ground);
+        border-top:2px solid var(--amber);padding-top:14px}
+  .offscope{--accent:var(--violet);background:var(--local-ground);
+            border-style:dashed}
+
+  /* ---- the fork ----------------------------------------------------- */
+  /* One render, two destinations. Previously a hairline with centred text,
+     which is the weakest possible drawing of the only branch in the system. */
+  .fork{margin:4px 0 42px;padding-left:22px}
+  .fork-stem{display:flex;align-items:center;gap:14px;margin:0 0 4px;
+             font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+             color:var(--cyan);text-transform:uppercase}
+  .fork-stem::after{content:"";flex:1;height:1px;background:var(--rule)}
+  .branches{position:relative;padding-top:10px}
+  /* Carries the trunk out of the stem label and into the first elbow, so the
+     junction is one continuous line rather than a caption above two indents. */
+  .branches::before{content:"";position:absolute;left:1px;top:-12px;height:22px;
+                    width:2px;background:var(--cyan);opacity:.32}
+  .branch{position:relative;padding-left:30px;padding-top:12px}
+  /* An elbow per branch, plus a trunk segment carrying down to the next one.
+     Drawn with borders so the corner is a real radius and the two branches
+     read as one junction instead of two unrelated indents. */
+  .branch::before{content:"";position:absolute;left:1px;top:0;width:20px;height:22px;
+                  border-left:2px solid var(--accent);
+                  border-bottom:2px solid var(--accent);
+                  border-bottom-left-radius:9px;opacity:.7}
+  .branch:not(:last-child)::after{content:"";position:absolute;left:1px;top:22px;
+                  bottom:-12px;width:2px;background:var(--cyan);opacity:.32}
+  .branch-h{font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+            color:var(--faint);margin:-6px 0 13px;text-transform:uppercase}
+  .b-main{--accent:var(--cyan)}
+  .b-arm{--accent:var(--violet)}
+  .b-arm .row{grid-template-columns:minmax(0,318px)}
+
+  footer{margin-top:20px;padding-top:26px;border-top:1px solid var(--rule);
+         color:var(--dim);font-size:13.5px;line-height:1.66}
+  footer p{margin:0 0 14px;max-width:76ch}
+  footer p:last-child{margin:0}
+
+  /* ---- motion ------------------------------------------------------- */
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}
+                  to{opacity:1;transform:none}}
+  .lane,.fork,.stats{animation:rise .5s cubic-bezier(.2,.7,.3,1) backwards}
+  .stats{animation-delay:.04s}
+  .lane:nth-of-type(1){animation-delay:.09s}
+  .fork{animation-delay:.14s}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .card:hover{transform:none}
+  }
+  @media (max-width:640px){
+    .wrap{padding:40px 18px 72px}
+    .lane,.fork{padding-left:16px}
+    .b-arm .row{grid-template-columns:1fr}
   }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+<p class="eyebrow">agentic video pipeline evals</p>
 <h1>Architecture</h1>
 <p class="sub">One unattended run, top to bottom. The gates are the row that can stop it.</p>
-<p class="stamp">13 probes &middot; 4 gates, 3 fail open &middot; 77 views &middot; 1 credit per scheduled render</p>
-<hr>
+
+<div class="stats">
+  <div class="stat"><b>13</b><span>probes</span></div>
+  <div class="stat"><b>4</b><span>gates, 3 fail open</span></div>
+  <div class="stat"><b>77</b><span>views</span></div>
+  <div class="stat"><b>1</b><span>credit per scheduled render</span></div>
+</div>
+
 <p class="hint">Every box states a measurement. Click one to see what forced it.</p>
 
-<div class="lane">
-  <div class="lane-h"><b style="color:var(--deep)">METERED</b><span>billed per call, never extrapolated</span></div>
+<div class="lane" style="--accent:var(--deep)">
+  <div class="lane-h" style="--accent:var(--deep)"><b>METERED</b><span>billed per call, never extrapolated</span></div>
   <div class="row" id="metered"></div>
 </div>
 
-<div class="lane">
-  <div class="lane-h"><b style="color:var(--cyan)">PIPELINE</b><span>ten stages, one lock, one budget</span></div>
-  <div class="row" id="spine"></div>
+<div class="lane" style="--accent:var(--cyan)">
+  <div class="lane-h" style="--accent:var(--cyan)"><b>PIPELINE</b><span>ten stages, one lock, one budget</span></div>
+  <div class="row row-stage" id="spine"></div>
 </div>
 
-<div class="fork">one render, two destinations</div>
-
-<div class="lane">
-  <div class="row" id="holo"></div>
+<div class="fork">
+  <div class="fork-stem">one render, two destinations</div>
+  <div class="branches">
+    <div class="branch b-main">
+      <p class="branch-h">stages 5 through 9</p>
+      <div class="row row-stage" id="holo"></div>
+    </div>
+    <div class="branch b-arm">
+      <p class="branch-h">the other arm</p>
+      <div class="row" id="arm"></div>
+    </div>
+  </div>
 </div>
 
-<div class="lane">
-  <div class="lane-h"><b style="color:var(--violet)">LOCAL</b><span>no vendor, no per-run cost</span></div>
+<div class="lane" style="--accent:var(--violet)">
+  <div class="lane-h" style="--accent:var(--violet)"><b>LOCAL</b><span>no vendor, no per-run cost</span></div>
   <div class="row" id="local"></div>
 </div>
 
-<div class="lane">
-  <div class="lane-h"><b style="color:var(--amber)">GATES</b><span>block before spend, or before ship</span></div>
+<div class="lane" style="--accent:var(--amber)">
+  <div class="lane-h" style="--accent:var(--amber)"><b>GATES</b><span>block before spend, or before ship</span></div>
   <div class="row" id="gates"></div>
 </div>
 
 <footer>
-  The blocking gates are the ones that would have prevented a real failure. Everything else
+  <p>The blocking gates are the ones that would have prevented a real failure. Everything else
   reports a number and lets the run continue, because a metric that has not proven itself
-  stable inside a single clip has not earned the authority to stop one.
-  <br><br>
-  Full reasoning in <a href="EVALS.md">EVALS.md</a>,
+  stable inside a single clip has not earned the authority to stop one.</p>
+  <p>Full reasoning in <a href="EVALS.md">EVALS.md</a>,
   what is deliberately not claimed in <a href="NOT-MEASURED.md">NOT-MEASURED.md</a>,
-  and what the guards actually enforce in <a href="ENFORCEMENT.md">ENFORCEMENT.md</a>.
+  and what the guards actually enforce in <a href="ENFORCEMENT.md">ENFORCEMENT.md</a>.</p>
 </footer>
 
 </div>
@@ -160,12 +307,20 @@ const D = {
     ["PII scan","two layers, then ship","at publish",
      "A deterministic scanner plus a review pass, with a dismissal ledger. It blocked this repository's own commits three times: encoder metadata, then a zeroed-timestamp false positive that sharpened the scanner, then timestamps in a commit message."]]
 };
+let uid = 0;
 const mk=(cls,n,t,d,why)=>{
+  // A bare integer is a stage index in a real 0 through 9 sequence. Anything else
+  // in that slot is a measurement caption. They are set differently because they
+  // are different kinds of fact, which the single shared style used to hide.
+  const isStage = /^\d+$/.test(n);
+  const id = "why-" + (++uid);
   const el=document.createElement("div");
   el.className="card "+cls; el.tabIndex=0; el.setAttribute("role","button");
-  el.setAttribute("aria-expanded","false");
-  el.innerHTML=`<div class="n">${n}</div><div class="t">${t}</div>`+
-               `<div class="d">${d}</div><div class="why">${why}</div>`;
+  el.setAttribute("aria-expanded","false"); el.setAttribute("aria-controls",id);
+  el.innerHTML=(isStage?`<div class="idx">${n}</div>`:`<div class="tag">${n}</div>`)+
+               `<div class="t">${t}</div><div class="d">${d}</div>`+
+               `<div class="why" id="${id}">${why}</div>`+
+               `<span class="ex" aria-hidden="true"></span>`;
   const tog=()=>el.setAttribute("aria-expanded",
               el.getAttribute("aria-expanded")==="true"?"false":"true");
   el.addEventListener("click",tog);
@@ -177,9 +332,10 @@ D.spine.forEach(([n,t,d,w])=>spine.append(mk("",n,t,d,w)));
 D.holo.forEach(([n,t,d,w])=>holo.append(mk("",n,t,d,w)));
 D.local.forEach(([t,d,c,w])=>local.append(mk("local",c,t,d,w)));
 D.gates.forEach(([t,d,c,w])=>gates.append(mk("gate",c,t,d,w)));
-// The real-time arm is drawn last and marked out of scope, because none of the gates
-// above apply to it and a diagram that implied otherwise would be the useful lie.
-holo.append(mk("offscope","fork","REAL-TIME ARM","interactive, low latency",
+// The real-time arm is the other side of the fork and is marked out of scope,
+// because none of the gates above apply to it and a diagram that implied
+// otherwise would be the useful lie.
+arm.append(mk("offscope","fork","REAL-TIME ARM","interactive, low latency",
   "The other side of the fork. It is genuinely part of the system and genuinely outside this repository's claims: none of the gates above run on it, so nothing here should be read as evidence about it."));
 </script>
 </body>
