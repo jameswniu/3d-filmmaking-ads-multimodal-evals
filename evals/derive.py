@@ -7,7 +7,9 @@ This file is that claim, executable. Three checks, in order of how much they can
 embarrass the author:
 
   1. REPRODUCE. Every labelled row whose pixels ship in this repo is re-measured
-     with the probe's OWN function. A row that ships pixels for a probe with no
+     with the probe's OWN function, to about two decimals rather than exactly,
+     because these metrics decode through ffmpeg and swscale is not identical
+     across builds. A row that ships pixels for a probe with no
      recomputation function is a FAILURE, not a skip: silently not-checking is
      how a wrong label becomes the bracket edge with everything reporting green.
 
@@ -191,7 +193,23 @@ def main():
                 repro.append({"item": r["item"], "ok": False, "why": "missing"})
                 continue
             got = RECOMPUTE[probe](mod, path)
-            ok = abs(got - r["measured"]) <= 0.02
+            # 0.05, not 0.02, and the number is measured rather than guessed.
+            # These metrics decode through ffmpeg, and swscale is not identical
+            # across builds: look-still.jpg reads 3.035 on macOS and 3.051 on the
+            # ubuntu runner. A 0.016 gap failed a 0.02 window, which is how this
+            # was found.
+            #
+            # Pinning the scaler was tried and REJECTED. It does make the resample
+            # deterministic, but it is a different filter, not a stabilised one:
+            # the same frame moved 3.035 to 2.748. Every attested row in labels.csv
+            # was measured with the default and its source render is gone, so
+            # pinning would silently re-base the shipped rows against historical
+            # numbers that can never be recomputed to match. A wider window keeps
+            # every value on one footing.
+            #
+            # So "recomputable" here means to about two decimals, not bit exact. A
+            # threshold drifting for real moves the value far more than 0.05.
+            ok = abs(got - r["measured"]) <= 0.05
             if not ok:
                 failures.append(f"{probe}: {r['item']} recomputes {got:.2f}, "
                                 f"label says {r['measured']:.2f}")
