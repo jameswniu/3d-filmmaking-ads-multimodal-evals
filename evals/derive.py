@@ -102,6 +102,34 @@ RECOMPUTE = {
 }
 
 
+# How closely a measurement can be expected to come back, and why it differs.
+#
+# Two kinds of measurement here, with genuinely different reproducibility:
+#
+#   FRAME 0 or a whole-image read. bg_detail and scene_simplicity decode one
+#   frame from the start, or an image. Across macOS and the ubuntu runner these
+#   land within 0.016, so a small absolute window holds them.
+#
+#   A SEEK to a timestamp. mirror_probe and seam_check ask for the frame at t.
+#   Which frame that is depends on the build's seeking and keyframe handling, so
+#   the two platforms are not always measuring the same picture. Measured on this
+#   repo's own fixtures: the control distance moved 545.5 to 539.6 (1.1%) and the
+#   luma step 5.38 to 5.03 (6.5%). That is not decode noise on a pixel, it is a
+#   different frame, and no tolerance makes it exact. A 10% window says what these
+#   rows actually promise; a real threshold drift moves them far further.
+TOLERANCE = {
+    "bg_detail": ("abs", 0.05),
+    "scene_simplicity": ("abs", 0.05),
+    "mirror_probe": ("rel", 0.10),
+    "seam_check": ("rel", 0.10),
+}
+
+
+def tolerance(probe, label):
+    kind, k = TOLERANCE.get(probe, ("abs", 0.05))
+    return max(0.05, k * abs(label)) if kind == "rel" else k
+
+
 def load_module(name):
     """Compile the probe from SOURCE, never from cached bytecode.
 
@@ -215,10 +243,7 @@ def main():
             #
             # So "recomputable" here means to about two decimals, not bit exact. A
             # threshold drifting for real moves the value far more than 0.05.
-            # Relative above 5, absolute below it. An 0.05 window is right for a
-            # gradient near 3 and absurd for a control distance near 545, where
-            # decode noise alone moves the value more than that.
-            tol = max(0.05, 0.01 * abs(r["measured"]))
+            tol = tolerance(probe, r["measured"])
             ok = abs(got - r["measured"]) <= tol
             if not ok:
                 failures.append(f"{probe}: {r['item']} recomputes {got:.2f}, "
