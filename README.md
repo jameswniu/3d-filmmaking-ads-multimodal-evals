@@ -1,7 +1,5 @@
 
 
-https://github.com/user-attachments/assets/9e30abab-52c0-41b8-be9a-e8170a4311f9
-
 <p align="center">
   <img src="assets/hero.svg" alt="3d-filmmaking-ads-multimodal-evals: evals govern a cloned voice, a generated character, and a light-field render" width="100%">
 </p>
@@ -163,7 +161,7 @@ Ten stages, and each one reads at three depths: the paragraph is the decision an
   <img src="assets/stage-wake-script.svg" alt="Stage 0, the scheduled wake, beside stage 1, the script" width="100%">
 </p>
 
-https://github.com/user-attachments/assets/5c58f2e3-1752-4a85-a4ef-b0515d4ead74
+https://github.com/user-attachments/assets/9e30abab-52c0-41b8-be9a-e8170a4311f9
 
 <p align="center"><sub><b>Press play: the actual soundtrack.</b> 169 seconds of the cloned voice, the kept median take, under its own waveform. The raw audio also lives in the repo: <a href="assets/voice-narration.m4a">voice-narration.m4a</a>.</sub></p>
 
