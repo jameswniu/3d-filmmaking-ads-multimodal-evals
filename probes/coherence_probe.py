@@ -142,7 +142,15 @@ def runs_above(mask, min_len):
 
 
 def main():
-    path, srt = sys.argv[1], sys.argv[2]
+    # Positional args are read by index, so a bare invocation used to die on IndexError
+    # instead of saying what it wanted. Every other probe here prints a usage line; this
+    # one was the outlier, and a stack trace is a worse answer than a sentence.
+    positional = [a for a in sys.argv[1:] if not a.startswith("-")]
+    if len(positional) < 2:
+        print("usage: coherence_probe.py CLIP.mp4 CUES.srt [--json] [--rest-only]",
+              file=sys.stderr)
+        return 2
+    path, srt = positional[0], positional[1]
     as_json, rest_only = "--json" in sys.argv, "--rest-only" in sys.argv
     fps = clip_fps(path)
     m = head_series(path)
@@ -249,4 +257,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # Propagate main's return code. Discarding it made the new usage guard exit 0, which
+    # tells a caller the run succeeded while printing that it did not, the same shape of
+    # silent-success failure the suite's own doctrine warns about.
+    sys.exit(main())
