@@ -28,8 +28,8 @@
     </td>
     <td width="33%" align="center" valign="top">
       <br><br>
-      <img src="assets/glass-feed-demo.gif" alt="The presenter explaining the pipeline that renders her" width="100%"><br>
-      <sub><b>And she explains her own pipeline.</b> One pass, start to finish. This is a single view, not the 77: a quilt is what the panel eats, not something a person can watch. On a flat screen there is no final product, which is the whole argument. GIFs are mute and the voice is half the point: <b><a href="assets/glass-feed-demo.mp4">&#9654; watch with sound (2:49)</a></b></sub>
+      <img src="assets/hologram-full.gif" alt="The presenter explaining the 77-view quilt while the simulated view sweeps, subtitles held still" width="100%"><br>
+      <sub><b>And she explains her own pipeline, in the final treatment.</b> The full narration under the same simulated view sweep as the first clip, one pass, start to finish. This loop is her describing the very grid the middle cell shows: one moment, seventy-seven positions. GIFs are mute and the voice is half the point: <b><a href="assets/hologram-full.mp4">&#9654; watch with sound (2:49)</a></b></sub>
     </td>
   </tr>
 </table>
