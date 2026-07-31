@@ -255,7 +255,8 @@ Everything below this line is the rendered path.
   <tr>
     <td width="33%" align="center"><img src="assets/render-frame.jpg" alt="Stage 6, a frame under evaluation" width="100%"></td>
     <td width="33%" align="center"><img src="assets/depth.png" alt="Stage 7, the inferred depth map" width="100%"></td>
-    <td width="33%" align="center" valign="middle"><sub><b>8. Quilt</b> and <b>9. Glass</b> are the pair at the top of this page: the 77-view array, and the panel that turns it back into depth.</sub></td>
+    <td width="33%" align="center"><img src="assets/views-six.png" alt="Six of the 77 camera views of a single instant, spread across the sweep" width="100%"><br>
+      <sub><b>8. Quilt and 9. Glass.</b> Six of the 77, spread across the sweep rather than neighbours. All of them interleave into the one frame the panel is handed.</sub></td>
   </tr>
 </table>
 
@@ -373,6 +374,10 @@ Measured, not estimated. Every figure carries its sample size, because a rate wi
 
 ## Cost
 
+<p align="center">
+  <img src="assets/cost.svg" alt="Measured render cost in credits against clip length: the flat tier stays at 1 credit while the premium tiers scale to 58, with the unmeasured span left empty" width="100%">
+</p>
+
 The scheduled pipeline renders on the **flat tier**: 1 credit, now measured at three lengths. The premium tiers scale hard, so the multiple on a 3-minute clip is 58x, not 5x.
 
 | engine tier | ~11s | ~126s | ~169s | shape |
@@ -455,6 +460,21 @@ Want the same pipeline with your own voice and character? [`docs/SETUP.md`](docs
 - [`docs/PII-REVIEW.md`](docs/PII-REVIEW.md), the pre-publish privacy gate, what it caught, and every finding dismissed by hand
 
 Two companion projects are referenced above and are not public yet: the agent that shapes her register, and the streaming voice-agent pipeline behind the live path. Both **available on request**.
+
+---
+
+## Roadmap
+
+**An interactive version of this page, deployed.** Everything here is a still or a loop, because a README can only hold those. The pipeline it documents is interactive at several points that a picture cannot reach, and those are the parts worth clicking:
+
+- **The presenter, live.** The real-time arm of the fork, the one none of these gates apply to, is a conversational avatar rather than a rendered file. On a page you could talk to her instead of watching a clip of her.
+- **The voice, as a control rather than a recording.** Type a line, hear it in the cloned voice, and watch the three drawn takes and the median that gets kept. The 6 to 37 percent duration spread is the sort of thing you believe once you have made it happen yourself.
+- **The register-shaping agent.** The second of the two script agents, the one trained on years of my own prompts. Currently a companion repo, available on request; a hosted version would let you feed it a flat sentence and see what it does to the cadence.
+- **The gates, run against your own input.** Upload a still, watch the separation probe measure the torso against the fill, and get refused if you wore black.
+
+Hosting is the easy part: the diagram already runs as a self-contained page, and the interactive pieces want a real runtime, so Vercel is the likely target rather than static Pages.
+
+None of this is built. It is listed here because the parts it would be built from are, and because the honest version of a roadmap names what does not exist yet.
 
 ---
 
