@@ -153,14 +153,15 @@ Every figure in the diagram is a measurement published elsewhere in this reposit
 
 ## The suite, stage by stage
 
-Ten stages, and each one reads at three depths: the paragraph is the decision anyone building this has to make, the indented line is what I chose and the measurement that forced it, and the bullets are the literal mechanics. Skim the paragraphs for the argument, drop into the bullets when you want the file and the number. Every image below is from the single run at the top of this page.
+Ten stages, and each one reads at three depths: the paragraph is the decision anyone building this has to make, the indented line is what I chose and the measurement that forced it, and the bullets are the literal mechanics. Skim the paragraphs for the argument, drop into the bullets when you want the file and the number. Every image below is from the single run at the top of this page, with one exception: the stage 0 and 1 panel carries the numbers of the latest scheduled run, because that is the part of the suite that keeps moving.
 
 <p align="center">
   <img src="assets/stage-wake-script.svg" alt="Stage 0, the scheduled wake, beside stage 1, the script" width="100%">
 </p>
 
 <p align="center">
-  <img src="assets/voice-wave.png" alt="Stage 2, the cloned voice waveform" width="100%">
+  <a href="assets/voice-narration.m4a"><img src="assets/voice-wave.png" alt="Stage 2, the cloned voice waveform. Click to hear the narration itself" width="100%"></a><br>
+  <sub><b>The waveform is a link.</b> Click it for the actual soundtrack: 169 seconds of the cloned voice, the kept median take. Images are mute and the voice is half the product.</sub>
 </p>
 
 ### 0. Wake
@@ -180,6 +181,7 @@ Whose words, and whose register? Generic ad copy is safe and forgettable; real m
 
 - The voice-shaping agent is a separate project with its own repository. **Available on request** (not yet public, so no dead link here).
 - The clip on this page is a deliberate exception and says so out loud: for a public demo she explains the pipeline itself rather than anything from my notes.
+- Since the re-couple change (2026-07-30), the scheduled daily clip speaks borrowed words **verbatim**: the voice agent writes as me, and the pipeline may trim from the end to fit the 15 to 25 second slot, never rewrite. Today's run borrowed 114 words and trimmed 43.4 seconds down to 25.5. When the borrow fails, the clip is agent-authored and says so in the clip itself, because silently substituting the words is the one failure this stage must never ship.
 - Scripts are held above 250 characters, because shorter ones measured about 110 Hz brighter and less consistent on this voice. Padding a short script is quality control, not filler.
 
 ### 2. Voice
@@ -193,6 +195,7 @@ Clone a real voice or license a synthetic one? Cloning is better and carries a c
 - Transcribe the winner and diff it against the intended script. Proper nouns are where synthesis fails, and no render can repair audio that was already wrong. This clip scored 541 of 541 words at similarity 1.0000. The check earns its keep by what it catches on a *bad* run, so it is worth stating that it was skipped on nine earlier renders here and only reinstated after the fact.
 - **The synthesis model is pinned, and getting that wrong is silent.** Nine clips shipped on the wrong text-to-speech model before anyone noticed, because a wrong model does not error: it just returns a flatter reading of the correct words. Measured against the human reference on three axes, the wrong model held pitch range at 26.8 Hz against the reference's 44.9, and rested 11.4 percent of the time against the reference's 19.0. The pinned model reads 35.6 and 15.3. Nothing in the pipeline compared a delivered clip to the source recording, so the only detector was a person saying it sounded flat.
 - Add a 0.6-second settle beat, because the synthesizer returns zero trailing silence and the render ends exactly at the audio, which leaves a mouth mid-motion on the final frame.
+- **Hear it, not just read about it:** [the kept take itself](assets/voice-narration.m4a), 169 seconds, the exact audio track the clip carries.
 
 <table>
   <tr>
