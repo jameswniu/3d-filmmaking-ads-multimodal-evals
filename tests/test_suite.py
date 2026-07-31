@@ -166,10 +166,16 @@ def test_no_retired_claim_survives_on_any_surface():
     own aria-label twin. Fixing the visible pixels while leaving the accessible
     text is not fixing it.
 
-    This matters more than a normal staleness check because assets/hero.svg and
-    assets/architecture.svg are written by a generator that is NOT in this
-    repository. Regenerating from that private tree would silently restore both
-    claims with nothing to notice. This makes that loud.
+    This used to matter more than a normal staleness check, because both SVGs
+    were written by a generator that was NOT in this repository: regenerating
+    from that private tree would have silently restored both claims with nothing
+    to notice. tools/render_diagrams.py closes that hole for architecture.svg,
+    which is now generated here and byte-checked in CI.
+
+    This test stays, and not merely out of caution. hero.svg is an illustration
+    rather than a diagram of boxes, so it is audited for its counts but not
+    generated, and a retired CLAIM is a sentence rather than a number, which no
+    count audit can see. This is the check that reads the words.
     """
     # Regexes, not substrings. The first version used bare substrings and flagged
     # two correct sentences: "holds each derived constant inside the interval" and
@@ -286,6 +292,45 @@ def test_no_dead_gating_constants():
             if const not in loaded:
                 dead.append(f"{name}:{const}:{line}")
     assert not dead, "assigned but never read: " + ", ".join(dead)
+
+
+# --- the diagrams are computed, not typed ------------------------------------
+
+def test_architecture_svg_matches_its_generator():
+    """The published diagram must be what tools/render_diagrams.py emits.
+
+    This closes the hole the retired-claim scanner below was only able to
+    mitigate. That test's docstring said the SVGs came from a generator NOT in
+    this repository, so regenerating from the private tree could silently
+    restore a retired claim. The generator is here now, so the SVG is output
+    rather than a typed artifact, and a hand edit to it fails the build.
+    """
+    r = run(["tools/render_diagrams.py", "--check"])
+    assert r.returncode == 0, (
+        "assets/architecture.svg is not what the generator emits. Run "
+        "`python3 tools/render_diagrams.py --write` and read the diff.\n"
+        + r.stdout + r.stderr)
+
+
+def test_stated_counts_agree_on_every_surface():
+    """No published surface may state a count the generator disagrees with.
+
+    architecture.svg is generated, but hero.svg is an illustration and is not,
+    and docs/architecture.html and the README badges state the same numbers in
+    their own formatting. Those were four independent copies of `13 probes` and
+    `77 views` that happened to agree. This makes them agree by construction.
+
+    The hit count is asserted as well as the verdict, because a pattern that
+    silently stops matching would otherwise report a clean audit of nothing.
+    """
+    r = run(["tools/render_diagrams.py", "--audit"])
+    assert r.returncode == 0, "a surface disagrees with the generator:\n" + \
+        r.stdout + r.stderr
+    found = re.search(r"(\d+) stated counts", r.stdout)
+    assert found, "audit did not report how many counts it checked: " + r.stdout
+    assert int(found.group(1)) >= 15, (
+        f"audit only found {found.group(1)} stated counts, which means a "
+        "pattern stopped matching rather than that the surfaces are clean")
 
 
 def _main():

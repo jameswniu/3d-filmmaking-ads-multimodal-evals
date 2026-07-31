@@ -549,6 +549,7 @@ Want the same pipeline with your own voice and character? [`docs/SETUP.md`](docs
 - [`docs/EVIDENCE.md`](docs/EVIDENCE.md), every number above traced to what produced it
 - [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md), what this repo does not claim, and why
 - [`docs/PII-REVIEW.md`](docs/PII-REVIEW.md), the pre-publish privacy gate, what it caught, and every finding dismissed by hand
+- [`docs/ROADMAP.md`](docs/ROADMAP.md), work that is scoped and deliberately not done yet, and why each piece is deferred
 
 Two companion projects are referenced above and are not public yet: the agent that shapes her register, and the streaming voice-agent pipeline behind the live path. Both **available on request**.
 
@@ -566,6 +567,8 @@ Two companion projects are referenced above and are not public yet: the agent th
 Hosting is the easy part: the diagram already runs as a self-contained page, and the interactive pieces want a real runtime, so Vercel is the likely target rather than static Pages.
 
 None of this is built. It is listed here because the parts it would be built from are, and because the honest version of a roadmap names what does not exist yet.
+
+The engineering debt is tracked separately in [`docs/ROADMAP.md`](docs/ROADMAP.md), which is a different kind of list: not features that do not exist, but fixes that exist here and have not yet reached the private working tree they came from.
 
 ---
 

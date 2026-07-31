@@ -60,6 +60,15 @@ jobs:
       - name: Derive thresholds from the labelled exemplars
         run: python3 evals/derive.py
 
+      # The published diagram is output, not a typed artifact. --check fails on
+      # a hand edit; --audit fails when a count moves in one surface and not
+      # the others, which is how `13 probes` and `77 views` came to exist as
+      # four independent strings that merely happened to agree.
+      - name: Diagrams match their generator
+        run: |
+          python3 tools/render_diagrams.py --check
+          python3 tools/render_diagrams.py --audit
+
       - name: Test suite
         run: python3 -m pytest tests/ -v
 
