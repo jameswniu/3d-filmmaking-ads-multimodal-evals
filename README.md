@@ -6,8 +6,8 @@
 
 <p align="center">
   <img alt="labelled: 113 stills, 67 clips" src="https://img.shields.io/badge/labelled-113_stills_%C2%B7_67_clips-0ea5e9?style=flat-square&labelColor=0f172a">
-  <img alt="probes: 13, each derived from labels" src="https://img.shields.io/badge/probes-13_derived-164e63?style=flat-square&labelColor=0f172a">
-  <img alt="gates: 4, blocking" src="https://img.shields.io/badge/gates-4_blocking-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="probes: 13" src="https://img.shields.io/badge/probes-13-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="gates: 4, three of which fail open" src="https://img.shields.io/badge/gates-4_%C2%B7_3_fail_open-164e63?style=flat-square&labelColor=0f172a">
   <img alt="views: 77 per frame" src="https://img.shields.io/badge/views-77_per_frame-164e63?style=flat-square&labelColor=0f172a">
   <img alt="cost: 1 credit per render" src="https://img.shields.io/badge/cost-1_credit_%2F_render-164e63?style=flat-square&labelColor=0f172a">
   <img alt="license: GPL-3.0" src="https://img.shields.io/badge/license-GPL--3.0-164e63?style=flat-square&labelColor=0f172a">
@@ -150,6 +150,36 @@ Four rows, and the reason they are separate rows is the interesting part. **Mete
 Every figure in the diagram is a measurement published elsewhere in this repository, and the generator refuses to write the file if those figures are no longer in the README, so the picture cannot quietly become a second source of truth.
 
 **Interactive version: [jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/architecture.html](https://jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/architecture.html)**, the same map with every box clickable to show the failure that forced it. Standalone, no dependencies, no build step; the source is [`docs/architecture.html`](docs/architecture.html).
+
+## The code, in three pieces
+
+Three decisions that carry the rest. Not a tour of the tree, just the three I would want read first.
+
+**The warp gets occlusion for free.** [`pipeline/warp_fast.py`](pipeline/warp_fast.py#L92)
+
+```python
+order        = np.argsort(depth, axis=1)   # far -> near, per row. ONCE per frame.
+color_sorted = color[rows, order].reshape(-1, 3)
+...
+for cam in cams:                           # 77 of them
+    dest_x = np.clip(order + shift, 0, w - 1)
+    flat   = (row_base + dest_x).reshape(-1)
+    buf[flat] = color_sorted               # later write wins => near occludes far
+```
+
+There is no depth test in that loop, and there does not need to be one. Rows are pre-sorted far to near, so when two source pixels land on the same destination, numpy's last-write-wins on a duplicated fancy index resolves the occlusion by construction. The sort is hoisted out of the view loop, so it is paid once per frame rather than 77 times. The `__main__` block benchmarks the result against the naive per-view implementation and asserts the two are bit-identical, because a speedup that changes a pixel is not a speedup.
+
+**The engine router refuses to guess a price.** [`pipeline/pick_engine.sh`](pipeline/pick_engine.sh#L24)
+
+It returns `credits_est: null` for any duration nobody has measured. The tempting formula, `ceil(sec/11)*5`, predicts 60 credits for a clip that actually billed 43, so it fails to reproduce the single point it was fitted to. A straight line through two points is also a guess, since it assumes billing is linear when it may be tiered or have a floor. The comment in the file puts it plainly:
+
+> One measurement cannot support a scaling law, and a formula is more dangerous than a missing number because it looks derived and nobody rechecks it. **NULL makes a caller ask. A confident 5 makes it spend 43.**
+
+That is not a hypothetical. The earlier flat `5` sent a batch of eight renders to 344 credits before anyone noticed.
+
+**The privacy gate that ran before this repo existed publicly.** [`tools/pii_scan.sh`](tools/pii_scan.sh)
+
+523 lines of deterministic scanning: a tab-separated rule table, three passes (content regex, filename shapes, EXIF), seven severity classes, an allowlist with counted suppressions, and structured `path:line:CLASS:SEVERITY:label` output that never prints the matched text, because a scanner that echoes the secret into your terminal has moved it, not found it. It is wired as a pre-commit hook and a CI job. Result on this repository: zero home paths, zero keys, zero vendor identifiers across all tracked files.
 
 <p align="center">
   <img src="assets/band-stages.svg" alt="The build: ten stages, each one a decision" width="100%">
@@ -430,7 +460,7 @@ python3 probes/eye_eval.py --validate    # scores the harness against its labell
                                          #  reports an empty set on a fresh clone)
 ```
 
-Every probe with no arguments prints its own derivation: what it measures, the exemplars its threshold came from, and in several cases the earlier versions of itself that were falsified and why. A threshold you cannot interrogate is a magic number.
+Most probes with no arguments print their own derivation: what they measure, the exemplars the threshold came from, and in several cases the earlier versions of themselves that were falsified and why. A threshold you cannot interrogate is a magic number.
 
 To reproduce the fail-open finding in [`docs/ENFORCEMENT.md`](docs/ENFORCEMENT.md), take away a guard's dependency and read its exit code:
 
