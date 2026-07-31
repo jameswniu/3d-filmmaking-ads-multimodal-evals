@@ -17,17 +17,17 @@
 
 <table>
   <tr>
-    <td width="34%" align="center">
+    <td width="34%" align="center" valign="top">
       <img src="assets/parallax-amplified.gif" alt="The presenter under a swaying virtual camera, nearer pixels travelling further than far ones, amplified four times" width="100%"><br>
       <sub><b>Depth, on a flat screen.</b> A virtual camera sways across the inferred depth map, near pixels travelling further than far ones. <b>This clip is exaggerated 4x and says so on the frame.</b> The real sweep across all 77 views moves her <b>19 px</b> inside a 480 px tile, about 4 percent, which is honest and nearly invisible at this size. The amber tick is fixed, because without something stationary the eye tracks her and cancels the very displacement the clip exists to show.</sub>
     </td>
-    <td width="33%" align="center">
+    <td width="33%" align="center" valign="top">
       <img src="assets/views-sweep.gif" alt="Six of the 77 camera views of one instant, cycled" width="100%"><br>
       <sub><b>Six of the 77 views, one instant.</b> Spread across the whole sweep rather than neighbours, because adjacent views differ by <b>0.25 px</b> and a block of them reads as one photo repeated. These are warped at the full square framing rather than cropped out of the quilt, so they sit at the same scale as the clips beside them; the panel's own tiles trim top and bottom to a 1.57 aspect. Every frame of the clip carries its own 77. <b><a href="assets/quilt-video.mp4">&#9654; full quilt video</a></b></sub>
     </td>
-    <td width="33%" align="center">
+    <td width="33%" align="center" valign="top">
       <img src="assets/glass-feed-demo.gif" alt="The presenter explaining the pipeline that renders her" width="100%"><br>
-      <sub><b>And she explains her own pipeline.</b> One pass, start to finish. GIFs are mute and the voice is half the point: <b><a href="assets/glass-feed-demo.mp4">&#9654; watch with sound (2:49)</a></b></sub>
+      <sub><b>And she explains her own pipeline.</b> One pass, start to finish. This is a single view, not the 77: a quilt is what the panel eats, not something a person can watch. On a flat screen there is no final product, which is the whole argument. GIFs are mute and the voice is half the point: <b><a href="assets/glass-feed-demo.mp4">&#9654; watch with sound (2:49)</a></b></sub>
     </td>
   </tr>
 </table>
