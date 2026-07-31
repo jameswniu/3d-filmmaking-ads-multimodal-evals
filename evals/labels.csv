@@ -1,0 +1,57 @@
+# Labelled exemplars behind the named gating thresholds in probes/.
+#
+# PROVENANCE. Two kinds of row, and the difference is the point:
+#   pixels=<path>     the frame ships here. derive.py re-measures it with the
+#                     probe's OWN function and fails if the number does not come
+#                     back. A stranger can check it.
+#   pixels=withheld   the source render is not retained. `measured` is the number
+#                     recorded in the probe's docstring at derivation time.
+#                     Attested, not reproducible. Counted separately, never quietly.
+#
+# VERDICT is the human call, made before any metric existed. pass and reject are
+# the only two that form a bracket. Two other values exist and are reported by
+# derive.py rather than dropped:
+#   marginal        the human called it neither good nor bad
+#   out-of-domain   the probe's question does not apply to this frame
+#
+# AXIS, not unit. Two constants in one module can share a unit and measure
+# unrelated things, so brackets match on axis and never on unit alone.
+#
+# KNOWN TENSION, recorded rather than resolved: scene_simplicity's b5c is marked
+# marginal on the strength of its human verdict, "kinda ok". Its own docstring
+# instead places the boundary between b5c (7.51) and T6 (9.50) while setting the
+# target to <= 7.5, which are not the same statement. Relabel b5c as pass and
+# III_MAX = 7.5 is REFUTED by a hundredth. That call belongs to the author, not
+# to whoever wrote this file, so it is flagged here instead of being decided here.
+#
+probe,item,verdict,measured,axis,pixels,note
+bg_detail,take1-final-pro,pass,4.27,bg_gradient,withheld,plain wall + sofa + one picture frame
+bg_detail,take3-final-pro,pass,3.61,bg_gradient,withheld,plain bedroom wall + warm lamp
+bg_detail,R2-sunrise-beach,reject,7.05,bg_gradient,withheld,
+bg_detail,R1-flower-stall,reject,11.64,bg_gradient,withheld,a wall of hundreds of roses and tulips
+bg_detail,R3-golden-florist,reject,12.06,bg_gradient,withheld,
+bg_detail,assets/look-still.jpg,pass,1.98,bg_gradient,assets/look-still.jpg,shipped stage-3 look; side bands are real background
+bg_detail,assets/render-frame.jpg,out-of-domain,1.36,bg_gradient,assets/render-frame.jpg,side bands are 87% flat pillarbox; measures padding not backdrop
+bg_detail,assets/hologram-full.mp4,out-of-domain,2.40,bg_gradient,assets/hologram-full.mp4,side bands are 82% flat pillarbox
+bg_detail,assets/stage-nobg.jpg,out-of-domain,5.43,bg_gradient,assets/stage-nobg.jpg,background already removed; the question does not apply
+scene_simplicity,r3,pass,2.68,scene_gradient,withheld,human verdict "perfect"
+scene_simplicity,b5c,marginal,7.51,scene_gradient,withheld,human verdict "kinda ok"; see KNOWN TENSION above
+scene_simplicity,T6,reject,9.50,scene_gradient,withheld,human verdict "worst"
+scene_simplicity,T3,reject,13.40,scene_gradient,withheld,
+scene_simplicity,T2,reject,14.90,scene_gradient,withheld,
+scene_simplicity,T4,reject,17.00,scene_gradient,withheld,
+eye_eval,worst-labelled-pass,pass,3.30,eye_gradient,withheld,role name not a clip id; restates the docstring conclusion
+eye_eval,best-labelled-reject,reject,5.32,eye_gradient,withheld,role name not a clip id
+eye_eval,second-reject,reject,11.09,eye_gradient,withheld,
+eye_eval,third-reject,reject,11.78,eye_gradient,withheld,
+separation_probe,accepted-take,pass,2.64,subject_in_fill,withheld,share of subject within 12 luma of the fill
+separation_probe,floating-head,reject,30.71,subject_in_fill,withheld,the clip that shipped a floating head
+sync_probe,take3-final-pro,pass,-160,mouth_lag_ms,withheld,mouth leads; ship_gate.sh states this bound as -240
+sync_probe,M1,pass,-80,mouth_lag_ms,withheld,
+sync_probe,F1,pass,-40,mouth_lag_ms,withheld,
+sync_probe,G1,pass,40,mouth_lag_ms,withheld,human verdict "fine"; worst pass
+sync_probe,G4b,reject,120,mouth_lag_ms,withheld,human verdict "the lip sync is a bit off"
+sync_probe,G5b,reject,240,mouth_lag_ms,withheld,human verdict "the lip sync is a bit off"
+level_probe,scene-pass-low,pass,3.70,scene_level,withheld,SCENE_MAX re-derived 2026-07-26
+level_probe,scene-pass-high,pass,3.80,scene_level,withheld,in the golden set
+level_probe,scene-reject,reject,7.70,scene_level,withheld,best of the rejects

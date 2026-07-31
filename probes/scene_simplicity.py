@@ -26,7 +26,11 @@ import numpy as np
 III_MAX = 7.5
 
 def main():
-    p = sys.argv[1]
+    positional = [a for a in sys.argv[1:] if not a.startswith("-")]
+    if len(positional) < 1:
+        print("usage: scene_simplicity.py IMAGE-or-VIDEO", file=sys.stderr)
+        return 2
+    p = positional[0]
     raw = subprocess.run(["ffmpeg","-nostdin","-v","error","-i",p,"-vf",
                           "fps=2,scale=160:160,format=gray","-f","rawvideo","pipe:1"],
                          capture_output=True).stdout
@@ -41,4 +45,4 @@ def main():
     sys.exit(0 if ok else 1)
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

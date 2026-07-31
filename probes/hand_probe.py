@@ -16,7 +16,11 @@ import subprocess, sys
 import numpy as np
 
 def main():
-    path = sys.argv[1]
+    positional = [a for a in sys.argv[1:] if not a.startswith("-")]
+    if len(positional) < 1:
+        print("usage: hand_probe.py CLIP.mp4", file=sys.stderr)
+        return 2
+    path = positional[0]
     raw = subprocess.run(["ffmpeg","-nostdin","-v","error","-i",path,"-vf",
                           "fps=10,scale=128:128,format=gray","-f","rawvideo","pipe:1"],
                          capture_output=True).stdout
@@ -40,4 +44,4 @@ def main():
     sys.exit(0)
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

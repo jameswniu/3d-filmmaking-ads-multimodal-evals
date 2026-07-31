@@ -61,7 +61,11 @@ def spread(x) -> float:
 
 
 def main():
-    path = sys.argv[1]
+    positional = [a for a in sys.argv[1:] if not a.startswith("-")]
+    if len(positional) < 1:
+        print("usage: level_probe.py CLIP.mp4 [--json]", file=sys.stderr)
+        return 2
+    path = positional[0]
     s = series(path)
     if s is None:
         print("level_probe: clip too short to judge")
@@ -84,4 +88,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
