@@ -63,6 +63,11 @@ jobs:
       - name: Test suite
         run: python3 -m pytest tests/ -v
 
+      # Stage 0 is the scheduler, lock, budget cap and timeout. It has no vendor
+      # in it, so unlike the other unshipped stages it can be tested here.
+      - name: Wake selftest
+        run: bash pipeline/wake.sh selftest
+
       # The one executable test that predates this workflow. It used to fail on a
       # fresh clone because it asserts on a string only emitted when
       # learned_rules.md exists, and that file was never committed. It is now

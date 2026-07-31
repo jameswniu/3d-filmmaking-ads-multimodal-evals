@@ -128,7 +128,13 @@ def main():
     dw = int(probe1(depth_in, "width")); dh = int(probe1(depth_in, "height"))
 
     dev = "mps" if torch.backends.mps.is_available() else "cpu"
-    model = torch.hub.load("PeterL1n/RobustVideoMatting", "mobilenetv3",
+    # PINNED. Without a ref this resolves to the default branch at run time,
+    # and trust_repo=True suppresses the confirmation, so an upstream force-push
+    # would execute new code inside an unattended render. The SHA below is the
+    # master commit as of 2023-03-13, read from the GitHub API on 2026-07-31.
+    # With the ref fixed, trust_repo is no longer a moving target.
+    MATTING_REF = "53d74c6826735f01f4406b5ca9075eee27bec094"
+    model = torch.hub.load(f"PeterL1n/RobustVideoMatting:{MATTING_REF}", "mobilenetv3",
                            trust_repo=True).to(dev).eval()
     # RVM guideline: internal downsample so the matte net sees ~512px.
     base_px = float(os.environ.get("MATTE_PX", "512"))   # net's internal view; more = finer wisps, slower

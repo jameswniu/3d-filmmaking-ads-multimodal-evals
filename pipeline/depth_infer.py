@@ -54,6 +54,11 @@ def main() -> int:
     ap.add_argument("--frames-dir", required=True, help="directory of input color frame PNGs")
     ap.add_argument("--out-dir", required=True, help="directory to write depth frame PNGs (same filenames)")
     ap.add_argument("--model", default="depth-anything/Depth-Anything-V2-Large-hf", help="transformers model id")
+    # Pinned for the same reason as the matting weights: an unattended run must
+    # not silently change model between days. Revision read from the HF API on
+    # 2026-07-31. Pass --revision main to deliberately track upstream.
+    ap.add_argument("--revision", default="7581137eff8d4e94f6e796d3baea0e9fa79b22d2",
+                    help="model revision to pin (default: the one this was measured against)")
     ap.add_argument("--device", default="auto", help="mps, cpu, or auto (default: auto)")
     ap.add_argument("--low-pct", type=float, default=1.0, help="lower percentile for the global normalize range")
     ap.add_argument("--high-pct", type=float, default=99.0, help="upper percentile for the global normalize range")
@@ -80,7 +85,8 @@ def main() -> int:
     from transformers import pipeline  # deferred: heavy import, keep --help fast
 
     t0 = time.time()
-    pipe = pipeline(task="depth-estimation", model=args.model, device=device)
+    pipe = pipeline(task="depth-estimation", model=args.model, device=device,
+                    revision=args.revision)
     print(f"[depth_infer] model loaded in {time.time() - t0:.1f}s")
 
     n_all = len(frame_paths)
