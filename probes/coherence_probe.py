@@ -50,7 +50,6 @@ import sys
 import numpy as np
 
 REST_MIN = 0.10          # human floor: below this the take reads constant-motion
-LOCK_MIN = 0.50          # bursts anchored to speech events
 REST_RUN_S = 0.25        # stillness must persist to count as rest
 REST_LEVEL = 0.38        # rest threshold = this * p75(motion during speech); calibrated
                          # so the r16 human anchor lands in its eye-verified 0.10-0.17

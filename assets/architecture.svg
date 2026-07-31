@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 780" width="1040" height="780" role="img" aria-label="Architecture: metered vendors, ten pipeline stages, the fork, local models and four blocking gates">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 780" width="1040" height="780" role="img" aria-label="Architecture: metered vendors, ten pipeline stages, the fork, local models and four gates, three of which fail open">
 <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#38bdf8"/></marker><marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f0b429"/></marker><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#081228"/><stop offset="1" stop-color="#04091a"/></linearGradient></defs>
 <rect width="1040" height="780" fill="url(#bg)"/>
 <text x="20" y="42" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="24" fill="#e0f2fe" font-weight="700" text-anchor="start">Architecture</text>
 <text x="20" y="66" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" fill="#8fb4d8" font-weight="normal" text-anchor="start">One unattended run, left to right. The gates are the row that can stop it.</text>
-<text x="1020" y="42" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13.5" fill="#8fb4d8" font-weight="normal" text-anchor="end">13 probes  ·  4 blocking gates  ·  77 views</text>
+<text x="1020" y="42" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13.5" fill="#8fb4d8" font-weight="normal" text-anchor="end">13 probes  ·  4 gates, 3 fail open  ·  77 views</text>
 <text x="1020" y="62" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13.5" fill="#8fb4d8" font-weight="normal" text-anchor="end">1 credit per scheduled render</text>
 <line x1="20" y1="84" x2="1020" y2="84" stroke="#1e3a64"/>
 <line x1="20" y1="92" x2="1020" y2="92" stroke="#1e3a64"/>

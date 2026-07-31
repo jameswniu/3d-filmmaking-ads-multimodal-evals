@@ -6,8 +6,8 @@
 
 <p align="center">
   <img alt="labelled: 113 stills, 67 clips" src="https://img.shields.io/badge/labelled-113_stills_%C2%B7_67_clips-0ea5e9?style=flat-square&labelColor=0f172a">
-  <img alt="probes: 13, each derived from labels" src="https://img.shields.io/badge/probes-13_derived-164e63?style=flat-square&labelColor=0f172a">
-  <img alt="gates: 4, blocking" src="https://img.shields.io/badge/gates-4_blocking-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="probes: 13, and 5 of 15 named gating thresholds derived from labelled exemplars" src="https://img.shields.io/badge/probes-13_%C2%B7_5%2F15_derived-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="gates: 4, three of which fail open" src="https://img.shields.io/badge/gates-4_%C2%B7_3_fail_open-164e63?style=flat-square&labelColor=0f172a">
   <img alt="views: 77 per frame" src="https://img.shields.io/badge/views-77_per_frame-164e63?style=flat-square&labelColor=0f172a">
   <img alt="cost: 1 credit per render" src="https://img.shields.io/badge/cost-1_credit_%2F_render-164e63?style=flat-square&labelColor=0f172a">
   <img alt="license: GPL-3.0" src="https://img.shields.io/badge/license-GPL--3.0-164e63?style=flat-square&labelColor=0f172a">
@@ -74,7 +74,7 @@ label  ->  derive  ->  gate  ->  render  ->  relabel
 
 **Label.** 113 hand-labelled stills. 67 labelled clips. 174 frame-level identity records. 677 pairwise A/B verdicts. A render ledger of 14 renders, 7 kept and 3 rejected. Plain-language verdicts, kept as data.
 
-**Derive.** Every threshold in [`probes/`](probes/) comes from a labelled pass exemplar and a labelled fail exemplar. Never typed. The surviving eye model's background bar (4.5) sits between the worst labelled pass (3.30) and the best labelled reject (5.32), and its self-test exits nonzero unless it agrees with the labels 100 percent.
+**Derive.** Five of the fifteen named gating thresholds in [`probes/`](probes/) come from a labelled pass exemplar and a labelled fail exemplar. The other ten were typed by hand. Run [`evals/derive.py`](evals/derive.py) and it prints that split, and refuses any constant sitting outside the interval its own labels imply. The eye model's background bar (4.5) is one of the five: it sits between the worst labelled pass (3.30) and the best labelled reject (5.32).
 
 **Gate.** Thresholds become guards that run before money is spent. Judging is blind. Gates are ranked by what happens when they are violated, which is why the same constraint held 14 of 15 runs at the outcome and only 6 of 15 at the first attempt: the gap is a pre-call hook, not better prose.
 
@@ -142,7 +142,7 @@ Separation is why the evals can exist at all. A single end-to-end model would le
 ## Architecture
 
 <p align="center">
-  <img src="assets/architecture.svg" alt="System architecture: metered vendors, ten pipeline stages, the fork to the real-time arm, local models, and the four blocking gates" width="100%">
+  <img src="assets/architecture.svg" alt="System architecture: metered vendors, ten pipeline stages, the fork to the real-time arm, local models, and the four gates, three of which fail open" width="100%">
 </p>
 
 Four rows, and the reason they are separate rows is the interesting part. **Metered** is anything a run can spend money on, which is exactly two vendors. **Local** is everything that runs on this machine for free, which is why a daily render's marginal cost is one credit and not a model bill. **Gates** sit under the stage they act on, and only four of the thirteen probes are down there: the rest report a number and let the run continue, because a metric that has not proven itself stable inside a single clip has not earned the authority to stop one.
@@ -150,6 +150,36 @@ Four rows, and the reason they are separate rows is the interesting part. **Mete
 Every figure in the diagram is a measurement published elsewhere in this repository, and the generator refuses to write the file if those figures are no longer in the README, so the picture cannot quietly become a second source of truth.
 
 **Interactive version: [jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/architecture.html](https://jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/architecture.html)**, the same map with every box clickable to show the failure that forced it. Standalone, no dependencies, no build step; the source is [`docs/architecture.html`](docs/architecture.html).
+
+## The code, in three pieces
+
+Three decisions that carry the rest. Not a tour of the tree, just the three I would want read first.
+
+**The warp gets occlusion for free.** [`pipeline/warp_fast.py`](pipeline/warp_fast.py#L92)
+
+```python
+order        = np.argsort(depth, axis=1)   # far -> near, per row. ONCE per frame.
+color_sorted = color[rows, order].reshape(-1, 3)
+...
+for cam in cams:                           # 77 of them
+    dest_x = np.clip(order + shift, 0, w - 1)
+    flat   = (row_base + dest_x).reshape(-1)
+    buf[flat] = color_sorted               # later write wins => near occludes far
+```
+
+There is no depth test in that loop, and there does not need to be one. Rows are pre-sorted far to near, so when two source pixels land on the same destination, numpy's last-write-wins on a duplicated fancy index resolves the occlusion by construction. The sort is hoisted out of the view loop, so it is paid once per frame rather than 77 times. The `__main__` block benchmarks the result against the naive per-view implementation and asserts the two are bit-identical, because a speedup that changes a pixel is not a speedup.
+
+**The engine router refuses to guess a price.** [`pipeline/pick_engine.sh`](pipeline/pick_engine.sh#L24)
+
+It returns `credits_est: null` for any duration nobody has measured. The tempting formula, `ceil(sec/11)*5`, predicts 60 credits for a clip that actually billed 43, so it fails to reproduce the single point it was fitted to. A straight line through two points is also a guess, since it assumes billing is linear when it may be tiered or have a floor. The comment in the file puts it plainly:
+
+> One measurement cannot support a scaling law, and a formula is more dangerous than a missing number because it looks derived and nobody rechecks it. **NULL makes a caller ask. A confident 5 makes it spend 43.**
+
+That is not a hypothetical. The earlier flat `5` sent a batch of eight renders to 344 credits before anyone noticed.
+
+**The privacy gate that ran before this repo existed publicly.** [`tools/pii_scan.sh`](tools/pii_scan.sh)
+
+523 lines of deterministic scanning: a tab-separated rule table, three passes (content regex, filename shapes, EXIF), seven severity classes, an allowlist with counted suppressions, and structured `path:line:CLASS:SEVERITY:label` output that never prints the matched text, because a scanner that echoes the secret into your terminal has moved it, not found it. It is wired as a pre-commit hook and a CI job. Result on this repository: zero home paths, zero keys, zero vendor identifiers across all tracked files.
 
 <p align="center">
   <img src="assets/band-stages.svg" alt="The build: ten stages, each one a decision" width="100%">
@@ -244,7 +274,7 @@ Everything up to here is shared: the schedule, the words, the cloned voice, the 
 
 > **Rendered** output is finished before it ships, so every gate in this repository can run in the gap between "the file exists" and "a human sees it." That gap is the entire reason this pipeline can be trusted unattended. **Live** output has no such gap: the voice is synthesized in the moment, mid-conversation, and there is no frame to inspect before it is already on someone's screen. So the gating doctrine here does not port across the fork. It is not that the live path needs different thresholds. It is that pre-spend review, the mechanism all nine invariants rest on, does not exist there at all.
 
-**The rendered path, stages 5 through 9 below.** Matte, evaluate, infer depth, build the 77-view quilt, cast to glass. Fully built, runs on a timer, and is what the rest of this page documents. Latency is irrelevant, which is exactly what buys room for thirteen probes and four blocking guards.
+**The rendered path, stages 5 through 9 below.** Matte, evaluate, infer depth, build the 77-view quilt, cast to glass. Fully built, runs on a timer, and is what the rest of this page documents. Latency is irrelevant, which is exactly what buys room for thirteen probes and four guards, three of which fail open.
 
 **The live path.** A real-time conversational avatar, its speech driven by a streaming voice agent rather than a rendered audio file. Two things are true about it and neither is a boast:
 
@@ -275,10 +305,10 @@ Keep the room or separate the person? Keeping it is free and reads as dead, beca
 
 Gate on the outcome or on the attempt? Outcome metrics are what dashboards show, and they cannot tell a system that complied apart from a system that was stopped. Measured at the outcome, one constraint here held 14 runs out of 15. Measured at the first attempt, the same constraint held 6 out of 15. Both numbers are true, and only the second one tells you the rule was being ignored and then caught.
 
-> Nine invariants, thirteen probes, every threshold derived from a labelled pass exemplar and a labelled fail exemplar, judging done blind, and a hard wall between metrics that **gate** and metrics that only **report**. A metric has to be stable *within* a single clip before it earns any authority over spend, because agreement with a small labelled set is cheap and noise reproduces it easily.
+> Nine invariants, thirteen probes, five of the fifteen named gating thresholds derived from a labelled pass and fail exemplar and the other ten honestly marked as typed, judging done blind, and a hard wall between metrics that **gate** and metrics that only **report**. A metric has to be stable *within* a single clip before it earns any authority over spend, because agreement with a small labelled set is cheap and noise reproduces it easily.
 
 - Probes run against the rendered clip and its subtitle track. The ship gate refuses outright on geometry failures, and for judgement calls it cannot make itself it demands an explicit written reason rather than a boolean.
-- Every threshold's derivation, including the ten scoring models that died in a single day, is in [`docs/EVALS.md`](docs/EVALS.md).
+- The derivations that exist, including the ten scoring models that died in a single day, is in [`docs/EVALS.md`](docs/EVALS.md).
 - The gates are ranked by what happens when they are violated, not by how important they feel. Nothing here is allowed to be a check in name only: four guards were deliberately broken to find out, and three of them approved everything when a single config file went missing while still reporting green.
 
 ### 7. Depth
@@ -421,16 +451,45 @@ Reference code, not a turnkey app: the Python stages need torch, an open depth m
 The pipeline needs my vendor accounts and a light-field panel. The **measurement layer** does not, and it is the part worth reading anyway.
 
 ```
-pip install -r requirements.txt          # opencv-python, numpy. Guards need jq.
+pip install -r requirements.txt          # opencv-python, numpy, Pillow. Guards need jq.
+                                         # ffmpeg and ffprobe must be on PATH.
 
+python3 evals/derive.py                  # THE ONE TO RUN. Re-measures every labelled
+                                         # frame that ships here, brackets each named
+                                         # constant against its labels, and prints how
+                                         # many are derived and how many were typed.
 python3 probes/sync_probe.py             # no args: prints what it measures and why
 python3 probes/sync_probe.py clip.mp4    # measures lip-sync lag on your own clip
-python3 probes/eye_eval.py --validate    # scores the harness against its labelled set
-                                         # (labelled clips are not published, so this
-                                         #  reports an empty set on a fresh clone)
+python3 tests/test_suite.py              # the checks CI runs (no pytest needed)
 ```
 
-Every probe with no arguments prints its own derivation: what it measures, the exemplars its threshold came from, and in several cases the earlier versions of itself that were falsified and why. A threshold you cannot interrogate is a magic number.
+`derive.py` is the repo arguing with itself. It re-measures every labelled frame that
+ships here using the probe's own function, refuses to let a gating constant sit outside
+the bracket its labels imply, and prints the split:
+
+```
+GATE                                        VALUE  POLARITY  PASS EDGE REJECT EDGE  STATUS
+seam_check.PICTURE_FACTOR                    6.00   ceiling          -           -  AUTHORED
+bg_detail.MAX_DETAIL                         5.50   ceiling       4.27        7.05  DERIVED
+sync_probe.LAG_MAX                          80.00   ceiling      40.00      120.00  DERIVED  (not a gate)
+
+5 of 15 NAMED gating thresholds are DERIVED from a labelled pass/reject pair on the same axis.
+10 are AUTHORED: typed by hand, no exemplar pair in evals/labels.csv.
+```
+
+**Five of fifteen.** This page used to say every threshold was derived and none was
+typed, which grep disproves in about four minutes. The honest number is worse than the
+claim and more useful than it. `tests/test_suite.py` pins it, so CI goes red when the
+count moves in either direction and the number here has to be updated with it.
+
+Fifteen is named constants that can refuse a clip on their own. It is NOT every way the
+suite can refuse one: `lipsync_probe` gates on nine inline literals and `spasm_probe` on
+`post.sum() < 0.30 * fps`, and an unnamed number cannot be bracketed. `derive.py` says so
+in its own header rather than letting the denominator flatter the result. Of the 30
+labelled rows, 4 ship their pixels and are recomputed on every run; the rest are attested
+from the derivation notes, because those source renders are not retained.
+
+Most probes with no arguments print their own derivation: what they measure, the exemplars the threshold came from, and in several cases the earlier versions of themselves that were falsified and why. A threshold you cannot interrogate is a magic number.
 
 To reproduce the fail-open finding in [`docs/ENFORCEMENT.md`](docs/ENFORCEMENT.md), take away a guard's dependency and read its exit code:
 
@@ -452,7 +511,7 @@ Want the same pipeline with your own voice and character? [`docs/SETUP.md`](docs
 
 ## Read next
 
-- [`docs/EVALS.md`](docs/EVALS.md), the eval doctrine: every threshold's derivation, every retracted metric, and the case study of cloning a voice by ear
+- [`docs/EVALS.md`](docs/EVALS.md), the eval doctrine: the derivations that exist, every retracted metric, and the case study of cloning a voice by ear
 - [`docs/SETUP.md`](docs/SETUP.md), clone your voice, generate your character, pin both, in the order that works
 - [`docs/COST.md`](docs/COST.md), the measured credit schedule, the 344-credit incident, and which vendor tiers to buy
 - [`docs/RELIABILITY.md`](docs/RELIABILITY.md), why the quality gate stopped blocking and what replaced it

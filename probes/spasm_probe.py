@@ -23,7 +23,8 @@ activity; SRT sidecar gives speech spans (same audio => same cues for every take
 Score = post-speech mean / speech mean, plus the worst 1s post window and the
 inter-cue-gap ratio.
 
-Verdict: FAIL >= 0.75, WARN >= 0.50, else PASS.  Exit 0 PASS / 1 WARN / 2 FAIL.
+Verdict: FAIL when post-speech runway is under 0.30 * fps frames, else REPORT;
+no PASS or WARN is ever emitted. Exit 0 REPORT / 2 FAIL.
 Usage: spasm_probe.py <clip.mp4> <sidecar.srt> [--json]
 """
 import json
@@ -33,8 +34,6 @@ import sys
 
 import numpy as np
 
-FAIL_RATIO = 0.75
-WARN_RATIO = 0.50
 POST_GRACE_S = 0.15     # let the final phoneme close
 
 
@@ -82,7 +81,11 @@ def srt_spans(srt: str):
 
 
 def main():
-    path, srt = sys.argv[1], sys.argv[2]
+    positional = [a for a in sys.argv[1:] if not a.startswith("-")]
+    if len(positional) < 2:
+        print("usage: spasm_probe.py CLIP.mp4 CUES.srt", file=sys.stderr)
+        return 2
+    path, srt = positional[0], positional[1]
     as_json = "--json" in sys.argv
     fps = clip_fps(path)
     d = mouth_series(path)
@@ -153,4 +156,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

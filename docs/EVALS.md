@@ -34,7 +34,9 @@ Nothing in this repository treats a label as noise to be smoothed. The labels ar
 
 ## 2. Derive
 
-Every threshold in [`../probes/`](../probes/) is computed from a labelled pass exemplar and a labelled fail exemplar. None is typed from intuition. Intuition was tried, repeatedly, and lost:
+Five of the fifteen named gating thresholds in [`../probes/`](../probes/) are computed from a labelled pass exemplar and a labelled fail exemplar. The other ten were typed by hand. [`../evals/derive.py`](../evals/derive.py) prints that split and holds each derived constant inside the interval its own labels imply.
+
+This paragraph used to claim all of them were derived and that none was typed from intuition. That was false: `lipsync_probe.py` alone refuses clips on nine hand-picked inline numbers. The count above is prose and can go stale like any other sentence, so `tests/test_suite.py` pins it and CI fails when it moves. Where intuition was tried against the labels, it lost:
 
 **Ten models died in one day.** Every one was built on a plausible axis. Every one inverted on contact with the labelled set. The survivor, in `eye_eval.py`, reproduces the labels on a single axis and its background bar (4.5) sits between the worst labelled pass (3.30) and the best labelled reject (5.32). That file's `--validate` mode exits nonzero unless it agrees with the labels 100%, on the principle that a disagreement means *this file* is wrong, never the eye.
 

@@ -135,7 +135,7 @@ fi
 SPASM_R=$(echo "$SPASM_OUT" | grep -oE "ratio [0-9.]+|ratio inf" | head -1 | awk '{print $2}')
 echo "${SPASM_R:-unmeasured}" > "/tmp/.spasm-$(basename "$F")"
 if [ "$SPASM_RC" = "2" ]; then
-  echo "  >>> DISCLOSE IN DELIVERY: mouth does not settle, spasm ${SPASM_R:-?} (fail bar 0.75)."
+  echo "  >>> DISCLOSE IN DELIVERY: mouth does not settle, spasm ${SPASM_R:-?} (fails under 0.30*fps of post-speech runway)."
   echo "  >>> Single take is the standing default, so this ships WITH the number stated to me."
   echo "  >>> Metering several takes (the best-take step) is the only fix, and needs my explicit go."
 fi
