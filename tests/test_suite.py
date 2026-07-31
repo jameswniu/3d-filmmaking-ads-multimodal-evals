@@ -104,36 +104,56 @@ WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "sev
 
 
 def test_documented_counts_match_the_tool():
-    """Every stated count must equal what derive.py actually prints.
+    """EVERY stated count in the docs must equal what derive.py prints.
 
-    The claim this repo replaced ("every threshold derived, never typed") was a
-    hand-written sentence that nothing checked, so it stayed wrong. Writing a
-    truer sentence changes nothing unless something enforces it. This does: move
-    the labels, and every doc that states the count goes red until it is updated.
+    An earlier version of this test named six exact strings. That was not enough,
+    and an adversarial pass proved it: move the real count, update only the six
+    surfaces the test names, and the suite stays green while the README asserts
+    five derived plus ten authored out of a total of fifteen that no longer adds
+    up, and quotes a line derive.py no longer prints.
+
+    So this scans instead of matching fixed needles. Any sentence anywhere in
+    these files that states one of these counts is checked, including ones added
+    after this test was written. A pattern with `required` also has to appear at
+    least once, so deleting the sentence is not a way to pass.
     """
     data = derive_json()
-    d, m = data["derived"], data["n_gating"]
-    dw, mw = WORDS.get(d, str(d)), WORDS.get(m, str(m))
-    # Each needle must be UNIQUE to the surface it checks. A shared substring lets
-    # one occurrence satisfy several checks, and then editing a single surface
-    # leaves the suite green: caught by a negative control that failed to fail.
-    # (file, needle, case_sensitive)
-    required = [
-        ("README.md", f"and {d} of {m} named gating thresholds derived", False),
-        ("README.md", f"{d}%2F{m}_derived", True),
-        ("README.md", f"{d} of {m} NAMED gating thresholds are DERIVED", True),
-        ("README.md", f"{dw} of the {mw} named gating thresholds in", False),
-        ("README.md", f"**{dw} of {mw}.**", False),
-        ("docs/EVALS.md", f"{dw} of the {mw} named gating thresholds in", False),
+    d, a, m = data["derived"], data["authored"], data["n_gating"]
+    assert d + a == m, (
+        f"derive.py is internally inconsistent: {d} derived + {a} authored != {m} gating")
+    num = {v: k for k, v in WORDS.items()}
+
+    def val(tok):
+        tok = tok.strip().lower()
+        return int(tok) if tok.isdigit() else num.get(tok)
+
+    # (regex, tuple of expected values per capture group, required)
+    checks = [
+        (r"(\w+) of the (\w+) named gating thresholds", (d, m), True),
+        (r"and (\d+) of (\d+) named gating thresholds derived", (d, m), True),
+        (r"(\d+)%2F(\d+)_derived", (d, m), True),
+        (r"(\d+) of (\d+) NAMED gating thresholds are DERIVED", (d, m), True),
+        (r"\*\*(\w+) of (\w+)\.\*\*", (d, m), True),
+        (r"[Tt]he other (\w+) were typed by hand", (a,), True),
+        (r"(\d+) are AUTHORED", (a,), True),
+        (r"is one of the (\w+):", (d,), False),
     ]
-    stale = []
-    for rel, needle, cased in required:
+    problems = []
+    for rel in ("README.md", "docs/EVALS.md"):
         text = open(os.path.join(ROOT, rel)).read()
-        hay, pin = (text, needle) if cased else (text.lower(), needle.lower())
-        if pin not in hay:
-            stale.append(f"{rel} is missing {needle!r}")
-    assert not stale, (
-        f"derive.py reports {d} of {m}; docs disagree: " + "; ".join(stale))
+        for pattern, expected, required in checks:
+            found = re.findall(pattern, text)
+            for hit in found:
+                groups = hit if isinstance(hit, tuple) else (hit,)
+                got = tuple(val(g) for g in groups)
+                if got != expected:
+                    problems.append(
+                        f"{rel}: {pattern!r} says {got}, derive.py says {expected}")
+            if required and not found and rel == "README.md":
+                problems.append(f"README.md: no sentence matches {pattern!r}")
+    assert not problems, (
+        f"derive.py reports {d} derived / {a} authored / {m} gating. "
+        + "; ".join(problems))
 
 
 def test_labelled_pixels_exist():

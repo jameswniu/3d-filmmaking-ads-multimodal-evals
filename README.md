@@ -142,7 +142,7 @@ Separation is why the evals can exist at all. A single end-to-end model would le
 ## Architecture
 
 <p align="center">
-  <img src="assets/architecture.svg" alt="System architecture: metered vendors, ten pipeline stages, the fork to the real-time arm, local models, and the four blocking gates" width="100%">
+  <img src="assets/architecture.svg" alt="System architecture: metered vendors, ten pipeline stages, the fork to the real-time arm, local models, and the four gates, three of which fail open" width="100%">
 </p>
 
 Four rows, and the reason they are separate rows is the interesting part. **Metered** is anything a run can spend money on, which is exactly two vendors. **Local** is everything that runs on this machine for free, which is why a daily render's marginal cost is one credit and not a model bill. **Gates** sit under the stage they act on, and only four of the thirteen probes are down there: the rest report a number and let the run continue, because a metric that has not proven itself stable inside a single clip has not earned the authority to stop one.
@@ -274,7 +274,7 @@ Everything up to here is shared: the schedule, the words, the cloned voice, the 
 
 > **Rendered** output is finished before it ships, so every gate in this repository can run in the gap between "the file exists" and "a human sees it." That gap is the entire reason this pipeline can be trusted unattended. **Live** output has no such gap: the voice is synthesized in the moment, mid-conversation, and there is no frame to inspect before it is already on someone's screen. So the gating doctrine here does not port across the fork. It is not that the live path needs different thresholds. It is that pre-spend review, the mechanism all nine invariants rest on, does not exist there at all.
 
-**The rendered path, stages 5 through 9 below.** Matte, evaluate, infer depth, build the 77-view quilt, cast to glass. Fully built, runs on a timer, and is what the rest of this page documents. Latency is irrelevant, which is exactly what buys room for thirteen probes and four blocking guards.
+**The rendered path, stages 5 through 9 below.** Matte, evaluate, infer depth, build the 77-view quilt, cast to glass. Fully built, runs on a timer, and is what the rest of this page documents. Latency is irrelevant, which is exactly what buys room for thirteen probes and four guards, three of which fail open.
 
 **The live path.** A real-time conversational avatar, its speech driven by a streaming voice agent rather than a rendered audio file. Two things are true about it and neither is a boast:
 
@@ -305,10 +305,10 @@ Keep the room or separate the person? Keeping it is free and reads as dead, beca
 
 Gate on the outcome or on the attempt? Outcome metrics are what dashboards show, and they cannot tell a system that complied apart from a system that was stopped. Measured at the outcome, one constraint here held 14 runs out of 15. Measured at the first attempt, the same constraint held 6 out of 15. Both numbers are true, and only the second one tells you the rule was being ignored and then caught.
 
-> Nine invariants, thirteen probes, a third of the named thresholds derived from a labelled pass and fail exemplar and the rest honestly marked as typed, judging done blind, and a hard wall between metrics that **gate** and metrics that only **report**. A metric has to be stable *within* a single clip before it earns any authority over spend, because agreement with a small labelled set is cheap and noise reproduces it easily.
+> Nine invariants, thirteen probes, five of the fifteen named gating thresholds derived from a labelled pass and fail exemplar and the other ten honestly marked as typed, judging done blind, and a hard wall between metrics that **gate** and metrics that only **report**. A metric has to be stable *within* a single clip before it earns any authority over spend, because agreement with a small labelled set is cheap and noise reproduces it easily.
 
 - Probes run against the rendered clip and its subtitle track. The ship gate refuses outright on geometry failures, and for judgement calls it cannot make itself it demands an explicit written reason rather than a boolean.
-- Every threshold's derivation, including the ten scoring models that died in a single day, is in [`docs/EVALS.md`](docs/EVALS.md).
+- The derivations that exist, including the ten scoring models that died in a single day, is in [`docs/EVALS.md`](docs/EVALS.md).
 - The gates are ranked by what happens when they are violated, not by how important they feel. Nothing here is allowed to be a check in name only: four guards were deliberately broken to find out, and three of them approved everything when a single config file went missing while still reporting green.
 
 ### 7. Depth
@@ -454,9 +454,10 @@ The pipeline needs my vendor accounts and a light-field panel. The **measurement
 pip install -r requirements.txt          # opencv-python, numpy, Pillow. Guards need jq.
                                          # ffmpeg and ffprobe must be on PATH.
 
-python3 evals/derive.py                  # THE ONE TO RUN. Recomputes every threshold
-                                         # from evals/labels.csv and prints which are
-                                         # derived and which were authored by hand.
+python3 evals/derive.py                  # THE ONE TO RUN. Re-measures every labelled
+                                         # frame that ships here, brackets each named
+                                         # constant against its labels, and prints how
+                                         # many are derived and how many were typed.
 python3 probes/sync_probe.py             # no args: prints what it measures and why
 python3 probes/sync_probe.py clip.mp4    # measures lip-sync lag on your own clip
 python3 tests/test_suite.py              # the checks CI runs (no pytest needed)
@@ -510,7 +511,7 @@ Want the same pipeline with your own voice and character? [`docs/SETUP.md`](docs
 
 ## Read next
 
-- [`docs/EVALS.md`](docs/EVALS.md), the eval doctrine: every threshold's derivation, every retracted metric, and the case study of cloning a voice by ear
+- [`docs/EVALS.md`](docs/EVALS.md), the eval doctrine: the derivations that exist, every retracted metric, and the case study of cloning a voice by ear
 - [`docs/SETUP.md`](docs/SETUP.md), clone your voice, generate your character, pin both, in the order that works
 - [`docs/COST.md`](docs/COST.md), the measured credit schedule, the 344-credit incident, and which vendor tiers to buy
 - [`docs/RELIABILITY.md`](docs/RELIABILITY.md), why the quality gate stopped blocking and what replaced it

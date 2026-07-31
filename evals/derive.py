@@ -112,7 +112,12 @@ def read_labels():
     for r in csv.DictReader(body):
         if not r.get("probe"):
             continue
-        r["measured"] = float(r["measured"])
+        try:
+            r["measured"] = float(r["measured"])
+        except (TypeError, ValueError):
+            raise ValueError(
+                f"row {r.get('item')!r} has a non-numeric measured value "
+                f"{r.get('measured')!r}") from None
         rows.append(r)
     return rows
 
@@ -135,7 +140,11 @@ def main():
     if not os.path.exists(LABELS):
         print(f"no labels at {LABELS}", file=sys.stderr)
         return 2
-    rows = read_labels()
+    try:
+        rows = read_labels()
+    except ValueError as exc:
+        print(f"labels unreadable: {exc}", file=sys.stderr)
+        return 2
     if not rows:
         print(f"{LABELS} parsed to zero rows", file=sys.stderr)
         return 2
@@ -144,7 +153,16 @@ def main():
     for r in rows:
         by_probe.setdefault(r["probe"], []).append(r)
 
+    # A row whose (probe, axis) matches no gate is not evidence, it is a typo
+    # that looks like evidence. Dropping it quietly is the exact failure this
+    # file exists to catch, so an unmatched label is a hard failure.
+    known = {(m, a) for m, _c, a, _p, _s, _g in GATES}
+    orphans = [f"{r['probe']}/{r['axis']} ({r['item']})"
+               for r in rows if (r["probe"], r["axis"]) not in known]
+
     failures, repro, out = [], [], []
+    for o in sorted(set(orphans)):
+        failures.append(f"label {o} matches no gate; check the probe and axis spelling")
 
     # --- 1. reproduce every row that ships pixels ------------------------
     for probe, rs in sorted(by_probe.items()):
@@ -255,7 +273,10 @@ def main():
           f"that count because they cannot refuse a clip on their own.")
 
     n_live = sum(1 for r in rows if r["pixels"] != "withheld")
-    print(f"\n{n_live} of {len(rows)} labelled rows ship their pixels and were recomputed. "
+    n_ok = sum(1 for r in repro if r.get("ok"))
+    verb = ("were recomputed" if n_ok == n_live
+            else f"ship pixels, {n_ok} of which recomputed")
+    print(f"\n{n_live} of {len(rows)} labelled rows {verb}. "
           f"The rest are attested from the derivation notes; those source renders are "
           f"not retained.")
 
