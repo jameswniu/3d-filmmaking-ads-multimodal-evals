@@ -82,9 +82,9 @@ label  ->  derive  ->  gate  ->  render  ->  relabel
 
 **Full doctrine, with every number and every retraction: [`docs/EVALS.md`](docs/EVALS.md).**
 
-## The clip above, scored by this repo's own probes
+## The render behind those clips, scored by this repo's own probes
 
-**This clip does not pass everything, and the failures are the most useful thing on the page, so they lead instead of hiding at the bottom.**
+**This render does not pass everything, and the failures are the most useful thing on the page, so they lead instead of hiding at the bottom.** Every clip in the row above is a treatment of this one render, matted, warped or subtitled, so these are the scores of the source they all come from.
 
 It was picked by eye from a grid: one script rendered across three looks, three voice clones and three engine tiers, one variable moved per cell. Here is what the suite says about the winner.
 
@@ -110,7 +110,7 @@ It was picked by eye from a grid: one script rendered across three looks, three 
 
 Two possibilities remain and I cannot separate them from here: the metric's 0.8-second window may be too tight for this voice's pacing, or every clip in the grid genuinely drops phrases and the eye tolerates it. The second is uncomfortable and is not ruled out. What is ruled out is both of my confident explanations, and this repo's own history says that is precisely when to stop theorising and go measure the physics, the way thirteen gesture metrics found nothing until someone described the problem as lag rather than correlation.
 
-So the summary is one most portfolios would not print. **The clip on this page fails two of its own gates: one for a reason I can defend, and one I have now guessed wrong about twice.**
+So the summary is one most portfolios would not print. **The render behind this page fails two of its own gates: one for a reason I can defend, and one I have now guessed wrong about twice.**
 
 Pre-spend, the same run: voice drawn 3 times (156.88 / 168.96 / 168.64s, median kept, 7.7 percent spread), the synthesized audio transcribed and diffed against the script before any render (541 of 541 words, similarity 1.0000), a 0.6s settle beat added, the look attested against the frozen-prop rule, and identity checked against the pin allowlist.
 
