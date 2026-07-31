@@ -18,8 +18,8 @@
 <table>
   <tr>
     <td width="34%" align="center" valign="top">
-      <img src="assets/hologram-final.gif" alt="Simulated light-field view: the camera sweeps the quilt's cone while the presenter speaks, subtitles fixed" width="100%"><br>
-      <sub><b>What the glass is like.</b> One view at a time, the camera walking the same cone the quilt samples; at the panel your head does the walking and each eye gets its own view. Sweep exaggerated <b>4x</b> and labelled on the frame, because the true 19 px is nearly invisible at this size. Subtitles are burned after the warp, so they hold still while she sways. GIFs are mute: <b><a href="assets/hologram-final.mp4">&#9654; watch with sound (0:05)</a></b></sub>
+      <img src="assets/parallax-amplified.gif" alt="The presenter under a swaying virtual camera, nearer pixels travelling further than far ones, amplified four times" width="100%"><br>
+      <sub><b>Depth, on a flat screen.</b> A virtual camera sways across the inferred depth map, near pixels travelling further than far ones. <b>This clip is exaggerated 4x and says so on the frame.</b> The real sweep across all 77 views moves her <b>19 px</b> inside a 480 px tile, about 4 percent, which is honest and nearly invisible at this size. The amber tick is fixed, because without something stationary the eye tracks her and cancels the very displacement the clip exists to show.</sub>
     </td>
     <td width="33%" align="center" valign="top">
       <br>
@@ -29,7 +29,7 @@
     <td width="33%" align="center" valign="top">
       <br><br>
       <img src="assets/hologram-full.gif" alt="The presenter explaining the 77-view quilt while the simulated view sweeps, subtitles held still" width="100%"><br>
-      <sub><b>And she explains her own pipeline, in the final treatment.</b> The full narration under the same simulated view sweep as the first clip, one pass, start to finish. This loop is her describing the very grid the middle cell shows: one moment, seventy-seven positions. GIFs are mute and the voice is half the point: <b><a href="assets/hologram-full.mp4">&#9654; watch with sound (2:49)</a></b></sub>
+      <sub><b>And she explains her own pipeline, in the final treatment.</b> The full narration under the simulated view sweep the first cell demonstrates, one pass, start to finish. This loop is her describing the very grid the middle cell shows: one moment, seventy-seven positions. GIFs are mute and the voice is half the point: <b><a href="assets/hologram-full.mp4">&#9654; watch with sound (2:49)</a></b></sub>
     </td>
   </tr>
 </table>
