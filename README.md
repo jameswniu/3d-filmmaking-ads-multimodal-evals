@@ -10,7 +10,7 @@
   <img alt="gates: 4, blocking" src="https://img.shields.io/badge/gates-4_blocking-164e63?style=flat-square&labelColor=0f172a">
   <img alt="views: 77 per frame" src="https://img.shields.io/badge/views-77_per_frame-164e63?style=flat-square&labelColor=0f172a">
   <img alt="cost: 1 credit per render" src="https://img.shields.io/badge/cost-1_credit_%2F_render-164e63?style=flat-square&labelColor=0f172a">
-  <img alt="license: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-164e63?style=flat-square&labelColor=0f172a">
+  <img alt="license: GPL-3.0" src="https://img.shields.io/badge/license-GPL--3.0-164e63?style=flat-square&labelColor=0f172a">
 </p>
 
 **An advertising-grade AI filmmaking pipeline where the evals are the product.** It writes a script, speaks it in a cloned voice, renders a consistent generated presenter, separates her from her background, infers depth, and emits 77 views of a single instant for a light-field display. It does this on a schedule, against metered vendor APIs, with nobody watching. What makes that survivable is not the render path. It is that one person's taste was captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
@@ -480,4 +480,4 @@ None of this is built. It is listed here because the parts it would be built fro
 
 ---
 
-Built by James Niu. Licensed [Apache-2.0](LICENSE).
+Built by James Niu. Licensed [GPL-3.0](LICENSE).
