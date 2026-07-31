@@ -155,13 +155,13 @@ Every figure in the diagram is a measurement published elsewhere in this reposit
 
 Ten stages, and each one reads at three depths: the paragraph is the decision anyone building this has to make, the indented line is what I chose and the measurement that forced it, and the bullets are the literal mechanics. Skim the paragraphs for the argument, drop into the bullets when you want the file and the number. Every image below is from the single run at the top of this page.
 
-<table>
-  <tr>
-    <td width="33%" align="center"><img src="assets/stage-wake.svg" alt="Stage 0, the scheduled wake" width="100%"></td>
-    <td width="33%" align="center"><img src="assets/stage-script.svg" alt="Stage 1, the script" width="100%"></td>
-    <td width="33%" align="center"><img src="assets/voice-wave.png" alt="Stage 2, the cloned voice waveform" width="100%"></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="assets/stage-wake-script.svg" alt="Stage 0, the scheduled wake, beside stage 1, the script" width="100%">
+</p>
+
+<p align="center">
+  <img src="assets/voice-wave.png" alt="Stage 2, the cloned voice waveform" width="100%">
+</p>
 
 ### 0. Wake
 
