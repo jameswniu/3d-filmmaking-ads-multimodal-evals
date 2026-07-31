@@ -167,7 +167,7 @@ for cam in cams:                           # 77 of them
     buf[flat] = color_sorted               # later write wins => near occludes far
 ```
 
-There is no depth test in that loop, and there does not need to be one. Rows are pre-sorted far to near, so when two source pixels land on the same destination, numpy's last-write-wins on a duplicated fancy index resolves the occlusion by construction. The sort is hoisted out of the view loop, so it is paid once per frame rather than 77 times. The `__main__` block benchmarks the result against the naive per-view implementation and asserts the two are bit-identical, because a speedup that changes a pixel is not a speedup.
+There is no depth test in that loop, and there does not need to be one. Rows are pre-sorted far to near, so when two source pixels land on the same destination, numpy's last-write-wins on a duplicated fancy index resolves the occlusion by construction. The sort is hoisted out of the view loop, so it is paid once per frame rather than 77 times. The `__main__` block benchmarks it against the naive per-view implementation and reports where they disagree. They match exactly outside disocclusion holes and differ inside them, because the two paths fill holes differently. That is worth stating precisely: this benchmark used to print a bare `identical: True`, which held only because the author's real depth maps are smooth. Run it against `samples/`, whose depth has a hard step at the subject, and the claim breaks. Committing a sample is what made a latent disagreement visible.
 
 **The engine router refuses to guess a price.** [`pipeline/pick_engine.sh`](pipeline/pick_engine.sh#L24)
 
@@ -180,6 +180,31 @@ That is not a hypothetical. The earlier flat `5` sent a batch of eight renders t
 **The privacy gate that ran before this repo existed publicly.** [`tools/pii_scan.sh`](tools/pii_scan.sh)
 
 523 lines of deterministic scanning: a tab-separated rule table, three passes (content regex, filename shapes, EXIF), seven severity classes, an allowlist with counted suppressions, and structured `path:line:CLASS:SEVERITY:label` output that never prints the matched text, because a scanner that echoes the secret into your terminal has moved it, not found it. It is wired as a pre-commit hook and a CI job. Result on this repository: zero home paths, zero keys, zero vendor identifiers across all tracked files.
+
+## What ships here, and what does not
+
+The ten stages below are the real pipeline. **This repository is the measurement
+half of it.** Being specific, because a reader who clones and finds the floor
+missing has learned something worse than this paragraph tells them:
+
+| stage | code here? | where it lives |
+|---|---|---|
+| 5 matte, 7 depth, 8 quilt | **yes**, runnable | `pipeline/`, against the committed `samples/` pair |
+| 6 evals, and the gates | **yes**, runnable | `probes/`, `guards/`, `evals/` |
+| 0 wake, 2 voice, 4 render, 9 cast | no | vendor calls and a scheduler in a private tree |
+| 1 script | no, disclosed | a separate private repo |
+| 3 look | partial | `pipeline/pick_engine.sh` chooses the engine; the generation call is not here |
+
+So `probes/`, `guards/`, `evals/` and three of the ten stages are executable on a
+fresh clone. The orchestration that wires stage N to stage N+1 is not in this
+repository, and there is no `main` that runs the whole thing. Every file here is
+an independently invocable leaf, which is why the commands under
+[Running it](#running-it) are all single files.
+
+Two guards also call helpers that live only in the private tree
+(`arrow_probe.py`, `graph_verdict.py`, and the `deliver.sh` that reads the ship
+gate's marker). Those paths now fail with a message naming what is absent
+instead of a traceback, but they cannot do their job here.
 
 <p align="center">
   <img src="assets/band-stages.svg" alt="The build: ten stages, each one a decision" width="100%">

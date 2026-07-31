@@ -19,7 +19,9 @@
 #                  with --arrow-ok only after actually reading the slit-scan
 #                  (forward flow = one-way slope; palindrome V = ping-pong REJECT).
 #
-# On pass: writes /tmp/.ship-gate-<basename>-<bytes> marker. deliver.sh refuses
+# On pass: writes /tmp/.ship-gate-<basename>-<bytes> marker. NOTE: the reader of
+# that marker (deliver.sh) is NOT in this repository, so here the marker is a
+# receipt and nothing enforces it. In the private tree deliver.sh refuses
 # files without a fresh marker, so skipping this gate is not possible by forgetting.
 set -uo pipefail
 F="$1"; SRT="$2"; DIRECTIONAL="${3:-}"; ARROWOK=""
@@ -30,7 +32,7 @@ F="$1"; SRT="$2"; DIRECTIONAL="${3:-}"; ARROWOK=""
 # and every check silently defaulted clean)
 [ -s "$F" ] || { echo "SHIP-GATE ERROR: input not readable: $F"; exit 64; }
 [ -s "$SRT" ] || { echo "SHIP-GATE ERROR: srt not readable: $SRT"; exit 64; }
-BYTES=$(stat -f%z "$F")
+BYTES=$(stat -f%z "$F" 2>/dev/null || stat -c%s "$F" 2>/dev/null || echo 0)
 MARK="/tmp/.ship-gate-$(basename "$F")-$BYTES"
 SKILL="${PIPELINE_PROBES:-$(cd "$(dirname "$0")/../probes" 2>/dev/null && pwd)}"
 

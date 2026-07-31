@@ -129,8 +129,8 @@ def warp_frame(color: np.ndarray, depth: np.ndarray, max_shift: float, cam: floa
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--color", default=str(ROOT / "renders" / "sample-color.mp4"))
-    ap.add_argument("--depth", default=str(ROOT / "renders" / "sample-depth.mp4"))
+    ap.add_argument("--color", default=str(ROOT / "samples" / "sample-color.mp4"))
+    ap.add_argument("--depth", default=str(ROOT / "samples" / "sample-depth.mp4"))
     ap.add_argument("--out", default=str(ROOT / "renders" / "sample-parallax.mp4"))
     ap.add_argument("--still-left", default=str(ROOT / "renders" / "sample-parallaxL.png"))
     ap.add_argument("--still-right", default=str(ROOT / "renders" / "sample-parallaxR.png"))

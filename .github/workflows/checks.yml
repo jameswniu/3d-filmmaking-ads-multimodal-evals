@@ -63,10 +63,16 @@ jobs:
       - name: Test suite
         run: python3 -m pytest tests/ -v
 
-      # The one executable test that predates this workflow. It asserts on a
-      # string that is only emitted when learned_rules.md exists, so it fails on
-      # a fresh clone; run it non-blocking until that is fixed rather than
-      # pretending it passes.
-      - name: Prop gate selftest (non-blocking)
-        continue-on-error: true
+      # The one executable test that predates this workflow. It used to fail on a
+      # fresh clone because it asserts on a string only emitted when
+      # learned_rules.md exists, and that file was never committed. It is now
+      # shipped, so this blocks like everything else.
+      - name: Prop gate selftest
         run: bash guards/prop_gate.sh selftest
+
+      # The pipeline half must stay runnable against the committed sample pair.
+      # These were unrunnable on any clone until samples/ shipped.
+      - name: Pipeline runs on the committed sample
+        run: |
+          python3 pipeline/quilt.py
+          python3 pipeline/wiggle_preview.py

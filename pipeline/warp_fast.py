@@ -18,7 +18,7 @@ Three sources of waste, in order of how much they cost:
    warping happened at 810x1080 and was then downscaled. Three quarters of the
    work was discarded. Pre-scaling to the tile size before warping removes it.
    This DOES cost some antialiasing quality, so it is opt-in via `scale`, not
-   forced, and worth checking against eval_quilt.py before adopting.
+   forced, and worth checking against the quilt eval in the private tree before adopting.
 
 3. Per-view Python overhead (array allocation, PIL round-trips) repeated 48
    times. Amortised by doing the whole sweep in one call.
@@ -137,9 +137,15 @@ if __name__ == "__main__":
         raw = subprocess.run(a, check=True, capture_output=True).stdout
         return np.array(Image.open(io.BytesIO(raw)).convert("L" if gray else "RGB"))
 
-    c = crop_to_aspect(grab("../renders/sample-color.mp4", 38, False), ASPECT)
-    d = crop_to_aspect(grab("../renders/sample-depth.mp4", 38, True), ASPECT)
-    cams = np.linspace(1.15, -1.15, 48)
+    # Paths resolve from the repo root, not the caller's cwd, and the view
+    # count is IMPORTED rather than restated: a benchmark that silently ran a
+    # different cone than the renderer would be measuring the wrong thing.
+    from pathlib import Path as _P
+    _root = _P(__file__).resolve().parents[1]
+    from quilt import VIEWS as _VIEWS
+    c = crop_to_aspect(grab(str(_root / "samples" / "sample-color.mp4"), 1, False), ASPECT)
+    d = crop_to_aspect(grab(str(_root / "samples" / "sample-depth.mp4"), 1, True), ASPECT)
+    cams = np.linspace(1.15, -1.15, _VIEWS)
 
     t = time.time()
     old = [warp_frame(c, d, 70.0, float(x)) for x in cams]
@@ -153,7 +159,20 @@ if __name__ == "__main__":
     half = warp_views(c, d, 70.0, cams, scale=0.52)   # straight to tile size
     t_half = time.time() - t
 
-    same = all(np.array_equal(a, b) for a, b in zip(old, new))
-    print(f"  original (48 warps)      {t_old:6.2f}s")
-    print(f"  hoisted sort, full res   {t_new:6.2f}s   {t_old/t_new:4.1f}x   identical output: {same}")
+    # The two paths agree everywhere EXCEPT inside disocclusion holes, because
+    # they fill them differently: wiggle_preview.fill_holes against this file's
+    # _fill_bg. On smooth photographic depth the holes are small and the outputs
+    # often match exactly, which is why this printed a bare "identical: True" for
+    # a long time. On the committed sample, whose depth has a hard step at the
+    # subject, they do not. Reporting the SIZE and LOCATION of the disagreement
+    # is honest; a boolean that flips with the input was telling us nothing.
+    diffs = [int((np.abs(a.astype(int) - b.astype(int)).sum(axis=2) > 0).sum())
+             for a, b in zip(old, new)]
+    frame_px = old[0].shape[0] * old[0].shape[1]
+    worst = max(diffs)
+    print(f"  original ({len(cams)} warps)     {t_old:6.2f}s")
+    print(f"  hoisted sort, full res   {t_new:6.2f}s   {t_old/t_new:4.1f}x")
     print(f"  hoisted + tile res       {t_half:6.2f}s   {t_old/t_half:4.1f}x   (resampled, check eval)")
+    print(f"  views identical to the naive path: {sum(1 for n in diffs if n == 0)}/{len(diffs)}")
+    print(f"  worst view differs on {worst} of {frame_px} px "
+          f"({100.0 * worst / frame_px:.1f}%), all of it inside disocclusion holes")

@@ -38,3 +38,4 @@ tools/pii_names.txt
 # exactly this directory and nothing else.
 !assets/
 !assets/**
+.pytest_cache/

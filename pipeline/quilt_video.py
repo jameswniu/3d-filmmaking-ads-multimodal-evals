@@ -57,8 +57,8 @@ def has_audio(video: Path) -> bool:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--color", default=str(ROOT / "renders" / "sample-color.mp4"))
-    ap.add_argument("--depth", default=str(ROOT / "renders" / "sample-depth.mp4"))
+    ap.add_argument("--color", default=str(ROOT / "samples" / "sample-color.mp4"))
+    ap.add_argument("--depth", default=str(ROOT / "samples" / "sample-depth.mp4"))
     ap.add_argument("--out", default=None)
     ap.add_argument("--max-shift", type=float, default=46.0)
     ap.add_argument("--view-span", type=float, default=1.15)

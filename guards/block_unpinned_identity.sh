@@ -52,7 +52,7 @@ esac
 
 # Explicit, short-lived bypass for a sanctioned revert.
 if [ -f /tmp/.identity-pin-bypass ]; then
-  AGE=$(( $(date +%s) - $(stat -f %m /tmp/.identity-pin-bypass 2>/dev/null || echo 0) ))
+  AGE=$(( $(date +%s) - $(stat -f %m /tmp/.identity-pin-bypass 2>/dev/null || stat -c %Y /tmp/.identity-pin-bypass 2>/dev/null || echo 0) ))
   [ "$AGE" -lt 120 ] && exit 0
 fi
 

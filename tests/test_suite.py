@@ -156,6 +156,53 @@ def test_documented_counts_match_the_tool():
         + "; ".join(problems))
 
 
+def test_no_retired_claim_survives_on_any_surface():
+    """The landing page is more than README.md, and the rest is not text-diffable.
+
+    Two claims were retired: that every threshold is derived, and that all four
+    gates block. Both lived in FIVE places, including an SVG text node and its
+    own aria-label twin. Fixing the visible pixels while leaving the accessible
+    text is not fixing it.
+
+    This matters more than a normal staleness check because assets/hero.svg and
+    assets/architecture.svg are written by a generator that is NOT in this
+    repository. Regenerating from that private tree would silently restore both
+    claims with nothing to notice. This makes that loud.
+    """
+    # Regexes, not substrings. The first version used bare substrings and flagged
+    # two correct sentences: "holds each derived constant inside the interval" and
+    # a legend line defining which gates block. A staleness check that cries wolf
+    # gets muted, so these match the retired CLAIM shapes only.
+    retired = [
+        (r"every threshold (?:in|comes|derived|is derived)",
+         "the derived count is 5 of 15, not all of them"),
+        (r"never typed", "ten of the fifteen were typed by hand"),
+        (r"each derived from", "not every probe threshold is derived from labels"),
+        (r"probes,\s*each derived", "not every probe threshold is derived"),
+        (r"(?:\d+|four)\s+blocking\s+(?:gates|guards)", "three of the four fail open"),
+        (r"gates,\s*blocking\b", "three of the four fail open"),
+    ]
+    surfaces = []
+    for sub in ("assets", "docs"):
+        d = os.path.join(ROOT, sub)
+        for f in sorted(os.listdir(d)):
+            if f.endswith((".svg", ".html", ".md")):
+                surfaces.append(os.path.join(sub, f))
+    surfaces.append("README.md")
+
+    hits = []
+    for rel in surfaces:
+        text = open(os.path.join(ROOT, rel), errors="ignore").read().lower()
+        # The README narrates what it USED to say; that sentence is history, not a claim.
+        text = text.replace("used to say every threshold was derived and none was", "")
+        text = text.replace("this page used to say every threshold", "")
+        for pattern, why in retired:
+            m = re.search(pattern, text)
+            if m:
+                hits.append(f"{rel} still says {m.group(0)!r} ({why})")
+    assert not hits, "retired claims are back: " + "; ".join(hits)
+
+
 def test_labelled_pixels_exist():
     """A label pointing at a file that is not in the repo is a claim, not evidence."""
     import csv

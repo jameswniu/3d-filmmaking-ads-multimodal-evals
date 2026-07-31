@@ -307,6 +307,11 @@ arrow_scan() {
   [ -z "$vid" ] && { echo "usage: prop_gate.sh scan-arrow <video.mp4> [lookId]" >&2; return 64; }
   [ -f "$vid" ] || { echo "scan-arrow: not found: $vid" >&2; return 64; }
   command -v python3 >/dev/null 2>&1 || { echo "scan-arrow: python3 required" >&2; return 69; }
+  if [ ! -f "$DIR/arrow_probe.py" ]; then
+    echo "scan-arrow needs $DIR/arrow_probe.py, which is not in this repository." >&2
+    echo "It lives in the private working tree; this check cannot run here." >&2
+    return 64
+  fi
   python3 "$DIR/arrow_probe.py" "$vid"
   local rc=$?
   local look="${2:-<lookId>}"

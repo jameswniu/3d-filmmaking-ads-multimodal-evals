@@ -4,7 +4,7 @@
 Reads a directory of color frame PNGs (same filenames throughout), runs a
 Depth Anything V2 checkpoint (via transformers) on each one, and writes a
 grayscale depth PNG per frame into an output directory. Called by
-pipeline/depth.sh; not meant to be run standalone against a video file
+the frame-extraction driver in the private tree; not meant to be run standalone against a video file
 directly, it wants already-extracted frames.
 
 Looking Glass convention: near = bright, far = dark. Depth Anything V2
@@ -24,7 +24,7 @@ plain, low-contrast region (a dark top on a black background, for example)
 sit close together in raw depth, so small frame to frame shifts in the
 per-frame min/max stretch that gap differently each frame. A single global
 range removes that flicker. It does not fix the underlying ambiguity where
-the model has little texture to anchor on (see the depth.sh header and the
+the model has little texture to anchor on (see the frame-extraction driver in the private tree and the
 run report for what that looks like on this clip); this is a light,
 one-parameter mitigation, not a segmentation or inpainting fix.
 

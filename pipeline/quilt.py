@@ -180,8 +180,8 @@ def main() -> int:
     # declaration cannot come after first use.
     global COLS, ROWS, VIEWS, TILE_W, TILE_H, ASPECT
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--color", default=str(ROOT / "renders" / "sample-color.mp4"))
-    ap.add_argument("--depth", default=str(ROOT / "renders" / "sample-depth.mp4"))
+    ap.add_argument("--color", default=str(ROOT / "samples" / "sample-color.mp4"))
+    ap.add_argument("--depth", default=str(ROOT / "samples" / "sample-depth.mp4"))
     ap.add_argument("--out", default=None,
                     help="output quilt path (default: renders/<color stem>_qs<cols>x<rows>a<aspect>.png)")
     ap.add_argument("--cols", type=int, default=COLS, help=f"quilt columns (default {COLS}, production)")
