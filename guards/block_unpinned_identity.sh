@@ -78,8 +78,9 @@ for V in $VOICES; do
     echo ""
     echo "Do not hand-roll the TTS call. Use the sanctioned entrypoint:"
     echo "  bash \"$VOICE_TAKE\" <script.txt> <out.mp3> 3"
-    echo "It reads the pin itself and draws 3 takes with consensus metering,"
-    echo "because one blind draw in five drifts far enough to change her accent."
+    echo "It reads the pin itself, draws 3 takes and keeps the median by"
+    echo "duration, because a single blind draw lands somewhere on a 6 to 37"
+    echo "percent spread and about one in three lands on a tail."
     echo ""
     echo "Pins: $PINS"
   } >&2
