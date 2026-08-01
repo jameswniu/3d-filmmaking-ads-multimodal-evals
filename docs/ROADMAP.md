@@ -90,13 +90,53 @@ already drawing the counts. Now it draws them FROM the counts, so a quilt of
 The private tree passes this repository's own suite, and a diagram regenerated
 there is byte-identical to the one committed here.
 
-### Then, and only then: delete the three working branches
+### Then, and only then: delete the two remaining working branches
 
-`checkpoint-13-of-16`, `readme-code-visibility` and `restore-point-2026-07-30`
-are all fully merged into `main`, so nothing is lost by deleting them today.
-They are kept anyway until the back-port above is finished, because they are the
-only other place some of these fixes exist in a form you can `git checkout`, and
-a branch costs nothing while a re-derivation costs a day.
+`checkpoint-13-of-16` and `restore-point-2026-07-30` are fully merged into
+`main`, so nothing is lost by deleting them today. They are kept anyway until
+the back-port above is finished, because they are the only other place some of
+these fixes exist in a form you can `git checkout`, and a branch costs nothing
+while a re-derivation costs a day.
+
+`readme-code-visibility` was deleted on 2026-08-01, local and remote. It was
+fully merged with zero unmerged commits, so it held nothing the other two do
+not.
+
+## Done and not to be redone
+
+Kept here because the next reader will otherwise wonder whether these are still
+open, and because one of them is destructive and must not be repeated casually.
+
+**The repository was deleted and recreated on 2026-08-01.** Two commit messages
+had reached the public remote carrying a word this repo's own scanner refuses to
+publish. Rewriting the messages orphaned those commits but GitHub keeps
+unreachable objects at their SHA URLs indefinitely, so both still answered HTTP
+200 after the force-push. Deleting the repository destroys the object database,
+which is the only reliable way to make them 404, and both now do.
+
+Everything that does not live in git had to be restored by hand: 20 topics, the
+description, the homepage, GitHub Pages on `main` and `/docs`, and the
+issues/wiki/projects flags. Two things could not be: the creation date now reads
+2026-08-01, and the Actions run history started empty. Nothing else was lost
+because the repo had no issues, pull requests, releases, stars or forks.
+
+A verified backup was taken first and is deliberately retained at
+`~/backups/avpe-2026-08-01/`: an all-refs bundle, a mirror clone, a restore-test
+clone proving the bundle reproduces all 97 commits, the working tree including
+the three gitignored PII files that no bundle would carry, and the original
+repository metadata. Keep it. The bundle alone does not carry
+`tools/pii_context.txt`, so the worktree copy is not redundant with it.
+
+**The scan gate was rebuilt the same day.** `apply_rule_table` never passed the
+flags argument `run_rule` already accepted, so every project rule ran
+case-sensitive and a shouted spelling walked through. The rule table now takes
+an optional fifth column. Two protected names turned out to be homographs of
+ordinary English words, so one keeps exact-case matching and a shell variable
+was renamed to remove the other collision. `.githooks/commit-msg` was reading
+four fields against a five-field table, which silently unmatched every pattern
+and passed everything while still printing its banner; it now reads five, honours
+each rule's own flags, and enforces the second severity as well. Both are backed
+by tests that fail on the previous code.
 
 This is gated on the back-port, not on the calendar. Delete them when the
 private tree is green, not before.
