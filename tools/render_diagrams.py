@@ -328,7 +328,18 @@ def architecture():
 
 HERO_MONO = "ui-monospace, SFMono-Regular, Menlo, monospace"
 
-HERO_W, HERO_H = 1200, 330
+# GitHub renders a README image into an 838px column, so this 1200-wide figure
+# is already scaled to 0.698 before the reader has zoomed at all. At 75% browser
+# zoom that compounds to 0.524, which put the old 10.5px labels on screen at
+# 5.5px: present, but not readable at a glance. Every size below is chosen
+# against that number rather than against how it looks in a full-width preview,
+# which is the mistake that made them small in the first place.
+#
+#   on-screen px at 75% zoom = size * (838 / HERO_W) * 0.75
+#
+# The floor is about 10px on screen for anything carrying a fact, which is why
+# the four figures and their labels are much larger than they were.
+HERO_W, HERO_H = 1200, 380
 
 # The two labelled sets are attested, not derived: those clips are not in this
 # repository and cannot be counted from it. evals/labels.csv is a different,
@@ -343,8 +354,9 @@ PILLS = ["wake", "script", "voice x3", "look", "render",
 
 # Where the four figures sit. Uneven on purpose: each is placed clear of the
 # label under the one before it, which is a typographic fact, not a computable
-# one, so it is declared.
-STAT_X = [64, 300, 470, 610]
+# one, so it is declared. These moved when the labels grew; the widest of them,
+# LABELLED STILLS / CLIPS, is 23 characters and sets the first gap.
+STAT_X = [64, 358, 458, 695]
 
 
 def htext(x, y, s, size, fill, weight=None, anchor=None, ls=None, opacity=None):
@@ -421,11 +433,11 @@ def hero():
         f'  <rect width="{HERO_W}" height="{HERO_H}" fill="url(#glow)"/>',
         f'  <rect x="0" y="0" width="{HERO_W}" height="3" fill="{CYAN}" '
         'opacity=".9"/>',
-        htext(64, 106, "3d-filmmaking-ads-multimodal-evals", 34,
+        htext(64, 118, "3d-filmmaking-ads-multimodal-evals", 38,
               "url(#title)", weight="700", ls=".5"),
-        htext(64, 136, "Taste captured as labels, compiled into thresholds, "
-              "enforced by gates.", 15, "#93c5fd", opacity=".95"),
-        '  <rect x="64" y="156" width="640" height="1" fill="url(#rule)"/>',
+        htext(64, 154, "Taste captured as labels, compiled into thresholds, "
+              "enforced by gates.", 19, "#93c5fd", opacity=".95"),
+        '  <rect x="64" y="178" width="760" height="1" fill="url(#rule)"/>',
     ]
 
     stats = [
@@ -437,11 +449,11 @@ def hero():
     # strict: a figure without a slot, or a slot without a figure, is a bug
     # rather than something to silently drop.
     for x, (value, label) in zip(STAT_X, stats, strict=True):
-        o.append(htext(x, 196, value, 21, PALE, weight="700"))
-        o.append(htext(x, 214, label, 10.5, "#64a0d8", ls=".6"))
+        o.append(htext(x, 240, value, 36, PALE, weight="700"))
+        o.append(htext(x, 268, label, 18, "#64a0d8", ls=".6"))
 
     # The panel, then one cell per view.
-    o.append('  <rect x="900" y="60" width="244" height="122" rx="7" '
+    o.append('  <rect x="900" y="56" width="244" height="132" rx="7" '
              'fill="#060f22" stroke="#7dd3fc" stroke-opacity=".55" '
              'stroke-width="1.5"/>')
     cell_x0, cell_y0, cell_dx, cell_dy = 953, 45, 20, 14
@@ -451,31 +463,36 @@ def hero():
                      f'y="{cell_y0 + row * cell_dy}" width="18" height="12" '
                      f'rx="1.5" fill="{CYAN}" '
                      f'fill-opacity="{cell_opacity(col, row)}"/>')
-    o.append(htext(1022, 202,
-                   f"{QUILT_COLS} &#215; {QUILT_ROWS} = {VIEWS} VIEWS OF ONE "
-                   "INSTANT", 11.5, "#7dd3fc", anchor="middle", ls=".5"))
+    # Two lines. As one line at a readable size this ran to x=1174, past the
+    # right margin; shrinking it instead would have put the only statement of
+    # the view count back under 7px on screen.
+    o.append(htext(1022, 210,
+                   f"{QUILT_COLS} &#215; {QUILT_ROWS} = {VIEWS} VIEWS",
+                   15, "#7dd3fc", anchor="middle", ls=".5"))
+    o.append(htext(1022, 230, "OF ONE INSTANT",
+                   15, "#7dd3fc", anchor="middle", ls=".5"))
 
     # The run, as ten pills with a dot between each pair.
-    o.append('  <rect x="48" y="242" width="1104" height="46" rx="9" '
+    o.append('  <rect x="48" y="292" width="1104" height="58" rx="9" '
              'fill="url(#bandbg)"/>')
     pill_x0, pill_dx, pill_w = 67, 108, 93
     for i, name in enumerate(PILLS):
         x = pill_x0 + i * pill_dx
         last = i == len(PILLS) - 1        # the panel, lit brighter than the rest
-        o.append(f'  <rect x="{x}" y="253" width="{pill_w}" height="25" rx="6" '
+        o.append(f'  <rect x="{x}" y="305" width="{pill_w}" height="32" rx="6" '
                  f'fill="{DEEP}" fill-opacity="{".20" if last else ".09"}" '
                  f'stroke="{CYAN}" stroke-opacity="{".95" if last else ".45"}"/>')
-        o.append(htext(x + 46, 270, name, 11.5, PALE if last else "#9cc9f5",
+        o.append(htext(x + 46, 326, name, 16, PALE if last else "#9cc9f5",
                        anchor="middle"))
         if not last:
-            o.append(f'  <circle cx="{x + 100}" cy="265.5" r="1.6" '
+            o.append(f'  <circle cx="{x + 100}" cy="321" r="2" '
                      f'fill="{CYAN}" opacity=".5"/>')
 
-    o.append(htext(64, 311,
+    o.append(htext(64, 368,
                    f"{WORDS[len(PILLS)].capitalize()} stages, unattended "
                    "&#183; every gate fires before the credit is spent &#183; "
                    "anything that is not a clean success pings loud",
-                   11.5, "#7c9ec4", opacity=".92"))
+                   15, "#7c9ec4", opacity=".92"))
     o.append("</svg>")
     # Unlike architecture.svg, this file does end with a newline.
     return "\n".join(o) + "\n"

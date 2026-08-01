@@ -89,3 +89,14 @@ already drawing the counts. Now it draws them FROM the counts, so a quilt of
 
 The private tree passes this repository's own suite, and a diagram regenerated
 there is byte-identical to the one committed here.
+
+### Then, and only then: delete the three working branches
+
+`checkpoint-13-of-16`, `readme-code-visibility` and `restore-point-2026-07-30`
+are all fully merged into `main`, so nothing is lost by deleting them today.
+They are kept anyway until the back-port above is finished, because they are the
+only other place some of these fixes exist in a form you can `git checkout`, and
+a branch costs nothing while a re-derivation costs a day.
+
+This is gated on the back-port, not on the calendar. Delete them when the
+private tree is green, not before.
