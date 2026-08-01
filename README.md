@@ -15,6 +15,17 @@
 
 **An advertising-grade AI filmmaking pipeline where the evals are the product.** It writes a script, speaks it in a cloned voice, renders a consistent generated presenter, separates her from her background, infers depth, and emits 77 views of a single instant for a light-field display. It does this on a schedule, against metered vendor APIs, with nobody watching. What makes that survivable is not the render path. It is that one person's taste was captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
 
+## Start here
+
+| if you want to | go to |
+|---|---|
+| see whether it works | the three clips below, all from [one run](#what-actually-happens-to-her) |
+| run something yourself | [What ships here](#what-ships-here-and-what-does-not), then [Running it](#running-it) |
+| read the argument | [Evals lead this](#evals-lead-this) |
+| build your own | [`docs/SETUP.md`](docs/SETUP.md), consent line first |
+| see what is not claimed | [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) |
+
+
 <table>
   <tr>
     <td width="34%" align="center" valign="top">
@@ -475,18 +486,20 @@ Reference code, not a turnkey app: the Python stages need torch, an open depth m
 
 The pipeline needs my vendor accounts and a light-field panel. The **measurement layer** does not, and it is the part worth reading anyway.
 
-```
-pip install -r requirements.txt          # opencv-python, numpy, Pillow. Guards need jq.
-                                         # ffmpeg and ffprobe must be on PATH.
+### Before you begin
 
-python3 evals/derive.py                  # THE ONE TO RUN. Re-measures every labelled
-                                         # frame that ships here, brackets each named
-                                         # constant against its labels, and prints how
-                                         # many are derived and how many were typed.
-python3 probes/sync_probe.py             # no args: prints what it measures and why
-python3 probes/sync_probe.py clip.mp4    # measures lip-sync lag on your own clip
-python3 tests/test_suite.py              # the checks CI runs (no pytest needed)
-```
+- `pip install -r requirements.txt` for opencv-python, numpy and Pillow.
+- `ffmpeg` and `ffprobe` on PATH. Every probe shells out to them.
+- `jq`, which the guards need.
+
+### Run it
+
+1. Run `python3 evals/derive.py`. **This is the one to run.** It re-measures every labelled frame that ships here, brackets each named constant against its labels, and prints how many are derived and how many were typed.
+2. Run `python3 probes/sync_probe.py` with no arguments. It prints what it measures and why it measures it that way.
+3. Run `python3 probes/sync_probe.py clip.mp4` against a clip of your own to measure its lip-sync lag.
+4. Run `python3 tests/test_suite.py` for the checks CI runs. No pytest needed.
+
+### What derive.py proves
 
 `derive.py` is the repo arguing with itself. It re-measures every labelled frame that
 ships here using the probe's own function, refuses to let a gating constant sit outside
@@ -512,7 +525,7 @@ marked that way: a cut is a cut because two shots were concatenated, and a froze
 has no signal because it is one frame held. The rest come from verdicts recorded while
 the clips still existed.
 
-Fifteen is named constants that can refuse a clip on their own. It is NOT every way the
+Sixteen is named constants that can refuse a clip on their own. It is NOT every way the
 suite can refuse one: `lipsync_probe` gates on nine inline literals and `spasm_probe` on
 `post.sum() < 0.30 * fps`, and an unnamed number cannot be bracketed. `derive.py` says so
 in its own header rather than letting the denominator flatter the result. Of the 30
