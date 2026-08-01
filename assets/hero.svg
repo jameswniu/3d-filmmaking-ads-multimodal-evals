@@ -27,13 +27,13 @@
   <text x="64" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="38" font-weight="700" fill="url(#title)" letter-spacing=".5">3d-filmmaking-ads-multimodal-evals</text>
   <text x="64" y="154" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" fill="#93c5fd" opacity=".95">Taste captured as labels, compiled into thresholds, enforced by gates.</text>
   <rect x="64" y="178" width="760" height="1" fill="url(#rule)"/>
-  <text x="64" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" font-weight="700" fill="#e0f2fe">113 / 67</text>
+  <text x="64" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" font-weight="700" fill="#e0f2fe">113 / 67</text>
   <text x="64" y="268" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#64a0d8" letter-spacing=".6">LABELLED STILLS / CLIPS</text>
-  <text x="358" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" font-weight="700" fill="#e0f2fe">13</text>
+  <text x="358" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" font-weight="700" fill="#e0f2fe">13</text>
   <text x="358" y="268" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#64a0d8" letter-spacing=".6">PROBES</text>
-  <text x="458" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" font-weight="700" fill="#e0f2fe">4</text>
+  <text x="458" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" font-weight="700" fill="#e0f2fe">4</text>
   <text x="458" y="268" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#64a0d8" letter-spacing=".6">GATES, 3 FAIL OPEN</text>
-  <text x="695" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" font-weight="700" fill="#e0f2fe">1</text>
+  <text x="695" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" font-weight="700" fill="#e0f2fe">1</text>
   <text x="695" y="268" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#64a0d8" letter-spacing=".6">CREDIT PER RENDER</text>
   <rect x="900" y="56" width="244" height="132" rx="7" fill="#060f22" stroke="#7dd3fc" stroke-opacity=".55" stroke-width="1.5"/>
   <rect x="953" y="45" width="18" height="12" rx="1.5" fill="#38bdf8" fill-opacity="0.240"/>

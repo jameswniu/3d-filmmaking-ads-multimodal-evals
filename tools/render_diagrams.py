@@ -449,7 +449,7 @@ def hero():
     # strict: a figure without a slot, or a slot without a figure, is a bug
     # rather than something to silently drop.
     for x, (value, label) in zip(STAT_X, stats, strict=True):
-        o.append(htext(x, 240, value, 36, PALE, weight="700"))
+        o.append(htext(x, 240, value, 30, PALE, weight="700"))
         o.append(htext(x, 268, label, 18, "#64a0d8", ls=".6"))
 
     # The panel, then one cell per view.
