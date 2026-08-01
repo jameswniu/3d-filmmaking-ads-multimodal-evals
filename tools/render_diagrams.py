@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Emit assets/architecture.svg from the counts, instead of trusting a typed copy.
+"""Emit both published SVGs from the counts, instead of trusting typed copies.
 
-WHY THIS FILE EXISTS. The published diagrams were written by a generator that
-lived in a private tree and was never committed. tests/test_suite.py said so out
-loud, because it made a specific failure possible: regenerating from over there
-would silently restore claims this repository had already retired, and nothing
-here would notice. The retired-claim scanner was the mitigation. This is the fix.
+WHY THIS FILE EXISTS. The diagrams were written by a generator that lived in a
+private tree and was never committed. tests/test_suite.py said so out loud,
+because it made a specific failure possible: regenerating from over there would
+silently restore claims this repository had already retired, and nothing here
+would notice. The retired-claim scanner was the mitigation. This is the fix.
 
 WHAT IS ACTUALLY SINGLE SOURCED. The numbers, not the layout. Before this file,
 `13 probes` appeared in the stamp, again on a LOCAL card, and again in README.md,
@@ -15,19 +15,27 @@ Now the probe count is COUNTED from probes/*.py, the view count is the PRODUCT o
 the quilt shape, the gate count is the LENGTH of the gate table, and every place
 they are drawn reads the same value.
 
+hero.svg was nearly left out of this on the grounds that it is a poster rather
+than a diagram of boxes. Reading it disproved that: 77 of its rectangles are the
+quilt, one per view, and 10 more are the stage pills. It was already drawing the
+counts, with nothing tying it to them, which is the exact problem in the more
+decorative half of the repository.
+
 The geometry is a declared layout, not a solver. Coordinates are literals here
-because the diagram is a fixed 1040x780 figure whose boxes do not move; what
-drifts in practice is the numbers, and those are what this computes. Saying it
-plainly is better than implying a layout engine that does not exist.
+because both figures are fixed-size and their boxes do not move; what drifts in
+practice is the numbers, and those are what this computes. Saying it plainly is
+better than implying a layout engine that does not exist.
 
-    python3 tools/render_diagrams.py --check    exit 1 if the committed file
+    python3 tools/render_diagrams.py --check    exit 1 if a committed file
                                                 differs from what this emits
-    python3 tools/render_diagrams.py --write    regenerate it
+    python3 tools/render_diagrams.py --write    regenerate both
+    python3 tools/render_diagrams.py --audit    every other surface agrees
 
---check runs in CI, so a hand edit to the SVG, or a count that moves in one
+--check runs in CI, so a hand edit to either SVG, or a count that moves in one
 place and not the others, fails the build.
 """
 import argparse
+import difflib
 import glob
 import html
 import os
@@ -35,7 +43,6 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ARCH = os.path.join(ROOT, "assets", "architecture.svg")
 
 SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"
 MONO = "ui-monospace,SFMono-Regular,Menlo,monospace"
@@ -307,18 +314,180 @@ def architecture():
     return "\n".join(o)
 
 
+# ------------------------------------------------------------------ the hero
+
+# hero.svg looked like art rather than a diagram, and the first pass here said
+# so: ninety-odd rectangles of filmstrip that would be reverse engineering a
+# layout engine to reproduce. That was wrong, and reading it disproved it.
+# SEVENTY-SEVEN of those rectangles are the quilt, one cell per view, and TEN
+# more are the stage pills. The picture was already drawing the counts; nothing
+# in the file tied it to them.
+#
+# So it is generated too. Change the quilt to 8 by 6 and the grid redraws with
+# 48 cells, because the cells ARE the views.
+
+HERO_MONO = "ui-monospace, SFMono-Regular, Menlo, monospace"
+
+HERO_W, HERO_H = 1200, 330
+
+# The two labelled sets are attested, not derived: those clips are not in this
+# repository and cannot be counted from it. evals/labels.csv is a different,
+# smaller set. Stating them as constants is the honest form.
+LABELLED_STILLS, LABELLED_CLIPS = 113, 67
+
+# Ten stages, and the pills name them the way the run does rather than the way
+# the diagram does. The count is what is load bearing; the footer says "Ten"
+# and an assert below keeps the word and the list from drifting apart.
+PILLS = ["wake", "script", "voice x3", "look", "render",
+         "nobg", "evals", "depth", "quilt", "glass"]
+
+# Where the four figures sit. Uneven on purpose: each is placed clear of the
+# label under the one before it, which is a typographic fact, not a computable
+# one, so it is declared.
+STAT_X = [64, 300, 470, 610]
+
+
+def htext(x, y, s, size, fill, weight=None, anchor=None, ls=None, opacity=None):
+    """A hero text node, in the attribute order the committed file uses."""
+    out = (f'  <text x="{num(x)}" y="{num(y)}" font-family="{HERO_MONO}" '
+           f'font-size="{num(size)}"')
+    if weight:
+        out += f' font-weight="{weight}"'
+    out += f' fill="{fill}"'
+    if anchor:
+        out += f' text-anchor="{anchor}"'
+    if ls:
+        out += f' letter-spacing="{ls}"'
+    if opacity:
+        out += f' opacity="{opacity}"'
+    return out + f">{s}</text>"
+
+
+def cell_opacity(col, row):
+    """Brightness of one quilt cell.
+
+    A highlight, not a measurement: brightest in the middle column, and a
+    gentler lift toward the middle row, so the grid reads as a lit panel rather
+    than a table. Written as a curve rather than a table of 77 numbers so it
+    still holds if the quilt shape changes.
+    """
+    cmid, rmid = (QUILT_COLS - 1) / 2, (QUILT_ROWS - 1) / 2
+    across = (1 - abs(col - cmid) / cmid) ** 0.85
+    down = 1 - 0.2 * abs(row - rmid) / rmid
+    return f"{(0.30 + 0.62 * across) * down:.3f}"
+
+
+def hero():
+    """The landing image. Same counts as the diagram, drawn as a poster."""
+    assert len(PILLS) == len(STAGES_SPINE) + len(STAGES_HOLO) + 1, (
+        "the pills are the ten stages; the footer says so in words")
+
+    o = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{HERO_W}" '
+        f'height="{HERO_H}" viewBox="0 0 {HERO_W} {HERO_H}" role="img"',
+        ' aria-label="3d-filmmaking-ads-multimodal-evals: taste captured as '
+        'labels, compiled into thresholds, enforced by gates. '
+        f'{VIEWS} views of one instant.">',
+        '  <defs>',
+        '    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">',
+        '      <stop offset="0%" stop-color="#040914"/><stop offset="55%" '
+        'stop-color="#081228"/><stop offset="100%" stop-color="#0b1c3d"/>',
+        '    </linearGradient>',
+        '    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">',
+        '      <stop offset="0%" stop-color="#7dd3fc"/><stop offset="55%" '
+        'stop-color="#e0f2fe"/><stop offset="100%" stop-color="#38bdf8"/>',
+        '    </linearGradient>',
+        '    <radialGradient id="glow" cx="76%" cy="26%" r="66%">',
+        '      <stop offset="0%" stop-color="#1d4ed8" stop-opacity=".42"/>'
+        '<stop offset="62%" stop-color="#1d4ed8" stop-opacity=".08"/>'
+        '<stop offset="100%" stop-color="#1d4ed8" stop-opacity="0"/>',
+        '    </radialGradient>',
+        '    <pattern id="grid" width="40" height="40" '
+        'patternUnits="userSpaceOnUse">',
+        '      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#38bdf8" '
+        'stroke-opacity=".05" stroke-width="1"/>',
+        '    </pattern>',
+        '    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">',
+        '      <stop offset="0%" stop-color="#38bdf8" stop-opacity=".55"/>'
+        '<stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>',
+        '    </linearGradient>',
+        '    <linearGradient id="bandbg" x1="0" y1="0" x2="1" y2="0">',
+        '      <stop offset="0%" stop-color="#0ea5e9" stop-opacity=".07"/>'
+        '<stop offset="100%" stop-color="#0ea5e9" stop-opacity=".02"/>',
+        '    </linearGradient>',
+        '  </defs>',
+        f'  <rect width="{HERO_W}" height="{HERO_H}" fill="url(#bg)"/>',
+        f'  <rect width="{HERO_W}" height="{HERO_H}" fill="url(#grid)"/>',
+        f'  <rect width="{HERO_W}" height="{HERO_H}" fill="url(#glow)"/>',
+        f'  <rect x="0" y="0" width="{HERO_W}" height="3" fill="{CYAN}" '
+        'opacity=".9"/>',
+        htext(64, 106, "3d-filmmaking-ads-multimodal-evals", 34,
+              "url(#title)", weight="700", ls=".5"),
+        htext(64, 136, "Taste captured as labels, compiled into thresholds, "
+              "enforced by gates.", 15, "#93c5fd", opacity=".95"),
+        '  <rect x="64" y="156" width="640" height="1" fill="url(#rule)"/>',
+    ]
+
+    stats = [
+        (f"{LABELLED_STILLS} / {LABELLED_CLIPS}", "LABELLED STILLS / CLIPS"),
+        (f"{PROBES}", "PROBES"),
+        (f"{len(GATES)}", f"GATES, {GATES_FAIL_OPEN} FAIL OPEN"),
+        (f"{CREDIT_SCHEDULED}", "CREDIT PER RENDER"),
+    ]
+    # strict: a figure without a slot, or a slot without a figure, is a bug
+    # rather than something to silently drop.
+    for x, (value, label) in zip(STAT_X, stats, strict=True):
+        o.append(htext(x, 196, value, 21, PALE, weight="700"))
+        o.append(htext(x, 214, label, 10.5, "#64a0d8", ls=".6"))
+
+    # The panel, then one cell per view.
+    o.append('  <rect x="900" y="60" width="244" height="122" rx="7" '
+             'fill="#060f22" stroke="#7dd3fc" stroke-opacity=".55" '
+             'stroke-width="1.5"/>')
+    cell_x0, cell_y0, cell_dx, cell_dy = 953, 45, 20, 14
+    for row in range(QUILT_ROWS):
+        for col in range(QUILT_COLS):
+            o.append(f'  <rect x="{cell_x0 + col * cell_dx}" '
+                     f'y="{cell_y0 + row * cell_dy}" width="18" height="12" '
+                     f'rx="1.5" fill="{CYAN}" '
+                     f'fill-opacity="{cell_opacity(col, row)}"/>')
+    o.append(htext(1022, 202,
+                   f"{QUILT_COLS} &#215; {QUILT_ROWS} = {VIEWS} VIEWS OF ONE "
+                   "INSTANT", 11.5, "#7dd3fc", anchor="middle", ls=".5"))
+
+    # The run, as ten pills with a dot between each pair.
+    o.append('  <rect x="48" y="242" width="1104" height="46" rx="9" '
+             'fill="url(#bandbg)"/>')
+    pill_x0, pill_dx, pill_w = 67, 108, 93
+    for i, name in enumerate(PILLS):
+        x = pill_x0 + i * pill_dx
+        last = i == len(PILLS) - 1        # the panel, lit brighter than the rest
+        o.append(f'  <rect x="{x}" y="253" width="{pill_w}" height="25" rx="6" '
+                 f'fill="{DEEP}" fill-opacity="{".20" if last else ".09"}" '
+                 f'stroke="{CYAN}" stroke-opacity="{".95" if last else ".45"}"/>')
+        o.append(htext(x + 46, 270, name, 11.5, PALE if last else "#9cc9f5",
+                       anchor="middle"))
+        if not last:
+            o.append(f'  <circle cx="{x + 100}" cy="265.5" r="1.6" '
+                     f'fill="{CYAN}" opacity=".5"/>')
+
+    o.append(htext(64, 311,
+                   f"{WORDS[len(PILLS)].capitalize()} stages, unattended "
+                   "&#183; every gate fires before the credit is spent &#183; "
+                   "anything that is not a clean success pings loud",
+                   11.5, "#7c9ec4", opacity=".92"))
+    o.append("</svg>")
+    # Unlike architecture.svg, this file does end with a newline.
+    return "\n".join(o) + "\n"
+
+
 # --------------------------------------------------------------- the audit
 
-# Generating architecture.svg only fixes architecture.svg. The same counts are
-# also drawn in assets/hero.svg, stated in docs/architecture.html, and printed
-# in README.md badges and prose. hero.svg is an illustration, not a diagram of
-# boxes, so it is NOT generated here; reverse engineering ninety-odd rectangles
-# of filmstrip art would be inventing a layout engine to solve a problem that is
-# actually about four numbers.
-#
-# So the generator owns the numbers and this audits every surface against them.
-# The two together are the single source: one file computes each count, and no
-# published surface may disagree with it.
+# Generating both SVGs does not cover everything that states these counts. They
+# are also in docs/architecture.html and in README.md badges and prose, which
+# are written by hand and always will be. So the generator owns the numbers and
+# this audits every surface against them. The two together are the single
+# source: one file computes each count, and no published surface may disagree.
 # Scope matters, and getting it wrong makes the check useless rather than
 # strict. The first version scanned prose too and raised two false alarms: it
 # read `python3 probes/sync_probe.py` as "3 probes", and it flagged the README
@@ -407,6 +576,14 @@ def audit(exclude=()):
     return problems, hits
 
 
+# Both published figures, and the function that draws each. Defined here rather
+# than at the top because it names the builders, which are defined above.
+TARGETS = [
+    ("assets/architecture.svg", architecture),
+    ("assets/hero.svg", hero),
+]
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     g = ap.add_mutually_exclusive_group(required=True)
@@ -430,16 +607,14 @@ def main():
               f"agree with the generator")
         return 0
 
-    built = architecture()
-    on_disk = open(ARCH).read() if os.path.exists(ARCH) else None
-
     if args.write:
         # Refuse to write a figure the rest of the repository contradicts. The
-        # diagram is downstream of the counts, so if a count has moved, README
-        # and the other surfaces get updated FIRST and the picture is redrawn
+        # diagrams are downstream of the counts, so if a count has moved, README
+        # and the other surfaces get updated FIRST and the pictures are redrawn
         # from them. Reversing that order is exactly how a diagram becomes a
         # second source of truth, which is the thing this file exists to stop.
-        problems, _ = audit(exclude=("assets/architecture.svg",))
+        # The files about to be rewritten are the ones allowed to be stale.
+        problems, _ = audit(exclude=tuple(rel for rel, _ in TARGETS))
         if problems:
             print("refusing to write: other surfaces disagree with the counts "
                   "this would draw.", file=sys.stderr)
@@ -447,32 +622,42 @@ def main():
                 print("  " + p, file=sys.stderr)
             print("Update those first, then regenerate.", file=sys.stderr)
             return 1
-        with open(ARCH, "w") as fh:
-            fh.write(built)
-        state = "unchanged" if built == on_disk else "REWRITTEN"
-        print(f"assets/architecture.svg {state} ({len(built)} bytes)")
+        for rel, build in TARGETS:
+            path = os.path.join(ROOT, rel)
+            built = build()
+            was = open(path).read() if os.path.exists(path) else None
+            with open(path, "w") as fh:
+                fh.write(built)
+            state = "unchanged" if built == was else "REWRITTEN"
+            print(f"{rel} {state} ({len(built)} bytes)")
         return 0
 
-    if on_disk is None:
-        print("assets/architecture.svg is missing; run --write", file=sys.stderr)
-        return 1
-    if built == on_disk:
-        print(f"assets/architecture.svg matches the generator "
-              f"({PROBES} probes, {len(GATES)} gates, {VIEWS} views)")
-        return 0
-
-    print("assets/architecture.svg DIFFERS from the generator.", file=sys.stderr)
-    print("Either the file was hand edited, or a count moved and the file was "
-          "not regenerated. Run --write and read the diff.", file=sys.stderr)
-    import difflib
-    diff = difflib.unified_diff(on_disk.split("\n"), built.split("\n"),
-                                "committed", "generated", lineterm="", n=1)
-    for i, ln in enumerate(diff):
-        if i > 40:
-            print("  ...", file=sys.stderr)
-            break
-        print("  " + ln, file=sys.stderr)
-    return 1
+    failed = 0
+    for rel, build in TARGETS:
+        path = os.path.join(ROOT, rel)
+        built = build()
+        if not os.path.exists(path):
+            print(f"{rel} is missing; run --write", file=sys.stderr)
+            failed += 1
+            continue
+        on_disk = open(path).read()
+        if built == on_disk:
+            print(f"{rel} matches the generator "
+                  f"({PROBES} probes, {len(GATES)} gates, {VIEWS} views)")
+            continue
+        failed += 1
+        print(f"{rel} DIFFERS from the generator.", file=sys.stderr)
+        print("Either the file was hand edited, or a count moved and the file "
+              "was not regenerated. Run --write and read the diff.",
+              file=sys.stderr)
+        diff = difflib.unified_diff(on_disk.split("\n"), built.split("\n"),
+                                    "committed", "generated", lineterm="", n=1)
+        for i, ln in enumerate(diff):
+            if i > 40:
+                print("  ...", file=sys.stderr)
+                break
+            print("  " + ln, file=sys.stderr)
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

@@ -169,13 +169,13 @@ def test_no_retired_claim_survives_on_any_surface():
     This used to matter more than a normal staleness check, because both SVGs
     were written by a generator that was NOT in this repository: regenerating
     from that private tree would have silently restored both claims with nothing
-    to notice. tools/render_diagrams.py closes that hole for architecture.svg,
-    which is now generated here and byte-checked in CI.
+    to notice. tools/render_diagrams.py closes that hole. Both SVGs are
+    generated here now and byte-checked in CI.
 
-    This test stays, and not merely out of caution. hero.svg is an illustration
-    rather than a diagram of boxes, so it is audited for its counts but not
-    generated, and a retired CLAIM is a sentence rather than a number, which no
-    count audit can see. This is the check that reads the words.
+    This test stays, and not merely out of caution. A retired CLAIM is a
+    sentence, not a number, so no count check can see one; and docs/ and
+    README.md are written by hand and always will be. This is the check that
+    reads the words.
     """
     # Regexes, not substrings. The first version used bare substrings and flagged
     # two correct sentences: "holds each derived constant inside the interval" and
@@ -296,20 +296,26 @@ def test_no_dead_gating_constants():
 
 # --- the diagrams are computed, not typed ------------------------------------
 
-def test_architecture_svg_matches_its_generator():
-    """The published diagram must be what tools/render_diagrams.py emits.
+def test_published_svgs_match_their_generator():
+    """Both published SVGs must be what tools/render_diagrams.py emits.
 
     This closes the hole the retired-claim scanner below was only able to
     mitigate. That test's docstring said the SVGs came from a generator NOT in
     this repository, so regenerating from the private tree could silently
-    restore a retired claim. The generator is here now, so the SVG is output
-    rather than a typed artifact, and a hand edit to it fails the build.
+    restore a retired claim. The generator is here now, so both files are
+    output rather than typed artifacts, and a hand edit to either fails.
+
+    Both are asserted by name, because --check reporting success for a list it
+    quietly stopped iterating would pass this test otherwise.
     """
     r = run(["tools/render_diagrams.py", "--check"])
     assert r.returncode == 0, (
-        "assets/architecture.svg is not what the generator emits. Run "
+        "a published SVG is not what the generator emits. Run "
         "`python3 tools/render_diagrams.py --write` and read the diff.\n"
         + r.stdout + r.stderr)
+    for name in ("assets/architecture.svg", "assets/hero.svg"):
+        assert f"{name} matches" in r.stdout, (
+            f"--check did not report on {name}: " + r.stdout)
 
 
 def test_stated_counts_agree_on_every_surface():

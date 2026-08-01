@@ -62,28 +62,28 @@ tree. `tests/test_suite.py` called that out as a live hazard rather than a note:
 regenerating from over there would quietly reinstate claims this repository had
 already retired, and no check here could have seen it happen.
 
-`tools/render_diagrams.py` now lives here and emits `assets/architecture.svg`,
-and CI fails if the committed file is not what it produces. So this one item
-runs against the direction of everything above it: nothing is copied INTO the
-private tree, something is removed FROM it.
+`tools/render_diagrams.py` now lives here and emits BOTH SVGs, and CI fails if
+either committed file is not what it produces. So this one item runs against
+the direction of everything above it: nothing is copied INTO the private tree,
+something is removed FROM it.
 
-That private generator wrote both SVGs, so removing it is two decisions with
-very different costs, and they should not be made as one.
+**Delete the private generator. It is fully superseded, and this is now safe
+in both halves.**
 
-**The architecture half is superseded. Delete it.** The generator here
-reproduces the published file byte for byte, so nothing is lost by dropping the
-other one. Keeping both is worse than redundant: CI can only guarantee that
-`architecture.svg` is what the generator emits while ONE thing emits it, and a
-second writer is an unguarded path to a guarded file. That is the same shape as
-the two hole fillers above, where one caller got the fix and the other did not.
+Both files reproduce byte for byte, `architecture.svg` at 20145 bytes and
+`hero.svg` at 14827, so nothing is lost by dropping the other copy. Keeping both
+is worse than redundant: CI can only guarantee a file is what the generator
+emits while ONE thing emits it, and a second writer is an unguarded path to a
+guarded file. That is the same shape as the two hole fillers above, where one
+caller got the fix and the other did not.
 
-**The hero half is a real decision, and it is not free.** Nothing here
-regenerates `assets/hero.svg`; it is audited for its counts and scanned for
-retired claims, but it is not produced from them. Deleting the private generator
-therefore makes `hero.svg` a hand-edited file permanently. That is defensible,
-since the two checks cover the ways it actually went wrong before, but the
-alternative is porting hero generation into `tools/render_diagrams.py` and it is
-worth choosing on purpose rather than discovering later.
+This was briefly listed as two decisions, because the hero half looked like a
+poster rather than a diagram and porting it looked like reverse engineering
+ninety rectangles of art. Reading the file settled it the other way: 77 of those
+rectangles are the quilt, one per view, and 10 more are the stage pills. It was
+already drawing the counts. Now it draws them FROM the counts, so a quilt of
+8 by 6 redraws the grid with 48 cells instead of leaving the picture asserting
+77 that nothing produces.
 
 ### Done means
 
