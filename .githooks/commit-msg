@@ -62,11 +62,21 @@ BODY="$(grep -v '^#' "$MSG_FILE" 2>/dev/null || true)"
 [ -n "${BODY//[[:space:]]/}" ] || exit 0
 
 FOUND=0
-while IFS=$'\t' read -r sev class label re; do
+# FIVE fields, not four. The table grew an optional flags column, and a
+# four-field read silently appended it to the regex, so every pattern became
+# unmatchable and this hook passed everything while looking like it ran. It
+# was not caught by a test because nothing tested this hook.
+while IFS=$'\t' read -r sev class label re flags; do
   case "$sev" in ''|'#'*) continue ;; esac
-  [ "$sev" = "BLOCKER" ] || continue
+  # HIGH as well as BLOCKER. pii_scan.sh already refuses to publish on either,
+  # so enforcing only BLOCKER here left the two layers disagreeing about what
+  # is publishable, and a HIGH word reached a public commit message through it.
+  case "$sev" in BLOCKER|HIGH) ;; *) continue ;; esac
   [ -n "${re:-}" ] || continue
-  HITS="$(printf '%s\n' "$BODY" | grep -n -i -E -e "$re" 2>/dev/null || true)"
+  # Honour the rule's own flags rather than forcing -i. A rule deliberately
+  # marked exact-case is usually a brand name that collides with an ordinary
+  # English word, and a commit message in this repo will use that word.
+  HITS="$(printf '%s\n' "$BODY" | grep -n $flags -E -e "$re" 2>/dev/null || true)"
   if [ -n "$HITS" ]; then
     if [ "$FOUND" -eq 0 ]; then
       echo "" >&2
