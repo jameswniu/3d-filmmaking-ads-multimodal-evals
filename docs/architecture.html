@@ -274,20 +274,20 @@
 const D = {
   metered:[
     ["text-to-speech","pinned model, 3 takes, median kept","0 render credits",
-     "A wrong model does not error, it just reads flatter. Nine clips shipped on the wrong one before a person said it sounded flat. Measured after: <code>11.4%</code> rest against the human reference's <code>19.0%</code>. Nothing compared the delivered clip to the source recording."],
+     "A wrong model does not error, it just reads flatter. Nine clips shipped before a person noticed. Measured afterwards: <code>11.4%</code> rest against the human reference's <code>19.0%</code>. Nothing had compared the delivered clip to the source recording."],
     ["avatar render","engine router, flat tier scheduled","1, 43 or 58 credits",
      "The flat engine billed <code>1</code> credit at 11s, at 126s and at 169s. The premium engines billed <code>5</code>, <code>43</code> and <code>58</code>. A plausible <code>ceil(sec/11)*5</code> predicts 60 for the render that actually cost 43, so the router returns null for any unmeasured duration rather than guess."]],
   spine:[
     ["0","WAKE","a timer, not a person",
-     "The alert test is inverted on purpose: it fires on everything that is <b>not</b> a clean success. An enumerated list of known failures can only catch what you already thought of, so a novel failure would have been silent."],
+     "The alert test is inverted on purpose: it fires on everything that is not a clean success. An enumerated list of known failures catches only what you already thought of, so a novel one would have been silent."],
     ["1","SCRIPT","two agents, kept apart",
      "One agent assembles what to say, a second shapes how it sounds. Keeping them apart also keeps the thing writing the copy from being the thing that spends the render budget."],
     ["2","VOICE","clone, one continuous take",
      "More audio lost this argument twice. A 69s stitched reference pitched the voice up (<code>242</code> and <code>235 Hz</code> against <code>216</code>) and scored lower on timbre similarity than a 10s continuous original. Draw 3 takes, keep the median by duration; this run spread <code>7.7%</code>."],
     ["3","LOOK","generated, one pinned identity",
-     "Every look is prompt-generated but anchored to one pinned identity group, so an approved look is provably the same person rather than a family of lookalikes. The guard fired during this very rebuild and refused a fresh look until the allowlist was refreshed."],
+     "Every look is prompt-generated but anchored to one pinned identity group, so an approved look is provably the same person rather than a family of lookalikes. The guard fired during this rebuild and refused a fresh look until the allowlist was refreshed."],
     ["4","RENDER","audio drives a fixed still",
-     "The vendor exposes no seed, so <b>the still is the seed</b>. Geometry is measured on the delivered file rather than trusted from the request flag, because a 1:1 request against a landscape look letterboxes unless fit is set."]],
+     "The still is the seed, because the vendor exposes none of its own. Geometry is measured on the delivered file rather than trusted from the request flag: a 1:1 request against a landscape look letterboxes unless fit is set."]],
   holo:[
     ["5","MATTE","the room comes out",
      "The fill is pure black: the strongest available separation for a lit face and the weakest for dark clothing. Those are one decision, and the suite was organised as though they were two."],
@@ -307,10 +307,10 @@ const D = {
     ["warp + interleave","numpy, no model","no per-run cost",
      "Deterministic arithmetic. Nothing here can drift between runs."],
     ["13 probes","score, mostly disclose","the gates block, not these",
-     "A metric that agrees with your labels is not yet a metric. It has to be stable <b>within</b> a clip before it may gate anything, because agreement on a small labelled set is cheap and noise reproduces it easily."]],
+     "A metric that agrees with your labels is not yet a metric. It has to be stable inside a single clip before it may gate anything, because agreement on a small labelled set is cheap and noise reproduces it easily."]],
   gates:[
     ["separation","she must clear the fill","on stage 5, matte",
-     "This gate did not exist until it was needed. A black top on a black fill measured <code>22</code> luma of torso clearance against <code>134</code> at the face, so the body dissolved and left a floating head. Twelve probes passed that clip; eleven scored her, one scored the backdrop, none held both sides of the boundary at once."],
+     "This gate did not exist until it was needed. A black top on a black fill measured <code>22</code> luma of torso clearance against <code>134</code> at the face, so the body dissolved and left a floating head. Twelve probes passed that clip: eleven scored the subject, one scored the backdrop, none held both sides of the boundary at once."],
     ["transcript diff","wrong audio means stop","on stage 2, before spend",
      "Transcribe the synthesized audio and diff it against the intended script before spending a render. Proper nouns are where synthesis fails, and no render can repair audio that was already wrong. This clip scored <code>541/541</code> words at similarity <code>1.0000</code>."],
     ["identity pin","unknown face means stop","on stage 3, before spend",
