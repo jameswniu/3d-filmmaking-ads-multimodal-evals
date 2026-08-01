@@ -77,6 +77,18 @@ CREDIT_TIERS = (1, 43, 58)
 # card carries a "blocking" badge and why the aria-label says so in words.
 GATES_FAIL_OPEN = 3
 
+# The strongest claim this repository makes, and the one the hero had been
+# leaving out: how many of the named gating thresholds trace to a labelled
+# pass/reject pair rather than to somebody's judgement.
+#
+# evals/derive.py is the AUTHORITY for these two and re-derives every bar on
+# each run. They are restated here rather than imported because drawing a
+# picture must not require numpy, opencv and ffmpeg, which derive.py does.
+# That makes them the one pair of numbers in this file that could go stale, so
+# tests/test_suite.py asserts them against derive.py's own output and fails the
+# build the moment they disagree.
+THRESHOLDS_DERIVED, THRESHOLDS_GATING = 16, 16
+
 WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
          7: "seven", 8: "eight", 9: "nine", 10: "ten"}
 
@@ -356,7 +368,11 @@ PILLS = ["wake", "script", "voice x3", "look", "render",
 # label under the one before it, which is a typographic fact, not a computable
 # one, so it is declared. These moved when the labels grew; the widest of them,
 # LABELLED STILLS / CLIPS, is 23 characters and sets the first gap.
-STAT_X = [64, 358, 458, 695]
+# Each slot is as wide as the wider of its figure and its label, plus about 18
+# of gap. Widths come from the renderer's own advance of 0.634 per character in
+# this mono stack, not from an estimate; a 0.6 guess is what once put the title
+# flush against the panel.
+STAT_X = [64, 335, 499, 736]
 
 
 def htext(x, y, s, size, fill, weight=None, anchor=None, ls=None, opacity=None):
@@ -436,13 +452,17 @@ def hero():
         htext(64, 118, "3d-filmmaking-ads-multimodal-evals", 38,
               "url(#title)", weight="700", ls=".5"),
         htext(64, 154, "Taste captured as labels, compiled into thresholds, "
-              "enforced by gates.", 19, "#93c5fd", opacity=".95"),
+              "enforced by gates.", 18, "#93c5fd", opacity=".95"),
         '  <rect x="64" y="178" width="760" height="1" fill="url(#rule)"/>',
     ]
 
+    # The second slot used to be the probe count, which is a count of FILES and
+    # the least interesting number here. What the repository is actually for is
+    # the ratio beside it, so that is what the poster leads with now. The probe
+    # count still appears in the README badge row directly underneath.
     stats = [
-        (f"{LABELLED_STILLS} / {LABELLED_CLIPS}", "LABELLED STILLS / CLIPS"),
-        (f"{PROBES}", "PROBES"),
+        (f"{LABELLED_STILLS} / {LABELLED_CLIPS}", "LABELLED STILLS/CLIPS"),
+        (f"{THRESHOLDS_DERIVED} / {THRESHOLDS_GATING}", "DERIVED"),
         (f"{len(GATES)}", f"GATES, {GATES_FAIL_OPEN} FAIL OPEN"),
         (f"{CREDIT_SCHEDULED}", "CREDIT PER RENDER"),
     ]
@@ -453,10 +473,13 @@ def hero():
         o.append(htext(x, 268, label, 18, "#64a0d8", ls=".6"))
 
     # The panel, then one cell per view.
-    o.append('  <rect x="900" y="56" width="244" height="132" rx="7" '
+    # The panel sits 40 further right than it used to. The four figures needed
+    # the room: at the old width the gap between "16 / 16" and the "4" beside it
+    # fell to 24px and the two read as one number.
+    o.append('  <rect x="940" y="56" width="244" height="132" rx="7" '
              'fill="#060f22" stroke="#7dd3fc" stroke-opacity=".55" '
              'stroke-width="1.5"/>')
-    cell_x0, cell_y0, cell_dx, cell_dy = 953, 45, 20, 14
+    cell_x0, cell_y0, cell_dx, cell_dy = 993, 45, 20, 14
     for row in range(QUILT_ROWS):
         for col in range(QUILT_COLS):
             o.append(f'  <rect x="{cell_x0 + col * cell_dx}" '
@@ -466,10 +489,10 @@ def hero():
     # Two lines. As one line at a readable size this ran to x=1174, past the
     # right margin; shrinking it instead would have put the only statement of
     # the view count back under 7px on screen.
-    o.append(htext(1022, 210,
+    o.append(htext(1062, 210,
                    f"{QUILT_COLS} &#215; {QUILT_ROWS} = {VIEWS} VIEWS",
                    15, "#7dd3fc", anchor="middle", ls=".5"))
-    o.append(htext(1022, 230, "OF ONE INSTANT",
+    o.append(htext(1062, 230, "OF ONE INSTANT",
                    15, "#7dd3fc", anchor="middle", ls=".5"))
 
     # The run, as ten pills with a dot between each pair.
@@ -525,6 +548,11 @@ FACTS = [
     (r"(?<![a-zA-Z])(\d+)\s+probes\b(?!/)", lambda: (PROBES,), MARKUP,
      "probe count"),
     (r"probes-(\d+)", lambda: (PROBES,), ALL, "probe count (README badge)"),
+    # The hero states this as two neighbouring text nodes, "16 / 16" then
+    # "DERIVED", which the tag-stripping pass joins into one string.
+    (r"(\d+)\s*/\s*(\d+)\s+derived",
+     lambda: (THRESHOLDS_DERIVED, THRESHOLDS_GATING), MARKUP,
+     "gating thresholds derived"),
     (r"(\d+)\s+gates,\s*(\d+)\s+fail open",
      lambda: (len(GATES), GATES_FAIL_OPEN), ALL,
      "gate count and how many fail open"),

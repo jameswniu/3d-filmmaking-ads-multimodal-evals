@@ -157,6 +157,23 @@ def test_documented_counts_match_the_tool():
         f"derive.py reports {d} derived / {a} authored / {m} gating. "
         + "; ".join(problems))
 
+    # The hero draws this ratio, and tools/render_diagrams.py restates it as a
+    # constant rather than importing derive.py, because drawing a picture must
+    # not require numpy and ffmpeg. That restatement is the one number in the
+    # generator that can go stale, so it is checked against the tool here.
+    gen = {}
+    with open(os.path.join(ROOT, "tools", "render_diagrams.py")) as fh:
+        for node in ast.walk(ast.parse(fh.read())):
+            if isinstance(node, ast.Assign) and isinstance(node.targets[0], ast.Tuple):
+                names = [t.id for t in node.targets[0].elts if isinstance(t, ast.Name)]
+                if "THRESHOLDS_DERIVED" in names:
+                    gen = dict(zip(names, [v.value for v in node.value.elts], strict=True))
+    assert gen, "render_diagrams.py no longer declares THRESHOLDS_DERIVED"
+    assert (gen["THRESHOLDS_DERIVED"], gen["THRESHOLDS_GATING"]) == (d, m), (
+        f"render_diagrams.py says {gen['THRESHOLDS_DERIVED']}/"
+        f"{gen['THRESHOLDS_GATING']} derived, derive.py says {d}/{m}. "
+        "Update the generator and re-run --write.")
+
 
 def test_no_retired_claim_survives_on_any_surface():
     """The landing page is more than README.md, and the rest is not text-diffable.
