@@ -73,7 +73,7 @@ Pass DURATION_SEC to get a measured figure when one exists.
 EOF
 }
 
-# credits_for ENGINE DURATION -> sets CRED (json literal) and BASIS (prose)
+# credits_for ENGINE DURATION -> sets CRED (json literal) and CRED_BASIS (prose)
 # Returns a number ONLY at a measured point. Everything else is null.
 credits_for() {
   local eng="$1" dur="${2:-}"
@@ -81,30 +81,30 @@ credits_for() {
     avatar_iii)
       # Flat, and that flatness is itself measured at two lengths an order apart.
       CRED=1
-      BASIS="measured: 1 credit at 11s and 1 credit at 125.7s, flat with length"
+      CRED_BASIS="measured: 1 credit at 11s and 1 credit at 125.7s, flat with length"
       return ;;
   esac
   # iv / v: two measured points, no law between or beyond them.
   if [ -z "$dur" ]; then
     CRED=null
-    BASIS="UNKNOWN without a duration. Measured: 5 credits at 11s, 43 credits at 125.7s. Scaling law not known, do not interpolate. Pass DURATION_SEC, or measure the balance delta."
+    CRED_BASIS="UNKNOWN without a duration. Measured: 5 credits at 11s, 43 credits at 125.7s. Scaling law not known, do not interpolate. Pass DURATION_SEC, or measure the balance delta."
     return
   fi
   local near
   near=$(awk -v d="$dur" 'BEGIN{ if (d>=9 && d<=13) print "11"; else if (d>=120 && d<=131) print "126"; else print "" }')
   case "$near" in
-    11)  CRED=5;  BASIS="measured: 5 credits for an ~11s render (2026-07-22)" ;;
-    126) CRED=43; BASIS="measured: 43 credits for a 125.7s render (2026-07-27)" ;;
+    11)  CRED=5;  CRED_BASIS="measured: 5 credits for an ~11s render (2026-07-22)" ;;
+    126) CRED=43; CRED_BASIS="measured: 43 credits for a 125.7s render (2026-07-27)" ;;
     *)   CRED=null
-         BASIS="UNKNOWN at ${dur}s. Measured points are 11s=5 credits and 125.7s=43 credits; the law between them is not known and must not be guessed (ceil(sec/11)*5 predicts 60 for the 125.7s clip that billed 43). Measure the balance delta around this render and add the point." ;;
+         CRED_BASIS="UNKNOWN at ${dur}s. Measured points are 11s=5 credits and 125.7s=43 credits; the law between them is not known and must not be guessed (ceil(sec/11)*5 predicts 60 for the 125.7s clip that billed 43). Measure the balance delta around this render and add the point." ;;
   esac
 }
 
 emit() { # $1 mode  $2 engine_type  $3 render_sec  $4 motion_ok  $5 fallback_json  $6 note  $7 duration
-  local CRED BASIS
+  local CRED CRED_BASIS
   credits_for "$2" "${7:-}"
   printf '{"mode":"%s","engine_type":"%s","engine":{"type":"%s"},"resolution":"1080p","aspect_ratio":"1:1","fit":"cover","motion_prompt_ok":%s,"credits_est":%s,"credits_basis":"%s","render_sec_est":%s,"fallback_chain":%s,"note":"%s"}\n' \
-    "$1" "$2" "$2" "$4" "$CRED" "$BASIS" "$3" "$5" "$6"
+    "$1" "$2" "$2" "$4" "$CRED" "$CRED_BASIS" "$3" "$5" "$6"
 }
 
 cmd="${1:-prod}"

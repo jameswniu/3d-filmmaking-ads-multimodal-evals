@@ -15,6 +15,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROBES = os.path.join(ROOT, "probes")
@@ -354,6 +355,58 @@ def test_stated_counts_agree_on_every_surface():
     assert int(found.group(1)) >= 15, (
         f"audit only found {found.group(1)} stated counts, which means a "
         "pattern stopped matching rather than that the surfaces are clean")
+
+
+def test_scanner_honours_per_rule_case_flags():
+    """A project rule must be able to opt into case-insensitive matching.
+
+    A name is not case-stable in prose. The same identity token gets written
+    capitalised, lower, and SHOUTED in a comment, and every project rule ran
+    case-SENSITIVE because apply_rule_table never passed the flags argument
+    run_rule already accepted. So a rule spelling one capitalisation let the
+    others through and reported clean. That is the exact failure this
+    repository is about: a check announcing success on input it never examined.
+
+    The negative half carries equal weight. A blanket -i would make the
+    built-in identifier rules (tracker keys, chat object ids, both defined as
+    uppercase shapes) start matching ordinary lowercase prose, so this asserts
+    an unflagged rule stays case-sensitive.
+
+    Line 4 is the word-boundary control. \\b is what keeps a rule from firing on
+    every longer word that contains the token, and a scanner whose grep engine
+    silently ignores \\b reports a clean audit of nothing.
+    """
+    script = os.path.join(ROOT, "tools", "pii_scan.sh")
+    with tempfile.TemporaryDirectory(dir=ROOT) as tmp:
+        rules = os.path.join(tmp, "rules.txt")
+        target = os.path.join(tmp, "target.txt")
+        with open(rules, "w") as fh:
+            # SEVERITY \t CLASS \t LABEL \t REGEX \t FLAGS; absent FLAGS means
+            # case-sensitive, which is what every identifier rule relies on.
+            fh.write("BLOCKER\tCLASS5-WORKPLACE\tname-any-case\t\\bzebra\\b\t-i\n")
+            fh.write("BLOCKER\tCLASS5-WORKPLACE\tid-exact-case\t\\bZQ[0-9]{4}\\b\n")
+        with open(target, "w") as fh:
+            fh.write("ZEBRA shouted\nzebra lower\nZebra title\n"
+                     "zebrafish is a longer word\nZQ1234 identifier\nzq1234 not one\n")
+        env = dict(os.environ, PII_CONTEXT_FILE=rules, PII_SCAN_SOFT="1")
+        r = subprocess.run(["bash", script, target], cwd=ROOT, env=env,
+                           capture_output=True, text=True, timeout=90)
+        out = r.stdout + r.stderr
+        hits = {}
+        for line in out.splitlines():
+            parts = line.strip().split(":")
+            if len(parts) >= 5 and parts[-1] in ("name-any-case", "id-exact-case"):
+                if parts[1].isdigit():
+                    hits.setdefault(parts[-1], set()).add(int(parts[1]))
+        assert hits.get("name-any-case") == {1, 2, 3}, (
+            "a rule carrying -i must match every capitalisation (lines 1, 2, 3) "
+            "and must not match the longer word on line 4; got lines "
+            f"{sorted(hits.get('name-any-case', []))}\n" + out)
+        assert hits.get("id-exact-case") == {5}, (
+            "a rule with no flags must stay case-sensitive, or the built-in "
+            "uppercase identifier rules start firing on ordinary prose; "
+            f"expected only line 5, got {sorted(hits.get('id-exact-case', []))}\n"
+            + out)
 
 
 def _main():

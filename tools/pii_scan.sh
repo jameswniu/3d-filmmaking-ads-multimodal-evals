@@ -245,6 +245,7 @@ RULES_EOF
 # ---------------------------------------------------------------------------
 # Project-specific fragments, loaded from a local gitignored file.
 # Format: one line per rule,  SEVERITY <TAB> CLASS <TAB> LABEL <TAB> REGEX
+#         optional 5th field:  <TAB> GREP FLAGS   (e.g. -i). Omit for exact case.
 # Lines beginning with # are comments. Blank lines are skipped.
 # ---------------------------------------------------------------------------
 EXTRA_RULES=""
@@ -347,10 +348,15 @@ run_rule() {
 }
 
 apply_rule_table() {
-  local table="$1" list="$2" sev cls label re
-  while IFS=$'\t' read -r sev cls label re; do
+  # Field 5 is optional grep flags. It exists because run_rule has always
+  # accepted a flags argument and this loop never passed one, so every table
+  # rule ran case-sensitive and a name spelled one way let the other spellings
+  # through without a word of complaint. Absent field 5 keeps the old
+  # behaviour, which the identifier rules depend on.
+  local table="$1" list="$2" sev cls label re flags
+  while IFS=$'\t' read -r sev cls label re flags; do
     [ -n "${re:-}" ] || continue
-    run_rule "$sev" "$cls" "$label" "$re" "$list"
+    run_rule "$sev" "$cls" "$label" "$re" "$list" "${flags:-}"
   done <<< "$table"
 }
 

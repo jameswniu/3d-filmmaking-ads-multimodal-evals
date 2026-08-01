@@ -27,12 +27,13 @@
 #   file content and on message text without being written twice.
 #
 # CASE SENSITIVITY
-#   Matching is case-insensitive here, deliberately, and that is a difference
-#   from the file scanner. tools/pii_scan.sh passes no -i for table rules, so a
-#   pattern that spells one capitalisation of a name will miss the others, and
-#   an all-caps spelling walks straight through. In prose a name is written
-#   however the writer felt at the time, and a commit message is prose. The
-#   file scanner's own header already flags this gap as a known one.
+#   Matching is case-insensitive here for every BLOCKER rule, because a commit
+#   message is prose and a name in prose is written however the writer felt at
+#   the time. tools/pii_scan.sh used to have no way to say that per rule, so an
+#   all-caps spelling walked straight through it. It now takes an optional
+#   flags column and the project rules carry -i, so the two scanners agree on
+#   names while the file scanner keeps its identifier rules exact-case, which
+#   they have to be.
 #
 #   Rules are referred to by their LABEL here, never by reproducing the
 #   pattern. Writing the pattern into a comment writes the very string the
