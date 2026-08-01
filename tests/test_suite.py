@@ -409,6 +409,60 @@ def test_scanner_honours_per_rule_case_flags():
             + out)
 
 
+def test_commit_message_hook_enforces_the_same_table_the_scanner_does():
+    """The commit message hook had no test, which is why it failed in silence.
+
+    The rule table grew an optional fifth column. This hook still read four
+    fields, so every regex became pattern, tab, flag and matched nothing. It
+    kept running and kept printing its banner while passing everything,
+    including a message carrying a word the file scanner refuses to publish.
+    A gate with no test cannot tell you it has stopped being a gate, and this
+    one stayed down for hours before anyone ran it by hand.
+
+    Both directions are asserted, because each has already been wrong once.
+    A flagged rule must catch every capitalisation, or a shouted name walks
+    through. An unflagged rule must NOT match the wrong case, or a brand name
+    that doubles as an ordinary English word turns every honest sentence into
+    a finding, and a gate that cries wolf gets bypassed rather than answered.
+    """
+    hook = os.path.join(ROOT, ".githooks", "commit-msg")
+    assert os.access(hook, os.X_OK), "the hook is not executable, so git never runs it"
+
+    with tempfile.TemporaryDirectory(dir=ROOT) as tmp:
+        subprocess.run(["git", "init", "-q", tmp], check=True, capture_output=True)
+        os.makedirs(os.path.join(tmp, "tools"))
+        with open(os.path.join(tmp, "tools", "pii_context.txt"), "w") as fh:
+            # FIVE columns on the first rule, FOUR on the second. A hook that
+            # reads the wrong number of fields fails one of these two.
+            fh.write("BLOCKER\tCLASS5-WORKPLACE\tname-any-case\t\\bzebra\\b\t-i\n")
+            fh.write("HIGH\tCLASS5-WORKPLACE\tbrand-exact-case\t\\bZebraCorp\\b\n")
+
+        def run_hook(text):
+            msg = os.path.join(tmp, "MSG")
+            with open(msg, "w") as fh:
+                fh.write(text)
+            r = subprocess.run(["bash", hook, msg], cwd=tmp, capture_output=True,
+                               text=True, timeout=30)
+            return r.returncode, r.stdout + r.stderr
+
+        rc, out = run_hook("Fix the ZEBRA handling in the renderer\n")
+        assert rc != 0, ("a rule carrying -i must block every capitalisation; the "
+                         "shouted spelling is the one that leaked\n" + out)
+        assert "name-any-case" in out, "the finding must name its rule: " + out
+
+        rc, out = run_hook("Fix the zebracorp handling\n")
+        assert rc == 0, ("an unflagged rule must not match the wrong case, or an "
+                         "ordinary word becomes a finding on every commit\n" + out)
+
+        rc, out = run_hook("Rename a variable and tighten a docstring\n")
+        assert rc == 0, "a clean message must pass: " + out
+
+        rc, out = run_hook("Fix the ZEBRA handling\n")
+        assert "ZEBRA" not in out, (
+            "the hook printed the matched text. A gate that echoes the string "
+            "into your terminal has moved it, not caught it:\n" + out)
+
+
 def _main():
     fns = [(k, v) for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]
