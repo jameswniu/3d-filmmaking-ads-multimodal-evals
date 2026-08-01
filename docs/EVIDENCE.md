@@ -2,7 +2,40 @@
 
 Every number in the README, with where it came from and what you can check yourself.
 
-**Read this first.** The pipeline runs on one machine against my own vendor accounts. The logs it writes are not in this repository and will not be, because they contain schedule, account, and third-party detail that has no business being public. So most rows below say *not independently verifiable*. That is the honest state of a single-operator project, and saying so is the point of this file. What you can verify is the code: the probes, the guards, and the thresholds, which are all here and all readable.
+## Before you begin
+
+- **Most rows here are not independently verifiable, and that is stated rather than hidden.** The pipeline runs on one machine against my own vendor accounts, and the logs it writes contain schedule, account and third-party detail that has no business being public.
+- **What you CAN verify is the code**: the probes, the guards and the thresholds are all here and all readable.
+- **Two checks need nothing from me.** They are first, below, because a reader should be able to start with the part that does not require trusting anyone.
+
+---
+
+## What you can reproduce yourself
+
+Two claims on this page need no logs, no accounts, and no light-field panel.
+
+### The derivation, in one command
+
+1. Install the probe dependencies: `pip install -r requirements.txt`.
+2. Run `python3 evals/derive.py`.
+3. Read the table it prints. Every named gating threshold appears with its value, the worst labelled pass, and the best labelled reject.
+
+It ends by stating how many of those thresholds are derived from a labelled pair and how many were typed by hand. It also re-measures the labelled frames that ship in `assets/`, so the numbers are recomputed rather than recited. CI runs the same command, so a threshold that leaves its bracket fails the build.
+
+### The fail-open finding
+
+1. Pick any guard in `guards/`.
+2. Remove or misdirect the file it depends on.
+3. Feed it input it should reject.
+4. Read the exit code.
+
+```
+# example shape, using the identity guard
+IDENTITY_PINS=/nonexistent/pins.json bash guards/block_unpinned_identity.sh < a-payload-it-should-block.json
+echo $?
+```
+
+Three of the four exit 0 and print nothing alarming. `ship_gate.sh` exits 64 on unreadable input, because it is the only one that has already had the incident. Detail in [ENFORCEMENT.md](ENFORCEMENT.md).
 
 ---
 
@@ -10,6 +43,10 @@ Every number in the README, with where it came from and what you can check yours
 
 | Number | Counted from | Method | Verifiable by a reader? |
 |---|---|---|---|
+| 16 of 16 named gating thresholds derived | This repository | `python3 evals/derive.py`, above | **Yes** |
+| Nine invariants, 13 probes | This repository | `ls probes/` | **Yes** |
+| Three of four guards fail open | This repository | The procedure above | **Yes** |
+| Benchmark 229s to 89s | One A/B on the same input | Output compared byte for byte | Partly, the code is here |
 | Runs on schedule, 10 of 10 days | The scheduler log for the morning stage | One line per fire, counted per calendar day, checked for gaps | No, log not published |
 | 13 runs did real work, 0 errors | Same log | Runs that produced output, minus the no-op wake-ups | No |
 | 21 of 37 wake-ups correctly did nothing | Same log | Total fires minus runs with work. The stage wakes more often than it acts | No |
@@ -18,9 +55,8 @@ Every number in the README, with where it came from and what you can check yours
 | Constraint held 14 of 15, first attempt 6 of 15 | Run transcripts | Counted twice: final state, then first attempt. See below | No |
 | Daily cost 2 credits | Vendor usage page | Read at 4 different clip lengths | No |
 | Latency median 33 min | 4 timed end-to-end runs | Wall clock, first stage start to display update | No |
-| Benchmark 229s to 89s | One A/B on the same input | Output compared byte for byte | Partly, the code is here |
-| Nine invariants, 13 probes | This repository | `ls probes/` | **Yes** |
-| Three of four guards fail open | This repository | Method below, reproducible | **Yes** |
+
+Rows are ordered by what a reader can check, not by what flatters the project.
 
 ---
 
@@ -34,20 +70,6 @@ Every number in the README, with where it came from and what you can check yours
 The difference is a pre-call hook rejecting a wrong first attempt and the model then correcting itself. Both numbers are true. Only the second one tells you whether the instruction worked, and it is the number a metrics dashboard will never show you, because by the time anything is recorded the outcome is already correct.
 
 If you take one thing from this repo, take that: **an outcome metric cannot distinguish a system that complied from a system that was stopped.** Count attempts.
-
----
-
-## The one thing you can reproduce here
-
-The fail-open finding needs no logs. Take any guard in `guards/`, remove the file it depends on, feed it input it should reject, and read the exit code.
-
-```
-# example shape, using the identity guard
-IDENTITY_PINS=/nonexistent/pins.json bash guards/block_unpinned_identity.sh < a-payload-it-should-block.json
-echo $?
-```
-
-Three of the four exit 0 and print nothing alarming. `ship_gate.sh` exits 64 on unreadable input, because it is the only one that has already had the incident. Detail in [ENFORCEMENT.md](ENFORCEMENT.md).
 
 ---
 

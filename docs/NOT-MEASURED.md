@@ -4,6 +4,14 @@ What this repository does not claim, and what it would take to claim it honestly
 
 This file exists because the fastest way to lose a technical reader is one unearned number. Everything below is a number I could have written and chose not to.
 
+## How to read this
+
+Every entry has the same three parts, so you can skim the verdicts and stop where it matters:
+
+- **The verdict.** Not claimed, partly retracted, or not explained.
+- **What IS measured**, stated plainly, so the gap is visible rather than implied.
+- **To claim it**, naming the specific work that would close the gap. If a section has no such line, the claim is not reachable from here at all, and that is said instead.
+
 ---
 
 ## Time saved
@@ -12,7 +20,7 @@ This file exists because the fastest way to lose a technical reader is one unear
 
 That is a measurement of the pipeline. It is **not** a claim about time saved, because I never measured a human doing the same work by hand. Without a baseline there is no saving, only a duration.
 
-To claim it honestly I would need: a defined manual procedure producing comparable output, at least 5 timed human runs, and the same quality bar applied to both. I have none of those. "Saves 4 hours a day" would have been the easiest sentence in this repo to write and the easiest one to get caught on.
+**To claim it:** a defined manual procedure producing comparable output, at least 5 timed human runs, and the same quality bar applied to both. I have none of those. "Saves 4 hours a day" would have been the easiest sentence in this repo to write and the easiest one to get caught on.
 
 ## Dollar cost
 
@@ -20,7 +28,7 @@ To claim it honestly I would need: a defined manual procedure producing comparab
 
 Credits are not dollars. The conversion depends on the plan, the tier, and whatever the vendor was charging that month, and I never recorded the rate at the time of the measurement. Back-filling today's price onto an older measurement would produce a number that looks precise and is not.
 
-To claim it: record the plan and the credit-to-currency rate alongside each usage reading, at the time of reading.
+**To claim it:** record the plan and the credit-to-currency rate alongside each usage reading, at the time of reading.
 
 ## Reliability as a rate
 
@@ -28,21 +36,23 @@ To claim it: record the plan and the credit-to-currency rate alongside each usag
 
 Every one of those denominators is small enough that the percentage would imply a precision the sample cannot support. n=7 with 4 successes has a 95% confidence interval spanning roughly 18% to 90%. Reporting "57% reliable" from that is not a summary, it is a fabrication with a decimal point.
 
-The counts are reported as counts on purpose.
+**To claim it:** enough runs that the interval narrows to something worth printing. The counts are reported as counts on purpose until then.
 
 ## Quality of the output
 
 **Not claimed.** Nine invariants score the output, each with a threshold derived from labelled pass and fail exemplars rather than typed by hand.
 
-This measures agreement with **my own** labels. It does not measure whether the output is good, whether a viewer would like it, or whether the invariants cover the ways it can fail. Nine earlier metric models were built and discarded because they inverted on contact with the labelled set, which is evidence the labels are doing real work, and also evidence that the space of plausible-but-wrong metrics here is large.
+This measures agreement with **my own** labels. It does not measure whether the output is good, whether a viewer would like it, or whether the invariants cover the ways it can fail. Ten earlier metric models were built and discarded because they inverted on contact with the labelled set, which is evidence the labels are doing real work, and also evidence that the space of plausible-but-wrong metrics here is large.
 
-To claim quality: labels from someone who is not me.
+**To claim it:** labels from someone who is not me.
 
 ## Generalization
 
 **Not claimed.** One operator, one machine, one set of vendor accounts, one display device.
 
 Nothing here has been run by a second person or on a second machine. The guards have known portability gaps, documented in [ENFORCEMENT.md](ENFORCEMENT.md), which is exactly the class of problem a second machine would surface immediately.
+
+**To claim it:** a second operator on a second machine, reporting what broke. The portability gaps above are the predicted failures, so anything else that breaks is the interesting result.
 
 ## The parallelism speedup
 
@@ -52,13 +62,15 @@ The **explanation** I originally wrote for it was wrong. I attributed the gain t
 
 The number survived. The causal story did not. Both are left in the repo rather than quietly corrected, because the gap between them is the more useful artifact.
 
+**To claim the mechanism:** ablate one factor at a time against the same input, rather than reasoning backwards from a single end-to-end timing.
+
 ## How much of the look library would fail the wardrobe check
 
 **Not claimed.** Two looks were measured against the black matte, not the library. A dark top cleared the fill by 22 luma where the face cleared it by 134, so the torso dissolved; the replacement cream top cleared it by 171. That is n=2, and it is enough to establish that the failure is real and not enough to establish a rate.
 
 The tempting sentence was "most of the library would fail this." The evidence for it is genuinely weak: the *names* of the 50 most recent looks lean heavily dark, carrying "in the Void" four times, "Rimmed" or "Rim-Lit" fourteen times, "on Black" twice, plus "of Shadow" and "Black Tee". A name is not a measurement. It is the art direction I asked for, which makes it a description of my prompts rather than of the pixels, and the one look whose name says "Cream Cable-Knit, Golden-Silver Rim-Lit **on Black**" would very likely pass while sounding like it fails.
 
-To claim it: read the torso band of all 304 look previews, apply the same separation bar, and report the count with its denominator. That is one loop over an endpoint that already returns every preview URL, so the reason this is unmeasured is that I noticed the pattern after the run, not that it is hard.
+**To claim it:** read the torso band of all 304 look previews, apply the same separation bar, and report the count with its denominator. That is one loop over an endpoint that already returns every preview URL, so the reason this is unmeasured is that I noticed the pattern after the run, not that it is hard.
 
 The related structural point does not need the rate to be true: the fill colour and the wardrobe are one decision, and no probe in the suite knew that.
 
@@ -73,9 +85,9 @@ Two possibilities remain, and this repository cannot currently distinguish them:
 1. The probe's 0.8-second response window is too tight for this voice's pacing, in which case the metric is mismeasuring a clip that is fine.
 2. Every clip in the grid genuinely drops phrases at this rate, and the eye tolerates it because a viewer does not audit onsets.
 
-The second is the uncomfortable one and it is not ruled out. Settling this needs frame-level annotation of mouth openings against audio onsets on a labelled clip, which is the same move that resolved the gesture-timing question after thirteen metrics found nothing: stop correlating and go describe the physics.
+The second is the uncomfortable one and it is not ruled out.
 
-Until then the figure is reported and does not gate.
+**To claim it:** frame-level annotation of mouth openings against audio onsets on a labelled clip. That is the same move that resolved the gesture-timing question after thirteen metrics found nothing: stop correlating and go describe the physics. Until then the figure is reported and does not gate.
 
 ## Known open bugs
 
