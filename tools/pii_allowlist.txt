@@ -74,3 +74,9 @@ NOTICE|owner-identity-token
 # a HeyGen or ElevenLabs id would still be caught everywhere, including here,
 # under its own vendor-prefixed label. Reviewed 2026-07-31.
 README.md|uuid
+
+# The listen page's back-link to the repo carries the same public byline handle
+# as the README byline; the page is published under the author's own account on
+# purpose. Scoped to the listen page; medium handle findings stay visible.
+# Reviewed 2026-08-06.
+docs/listen.html|owner-identity-token

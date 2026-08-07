@@ -231,7 +231,7 @@ Ten stages, and each one reads at three depths: the paragraph is the decision an
 
 https://github.com/user-attachments/assets/315f8bb9-3936-42ac-a787-9ec0cda10f51
 
-<p align="center"><sub><b>Press play: the actual soundtrack.</b> 169 seconds of the cloned voice, the kept median take, under its own waveform. The raw audio also lives in the repo: <a href="assets/voice-narration.m4a">voice-narration.m4a</a>.</sub></p>
+<p align="center"><sub><b>Press play: the actual soundtrack.</b> 169 seconds of the cloned voice, the kept median take, under its own waveform. The raw audio also lives in the repo: <a href="assets/voice-narration.m4a">voice-narration.m4a</a>. And a wave that seeks where you click: <a href="https://jameswniu.github.io/3d-filmmaking-ads-multimodal-evals/listen.html">the seekable player</a>.</sub></p>
 
 ### 0. Wake
 
