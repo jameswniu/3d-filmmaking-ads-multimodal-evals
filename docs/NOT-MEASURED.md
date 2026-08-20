@@ -2,7 +2,7 @@
 
 What this repository does not claim, and what it would take to claim it honestly.
 
-This file exists because the fastest way to lose a technical reader is one unearned number. Everything below is a number I could have written and chose not to.
+This file exists because the fastest way to lose a technical reader is one unearned number. Everything below is a number that could have been written and was not.
 
 ## How to read this
 
@@ -18,15 +18,15 @@ Every entry has the same three parts, so you can skim the verdicts and stop wher
 
 **Not claimed.** The pipeline runs end to end in a median of 33 minutes with nobody watching, across 4 timed runs.
 
-That is a measurement of the pipeline. It is **not** a claim about time saved, because I never measured a human doing the same work by hand. Without a baseline there is no saving, only a duration.
+That is a measurement of the pipeline. It is **not** a claim about time saved, because no human was ever measured doing the same work by hand. Without a baseline there is no saving, only a duration.
 
-**To claim it:** a defined manual procedure producing comparable output, at least 5 timed human runs, and the same quality bar applied to both. I have none of those. "Saves 4 hours a day" would have been the easiest sentence in this repo to write and the easiest one to get caught on.
+**To claim it:** a defined manual procedure producing comparable output, at least 5 timed human runs, and the same quality bar applied to both. None of those exist. "Saves 4 hours a day" would have been the easiest sentence in this repo to write and the easiest one to get caught on.
 
 ## Dollar cost
 
 **Not claimed.** Daily render cost is 2 vendor credits, measured at 4 different clip lengths.
 
-Credits are not dollars. The conversion depends on the plan, the tier, and whatever the vendor was charging that month, and I never recorded the rate at the time of the measurement. Back-filling today's price onto an older measurement would produce a number that looks precise and is not.
+Credits are not dollars. The conversion depends on the plan, the tier, and whatever the vendor was charging that month, and the rate was never recorded at the time of the measurement. Back-filling today's price onto an older measurement would produce a number that looks precise and is not.
 
 **To claim it:** record the plan and the credit-to-currency rate alongside each usage reading, at the time of reading.
 
@@ -42,9 +42,9 @@ Every one of those denominators is small enough that the percentage would imply 
 
 **Not claimed.** Nine invariants score the output, each with a threshold derived from labelled pass and fail exemplars rather than typed by hand.
 
-This measures agreement with **my own** labels. It does not measure whether the output is good, whether a viewer would like it, or whether the invariants cover the ways it can fail. Ten earlier metric models were built and discarded because they inverted on contact with the labelled set, which is evidence the labels are doing real work, and also evidence that the space of plausible-but-wrong metrics here is large.
+This measures agreement with the labelled set. It does not measure whether the output is good, whether a viewer would like it, or whether the invariants cover the ways it can fail. Ten earlier metric models were built and discarded because they inverted on contact with the labelled set, which is evidence the labels are doing real work, and also evidence that the space of plausible-but-wrong metrics here is large.
 
-**To claim it:** labels from someone who is not me.
+**To claim it:** labels from an independent editorial source.
 
 ## Generalization
 
@@ -58,7 +58,7 @@ Nothing here has been run by a second person or on a second machine. The guards 
 
 **Partly retracted.** The benchmark is real: 229s to 89s, byte-identical output, n=1.
 
-The **explanation** I originally wrote for it was wrong. I attributed the gain to batched inference. Checking production afterward, the setting meant to run ten workers in parallel was not taking effect, and 4 of 6 production runs were executing at the serial rate. The measured speedup traces to a different mechanism than the one I documented, and the per-pass contribution of the batching I credited is about 1.06x, not the 2.1x I had claimed.
+The **explanation** originally written for it was wrong. The gain was attributed to batched inference. Checking production afterward, the setting meant to run ten workers in parallel was not taking effect, and 4 of 6 production runs were executing at the serial rate. The measured speedup traces to a different mechanism than the one first documented, and the per-pass contribution of the credited batching is about 1.06x, not the 2.1x first claimed.
 
 The number survived. The causal story did not. Both are left in the repo rather than quietly corrected, because the gap between them is the more useful artifact.
 
@@ -68,9 +68,9 @@ The number survived. The causal story did not. Both are left in the repo rather 
 
 **Not claimed.** Two looks were measured against the black matte, not the library. A dark top cleared the fill by 22 luma where the face cleared it by 134, so the torso dissolved; the replacement cream top cleared it by 171. That is n=2, and it is enough to establish that the failure is real and not enough to establish a rate.
 
-The tempting sentence was "most of the library would fail this." The evidence for it is genuinely weak: the *names* of the 50 most recent looks lean heavily dark, carrying "in the Void" four times, "Rimmed" or "Rim-Lit" fourteen times, "on Black" twice, plus "of Shadow" and "Black Tee". A name is not a measurement. It is the art direction I asked for, which makes it a description of my prompts rather than of the pixels, and the one look whose name says "Cream Cable-Knit, Golden-Silver Rim-Lit **on Black**" would very likely pass while sounding like it fails.
+The tempting sentence was "most of the library would fail this." The evidence for it is genuinely weak: the *names* of the 50 most recent looks lean heavily dark, carrying "in the Void" four times, "Rimmed" or "Rim-Lit" fourteen times, "on Black" twice, plus "of Shadow" and "Black Tee". A name is not a measurement. It is the art direction that was specified, which makes it a description of the prompts rather than of the pixels, and the one look whose name says "Cream Cable-Knit, Golden-Silver Rim-Lit **on Black**" would very likely pass while sounding like it fails.
 
-**To claim it:** read the torso band of all 304 look previews, apply the same separation bar, and report the count with its denominator. That is one loop over an endpoint that already returns every preview URL, so the reason this is unmeasured is that I noticed the pattern after the run, not that it is hard.
+**To claim it:** read the torso band of all 304 look previews, apply the same separation bar, and report the count with its denominator. That is one loop over an endpoint that already returns every preview URL, so the reason this is unmeasured is that the pattern was noticed after the run, not that it is hard.
 
 The related structural point does not need the rate to be true: the fill colour and the wardrobe are one decision, and no probe in the suite knew that.
 

@@ -1,6 +1,6 @@
 # Reliability
 
-**Plain version:** I built a checker to catch bad videos. It never once caught a bad video. So I took away its power to block, instead of tuning it until it agreed with me.
+**Plain version:** A checker was built to catch bad videos. It never once caught a bad video. So its power to block was removed, instead of tuning it until it agreed with the eye.
 
 ---
 
@@ -8,15 +8,15 @@
 
 One stage had a quality gate in front of it. If the gate judged the generated output unusable, the stage fell back to a known-good clip instead of showing something broken.
 
-Over 7 evaluations it fired once. I went and looked at the clip it rejected. The clip was fine.
+Over 7 evaluations it fired once. The clip it rejected was reviewed and turned out to be fine.
 
 So the tally was: **0 true positives, 1 false positive, 7 evaluations.** Every single time the gate expressed an opinion, acting on that opinion made the product worse, because the fallback replaced today's actual content with a generic clip from another day.
 
 ## Why it was not tuned
 
-The obvious move is to adjust the threshold until the gate agrees with me. I did not, for one reason:
+The obvious move is to adjust the threshold until the gate agrees with the eye. That move was not made, for one reason:
 
-A gate with no true positives has never demonstrated that it can detect the thing it exists to detect. Tuning it changes how often it is wrong, not whether it works. Fitting the threshold to the one case I had would have produced a gate calibrated on a single sample I already knew the answer to, and I would have had no more evidence than before that it could catch a real failure. It would just have been quieter, which reads like improvement.
+A gate with no true positives has never demonstrated that it can detect the thing it exists to detect. Tuning it changes how often it is wrong, not whether it works. Fitting the threshold to the one available case would have produced a gate calibrated on a single sample whose answer was already known, giving no more evidence than before that it could catch a real failure. It would just have been quieter, which reads like improvement.
 
 **A detector that has never fired correctly is not a mis-tuned detector. It is an unvalidated one, and tuning hides that.**
 

@@ -23,7 +23,7 @@ Two things worth recording:
 
 **It had a bug that let real content through.** The owner-identity pattern is derived at runtime and was matched case-sensitively, so a comment shouting a name in capitals scored zero findings while the same name in ordinary case was caught on the adjacent line. Fixed by giving `run_rule` an optional flags argument and passing `-i` for that rule only. Case-insensitivity is wrong for the hex and key rules, so it is opt-in rather than global.
 
-**A suppression I wrote hid a real finding.** I allowlisted wall-clock times in the README on the reasoning that they described the system's schedule rather than a person's. That was true of most of them and false of the one that mattered: a sentence pairing a specific time with "while you are asleep", which is a presence claim. The judgement layer caught it after the deterministic gate had already gone green. The sentence was rewritten and the suppression narrowed, so any future clock time in the README fails again. <!-- pii-allow: this paragraph quotes the flagged phrase in order to document it; line-scoped and visible in the diff -->
+**A suppression hid a real finding.** Wall-clock times in the README were allowlisted on the reasoning that they described the system's schedule rather than a person's. That was true of most of them and false of the one that mattered: a sentence pairing a specific time with "while you are asleep", which is a presence claim. The judgement layer caught it after the deterministic gate had already gone green. The sentence was rewritten and the suppression narrowed, so any future clock time in the README fails again. <!-- pii-allow: this paragraph quotes the flagged phrase in order to document it; line-scoped and visible in the diff -->
 
 ## What the judgement layer found
 
@@ -52,11 +52,11 @@ Dismissed by hand, per the instruction in the reviewer's own output. Not by loos
 | "internal project codename `avatar_iii` / `avatar_iv`" | published vendor engine version strings | dismissed |
 | "internal tool name `ship_gate`" | a file in this repository, visible to the reader | dismissed |
 | "internal project name: twin video pipeline" | this repository's own subject | dismissed |
-| "hardware inventory: Apple Silicon, specific GPU architecture, display device" | product categories, not an inventory of what I own | dismissed |
+| "hardware inventory: Apple Silicon, specific GPU architecture, display device" | product categories, not an inventory of owned hardware | dismissed |
 | "scene and take names: smooth-beach, human-bakery, calm wave" | labels for generated video content, not real venues | dismissed |
 | "reference to a specific female subject" | the generated character, disclosed as generated in the README | dismissed |
 | "author's full name" | the byline on a portfolio repository, deliberate | dismissed |
-| "verbatim quotation of private feedback" | my own words, quoted by me, in my own repository | dismissed |
+| "verbatim quotation of private feedback" | self-quoted words, in the author's own repository | dismissed |
 | "personal account usage and cost" | published deliberately, in credits and never in currency, see NOT-MEASURED.md | dismissed |
 | "internal incident history" | the documented reasoning behind each threshold, which is the artifact | dismissed |
 | "reference to an unnamed second private repository" (raised twice, once per companion project) | both are credited on purpose and named nowhere; the withheld name is the published decision, so there is no identifier present to leak | dismissed |
@@ -66,7 +66,7 @@ The last one is the interesting dismissal. A reviewer tuned for confidentiality 
 
 ## The redesign, same day
 
-The saturating reviewer described above was rebuilt rather than demoted, and the rebuild was calibrated before it was trusted. The full ablation is preserved because most of it was me being wrong in public:
+The saturating reviewer described above was rebuilt rather than demoted, and the rebuild was calibrated before it was trusted. The full ablation is preserved because most of it is a record of being wrong in public:
 
 | change | recall on a seeded corpus of known-real classes |
 |---|---|
@@ -76,7 +76,7 @@ The saturating reviewer described above was rebuilt rather than demoted, and the
 | same prompt, stronger reviewer | still 1 |
 | **parser bug fixed** | **7 of 7, exit 1, two high/high blocks** |
 
-The failures were never the models. A `head -1` in my extraction code kept each reviewer's first finding and silently discarded the rest, which made three different models all appear to return exactly one finding, and made me write a confident and entirely wrong paragraph about model tiers. The lesson this repo keeps re-learning: count what the system actually did, not what the summary shows.
+The failures were never the models. A `head -1` in the extraction code kept each reviewer's first finding and silently discarded the rest, which made three different models all appear to return exactly one finding, and produced a confident and entirely wrong paragraph about model tiers. The lesson this repo keeps re-learning: count what the system actually did, not what the summary shows.
 
 Two rules survived the ablation and are now written into the tool:
 

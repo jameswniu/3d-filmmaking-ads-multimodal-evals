@@ -4,7 +4,7 @@ The ten stages in order, and the fork that separates the ones the evals can scor
 
 ## Before the fork
 
-Ten stages, and each one reads at three depths: the paragraph is the decision anyone building this has to make, the indented line is what I chose and the measurement that forced it, and the bullets are the literal mechanics. Skim the paragraphs for the argument, drop into the bullets when you want the file and the number. Every image below is from the single run at the top of this page, with one exception: the stage 0 and 1 panel carries the numbers of the latest scheduled run, because that is the part of the suite that keeps moving.
+Ten stages, and each one reads at three depths: the paragraph is the decision anyone building this has to make, the indented line is the choice made and the measurement that forced it, and the bullets are the literal mechanics. Skim the paragraphs for the argument, drop into the bullets when you want the file and the number. Every image below is from the single run at the top of this page, with one exception: the stage 0 and 1 panel carries the numbers of the latest scheduled run, because that is the part of the suite that keeps moving.
 
 <p align="center">
   <img src="assets/stage-wake-script.svg" alt="Stage 0, the scheduled wake, beside stage 1, the script" width="100%">
@@ -27,11 +27,11 @@ Supervised or unattended? Everything downstream follows from this one answer. A 
 
 Whose words, and whose register? Generic ad copy is safe and forgettable; real material is specific and risky. Those are two separable problems, and conflating them is why most generated avatars sound like a press release read aloud.
 
-> So they are split across two agents. One assembles **what** to say, out of my actual working notes and roadmaps, which is the difference between a avatar reading marketing and a avatar saying something. A second agent, trained on years of my own prompts, then shapes **how** it sounds: the register, the cadence, the places a real person would hedge or land hard. It rewrites for voice, not for content. Keeping them apart also keeps the thing writing the copy from being the thing that spends the render budget.
+> So they are split across two agents. One assembles **what** to say, out of actual working notes and roadmaps, which is the difference between a avatar reading marketing and a avatar saying something. A second agent, trained on years of in-house prompts, then shapes **how** it sounds: the register, the cadence, the places a real person would hedge or land hard. It rewrites for voice, not for content. Keeping them apart also keeps the thing writing the copy from being the thing that spends the render budget.
 
 - The voice-shaping agent is a separate project with its own repository. **Available on request** (not yet public, so no dead link here).
-- The clip on this page is a deliberate exception and says so out loud: for a public demo she explains the pipeline itself rather than anything from my notes.
-- Since the re-couple change (2026-07-30), the scheduled daily clip speaks borrowed words **verbatim**: the voice agent writes as me, and the pipeline may trim from the end to fit the 15 to 25 second slot, never rewrite. Today's run borrowed 114 words and trimmed 43.4 seconds down to 25.5. When the borrow fails, the clip is agent-authored and says so in the clip itself, because silently substituting the words is the one failure this stage must never ship.
+- The clip on this page is a deliberate exception and says so out loud: for a public demo she explains the pipeline itself rather than anything from the in-house notes.
+- Since the re-couple change (2026-07-30), the scheduled daily clip speaks borrowed words **verbatim**: the voice agent writes as its author, and the pipeline may trim from the end to fit the 15 to 25 second slot, never rewrite. Today's run borrowed 114 words and trimmed 43.4 seconds down to 25.5. When the borrow fails, the clip is agent-authored and says so in the clip itself, because silently substituting the words is the one failure this stage must never ship.
 - Scripts are held above 250 characters, because shorter ones measured about 110 Hz brighter and less consistent on this voice. Padding a short script is quality control, not filler.
 
 ### 2. Voice
@@ -135,7 +135,7 @@ Capture depth or infer it? Capture wants a depth camera pointed at a real subjec
 > Monocular depth estimation running **locally** on the GPU (Apple Silicon MPS) rather than through a cloud API. This runs on every frame of every clip, so a per-frame API call would price the whole pipeline out of daily use. Keeping it local is a cost decision that happens to also be a latency and privacy one.
 
 - [`pipeline/depth_infer.py`](pipeline/depth_infer.py). On the frame above: model load 1.9 seconds, inference 0.4 seconds.
-- Frames are batched with a stride and interpolated between, which is where the measured speedup actually comes from. Worth stating plainly: the 2.5x was real and the explanation I first wrote for it was wrong, because the setting meant to run ten things at once was running one.
+- Frames are batched with a stride and interpolated between, which is where the measured speedup actually comes from. Worth stating plainly: the 2.5x was real and the explanation first written for it was wrong, because the setting meant to run ten things at once was running one.
 - **Depth is normalized once across the whole clip, and that costs memory rather than accuracy.** A per-frame or per-chunk range would let the near plane drift between segments, which reads as the depth pulsing and the parallax flickering. Holding one range means holding every frame, so peak memory scales with clip length. A 128-second clip at full resolution ran to 13.4 GB resident and pushed 16.6 GB to swap on a 64 GB machine. It completed; a longer one at that resolution would not have.
 - **The fix was written down before it was needed, then actually applied.** Infer at half resolution and upscale the maps: depth is smooth and tolerates that where colour would not, and the single global range survives. The clip on this page is 4230 frames, 32 percent longer than the one that nearly exhausted memory, and it ran to **3.3 GB peak with zero swap**, roughly a quarter of the cost. Chunking is the tempting alternative and it is the wrong one: it trades a visible artifact for an invisible ceiling.
 

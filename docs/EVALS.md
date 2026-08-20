@@ -1,6 +1,6 @@
 # Evals
 
-**Plain version:** a rendered human fails in ways no checksum can see. So I watched clips, wrote down verdicts, and turned the verdicts into numbers that can block a render. The numbers keep being wrong, and that is the interesting part.
+**Plain version:** a rendered human fails in ways no checksum can see. So clips were watched, verdicts written down, and the verdicts turned into numbers that can block a render. The numbers keep being wrong, and that is the interesting part.
 
 This is the longest document here because it is the actual subject. The render path is plumbing.
 
@@ -137,7 +137,7 @@ The voice pipeline is the cleanest example of the loop, because the defect was h
 
 ## What this does not claim
 
-The labelled sets are one person's taste. They are internally consistent and externally unvalidated, and a second labeller would be the single most valuable addition to this repository.
+The labelled sets are editorial judgement, from a single source. They are internally consistent and externally unvalidated, and a second labeller would be the single most valuable addition to this repository.
 
 Sample sizes are small and stated as counts, never as rates: 15 labelled clips behind the surviving eye model, 5 draws behind the voice-drift figure, 7 evaluations behind the retired quality gate. A percentage computed on those denominators would imply a precision the data cannot support.
 

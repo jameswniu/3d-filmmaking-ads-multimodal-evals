@@ -4,9 +4,9 @@ Every number in the README, with where it came from and what you can check yours
 
 ## Before you begin
 
-- **Most rows here are not independently verifiable, and that is stated rather than hidden.** The pipeline runs on one machine against my own vendor accounts, and the logs it writes contain schedule, account and third-party detail that has no business being public.
+- **Most rows here are not independently verifiable, and that is stated rather than hidden.** The pipeline runs on one machine against a single set of vendor accounts, and the logs it writes contain schedule, account and third-party detail that has no business being public.
 - **What you CAN verify is the code**: the probes, the guards and the thresholds are all here and all readable.
-- **Two checks need nothing from me.** They are first, below, because a reader should be able to start with the part that does not require trusting anyone.
+- **Two checks need nothing from the author.** They are first, below, because a reader should be able to start with the part that does not require trusting anyone.
 
 ---
 

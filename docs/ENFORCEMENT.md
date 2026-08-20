@@ -1,6 +1,6 @@
 # Enforcement
 
-**Plain version:** I wrote rules telling the AI what not to do. Then I measured whether it followed them. It mostly did, but only because code was stopping it, not because the rules worked.
+**Plain version:** Rules were written telling the AI what not to do. Then whether it followed them was measured. It mostly did, but only because code was stopping it, not because the rules worked.
 
 The code in [`../guards/`](../guards/) is what actually runs.
 
@@ -44,7 +44,7 @@ What separates them is **failure visibility**. The render constraint had a hook,
 
 ## The guards, and what they do when their dependencies are gone
 
-Four guards protect this pipeline. I fed each one deliberately broken input to see what it would do.
+Four guards protect this pipeline. Each one was fed deliberately broken input to see what it would do.
 
 | guard | file | blocks | on a missing dependency |
 |---|---|---|---|
@@ -55,7 +55,7 @@ Four guards protect this pipeline. I fed each one deliberately broken input to s
 
 Three of the four approve everything when a single file goes missing. **Two of those three do not know they are doing it.**
 
-That distinction is the finding, and I only found it by reading all four rather than counting them. The shim fails open as a deliberate trade: it is three lines, it owns no logic, and a host shim that started deciding things would become a second, divergent implementation of the gate. Two gates that disagree are worse than one gate that is sometimes absent, because you can no longer tell which one made a given call. That reasoning is written in the file, next to the behaviour it justifies, which is what makes it a decision rather than a bug.
+That distinction is the finding, surfaced only by reading all four rather than counting them. The shim fails open as a deliberate trade: it is three lines, it owns no logic, and a host shim that started deciding things would become a second, divergent implementation of the gate. Two gates that disagree are worse than one gate that is sometimes absent, because you can no longer tell which one made a given call. That reasoning is written in the file, next to the behaviour it justifies, which is what makes it a decision rather than a bug.
 
 The other two have no such note. They behave identically at runtime and differ only in whether anyone chose it.
 
