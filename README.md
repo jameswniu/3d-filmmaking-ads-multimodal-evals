@@ -152,9 +152,7 @@ label  ->  derive  ->  gate  ->  render  ->  relabel
 
 ## The render behind those clips, scored by this repo's own probes
 
-**This render does not pass everything, and the failures are the most useful thing on the page, so they lead instead of hiding at the bottom.** Every clip in the row above is a treatment of this one render, matted, warped or subtitled, so these are the scores of the source they all come from.
-
-It was picked by eye from a grid: one script rendered across three looks, three voice clones and three engine tiers, one variable moved per cell. Here is what the suite says about the winner.
+**This render fails two of its own gates.** They lead rather than hide at the bottom, because a scorecard that shows only passes is a brochure. Every clip above is a treatment of this one render, picked from a grid of three looks, three voice clones and three engine tiers, one variable moved per cell.
 
 | Probe | Reading | Bar | Verdict |
 |---|---|---|---|
@@ -168,23 +166,25 @@ It was picked by eye from a grid: one script rendered across three looks, three 
 | `lipsync_probe` | Dropped **25 of 58** onsets, 43 percent | No mouth response within 0.8s | **FAIL** |
 | `drift_probe` | Flat corners, nothing to track | Needs texture | **INCONCLUSIVE**, by construction |
 
-**The gesture number is worth pausing on.** 0.506 is the highest ratio measured across the whole grid, against 0.182 to 0.345 for everything else. It moved because the still was changed deliberately: earlier looks had folded arms or hands out of frame, this one has open palms in frame. The engine drives mouth and head from the audio while hands free-run, so the only lever on gesture is what the still hands it. That is the "the still is the seed" claim showing up as a measurement rather than an assertion.
+**The two failures**
 
-**The tightest pass is worth more attention than the failures.** `separation_probe` clears its bar by 1.6 points. That probe was written this session, after a clip shipped in which 30.7 percent of the avatar sat within 30 luma of the black matte and she read as a floating head. The cream-top look that replaced it measured 2.80 percent. This look wears a mid-grey cardigan, so it lands at 10.42 percent: passing, and much nearer the edge than anything else here. A bar derived from two labelled points, n=2, is being asked to adjudicate a case sitting between them. It is reported with its margin rather than as a green tick, because a pass with 1.6 points of room is a different fact from a pass with 9.
+- **Face wander, 35.1 against a bar of 8.0.** Defensible. The look is lit from one side, so face luminance genuinely swings as she turns. Whether 8.0 is the right bar for directional light is unknown: every exemplar behind it is flat-lit, and widening a bar to admit the clip you just shot is circularity this repo already retired once.
+- **Lip-sync, 43 percent of onsets dropped.** Unexplained, and that is why it leads. Two causes were named and both were refuted, first the still, then the engine. Across the grid the figure ranges 19 to 43 percent with no clean association to look, engine or voice. Either the metric's 0.8 second window is too tight for this voice's pacing, or the clips genuinely drop phrases and the eye tolerates it. Both confident explanations are dead; neither survivor is ruled out.
 
-**One failure is real and explainable.** Face wander of 35.1 against a bar of 8.0. This look is lit by a window from one side, so her face luminance genuinely swings as she turns. The metric measures something true. Whether 8.0 is the right bar for directional light is unknown, because every labelled exemplar behind that number is flat-lit, and widening a threshold so it admits the clip you just made is the same circularity this repo already retired once.
+**Two results that matter more than the failures**
 
-**One failure survived every explanation I offered, which makes it the honest centrepiece.** Lip-sync drops read 43 percent here. I named a cause twice and was wrong twice. First the still, on the reasoning that the still is the seed. Then a control run revealed the comparison clip had been a different engine all along, so I blamed the engine instead. This clip is a third look on a third engine and still reads 43 percent, so neither story held. Across the grid the figure ranges 19 to 43 percent with no clean association to look, engine or voice.
+- **Separation passes by 1.6 points**, the tightest margin on the board. The probe was added after a clip shipped with 30.7 percent of the avatar within 30 luma of the matte, reading as a floating head. It reports its margin instead of a green tick, because a bar built from two labelled points is adjudicating a case that sits between them.
+- **Gesture ratio 0.506**, the highest measured, against 0.182 to 0.345 everywhere else. The engine drives mouth and head from the audio while the hands free-run, so the only lever is the still: open palms in frame rather than folded arms.
 
-Two possibilities remain and I cannot separate them from here: the metric's 0.8-second window may be too tight for this voice's pacing, or every clip in the grid genuinely drops phrases and the eye tolerates it. The second is uncomfortable and is not ruled out. What is ruled out is both of my confident explanations, and this repo's own history says that is precisely when to stop theorising and go measure the physics, the way thirteen gesture metrics found nothing until someone described the problem as lag rather than correlation.
+**Before any money moved on this run**
 
-So the summary is one most portfolios would not print. **The render behind this page fails two of its own gates: one for a reason I can defend, and one I have now guessed wrong about twice.**
+- Voice drawn three times, median kept, 7.7 percent spread
+- Audio transcribed and diffed against the script: 541 of 541 words, similarity 1.0000
+- A 0.6 second settle beat added
+- Backdrop travel risk written down before the spend and discharged after: 0 px shift, 0 direction reversals across 26 samples
+- Identity checked against the pin allowlist, which blocked the render until the allowlist was refreshed
 
-Pre-spend, the same run: voice drawn 3 times (156.88 / 168.96 / 168.64s, median kept, 7.7 percent spread), the synthesized audio transcribed and diffed against the script before any render (541 of 541 words, similarity 1.0000), a 0.6s settle beat added, the look attested against the frozen-prop rule, and identity checked against the pin allowlist.
-
-Two of those gates fired for real rather than rubber-stamping. The identity guard refused the freshly generated look until the allowlist was refreshed, preferring a blocked render to an unverified face. The frozen-prop gate would not accept an attestation without a named finding, so the backdrop travel risk had to be written down before the spend and then discharged after it: measured across 26 samples spanning the full clip, the frozen wall shifts **0 px** with **0** direction reversals, so the one claim her body could not have paid was never made.
-
-**One honest asterisk, which is the whole point of the repo.** Three renders of this identical still and audio were produced on three engine tiers. `level_probe` separated them cleanly, passing one and flagging the other two. That probe's face bar is 8.0, and 8.0 was originally calibrated against a clip from one specific engine that measured 7.9. So the metric that separated the trio is the one already documented above as circular. The pick therefore rests on a marginal sync edge and on the eye, not on that probe, and the three were near-identical at frame level anyway, exactly as this repo's own draw-versus-look finding predicts.
+**One asterisk, and it is the point of the repo.** Three renders of the same still and audio on three engine tiers were separated by `level_probe`, whose face bar of 8.0 was calibrated from a single clip measuring 7.9. The metric that separated them is the one documented above as circular. The pick rests on a marginal sync edge and on the eye, not on that probe.
 
 ---
 
@@ -297,17 +297,17 @@ Ten stages run unattended, and the fork at stage 5 is where the evals stop being
 
 ## What I found by measuring it
 
-The general lesson on the left, what actually happened on the right.
+The lesson on the left, what happened on the right.
 
-| | |
+| Lesson | What happened |
 |---|---|
-| **Count attempts, not outcomes.** | "I asked the AI to follow a rule and it ignored me. I stopped asking and put the rule in code instead, where it can't be negotiated with. It held every time after that, and the first thing it blocked was me." |
-| **A metric that agrees with you isn't a metric yet.** | "One check matched my eye 8 times out of 8, so I wired it in to block bad renders. Then I measured the same clip in thirds and it disagreed with itself by up to 10 frames. Demoted it within the hour." |
-| **Your threshold might just mean 'look like last time'.** | "A brightness limit was set from one clip that scored 7.9. Later, every good clip was failing it. The number didn't mean 'looks right', it meant 'looks like that one clip', and it had been steering me for hours." |
-| **Delete its config. Still passes? Not a check.** | "I had four safety checks, so I broke them on purpose. Three approved everything when a single config file went missing, and still showed green. Two of those three had no idea they were doing it." |
-| **Benchmarks prove speed, not cause.** | "I made it 2.5x faster and wrote down why. Later I checked production and the speedup was real but my explanation wasn't, and the setting meant to run ten things at once was running one." |
-| **When every predictor inverts, stop predicting.** | "In one day I built ten ways to score these clips and every single one disagreed with my own eyes. So I switched to picking at random and went back to labelling by hand. The models were confidently wrong; random at least knows it isn't." |
-| **No stopwatch, no saving.** | "Half an hour, start to finish, with nobody watching it. I won't tell you what that saves, because I never put a stopwatch on a human doing it by hand, and a number I made up is the easiest thing here to get caught on." |
+| **Count attempts, not outcomes.** | A rule asked of the model was ignored. Moved into code, where it cannot be negotiated with, it held every time. The first thing it blocked was its own author. |
+| **A metric that agrees with you is not a metric yet.** | One check matched the eye 8 times out of 8 and was wired in as a blocker. Measured against itself in thirds, it disagreed by up to 10 frames. Demoted within the hour. |
+| **A threshold can mean "look like last time".** | A brightness limit set from one clip scoring 7.9 later failed every good clip. It did not mean "looks right", it meant "looks like that one", and it had been steering decisions for hours. |
+| **Delete its config. Still passes? Not a check.** | Four safety checks, broken on purpose. Three approved everything once a single config file went missing, and still reported green. Two of the three did not know they were doing it. |
+| **Benchmarks prove speed, not cause.** | A 2.5x speedup was real; the written explanation for it was not. The setting meant to run ten things at once was running one. |
+| **When every predictor inverts, stop predicting.** | Ten scoring models built in one day, every one disagreeing with the labels. Selection reverted to random and labelling went back to hand. Confidently wrong loses to knowing you are guessing. |
+| **No stopwatch, no saving.** | Half an hour start to finish, unattended. No time saving is claimed, because no human was ever timed doing the same work by hand. |
 
 Most of those are the system catching its own documentation being wrong. That is the point of the repo.
 
@@ -486,7 +486,7 @@ Two companion projects are referenced above and are not public yet: the agent th
 
 - **The avatar, live.** The real-time arm of the fork, the one none of these gates apply to, is a conversational avatar rather than a rendered file. On a page you could talk to her instead of watching a clip of her.
 - **The voice, as a control rather than a recording.** Type a line, hear it in the cloned voice, and watch the three drawn takes and the median that gets kept. The 6 to 37 percent duration spread is the sort of thing you believe once you have made it happen yourself.
-- **The register-shaping agent.** The second of the two script agents, the one trained on years of my own prompts. Currently a companion repo, available on request; a hosted version would let you feed it a flat sentence and see what it does to the cadence.
+- **The register-shaping agent.** The second of the two script agents, the one trained on years of in-house prompts. Currently a companion repo, available on request; a hosted version would let you feed it a flat sentence and see what it does to the cadence.
 - **The gates, run against your own input.** Upload a still, watch the separation probe measure the torso against the fill, and get refused if you wore black.
 
 Hosting is the easy part: the diagram already runs as a self-contained page, and the interactive pieces want a real runtime, so Vercel is the likely target rather than static Pages.
