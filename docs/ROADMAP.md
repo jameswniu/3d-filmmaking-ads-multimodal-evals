@@ -110,7 +110,9 @@ The README compares this pipeline against ordinary practice on **mechanism**, ne
 - at least five timed human runs of it
 - the same quality bar applied to both sides
 
-None of the three exists. Until all three do, no page in this repository states a time saving, and "saves N hours a day" stays the easiest sentence here to write and the easiest one to get caught on.
+The first and third are now settled in [MANUAL-BASELINE.md](MANUAL-BASELINE.md), which defines the procedure stage by stage, fixes the timing rules, and sets the bar at the existing gate set rather than at a looser one. The second is a stopwatch and needs a person.
+
+Until it is run, no page in this repository states a time saving, and "saves N hours a day" stays the easiest sentence here to write and the easiest one to get caught on.
 
 This is the single change that would let the before/after table carry a duration column. It is scoped and deliberately not done, and it ranks below the second labeller, which remains the most valuable thing this repository is missing.
 

@@ -20,7 +20,7 @@ Every entry has the same three parts, so you can skim the verdicts and stop wher
 
 That is a measurement of the pipeline. It is **not** a claim about time saved, because no human was ever measured doing the same work by hand. Without a baseline there is no saving, only a duration.
 
-**To claim it:** a defined manual procedure producing comparable output, at least 5 timed human runs, and the same quality bar applied to both. None of those exist. "Saves 4 hours a day" would have been the easiest sentence in this repo to write and the easiest one to get caught on.
+**To claim it:** a defined manual procedure producing comparable output, at least 5 timed human runs, and the same quality bar applied to both. The procedure and the bar are specified in [MANUAL-BASELINE.md](MANUAL-BASELINE.md); the 5 runs have not happened. "Saves 4 hours a day" would have been the easiest sentence in this repo to write and the easiest one to get caught on.
 
 ## Dollar cost
 

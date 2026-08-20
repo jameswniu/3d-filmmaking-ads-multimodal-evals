@@ -94,7 +94,7 @@ Left is how the work goes today. Right is what changes. Every claim on the right
 | You learn what a long clip costs when the invoice arrives. | You know the price before you commit. |
 | Someone has to be awake for it. | It runs overnight, and tells you if it did not. |
 
-**No row above claims a time saving, and that is deliberate.** Claiming one needs a defined manual procedure, at least five timed human runs, and the same quality bar applied to both. None of those exist here, so the comparison is about how the work is governed rather than how long it takes. The full accounting of what is not claimed, and what it would take to claim it, is [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md).
+**No row above claims a time saving, and that is deliberate.** Claiming one needs a defined manual procedure, at least five timed human runs, and the same quality bar applied to both. The procedure and the bar are written down in [`docs/MANUAL-BASELINE.md`](docs/MANUAL-BASELINE.md); the five runs have not happened, so the comparison is about how the work is governed rather than how long it takes. The full accounting of what is not claimed, and what it would take to claim it, is [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md).
 
 ## What holds when nobody is watching
 
@@ -359,7 +359,7 @@ Measured, not estimated. Every figure carries its sample size, because a rate wi
 | Quilt build | 77 views in 0.8s at 3360px | N=1 |
 | Comparison run cost | 205 credits | Balance measured before and after |
 
-**What this cannot tell you:** any dollar figure, because no credit-to-currency rate was recorded at measurement time. Time saved, because no manual baseline was ever measured. Both are in [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) with what it would take to get them honestly.
+**What this cannot tell you:** any dollar figure, because no credit-to-currency rate was recorded at measurement time. Time saved, because no manual baseline was ever measured. Both are in [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) with what it would take to get them honestly, and the time-saving one has a written procedure waiting on a stopwatch in [`docs/MANUAL-BASELINE.md`](docs/MANUAL-BASELINE.md).
 
 **Honest scope:** one operator, one machine, one panel, one editorial source. The labels are internally consistent and externally unvalidated, and a second editorial source is the single most valuable thing this repository is missing.
 
