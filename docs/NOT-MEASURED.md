@@ -96,6 +96,6 @@ Stated here rather than fixed silently before publishing:
 1. The parallel worker setting does not take effect. 4 of 6 production runs measured at the serial rate.
 2. Three of four guards fail open when a dependency is missing, and report success while doing it.
 3. The depth speedup is attributed to the wrong mechanism, per above.
-4. Nothing checks that the presenter is distinguishable from the background she is composited onto. Eleven probes score her face, her motion and her timing; the twelfth measures background detail, which is a property of the backdrop rather than of the contrast between her and it. A dark garment on a zero-luma fill passes every gate and ships a floating head.
+4. Nothing checks that the avatar is distinguishable from the background she is composited onto. Eleven probes score her face, her motion and her timing; the twelfth measures background detail, which is a property of the backdrop rather than of the contrast between her and it. A dark garment on a zero-luma fill passes every gate and ships a floating head.
 
 None of these are fixed in this snapshot. A repo whose headline claim is "count attempts, not outcomes" would be a poor place to hide its own open findings.

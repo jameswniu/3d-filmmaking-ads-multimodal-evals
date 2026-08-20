@@ -21,14 +21,14 @@
 | **The flow** | **The benchmark** |
 | `label` then `derive` then `gate` then `render` then `relabel`. Nothing renders that the gates have not cleared | 16 of 16 named thresholds bracketed by labelled exemplars. [10 of 10 scheduled days, 0 missed](#what-holds-when-nobody-is-watching) |
 
-It writes a script and speaks it in a cloned voice. It renders a consistent generated presenter, separates her from her background, infers depth, and emits 77 views of a single instant for a light-field display. It does this on a schedule, against metered vendor APIs, with nobody watching.
+It writes a script and speaks it in a cloned voice. It renders a consistent generated avatar, separates her from her background, infers depth, and emits 77 views of a single instant for a light-field display. It does this on a schedule, against metered vendor APIs, with nobody watching.
 
 **What makes that survivable is not the render path.** One person's taste was captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
 
 <table>
   <tr>
     <td width="34%" align="center" valign="top">
-      <img src="assets/parallax-amplified.gif" alt="The presenter under a swaying virtual camera, nearer pixels travelling further than far ones, amplified four times" width="100%"><br>
+      <img src="assets/parallax-amplified.gif" alt="The avatar under a swaying virtual camera, nearer pixels travelling further than far ones, amplified four times" width="100%"><br>
       <sub><b>Depth, on a flat screen.</b> A virtual camera sways across the inferred depth map, near pixels travelling further than far ones. <b>This clip is exaggerated 4x and says so on the frame.</b> The real sweep across all 77 views moves her <b>19 px</b> inside a 480 px tile, about 4 percent, which is honest and nearly invisible at this size. The amber tick is fixed, because without something stationary the eye tracks her and cancels the very displacement the clip exists to show.</sub>
     </td>
     <td width="33%" align="center" valign="top">
@@ -38,13 +38,13 @@ It writes a script and speaks it in a cloned voice. It renders a consistent gene
     </td>
     <td width="33%" align="center" valign="top">
       <br><br>
-      <img src="assets/hologram-full.gif" alt="The presenter explaining the 77-view quilt while the simulated view sweeps, subtitles held still" width="100%"><br>
+      <img src="assets/hologram-full.gif" alt="The avatar explaining the 77-view quilt while the simulated view sweeps, subtitles held still" width="100%"><br>
       <sub><b>And she explains her own pipeline, in the final treatment.</b> The full narration under the simulated view sweep the first cell demonstrates, one pass, start to finish. This loop is her describing the very grid the middle cell shows: one moment, seventy-seven positions. GIFs are mute and the voice is half the point: <b><a href="assets/hologram-full.mp4">&#9654; watch with sound (2:49)</a></b></sub>
     </td>
   </tr>
 </table>
 
-> The presenter is generated. She is not a real person and not a likeness of one. Her voice is a clone of a consented source. Every asset on this page comes from **one** run of the pipeline, deliberately, because a montage of lucky takes would hide the thing this repo is about.
+> The avatar is generated. She is not a real person and not a likeness of one. Her voice is a clone of a consented source. Every asset on this page comes from **one** run of the pipeline, deliberately, because a montage of lucky takes would hide the thing this repo is about.
 
 ---
 
@@ -52,23 +52,23 @@ It writes a script and speaks it in a cloned voice. It renders a consistent gene
 
 | If you want to | Go to |
 |---|---|
-| see whether it works | the three clips above, all from [one run](#what-actually-happens-to-her) |
-| run something yourself | [What ships here](#what-ships-here-and-what-does-not), then [Running it](#running-it) |
-| read the argument | [Evals lead this](#evals-lead-this) |
-| build your own | [`docs/SETUP.md`](docs/SETUP.md), consent line first |
-| see what is not claimed | [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) |
+| See whether it works | The three clips above, all from [one run](#what-actually-happens-to-her) |
+| Run something yourself | [What ships here](#what-ships-here-and-what-does-not), then [Running it](#running-it) |
+| Read the argument | [Evals lead this](#evals-lead-this) |
+| Build your own | [`docs/SETUP.md`](docs/SETUP.md), consent line first |
+| See what is not claimed | [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) |
 
 ## The five hard problems in autonomous filmmaking
 
-Generating the footage is the easy half. Five things are genuinely hard, and the honest status of each is in the right column.
+Making the video is the easy half. Five things are genuinely hard, and the right column says plainly which of them this actually solves.
 
 | | The problem | Where this stack stands |
 |---|---|---|
-| 1 | **Plausible failure.** A wrong number fails loudly. A generated human fails plausibly: hair fuzzing at the edge, a mouth trailing the audio by four frames, a gesture landing after the word it belonged to. Invisible to a type check, obvious to a person. | Answered. 113 labelled stills and 67 labelled clips turn one person's eye into 16 of 16 named thresholds, each bracketed by a labelled pass and a labelled reject. |
-| 2 | **Nobody is awake at render time.** It runs on a schedule against metered vendor APIs. The eye has to be present before the money moves, not after it. | Answered. The transcript check runs ahead of the spend, and the gates refuse rather than warn. |
-| 3 | **Metrics invert against taste.** A scoring model that agrees with you today can disagree with your labels tomorrow, and sound confident both times. | Answered the hard way. Ten models were built and killed in one day, every one inverted on the labels. The response was to stop predicting and go back to hand-labelling. |
-| 4 | **A threshold can mean "look like last time."** A number tuned to one good clip encodes that clip, not the quality it was meant to measure. | Half. Caught once, when a brightness bar set from a 7.9 clip steered six hours of choices and gated nothing. There is no general detector for it. |
-| 5 | **Gates fail silently.** A guard that approves everything once its config goes missing is worse than no guard, because it reports green. | Half. Found by deliberately breaking all four: three approved everything, and two did not know they were doing it. Fail-open is now ranked and declared, not eliminated. |
+| 1 | **It looks fine, and it is not.** A bad render never crashes. The mouth runs a beat behind the words, or the hair frays at the edge. You spot it in a second; software does not spot it at all. | **Answered.** One person graded 113 stills and 67 clips by hand. Those grades became the 16 limits the pipeline enforces, each one anchored to a real pass and a real reject. |
+| 2 | **It spends money while you sleep.** The pipeline runs on a timer and pays a vendor for every render. Something has to say no before the money leaves, and nobody is awake to say it. | **Answered.** The script is checked against the audio before anything is paid for, and the gates refuse outright rather than warn. |
+| 3 | **The scores disagree with your eyes.** Ten different ways of scoring these clips were built in a single day. Every one preferred clips a person would throw away. | **Answered the hard way.** All ten were killed the same day. Hand-labelling came back, because a confident wrong score is worse than no score. |
+| 4 | **The bar came from one lucky clip.** Copy a quality limit off a single good render and it stops meaning "good". It means "looks like that one", and it starts rejecting better work. | **Half.** Caught once, six hours late, on a brightness bar taken from a clip that scored 7.9. Nothing detects the next one. |
+| 5 | **The safety check says green while broken.** Delete its config file and it approves everything, still reporting success. | **Half.** Found by deliberately breaking all four. Three approved everything and two did not know they were doing it. Which three fail open is now declared, not fixed. |
 
 **Three, four, and five are one failure at three depths.** The metric can be wrong, the threshold can encode the wrong thing, or the gate can be missing while still reporting green. Each of them fails by saying yes. The only defence that has held is a labelled exemplar on both sides of every number. The long-form version, with every retraction, is [what I found by measuring it](#what-i-found-by-measuring-it).
 
@@ -94,11 +94,11 @@ The operator is asleep and the schedule fires anyway. That is the normal state, 
 
 | Runs unattended | Cadence | What it catches |
 |---|---|---|
-| the scheduled run | daily | 10 of 10 consecutive days, 0 missed |
-| the transcript check | before every spend | a script that did not survive synthesis, 541 of 541 words on this clip |
-| the four gates | every render | a take that violates a derived threshold |
-| `derive.py` in CI | every push | a threshold moved outside the interval its own labels imply |
-| the cost router | every estimate | interpolation between measured points, after one confident estimate understated a batch by 8.6x and burned 344 credits |
+| The scheduled run | Daily | 10 of 10 consecutive days, 0 missed |
+| The transcript check | Before every spend | A script that did not survive synthesis, 541 of 541 words on this clip |
+| The four gates | Every render | A take that violates a derived threshold |
+| `derive.py` in CI | Every push | A threshold moved outside the interval its own labels imply |
+| The cost router | Every estimate | Interpolation between measured points, after one confident estimate understated a batch by 8.6x and burned 344 credits |
 
 **Three of the four gates fail open, and the page says so rather than hiding it.** That is a declared rank, not an oversight: it was found by deliberately deleting a config and watching which guards still showed green. A guard that silently approves is the exact failure this repository went looking for and found in its own code.
 
@@ -109,7 +109,7 @@ The operator is asleep and the schedule fires anyway. That is the normal state, 
 Every image below is the **same frame**, `t = 63s`, of the same render. That constraint is the point: if two panels disagree, it is the stage that changed her, not a different take, a different day or a luckier moment.
 
 <p align="center">
-  <img src="assets/journey.png" alt="One frame of the presenter carried through six stages: the seed still, the render, the matte, the depth map, the parallax pair, and the 77-view quilt" width="100%">
+  <img src="assets/journey.png" alt="One frame of the avatar carried through six stages: the seed still, the render, the matte, the depth map, the parallax pair, and the 77-view quilt" width="100%">
 </p>
 
 <table>
@@ -156,19 +156,19 @@ It was picked by eye from a grid: one script rendered across three looks, three 
 
 | Probe | Reading | Bar | Verdict |
 |---|---|---|---|
-| `sync_probe` | lag **-240ms**, early side | late fails at +80ms, early is forgiven | IN BAND |
-| `eye_eval` | bg **2.48** | max 4.5 | **PASS** |
-| `scene_simplicity` | **4.22** | target 7.5, cleanest measured 2.68 | SIMPLE |
-| `bg_detail` | **2.71** | max 5.5 | SIMPLE |
-| `separation_probe` | **10.42 percent** of her within 30 luma of the fill | fail at 12 percent | **PASS, by 1.6 points** |
-| `hand_probe` | gesture ratio **0.506** | reported, never judged | highest measured |
-| `level_probe` | face wander **35.1**, face vs body **93.6** | 8.0 / 12.5 | **FAIL** |
-| `lipsync_probe` | dropped **25 of 58** onsets, 43 percent | no mouth response within 0.8s | **FAIL** |
-| `drift_probe` | flat corners, nothing to track | needs texture | **INCONCLUSIVE**, by construction |
+| `sync_probe` | Lag **-240ms**, early side | Late fails at +80ms, early is forgiven | IN BAND |
+| `eye_eval` | Bg **2.48** | Max 4.5 | **PASS** |
+| `scene_simplicity` | **4.22** | Target 7.5, cleanest measured 2.68 | SIMPLE |
+| `bg_detail` | **2.71** | Max 5.5 | SIMPLE |
+| `separation_probe` | **10.42 percent** of her within 30 luma of the fill | Fail at 12 percent | **PASS, by 1.6 points** |
+| `hand_probe` | Gesture ratio **0.506** | Reported, never judged | Highest measured |
+| `level_probe` | Face wander **35.1**, face vs body **93.6** | 8.0 / 12.5 | **FAIL** |
+| `lipsync_probe` | Dropped **25 of 58** onsets, 43 percent | No mouth response within 0.8s | **FAIL** |
+| `drift_probe` | Flat corners, nothing to track | Needs texture | **INCONCLUSIVE**, by construction |
 
 **The gesture number is worth pausing on.** 0.506 is the highest ratio measured across the whole grid, against 0.182 to 0.345 for everything else. It moved because the still was changed deliberately: earlier looks had folded arms or hands out of frame, this one has open palms in frame. The engine drives mouth and head from the audio while hands free-run, so the only lever on gesture is what the still hands it. That is the "the still is the seed" claim showing up as a measurement rather than an assertion.
 
-**The tightest pass is worth more attention than the failures.** `separation_probe` clears its bar by 1.6 points. That probe was written this session, after a clip shipped in which 30.7 percent of the presenter sat within 30 luma of the black matte and she read as a floating head. The cream-top look that replaced it measured 2.80 percent. This look wears a mid-grey cardigan, so it lands at 10.42 percent: passing, and much nearer the edge than anything else here. A bar derived from two labelled points, n=2, is being asked to adjudicate a case sitting between them. It is reported with its margin rather than as a green tick, because a pass with 1.6 points of room is a different fact from a pass with 9.
+**The tightest pass is worth more attention than the failures.** `separation_probe` clears its bar by 1.6 points. That probe was written this session, after a clip shipped in which 30.7 percent of the avatar sat within 30 luma of the black matte and she read as a floating head. The cream-top look that replaced it measured 2.80 percent. This look wears a mid-grey cardigan, so it lands at 10.42 percent: passing, and much nearer the edge than anything else here. A bar derived from two labelled points, n=2, is being asked to adjudicate a case sitting between them. It is reported with its margin rather than as a green tick, because a pass with 1.6 points of room is a different fact from a pass with 9.
 
 **One failure is real and explainable.** Face wander of 35.1 against a bar of 8.0. This look is lit by a window from one side, so her face luminance genuinely swings as she turns. The metric measures something true. Whether 8.0 is the right bar for directional light is unknown, because every labelled exemplar behind that number is flat-lit, and widening a threshold so it admits the clip you just made is the same circularity this repo already retired once.
 
@@ -198,8 +198,8 @@ The filmmaking claim, in one frame: this is not one generative model producing a
 |---|---|---|---|
 | **1** | **The voice from the animation.** Audio is synthesized first and drives the render, never the reverse. | The performance is fixed and inspectable before a frame exists. A bad read costs characters, not credits. | 3-draw median, transcript diff, settle beat |
 | **2** | **The person from the background.** A matting pass lifts her off the room. | Anything frozen behind her betrays the frame as dead; removing it removes the tell. Hair is where this is won or lost. | `bg_detail`, matte tuning |
-| **3** | **The depth from the flat image.** A monocular model infers geometry no camera captured. | One rendered frame becomes a scene with distance in it. This is where 2D becomes 3D. | depth inference on local GPU |
-| **4** | **One view into seventy seven.** The warp samples 77 camera positions across the display's view cone. | The panel needs every eye position at once. A flat frame cannot hold parallax; a view array can. | quilt geometry, `drift_probe` |
+| **3** | **The depth from the flat image.** A monocular model infers geometry no camera captured. | One rendered frame becomes a scene with distance in it. This is where 2D becomes 3D. | Depth inference on local GPU |
+| **4** | **One view into seventy seven.** The warp samples 77 camera positions across the display's view cone. | The panel needs every eye position at once. A flat frame cannot hold parallax; a view array can. | Quilt geometry, `drift_probe` |
 
 Separation is why the evals can exist at all. A single end-to-end model would leave nothing to measure between the prompt and the pixels.
 
@@ -257,9 +257,9 @@ missing has learned something worse than this paragraph tells them:
 |---|---|---|
 | 5 matte, 7 depth, 8 quilt | **yes**, runnable | `pipeline/`, against the committed `samples/` pair |
 | 6 evals, and the gates | **yes**, runnable | `probes/`, `guards/`, `evals/` |
-| 0 wake, 2 voice, 4 render, 9 cast | no | vendor calls and a scheduler in a private tree |
-| 1 script | no, disclosed | a separate private repo |
-| 3 look | partial | `pipeline/pick_engine.sh` chooses the engine; the generation call is not here |
+| 0 wake, 2 voice, 4 render, 9 cast | No | Vendor calls and a scheduler in a private tree |
+| 1 script | No, disclosed | A separate private repo |
+| 3 look | Partial | `pipeline/pick_engine.sh` chooses the engine; the generation call is not here |
 
 So `probes/`, `guards/`, `evals/` and three of the ten stages are executable on a
 fresh clone. The orchestration that wires stage N to stage N+1 is not in this
@@ -299,9 +299,9 @@ Supervised or unattended? Everything downstream follows from this one answer. A 
 
 ### 1. Script
 
-Whose words, and whose register? Generic ad copy is safe and forgettable; real material is specific and risky. Those are two separable problems, and conflating them is why most generated presenters sound like a press release read aloud.
+Whose words, and whose register? Generic ad copy is safe and forgettable; real material is specific and risky. Those are two separable problems, and conflating them is why most generated avatars sound like a press release read aloud.
 
-> So they are split across two agents. One assembles **what** to say, out of my actual working notes and roadmaps, which is the difference between a presenter reading marketing and a presenter saying something. A second agent, trained on years of my own prompts, then shapes **how** it sounds: the register, the cadence, the places a real person would hedge or land hard. It rewrites for voice, not for content. Keeping them apart also keeps the thing writing the copy from being the thing that spends the render budget.
+> So they are split across two agents. One assembles **what** to say, out of my actual working notes and roadmaps, which is the difference between a avatar reading marketing and a avatar saying something. A second agent, trained on years of my own prompts, then shapes **how** it sounds: the register, the cadence, the places a real person would hedge or land hard. It rewrites for voice, not for content. Keeping them apart also keeps the thing writing the copy from being the thing that spends the render budget.
 
 - The voice-shaping agent is a separate project with its own repository. **Available on request** (not yet public, so no dead link here).
 - The clip on this page is a deliberate exception and says so out loud: for a public demo she explains the pipeline itself rather than anything from my notes.
@@ -340,11 +340,11 @@ The group held 302 looks when this run refreshed its allowlist. That number is d
 - Judge the look *before* spending anything: `bg_detail` must clear the labelled band, and a frozen-prop probe asks whether anything in frame becomes implausible if it never moves for thirty seconds. A steaming cup fails that. A plant is fine.
 - Then the identity guard checks the look against the pin allowlist. It fired during this very rebuild: a freshly generated look was correctly refused until the allowlist was refreshed, which is the guard preferring a blocked render over an unverified face.
 - **Say nothing about hands.** Five successive hand-posing rules each produced a rejected clip within one render. The engine drives mouth and head from the audio while hands free-run, so any mandated hand activity is motion uncorrelated with speech.
-- Wardrobe has to clear the matte, and nothing was checking that. The first pass put a black top on a presenter whose background is matted to pure black: her face cleared the fill by 134 levels of luma and her torso cleared it by **22**, so the body dissolved and left a floating head. Re-shot in cream, the torso now measures **171**. The lesson is the shape of the miss, not the fix: eleven probes scored her face, her motion and her timing, and not one of them asked whether you could see her.
+- Wardrobe has to clear the matte, and nothing was checking that. The first pass put a black top on a avatar whose background is matted to pure black: her face cleared the fill by 134 levels of luma and her torso cleared it by **22**, so the body dissolved and left a floating head. Re-shot in cream, the torso now measures **171**. The lesson is the shape of the miss, not the fix: eleven probes scored her face, her motion and her timing, and not one of them asked whether you could see her.
 
 ### 4. Render
 
-Text-to-video or audio-driven avatar? General video models are spectacular and unpredictable frame to frame; an audio-driven avatar is narrow, repeatable, and cheap enough to run every day. Advertising needs the same presenter to be identical on Tuesday and Thursday, so repeatability beats spectacle here.
+Text-to-video or audio-driven avatar? General video models are spectacular and unpredictable frame to frame; an audio-driven avatar is narrow, repeatable, and cheap enough to run every day. Advertising needs the same avatar to be identical on Tuesday and Thursday, so repeatability beats spectacle here.
 
 > Audio drives the animation from a fixed still, which is the only reproducibility control on offer: the vendor exposes no seed, so **the still is the seed**. The flat-rate engine is the scheduled default because it bills the same for a 9-second clip as for a 2-minute one, and that single pricing fact is what makes a daily unattended run affordable at all.
 
@@ -361,7 +361,7 @@ Text-to-video or audio-driven avatar? General video models are spectacular and u
 
 ## The fork, and why the evals only work on one side of it
 
-Everything up to here is shared: the schedule, the words, the cloned voice, the pinned face, the animated render. At this point the same presenter becomes two different products, and they are not variations on a theme. They are separated by whether the output exists before anyone sees it.
+Everything up to here is shared: the schedule, the words, the cloned voice, the pinned face, the animated render. At this point the same avatar becomes two different products, and they are not variations on a theme. They are separated by whether the output exists before anyone sees it.
 
 > **Rendered** output is finished before it ships, so every gate in this repository can run in the gap between "the file exists" and "a human sees it." That gap is the entire reason this pipeline can be trusted unattended. **Live** output has no such gap: the voice is synthesized in the moment, mid-conversation, and there is no frame to inspect before it is already on someone's screen. So the gating doctrine here does not port across the fork. It is not that the live path needs different thresholds. It is that pre-spend review, the mechanism all nine invariants rest on, does not exist there at all.
 
@@ -390,7 +390,7 @@ Keep the room or separate the person? Keeping it is free and reads as dead, beca
 > Matte to pure black, tuned specifically at the hair, which is where every earlier attempt failed. Black is the one solid fill that reads as intentional. A colored fill behind a matted head reads as a cheap green screen, a mistake this pipeline shipped exactly once and never again.
 
 - [`pipeline/matte_video.py`](pipeline/matte_video.py) carries its own dated tuning history in comments, including the verdict that moved each threshold.
-- Choosing black is what created the wardrobe trap in stage 3. A fill of zero is the strongest possible separation for a lit face and the weakest possible separation for dark clothing, and those are the same decision. Deciding the background also decides what the presenter is allowed to wear, which nothing in the suite knew until it was measured.
+- Choosing black is what created the wardrobe trap in stage 3. A fill of zero is the strongest possible separation for a lit face and the weakest possible separation for dark clothing, and those are the same decision. Deciding the background also decides what the avatar is allowed to wear, which nothing in the suite knew until it was measured.
 
 ### 6. Evals
 
@@ -404,7 +404,7 @@ Gate on the outcome or on the attempt? Outcome metrics are what dashboards show,
 
 ### 7. Depth
 
-Capture depth or infer it? Capture wants a depth camera pointed at a real subject, and neither exists here, because the subject was generated. Inference works on any frame including a synthetic one, which makes it the only option that composes with a generated presenter at all.
+Capture depth or infer it? Capture wants a depth camera pointed at a real subject, and neither exists here, because the subject was generated. Inference works on any frame including a synthetic one, which makes it the only option that composes with a generated avatar at all.
 
 > Monocular depth estimation running **locally** on the GPU (Apple Silicon MPS) rather than through a cloud API. This runs on every frame of every clip, so a per-frame API call would price the whole pipeline out of daily use. Keeping it local is a cost decision that happens to also be a latency and privacy one.
 
@@ -466,24 +466,24 @@ Measured, not estimated. Every figure carries its sample size, because a rate wi
 
 | | | |
 |---|---|---|
-| Labelled stills / clips | 113 / 67 | hand-curated |
-| Identity label records | 174 (115 `her`, 59 `not_her`) | plus an earlier 171-record pass, kept |
-| A/B verdicts logged | 677 | pairwise |
-| Approved looks, one identity | 279 | pin allowlist |
-| Scoring models built and killed | 10 in one day | every one inverted on the labels |
-| Runs on schedule | 10 of 10 consecutive days, 0 missed | n=10 days |
-| Full chain completion | 4 of 7 | n=7, across 2 days |
-| Constraint held, outcome vs first attempt | 14 of 15 vs 6 of 15 | n=15 |
-| Quality gate true positives | 0 of 7 evaluations | n=7 |
-| Voice draw spread, this clip | 7.7 percent across 3 draws | median kept |
-| Transcript check, this clip | 541 of 541 words, similarity 1.0000 | run before the spend |
-| Rest, this clip vs the human reference | 15.3 percent vs 19.0 percent | the axis that reads as flat |
-| Rest, on the wrong synthesis model | 11.4 percent | nine clips shipped before it was caught |
-| Depth on one frame | load 1.9s, inference 0.4s | local GPU |
-| Depth peak memory, 3216 frames at full res | 13.4 GB resident, 16.6 GB swapped | the ceiling |
-| Depth memory, 4230 frames at half res | 3.3 GB peak, 0 swap, 458s | the documented fix, applied |
-| Quilt build | 77 views in 0.8s at 3360px | n=1 |
-| Comparison run cost | 205 credits | balance measured before and after |
+| Labelled stills / clips | 113 / 67 | Hand-curated |
+| Identity label records | 174 (115 `her`, 59 `not_her`) | Plus an earlier 171-record pass, kept |
+| A/B verdicts logged | 677 | Pairwise |
+| Approved looks, one identity | 279 | Pin allowlist |
+| Scoring models built and killed | 10 in one day | Every one inverted on the labels |
+| Runs on schedule | 10 of 10 consecutive days, 0 missed | N=10 days |
+| Full chain completion | 4 of 7 | N=7, across 2 days |
+| Constraint held, outcome vs first attempt | 14 of 15 vs 6 of 15 | N=15 |
+| Quality gate true positives | 0 of 7 evaluations | N=7 |
+| Voice draw spread, this clip | 7.7 percent across 3 draws | Median kept |
+| Transcript check, this clip | 541 of 541 words, similarity 1.0000 | Run before the spend |
+| Rest, this clip vs the human reference | 15.3 percent vs 19.0 percent | The axis that reads as flat |
+| Rest, on the wrong synthesis model | 11.4 percent | Nine clips shipped before it was caught |
+| Depth on one frame | Load 1.9s, inference 0.4s | Local GPU |
+| Depth peak memory, 3216 frames at full res | 13.4 GB resident, 16.6 GB swapped | The ceiling |
+| Depth memory, 4230 frames at half res | 3.3 GB peak, 0 swap, 458s | The documented fix, applied |
+| Quilt build | 77 views in 0.8s at 3360px | N=1 |
+| Comparison run cost | 205 credits | Balance measured before and after |
 
 **What I cannot tell you:** any dollar figure, because no credit-to-currency rate was recorded at measurement time. Time saved, because no manual baseline was ever measured. Both are in [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) with what it would take to get them honestly.
 
@@ -505,8 +505,8 @@ The scheduled pipeline renders on the **flat tier**: 1 credit, now measured at t
 
 | Engine tier | ~11s | ~126s | ~169s | Shape |
 |---|---|---|---|---|
-| flat tier (scheduled default) | 1 credit | 1 credit | 1 credit | flat with length, three measured points |
-| premium tiers | 5 credits | 43 credits | **58 credits** | scales, and not knowably linear |
+| Flat tier (scheduled default) | 1 credit | 1 credit | 1 credit | Flat with length, three measured points |
+| Premium tiers | 5 credits | 43 credits | **58 credits** | Scales, and not knowably linear |
 
 Every cell there is a balance delta read before and after a real render. None is interpolated. The 169-second column was null until this run measured it, and it was then measured a second time on an independent pair of renders: 58 credits each, both times.
 
@@ -526,10 +526,10 @@ Each demoed stage maps to a module in [`pipeline/`](pipeline/), ported from the 
 
 | Stage | Module | What it is |
 |---|---|---|
-| 5, matte | `matte_video.py` | background removal tuned at the hair, with the dated verdicts behind each threshold |
-| 7, depth | `depth_infer.py` | per-frame monocular depth on Apple Silicon MPS |
-| 8, quilt | `quilt.py`, `quilt_video.py`, `warp_fast.py`, `depth_guided.py`, `wiggle_preview.py` | parallax warp and the 77-view array |
-| cost | `pick_engine.sh`, `route_engine.sh` | the engine router that returns null rather than guess a price |
+| 5, matte | `matte_video.py` | Background removal tuned at the hair, with the dated verdicts behind each threshold |
+| 7, depth | `depth_infer.py` | Per-frame monocular depth on Apple Silicon MPS |
+| 8, quilt | `quilt.py`, `quilt_video.py`, `warp_fast.py`, `depth_guided.py`, `wiggle_preview.py` | Parallax warp and the 77-view array |
+| Cost | `pick_engine.sh`, `route_engine.sh` | The engine router that returns null rather than guess a price |
 
 Reference code, not a turnkey app: the Python stages need torch, an open depth model, and a matting model, which are deliberately not in `requirements.txt` (that stays scoped to the probes).
 
@@ -627,7 +627,7 @@ Two companion projects are referenced above and are not public yet: the agent th
 
 **An interactive version of this page, deployed.** Everything here is a still or a loop, because a README can only hold those. The pipeline it documents is interactive at several points that a picture cannot reach, and those are the parts worth clicking:
 
-- **The presenter, live.** The real-time arm of the fork, the one none of these gates apply to, is a conversational avatar rather than a rendered file. On a page you could talk to her instead of watching a clip of her.
+- **The avatar, live.** The real-time arm of the fork, the one none of these gates apply to, is a conversational avatar rather than a rendered file. On a page you could talk to her instead of watching a clip of her.
 - **The voice, as a control rather than a recording.** Type a line, hear it in the cloned voice, and watch the three drawn takes and the median that gets kept. The 6 to 37 percent duration spread is the sort of thing you believe once you have made it happen yourself.
 - **The register-shaping agent.** The second of the two script agents, the one trained on years of my own prompts. Currently a companion repo, available on request; a hosted version would let you feed it a flat sentence and see what it does to the cadence.
 - **The gates, run against your own input.** Upload a still, watch the separation probe measure the torso against the fill, and get refused if you wore black.
