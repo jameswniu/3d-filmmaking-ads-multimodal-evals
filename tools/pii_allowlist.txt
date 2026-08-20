@@ -74,3 +74,10 @@ NOTICE|owner-identity-token
 # a HeyGen or ElevenLabs id would still be caught everywhere, including here,
 # under its own vendor-prefixed label. Reviewed 2026-07-31.
 README.md|uuid
+
+# Stage detail moved out of README.md into docs/PIPELINE.md on 2026-08-19.
+# Same two findings, same reviewed content, new path. The uuid is the public
+# GitHub attachment URL for the narration clip; the behavioural hit is the
+# tier-comparison prose. Both were already allowed above for README.md.
+docs/PIPELINE.md|uuid
+docs/PIPELINE.md|presence-or-routine-prose
