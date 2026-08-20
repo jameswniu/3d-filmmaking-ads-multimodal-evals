@@ -82,9 +82,9 @@ Left is how the work goes today. Right is what changes. Every claim on the right
 |---|---|
 | Someone watches every take and decides. | Nobody watches. Bad takes never reach you. |
 | You find out it was bad after you paid for it. | It gets stopped before the money goes. |
-| "Looks right" lives in one reviewer's head, and leaves when they do. | "Looks right" is written down, and it stays. |
+| "Looks right" lives in one editor's head, and leaves when they do. | "Looks right" is written down, and it stays. |
 | A check gets trusted because it agreed with you once. | A check has to survive being wrong before it can block anything. |
-| You hope she looks the same across the campaign. | She looks the same in every spot. |
+| You hope she still looks like herself across the campaign. | Same face, same silhouette, every spot. The wardrobe changes; she does not. |
 | You learn what a long clip costs when the invoice arrives. | You know the price before you commit. |
 | Someone has to be awake for it. | It runs overnight, and tells you if it did not. |
 
@@ -344,7 +344,7 @@ Measured, not estimated. Every figure carries its sample size, because a rate wi
 
 **What I cannot tell you:** any dollar figure, because no credit-to-currency rate was recorded at measurement time. Time saved, because no manual baseline was ever measured. Both are in [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) with what it would take to get them honestly.
 
-**Honest scope:** one operator, one machine, one panel, one labeller. The labels are internally consistent and externally unvalidated, and a second labeller is the single most valuable thing this repository is missing.
+**Honest scope:** one operator, one machine, one panel, one editorial source. The labels are internally consistent and externally unvalidated, and a second editorial source is the single most valuable thing this repository is missing.
 
 ---
 
