@@ -21,9 +21,15 @@
 | **The flow** | **The benchmark** |
 | `label` then `derive` then `gate` then `render` then `relabel`. Nothing renders that the gates have not cleared | 16 of 16 named thresholds bracketed by labelled exemplars. [10 of 10 scheduled days, 0 missed](#what-holds-when-nobody-is-watching) |
 
-It writes a script and speaks it in a cloned voice. It renders a consistent generated avatar, separates her from her background, infers depth, and emits 77 views of a single instant for a light-field display. It does this on a schedule, against metered vendor APIs, with nobody watching.
+**In plain words.** A computer writes a short ad script, speaks it in a cloned voice, and puts a generated person on camera to deliver it. Before it pays a vendor to render anything, it checks the work against examples a human graded by hand, and it refuses takes that do not measure up. It runs overnight, on a schedule, with nobody watching.
 
-**What makes that survivable is not the render path.** Editorial judgement is captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
+Three words repeat on this page, and they are one idea:
+
+- a **probe** is a check
+- a **threshold** is the line that check has to clear
+- a **gate** is what stops the job when the line is not cleared
+
+The hard part is not making the video. It is deciding, without a person in the room, whether the video is good enough to pay for. That decision is what this repository is.
 
 <table>
   <tr>
@@ -60,7 +66,7 @@ It writes a script and speaks it in a cloned voice. It renders a consistent gene
 
 ## The five hard problems in talking-head video
 
-These are the field's named problems, not this repo's. The right column says where this stack actually stands on each.
+Making a convincing video of a person who does not exist is now the easy part. Getting it right without a human watching is not. These five are what the field is still stuck on, and the right column says plainly which ones this system solves.
 
 | | The challenge | Where this stack stands |
 |---|---|---|
@@ -92,7 +98,7 @@ Left is how the work goes today. Right is what changes. Every claim on the right
 
 ## What holds when nobody is watching
 
-The operator is asleep and the schedule fires anyway. That is the normal state, and it is the state the gates exist for.
+Nobody is awake when this runs. These five jobs are what stands in for a person overnight, and each one is listed with how often it runs and what it is looking for.
 
 | Runs unattended | Cadence | What it catches |
 |---|---|---|
@@ -132,27 +138,34 @@ Every image below is the **same frame**, `t = 63s`, of the same render. That con
 
 ## Evals lead this
 
-Problems one and two are why the pipeline is shaped the way it is. A plausible failure is only catchable by an eye, that eye cannot be awake at render time, and the failure is different in tomorrow's draw anyway.
+A bad take does not crash anything. It just looks slightly wrong, and only a person notices. But no person is awake when this runs, and tomorrow it will be wrong in a different way.
 
-So the pipeline's real job is to make a human eye present at render time by having captured it earlier:
+So the job is to capture a person's judgement in advance, and have it standing guard when they are not:
 
 ```
 label  ->  derive  ->  gate  ->  render  ->  relabel
 ```
 
-**Label.** 113 hand-labelled stills. 67 labelled clips. 174 frame-level identity records. 677 pairwise A/B verdicts. A render ledger of 14 renders, 7 kept and 3 rejected. Plain-language verdicts, kept as data.
+| Stage | What it does | What it produced |
+|---|---|---|
+| **Label** | Human verdicts, kept as data | 113 stills, 67 clips, 174 frame-level identity records, 677 pairwise A/B verdicts, a ledger of 14 renders with 7 kept and 3 rejected |
+| **Derive** | Turns those verdicts into numbered bars | 16 of 16 named gating thresholds in [`probes/`](probes/), each bracketed by a labelled pass and a labelled fail. Move one outside its bracket and CI goes red |
+| **Gate** | Bars become guards that run before money is spent | Judging is blind, and gates are ranked by what happens when they are violated |
+| **Relabel** | Kills whatever does not survive contact | Ten scoring models built in one day, every one inverted against the labels |
 
-**Derive.** Sixteen of the sixteen named gating thresholds in [`probes/`](probes/) come from a labelled pass exemplar and a labelled fail exemplar, and [`evals/derive.py`](evals/derive.py) holds every one inside the interval its labels imply. Move a threshold out of its bracket and CI goes red. The eye model's background bar (4.5) is one of them: it sits between the worst labelled pass (3.30) and the best labelled reject (5.32). Named is the load-bearing word, and the tool says so itself: `lipsync_probe` still refuses clips on nine inline numbers, and a number without a name cannot be bracketed.
+Four things that loop taught, each of which cost something:
 
-**Gate.** Thresholds become guards that run before money is spent. Judging is blind. Gates are ranked by what happens when they are violated, which is why the same constraint held 14 of 15 runs at the outcome and only 6 of 15 at the first attempt: the gap is a pre-call hook, not better prose.
-
-**Relabel.** Ten scoring models were built in one day and every one inverted against the labels. A lip-sync metric agreed with the eye 8 times out of 8, was wired in as a blocker within minutes, then measured 6 to 10 frames of swing against itself inside a single clip and was demoted the same hour. A brightness bar set to 8.0 because one engine's clip measured 7.9 turned out to mean *resemble that engine*, and steered choices for six hours while gating nothing. Thirteen metrics found nothing about gesture timing until the human said the movement lags the speech, and the literature explained why: gesture aligns to pitch accents as discrete events, so a late one is caught at about 200 milliseconds while an early one is forgiven.
+- **A bar is only as good as its bracket.** The eye model's background bar sits at 4.5, between the worst labelled pass at 3.30 and the best labelled reject at 5.32. *Named* is the load-bearing word: `lipsync_probe` still refuses clips on nine inline numbers, and a number without a name cannot be bracketed.
+- **Agreement is not reliability.** A lip-sync metric matched the eye 8 times out of 8 and shipped as a blocker within minutes. Measured against itself inside a single clip it swung 6 to 10 frames, and was demoted the same hour.
+- **A threshold can encode the wrong thing.** A brightness bar set to 8.0 because one engine's clip measured 7.9 turned out to mean *resemble that engine*. It steered six hours of choices while gating nothing.
+- **Where the gate sits beats how it is worded.** The same constraint held 14 of 15 runs at the outcome and only 6 of 15 at the first attempt. The gap is a pre-call hook, not better prose.
+- **Thirteen metrics found nothing about gesture timing** until a human said the movement lags the speech. Gesture aligns to pitch accents as discrete events, so a late one is caught at about 200 milliseconds and an early one is forgiven.
 
 **Full doctrine, with every number and every retraction: [`docs/EVALS.md`](docs/EVALS.md).**
 
 ## The render behind those clips, scored by this repo's own probes
 
-**This render fails two of its own gates.** They lead rather than hide at the bottom, because a scorecard that shows only passes is a brochure. Every clip above is a treatment of this one render, picked from a grid of three looks, three voice clones and three engine tiers, one variable moved per cell.
+**The video on this page did not pass its own checks.** Two of them failed, and they are listed first rather than buried, because a report card showing only the good marks is an advert. Every clip above is a treatment of this one render, picked from a grid of three looks, three voice clones and three engine tiers, one variable moved per cell.
 
 | Probe | Reading | Bar | Verdict |
 |---|---|---|---|
@@ -235,19 +248,23 @@ for cam in cams:                           # 77 of them
     buf[flat] = color_sorted               # later write wins => near occludes far
 ```
 
-There is no depth test in that loop, and there does not need to be one. Rows are pre-sorted far to near, so when two source pixels land on the same destination, numpy's last-write-wins on a duplicated fancy index resolves the occlusion by construction. The sort is hoisted out of the view loop, so it is paid once per frame rather than 77 times. The `__main__` block benchmarks it against the naive per-view implementation and reports where they disagree. They match exactly outside disocclusion holes and differ inside them, because the two paths fill holes differently. That is worth stating precisely: this benchmark used to print a bare `identical: True`, which held only because the author's real depth maps are smooth. Run it against `samples/`, whose depth has a hard step at the subject, and the claim breaks. Committing a sample is what made a latent disagreement visible.
+- **No depth test, and none needed.** Rows are pre-sorted far to near, so when two source pixels land on the same destination, numpy's last-write-wins resolves the occlusion by construction.
+- **The sort is hoisted out of the view loop**, so it is paid once per frame instead of 77 times.
+- **The benchmark disagrees with the naive version on purpose.** `__main__` compares against per-view warping and reports where they differ, because the two paths fill disocclusion holes differently. It used to print a bare `identical: True`, which held only because real depth maps are smooth. Run it against `samples/`, whose depth has a hard step at the subject, and the claim breaks. Committing a sample is what made a latent disagreement visible.
 
 **The engine router refuses to guess a price.** [`pipeline/pick_engine.sh`](pipeline/pick_engine.sh#L24)
 
-It returns `credits_est: null` for any duration nobody has measured. The tempting formula, `ceil(sec/11)*5`, predicts 60 credits for a clip that actually billed 43, so it fails to reproduce the single point it was fitted to. A straight line through two points is also a guess, since it assumes billing is linear when it may be tiered or have a floor. The comment in the file puts it plainly:
-
-> One measurement cannot support a scaling law, and a formula is more dangerous than a missing number because it looks derived and nobody rechecks it. **NULL makes a caller ask. A confident 5 makes it spend 43.**
-
-That is not a hypothetical. The earlier flat `5` sent a batch of eight renders to 344 credits before anyone noticed.
+- **It returns `credits_est: null` for any duration nobody has measured.** The tempting formula, `ceil(sec/11)*5`, predicts 60 credits for a clip that actually billed 43, so it fails to reproduce the single point it was fitted to.
+- **A straight line through two points is still a guess**, since it assumes billing is linear when it may be tiered or have a floor.
+- **The cost of guessing is on the record.** An earlier flat `5` sent a batch of eight renders to 344 credits before anyone noticed. A null makes a caller ask; a confident 5 makes it spend 43.
 
 **The privacy gate that ran before this repo existed publicly.** [`tools/pii_scan.sh`](tools/pii_scan.sh)
 
-523 lines of deterministic scanning: a tab-separated rule table, three passes (content regex, filename shapes, EXIF), seven severity classes, an allowlist with counted suppressions, and structured `path:line:CLASS:SEVERITY:label` output that never prints the matched text, because a scanner that echoes the secret into your terminal has moved it, not found it. It is wired as a pre-commit hook and a CI job. Result on this repository: zero home paths, zero keys, zero vendor identifiers across all tracked files.
+- **523 lines of deterministic scanning:** a tab-separated rule table, three passes over content regex, filename shapes and EXIF, seven severity classes, and an allowlist with counted suppressions.
+- **It never prints the matched text.** A scanner that echoes the secret into your terminal has moved it, not found it.
+- **Wired as a pre-commit hook and a CI job.** Result on this repository: zero home paths, zero keys, zero vendor identifiers across all tracked files.
+
+---
 
 ## What ships here, and what does not
 
