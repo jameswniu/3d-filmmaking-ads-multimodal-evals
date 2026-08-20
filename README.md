@@ -78,7 +78,7 @@ Making a convincing video of a person who does not exist is now the easy part. G
 
 **What this pipeline sidesteps rather than solves.** Other problems in this space are not load-bearing here: profile and side views, hands and fingers, multi-person scenes, emotion control, cross-language audio. This renders one frontal avatar, alone, in one language. That is scope, not a solution, and it is the reason the five above are the ones worth measuring.
 
-Three of the five are open or ungated, and the honest reading is that the render path is not what makes this hard. The long-form version, with every retraction, is [what I found by measuring it](#what-i-found-by-measuring-it).
+Three of the five are open or ungated, and the honest reading is that the render path is not what makes this hard. The long-form version, with every retraction, is [what measurement overturned](#what-measurement-overturned).
 
 ## An ad team, before and after
 
@@ -234,7 +234,7 @@ Every figure in the diagram is a measurement published elsewhere in this reposit
 
 ## The code, in three pieces
 
-Three decisions that carry the rest. Not a tour of the tree, just the three I would want read first.
+Three decisions that carry the rest. Not a tour of the tree, just the three worth reading first.
 
 **The warp gets occlusion for free.** [`pipeline/warp_fast.py`](pipeline/warp_fast.py#L92)
 
@@ -312,7 +312,7 @@ Ten stages run unattended, and the fork at stage 5 is where the evals stop being
 | 8 | **Quilt** | Ship a flat frame or a view array? |
 | 9 | **Glass** | Screen or light field? |
 
-## What I found by measuring it
+## What measurement overturned
 
 The lesson on the left, what happened on the right.
 
@@ -359,7 +359,7 @@ Measured, not estimated. Every figure carries its sample size, because a rate wi
 | Quilt build | 77 views in 0.8s at 3360px | N=1 |
 | Comparison run cost | 205 credits | Balance measured before and after |
 
-**What I cannot tell you:** any dollar figure, because no credit-to-currency rate was recorded at measurement time. Time saved, because no manual baseline was ever measured. Both are in [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) with what it would take to get them honestly.
+**What this cannot tell you:** any dollar figure, because no credit-to-currency rate was recorded at measurement time. Time saved, because no manual baseline was ever measured. Both are in [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) with what it would take to get them honestly.
 
 **Honest scope:** one operator, one machine, one panel, one editorial source. The labels are internally consistent and externally unvalidated, and a second editorial source is the single most valuable thing this repository is missing.
 
@@ -413,7 +413,7 @@ Reference code, not a turnkey app: the Python stages need torch, an open depth m
 
 ## Running it
 
-The pipeline needs my vendor accounts and a light-field panel. The **measurement layer** does not, and it is the part worth reading anyway.
+The pipeline needs vendor accounts and a light-field panel. The **measurement layer** does not, and it is the part worth reading anyway.
 
 ### Before you begin
 
@@ -487,7 +487,7 @@ Want the same pipeline with your own voice and character? [`docs/SETUP.md`](docs
 - [`docs/SETUP.md`](docs/SETUP.md), clone your voice, generate your character, pin both, in the order that works
 - [`docs/COST.md`](docs/COST.md), the measured credit schedule, the 344-credit incident, and which vendor tiers to buy
 - [`docs/RELIABILITY.md`](docs/RELIABILITY.md), why the quality gate stopped blocking and what replaced it
-- [`docs/ENFORCEMENT.md`](docs/ENFORCEMENT.md), the four guards, which three fail open, and how I found out
+- [`docs/ENFORCEMENT.md`](docs/ENFORCEMENT.md), the four guards, which three fail open, and how that surfaced
 - [`docs/EVIDENCE.md`](docs/EVIDENCE.md), every number above traced to what produced it
 - [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md), what this repo does not claim, and why
 - [`docs/PII-REVIEW.md`](docs/PII-REVIEW.md), the pre-publish privacy gate, what it caught, and every finding dismissed by hand
