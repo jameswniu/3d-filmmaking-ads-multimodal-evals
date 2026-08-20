@@ -76,17 +76,17 @@ Three of the five are open or ungated, and the honest reading is that the render
 
 ## An ad team, before and after
 
-The left column is ordinary practice. The right is the mechanism that replaces it, and every entry there is a measured figure from [the numbers](#the-numbers).
+Left is how the work goes today. Right is what changes. Every claim on the right is backed by a measured figure in [the numbers](#the-numbers).
 
-| Before | With this pipeline |
+| Before | After |
 |---|---|
-| A person watches each take and calls it. | Gates derived from 113 labelled stills call it, and refuse to spend. |
-| A bad render is caught after the credits are gone. | The transcript check runs before the spend, 541 of 541 words. |
-| "Looks right" lives in a reviewer's head, and leaves when they do. | It lives in 16 of 16 named thresholds, each bracketed by a labelled pass and a labelled reject. |
-| A metric is trusted because it agreed once. | Ten models were built and killed in a day for disagreeing with the labels. |
-| Campaign consistency is hoped for. | 279 approved looks are pinned to one identity allowlist. |
-| Nobody knows what a long clip costs until the invoice. | 58 credits, measured twice on independent renders. |
-| Someone has to be awake. | 10 of 10 consecutive scheduled days, 0 missed. |
+| Someone watches every take and decides. | Nobody watches. Bad takes never reach you. |
+| You find out it was bad after you paid for it. | It gets stopped before the money goes. |
+| "Looks right" lives in one reviewer's head, and leaves when they do. | "Looks right" is written down, and it stays. |
+| A check gets trusted because it agreed with you once. | A check has to survive being wrong before it can block anything. |
+| You hope she looks the same across the campaign. | She looks the same in every spot. |
+| You learn what a long clip costs when the invoice arrives. | You know the price before you commit. |
+| Someone has to be awake for it. | It runs overnight, and tells you if it did not. |
 
 **No row above claims a time saving, and that is deliberate.** Claiming one needs a defined manual procedure, at least five timed human runs, and the same quality bar applied to both. None of those exist here, so the comparison is about how the work is governed rather than how long it takes. The full accounting of what is not claimed, and what it would take to claim it, is [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md).
 
