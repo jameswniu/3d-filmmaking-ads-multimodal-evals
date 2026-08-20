@@ -27,14 +27,17 @@
   <text x="64" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="38" font-weight="700" fill="url(#title)" letter-spacing=".5">3d-filmmaking-ads-multimodal-evals</text>
   <text x="64" y="154" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#93c5fd" opacity=".95">Taste captured as labels, compiled into thresholds, enforced by gates.</text>
   <rect x="64" y="178" width="760" height="1" fill="url(#rule)"/>
-  <text x="64" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" font-weight="700" fill="#e0f2fe">113 / 67</text>
-  <text x="64" y="268" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#64a0d8" letter-spacing=".6">LABELLED STILLS/CLIPS</text>
-  <text x="335" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" font-weight="700" fill="#e0f2fe">16 / 16</text>
-  <text x="335" y="268" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#64a0d8" letter-spacing=".6">DERIVED</text>
-  <text x="499" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" font-weight="700" fill="#e0f2fe">4</text>
-  <text x="499" y="268" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#64a0d8" letter-spacing=".6">GATES, 3 FAIL OPEN</text>
-  <text x="736" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" font-weight="700" fill="#e0f2fe">1</text>
-  <text x="736" y="268" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#64a0d8" letter-spacing=".6">CREDIT PER RENDER</text>
+  <text x="155" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" font-weight="700" fill="#e0f2fe" text-anchor="middle">113 / 67</text>
+  <text x="155" y="260" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#7fb8e8" text-anchor="middle" letter-spacing=".6">LABELLED</text>
+  <text x="155" y="282" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#7fb8e8" text-anchor="middle" letter-spacing=".6">STILLS/CLIPS</text>
+  <text x="389" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" font-weight="700" fill="#e0f2fe" text-anchor="middle">16 / 16</text>
+  <text x="389" y="260" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#7fb8e8" text-anchor="middle" letter-spacing=".6">DERIVED</text>
+  <text x="612" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" font-weight="700" fill="#e0f2fe" text-anchor="middle">4</text>
+  <text x="612" y="260" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#7fb8e8" text-anchor="middle" letter-spacing=".6">GATES,</text>
+  <text x="612" y="282" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#7fb8e8" text-anchor="middle" letter-spacing=".6">3 FAIL OPEN</text>
+  <text x="827" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" font-weight="700" fill="#e0f2fe" text-anchor="middle">1</text>
+  <text x="827" y="260" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#7fb8e8" text-anchor="middle" letter-spacing=".6">CREDIT PER</text>
+  <text x="827" y="282" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#7fb8e8" text-anchor="middle" letter-spacing=".6">RENDER</text>
   <rect x="940" y="56" width="244" height="132" rx="7" fill="#060f22" stroke="#7dd3fc" stroke-opacity=".55" stroke-width="1.5"/>
   <rect x="993" y="45" width="18" height="12" rx="1.5" fill="#38bdf8" fill-opacity="0.240"/>
   <rect x="1013" y="45" width="18" height="12" rx="1.5" fill="#38bdf8" fill-opacity="0.435"/>
@@ -113,8 +116,8 @@
   <rect x="1073" y="185" width="18" height="12" rx="1.5" fill="#38bdf8" fill-opacity="0.591"/>
   <rect x="1093" y="185" width="18" height="12" rx="1.5" fill="#38bdf8" fill-opacity="0.435"/>
   <rect x="1113" y="185" width="18" height="12" rx="1.5" fill="#38bdf8" fill-opacity="0.240"/>
-  <text x="1062" y="210" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#7dd3fc" text-anchor="middle" letter-spacing=".5">7 &#215; 11 = 77 VIEWS</text>
-  <text x="1062" y="230" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#7dd3fc" text-anchor="middle" letter-spacing=".5">OF ONE INSTANT</text>
+  <text x="1062" y="210" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#7dd3fc" text-anchor="middle" letter-spacing=".5">7 &#215; 11 = 77 VIEWS</text>
+  <text x="1062" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#7dd3fc" text-anchor="middle" letter-spacing=".5">OF ONE INSTANT</text>
   <rect x="48" y="292" width="1104" height="58" rx="9" fill="url(#bandbg)"/>
   <rect x="67" y="305" width="93" height="32" rx="6" fill="#0ea5e9" fill-opacity=".09" stroke="#38bdf8" stroke-opacity=".45"/>
   <text x="113" y="326" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#9cc9f5" text-anchor="middle">wake</text>

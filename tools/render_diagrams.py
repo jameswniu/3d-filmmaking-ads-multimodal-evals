@@ -372,7 +372,12 @@ PILLS = ["wake", "script", "voice x3", "look", "render",
 # of gap. Widths come from the renderer's own advance of 0.634 per character in
 # this mono stack, not from an estimate; a 0.6 guess is what once put the title
 # flush against the panel.
-STAT_X = [64, 335, 499, 736]
+# Centres, not left edges: the figures and their labels differ in width, so
+# anchoring each pair to a shared centre is what keeps the four columns reading
+# as four. Labels are two lines because a single line at a readable size does
+# not fit four across; the tag-stripping pass rejoins the pair, so the count
+# verifier still sees "N GATES, M FAIL OPEN" as one string.
+STAT_CX = [155, 389, 612, 827]
 
 
 def htext(x, y, s, size, fill, weight=None, anchor=None, ls=None, opacity=None):
@@ -461,16 +466,20 @@ def hero():
     # the ratio beside it, so that is what the poster leads with now. The probe
     # count still appears in the README badge row directly underneath.
     stats = [
-        (f"{LABELLED_STILLS} / {LABELLED_CLIPS}", "LABELLED STILLS/CLIPS"),
-        (f"{THRESHOLDS_DERIVED} / {THRESHOLDS_GATING}", "DERIVED"),
-        (f"{len(GATES)}", f"GATES, {GATES_FAIL_OPEN} FAIL OPEN"),
-        (f"{CREDIT_SCHEDULED}", "CREDIT PER RENDER"),
+        (f"{LABELLED_STILLS} / {LABELLED_CLIPS}", "LABELLED", "STILLS/CLIPS"),
+        (f"{THRESHOLDS_DERIVED} / {THRESHOLDS_GATING}", "DERIVED", ""),
+        (f"{len(GATES)}", "GATES,", f"{GATES_FAIL_OPEN} FAIL OPEN"),
+        (f"{CREDIT_SCHEDULED}", "CREDIT PER", "RENDER"),
     ]
     # strict: a figure without a slot, or a slot without a figure, is a bug
     # rather than something to silently drop.
-    for x, (value, label) in zip(STAT_X, stats, strict=True):
-        o.append(htext(x, 240, value, 30, PALE, weight="700"))
-        o.append(htext(x, 268, label, 18, "#64a0d8", ls=".6"))
+    for cx, (value, l1, l2) in zip(STAT_CX, stats, strict=True):
+        o.append(htext(cx, 232, value, 36, PALE, weight="700",
+                       anchor="middle"))
+        o.append(htext(cx, 260, l1, 22, "#7fb8e8", anchor="middle", ls=".6"))
+        if l2:
+            o.append(htext(cx, 282, l2, 22, "#7fb8e8", anchor="middle",
+                           ls=".6"))
 
     # The panel, then one cell per view.
     # The panel sits 40 further right than it used to. The four figures needed
@@ -491,9 +500,9 @@ def hero():
     # the view count back under 7px on screen.
     o.append(htext(1062, 210,
                    f"{QUILT_COLS} &#215; {QUILT_ROWS} = {VIEWS} VIEWS",
-                   15, "#7dd3fc", anchor="middle", ls=".5"))
-    o.append(htext(1062, 230, "OF ONE INSTANT",
-                   15, "#7dd3fc", anchor="middle", ls=".5"))
+                   20, "#7dd3fc", anchor="middle", ls=".5"))
+    o.append(htext(1062, 232, "OF ONE INSTANT",
+                   20, "#7dd3fc", anchor="middle", ls=".5"))
 
     # The run, as ten pills with a dot between each pair.
     o.append('  <rect x="48" y="292" width="1104" height="58" rx="9" '
