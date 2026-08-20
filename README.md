@@ -149,7 +149,7 @@ label  ->  derive  ->  gate  ->  render  ->  relabel
 | Stage | What it does | What it produced |
 |---|---|---|
 | **Label** | Human verdicts, kept as data | 113 stills, 67 clips, 174 frame-level identity records, 677 pairwise A/B verdicts, a ledger of 14 renders with 7 kept and 3 rejected |
-| **Derive** | Turns those verdicts into numbered bars | 16 of 16 named gating thresholds in [`probes/`](probes/), each bracketed by a labelled pass and a labelled fail. Move one outside its bracket and CI goes red |
+| **Derive** | Turns those verdicts into numbered bars | 16 of the 16 named gating thresholds in [`probes/`](probes/), each bracketed by a labelled pass and a labelled fail. Move one outside its bracket and CI goes red |
 | **Gate** | Bars become guards that run before money is spent | Judging is blind, and gates are ranked by what happens when they are violated |
 | **Relabel** | Kills whatever does not survive contact | Ten scoring models built in one day, every one inverted against the labels |
 
