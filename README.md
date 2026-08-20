@@ -25,17 +25,6 @@ It writes a script and speaks it in a cloned voice. It renders a consistent gene
 
 **What makes that survivable is not the render path.** One person's taste was captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
 
-## Start here
-
-| If you want to | Go to |
-|---|---|
-| see whether it works | the three clips below, all from [one run](#what-actually-happens-to-her) |
-| run something yourself | [What ships here](#what-ships-here-and-what-does-not), then [Running it](#running-it) |
-| read the argument | [Evals lead this](#evals-lead-this) |
-| build your own | [`docs/SETUP.md`](docs/SETUP.md), consent line first |
-| see what is not claimed | [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) |
-
-
 <table>
   <tr>
     <td width="34%" align="center" valign="top">
@@ -58,6 +47,16 @@ It writes a script and speaks it in a cloned voice. It renders a consistent gene
 > The presenter is generated. She is not a real person and not a likeness of one. Her voice is a clone of a consented source. Every asset on this page comes from **one** run of the pipeline, deliberately, because a montage of lucky takes would hide the thing this repo is about.
 
 ---
+
+## Start here
+
+| If you want to | Go to |
+|---|---|
+| see whether it works | the three clips above, all from [one run](#what-actually-happens-to-her) |
+| run something yourself | [What ships here](#what-ships-here-and-what-does-not), then [Running it](#running-it) |
+| read the argument | [Evals lead this](#evals-lead-this) |
+| build your own | [`docs/SETUP.md`](docs/SETUP.md), consent line first |
+| see what is not claimed | [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md) |
 
 ## The five hard problems in autonomous filmmaking
 
@@ -296,7 +295,7 @@ Supervised or unattended? Everything downstream follows from this one answer. A 
 > Unattended, on a timer, because the interesting failures only appear when nobody is watching. Each run is a headless agent under a spend budget and a wall-clock timeout.
 
 - A scheduled job fires the run, a lock keeps two runs from racing, a budget guard caps spend, a timeout kills a wedged leg.
-- The alert test is inverted on purpose: it fires on everything that is **not** a clean success, rather than on a list of known failures. An enumerated list can only catch what you already thought of, so a novel failure would have been silent. This way it is loud on day one.
+- The alert test is inverted on purpose: it fires on anything other than a clean success, rather than on a list of known failures. An enumerated list can only catch what you already thought of, so a novel failure would have been silent. This way it is loud on day one.
 
 ### 1. Script
 
