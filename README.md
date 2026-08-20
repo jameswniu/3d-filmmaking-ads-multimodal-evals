@@ -23,7 +23,7 @@
 
 It writes a script and speaks it in a cloned voice. It renders a consistent generated avatar, separates her from her background, infers depth, and emits 77 views of a single instant for a light-field display. It does this on a schedule, against metered vendor APIs, with nobody watching.
 
-**What makes that survivable is not the render path.** One person's taste was captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
+**What makes that survivable is not the render path.** Editorial judgement is captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
 
 <table>
   <tr>
@@ -82,7 +82,7 @@ The left column is ordinary practice. The right is the mechanism that replaces i
 |---|---|
 | A person watches each take and calls it. | Gates derived from 113 labelled stills call it, and refuse to spend. |
 | A bad render is caught after the credits are gone. | The transcript check runs before the spend, 541 of 541 words. |
-| "Looks right" lives in one person's head. | It lives in 16 of 16 named thresholds, each bracketed by a labelled pass and a labelled reject. |
+| "Looks right" lives in a reviewer's head, and leaves when they do. | It lives in 16 of 16 named thresholds, each bracketed by a labelled pass and a labelled reject. |
 | A metric is trusted because it agreed once. | Ten models were built and killed in a day for disagreeing with the labels. |
 | Campaign consistency is hoped for. | 279 approved looks are pinned to one identity allowlist. |
 | Nobody knows what a long clip costs until the invoice. | 58 credits, measured twice on independent renders. |
@@ -309,7 +309,7 @@ The general lesson on the left, what actually happened on the right.
 | **When every predictor inverts, stop predicting.** | "In one day I built ten ways to score these clips and every single one disagreed with my own eyes. So I switched to picking at random and went back to labelling by hand. The models were confidently wrong; random at least knows it isn't." |
 | **No stopwatch, no saving.** | "Half an hour, start to finish, with nobody watching it. I won't tell you what that saves, because I never put a stopwatch on a human doing it by hand, and a number I made up is the easiest thing here to get caught on." |
 
-Most of those are me finding my own work was not what I had written down. That is the point of the repo.
+Most of those are the system catching its own documentation being wrong. That is the point of the repo.
 
 ---
 
