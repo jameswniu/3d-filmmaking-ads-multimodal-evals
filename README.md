@@ -13,11 +13,21 @@
   <img alt="license: GPL-3.0" src="https://img.shields.io/badge/license-GPL--3.0-164e63?style=flat-square&labelColor=0f172a">
 </p>
 
-**An advertising-grade AI filmmaking pipeline where the evals are the product.** It writes a script, speaks it in a cloned voice, renders a consistent generated presenter, separates her from her background, infers depth, and emits 77 views of a single instant for a light-field display. It does this on a schedule, against metered vendor APIs, with nobody watching. What makes that survivable is not the render path. It is that one person's taste was captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
+**An advertising-grade AI filmmaking pipeline where the evals are the product.**
+
+| Who it is for | The difference |
+|:---|:---|
+| An ad team that cannot watch every render, because it runs on a schedule against metered APIs. [What changes for them](#an-ad-team-before-and-after) | The render path is not the hard part. Ten scoring models were built and killed in one day for disagreeing with the labels. [The five hard problems](#the-five-hard-problems-in-autonomous-filmmaking) |
+| **The flow** | **The benchmark** |
+| `label` then `derive` then `gate` then `render` then `relabel`. Nothing renders that the gates have not cleared | 16 of 16 named thresholds bracketed by labelled exemplars. [10 of 10 scheduled days, 0 missed](#what-holds-when-nobody-is-watching) |
+
+It writes a script and speaks it in a cloned voice. It renders a consistent generated presenter, separates her from her background, infers depth, and emits 77 views of a single instant for a light-field display. It does this on a schedule, against metered vendor APIs, with nobody watching.
+
+**What makes that survivable is not the render path.** One person's taste was captured as labels, compiled into thresholds, and wired into gates that can refuse to spend.
 
 ## Start here
 
-| if you want to | go to |
+| If you want to | Go to |
 |---|---|
 | see whether it works | the three clips below, all from [one run](#what-actually-happens-to-her) |
 | run something yourself | [What ships here](#what-ships-here-and-what-does-not), then [Running it](#running-it) |
@@ -49,6 +59,52 @@
 
 ---
 
+## The five hard problems in autonomous filmmaking
+
+Generating the footage is the easy half. Five things are genuinely hard, and the honest status of each is in the right column.
+
+| | The problem | Where this stack stands |
+|---|---|---|
+| 1 | **Plausible failure.** A wrong number fails loudly. A generated human fails plausibly: hair fuzzing at the edge, a mouth trailing the audio by four frames, a gesture landing after the word it belonged to. Invisible to a type check, obvious to a person. | Answered. 113 labelled stills and 67 labelled clips turn one person's eye into 16 of 16 named thresholds, each bracketed by a labelled pass and a labelled reject. |
+| 2 | **Nobody is awake at render time.** It runs on a schedule against metered vendor APIs. The eye has to be present before the money moves, not after it. | Answered. The transcript check runs ahead of the spend, and the gates refuse rather than warn. |
+| 3 | **Metrics invert against taste.** A scoring model that agrees with you today can disagree with your labels tomorrow, and sound confident both times. | Answered the hard way. Ten models were built and killed in one day, every one inverted on the labels. The response was to stop predicting and go back to hand-labelling. |
+| 4 | **A threshold can mean "look like last time."** A number tuned to one good clip encodes that clip, not the quality it was meant to measure. | Half. Caught once, when a brightness bar set from a 7.9 clip steered six hours of choices and gated nothing. There is no general detector for it. |
+| 5 | **Gates fail silently.** A guard that approves everything once its config goes missing is worse than no guard, because it reports green. | Half. Found by deliberately breaking all four: three approved everything, and two did not know they were doing it. Fail-open is now ranked and declared, not eliminated. |
+
+**Three, four, and five are one failure at three depths.** The metric can be wrong, the threshold can encode the wrong thing, or the gate can be missing while still reporting green. Each of them fails by saying yes. The only defence that has held is a labelled exemplar on both sides of every number. The long-form version, with every retraction, is [what I found by measuring it](#what-i-found-by-measuring-it).
+
+## An ad team, before and after
+
+The left column is ordinary practice. The right is the mechanism that replaces it, and every entry there is a measured figure from [the numbers](#the-numbers).
+
+| Before | With this pipeline |
+|---|---|
+| A person watches each take and calls it. | Gates derived from 113 labelled stills call it, and refuse to spend. |
+| A bad render is caught after the credits are gone. | The transcript check runs before the spend, 541 of 541 words. |
+| "Looks right" lives in one person's head. | It lives in 16 of 16 named thresholds, each bracketed by a labelled pass and a labelled reject. |
+| A metric is trusted because it agreed once. | Ten models were built and killed in a day for disagreeing with the labels. |
+| Campaign consistency is hoped for. | 279 approved looks are pinned to one identity allowlist. |
+| Nobody knows what a long clip costs until the invoice. | 58 credits, measured twice on independent renders. |
+| Someone has to be awake. | 10 of 10 consecutive scheduled days, 0 missed. |
+
+**No row above claims a time saving, and that is deliberate.** Claiming one needs a defined manual procedure, at least five timed human runs, and the same quality bar applied to both. None of those exist here, so the comparison is about how the work is governed rather than how long it takes. The full accounting of what is not claimed, and what it would take to claim it, is [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md).
+
+## What holds when nobody is watching
+
+The operator is asleep and the schedule fires anyway. That is the normal state, and it is the state the gates exist for.
+
+| Runs unattended | Cadence | What it catches |
+|---|---|---|
+| the scheduled run | daily | 10 of 10 consecutive days, 0 missed |
+| the transcript check | before every spend | a script that did not survive synthesis, 541 of 541 words on this clip |
+| the four gates | every render | a take that violates a derived threshold |
+| `derive.py` in CI | every push | a threshold moved outside the interval its own labels imply |
+| the cost router | every estimate | interpolation between measured points, after one confident estimate understated a batch by 8.6x and burned 344 credits |
+
+**Three of the four gates fail open, and the page says so rather than hiding it.** That is a declared rank, not an oversight: it was found by deliberately deleting a config and watching which guards still showed green. A guard that silently approves is the exact failure this repository went looking for and found in its own code.
+
+---
+
 ## What actually happens to her
 
 Every image below is the **same frame**, `t = 63s`, of the same render. That constraint is the point: if two panels disagree, it is the stage that changed her, not a different take, a different day or a luckier moment.
@@ -75,7 +131,7 @@ Every image below is the **same frame**, `t = 63s`, of the same render. That con
 
 ## Evals lead this
 
-A wrong number in a chart fails loudly. A generated human fails **plausibly**: hair that fuzzes at the edge, a mouth trailing the audio by four frames, a gesture landing after the word it belonged to, eyes holding too still for thirty seconds. Each is invisible to a type check, obvious to a person, and different in tomorrow's draw. And nobody is awake at render time.
+Problems one and two are why the pipeline is shaped the way it is. A plausible failure is only catchable by an eye, that eye cannot be awake at render time, and the failure is different in tomorrow's draw anyway.
 
 So the pipeline's real job is to make a human eye present at render time by having captured it earlier:
 
@@ -99,7 +155,7 @@ label  ->  derive  ->  gate  ->  render  ->  relabel
 
 It was picked by eye from a grid: one script rendered across three looks, three voice clones and three engine tiers, one variable moved per cell. Here is what the suite says about the winner.
 
-| probe | reading | bar | verdict |
+| Probe | Reading | Bar | Verdict |
 |---|---|---|---|
 | `sync_probe` | lag **-240ms**, early side | late fails at +80ms, early is forgiven | IN BAND |
 | `eye_eval` | bg **2.48** | max 4.5 | **PASS** |
@@ -139,7 +195,7 @@ The filmmaking claim, in one frame: this is not one generative model producing a
   <img src="assets/separations.svg" alt="Four separations: voice from animation, person from background, flat from depth, one view into 77" width="100%">
 </p>
 
-| | what comes apart | why it matters | governed by |
+| | What comes apart | Why it matters | Governed by |
 |---|---|---|---|
 | **1** | **The voice from the animation.** Audio is synthesized first and drives the render, never the reverse. | The performance is fixed and inspectable before a frame exists. A bad read costs characters, not credits. | 3-draw median, transcript diff, settle beat |
 | **2** | **The person from the background.** A matting pass lifts her off the room. | Anything frozen behind her betrays the frame as dead; removing it removes the tell. Hair is where this is won or lost. | `bg_detail`, matte tuning |
@@ -198,7 +254,7 @@ The ten stages below are the real pipeline. **This repository is the measurement
 half of it.** Being specific, because a reader who clones and finds the floor
 missing has learned something worse than this paragraph tells them:
 
-| stage | code here? | where it lives |
+| Stage | Code here? | Where it lives |
 |---|---|---|
 | 5 matte, 7 depth, 8 quilt | **yes**, runnable | `pipeline/`, against the committed `samples/` pair |
 | 6 evals, and the gates | **yes**, runnable | `probes/`, `guards/`, `evals/` |
@@ -448,7 +504,7 @@ Measured, not estimated. Every figure carries its sample size, because a rate wi
 
 The scheduled pipeline renders on the **flat tier**: 1 credit, now measured at three lengths. The premium tiers scale hard, so the multiple on a 3-minute clip is 58x, not 5x.
 
-| engine tier | ~11s | ~126s | ~169s | shape |
+| Engine tier | ~11s | ~126s | ~169s | Shape |
 |---|---|---|---|---|
 | flat tier (scheduled default) | 1 credit | 1 credit | 1 credit | flat with length, three measured points |
 | premium tiers | 5 credits | 43 credits | **58 credits** | scales, and not knowably linear |
@@ -469,7 +525,7 @@ Voice is metered per character and synthesis costs zero render credits, which is
 
 Each demoed stage maps to a module in [`pipeline/`](pipeline/), ported from the working tree with identities parameterized, the same treatment the guards got.
 
-| stage | module | what it is |
+| Stage | Module | What it is |
 |---|---|---|
 | 5, matte | `matte_video.py` | background removal tuned at the hair, with the dated verdicts behind each threshold |
 | 7, depth | `depth_infer.py` | per-frame monocular depth on Apple Silicon MPS |

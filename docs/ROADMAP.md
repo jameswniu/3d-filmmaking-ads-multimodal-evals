@@ -102,6 +102,18 @@ while a re-derivation costs a day.
 fully merged with zero unmerged commits, so it held nothing the other two do
 not.
 
+## The manual baseline, so a time claim becomes available
+
+The README compares this pipeline against ordinary practice on **mechanism**, never on duration, because no duration is defensible yet. `NOT-MEASURED.md` already sets the bar for changing that:
+
+- a defined manual procedure that produces comparable output
+- at least five timed human runs of it
+- the same quality bar applied to both sides
+
+None of the three exists. Until all three do, no page in this repository states a time saving, and "saves N hours a day" stays the easiest sentence here to write and the easiest one to get caught on.
+
+This is the single change that would let the before/after table carry a duration column. It is scoped and deliberately not done, and it ranks below the second labeller, which remains the most valuable thing this repository is missing.
+
 ## Done and not to be redone
 
 Kept here because the next reader will otherwise wonder whether these are still
