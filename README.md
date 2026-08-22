@@ -128,12 +128,12 @@ Five advertisements for brands that do not exist and five short commentaries, al
 
 | Clip | Flags | sync lag ms | lipsync | level face / scene / relation | eye bg (max 4.5) | scene (target 7.5) | bg detail (max 5.5) | hand ratio |
 |---|---|---|---|---|---|---|---|---|
-| film-image | 2 | -200 early | **FAIL** | **30.2 / 165.9 / 94.5** | 2.91 | 5.35 | 2.95 | 0.353 |
 | ad-orchard | 4 | **240 late** | **FAIL** | **18.0 / 2.9 / 9.4** | **4.71** | 6.01 | 3.85 | 0.134 |
 | take-loop | 4 | **240 late** | **FAIL** | **7.1 / 4.9 / 22.1** | **4.79** | 5.30 | 4.27 | 0.248 |
 | take-prison | 4 | **160 late** | **FAIL** | **7.8 / 5.2 / 21.5** | **5.00** | 5.52 | 4.27 | 0.246 |
 | ad-harbor-maya | 3 | **240 late** | **FAIL** | **11.1 / 3.1 / 10.7** | 2.56 | 4.44 | 2.16 | 0.188 |
 | take-plausible | 3 | n/a | **FAIL** | **8.6 / 4.8 / 17.3** | **4.76** | 5.49 | 4.40 | 0.238 |
+| film-image | 2 | -200 early | **FAIL** | **30.2 / 165.9 / 94.5** | 2.91 | 5.35 | 2.95 | 0.353 |
 | ad-harbor-daniel | 2 | -240 early | **FAIL** | **14.7 / 3.3 / 13.0** | 2.56 | 4.42 | 2.17 | 0.187 |
 | ad-harbor-elena | 2 | -240 early | **FAIL** | **11.1 / 3.5 / 10.7** | 1.83 | 4.39 | 2.15 | 0.188 |
 | ad-lantern | 2 | -240 early | **FAIL** | **12.6 / 2.5 / 19.1** | 2.49 | 3.13 | 1.74 | 0.118 |
