@@ -124,22 +124,22 @@ Five advertisements for brands that do not exist and five short commentaries, al
 
 ### Scored, failures first
 
-| Clip | Flags | sync lag ms | lipsync | level face / scene / relation | eye bg (max 4.5) | scene (target 7.5) | bg detail (max 5.5) | hand ratio | separation | spasm |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ad-orchard | 4 | **240 late** | **FAIL** | **18.0 / 2.9 / 9.4** | **4.71** | 6.01 | 3.85 | 0.134 | n/a, unmatted | 1.64 |
-| take-loop | 4 | **240 late** | **FAIL** | **7.1 / 4.9 / 22.1** | **4.79** | 5.30 | 4.27 | 0.248 | n/a, unmatted | 0.97 |
-| take-prison | 4 | **160 late** | **FAIL** | **7.8 / 5.2 / 21.5** | **5.00** | 5.52 | 4.27 | 0.246 | n/a, unmatted | 0.44 |
-| ad-harbor-maya | 3 | **240 late** | **FAIL** | **11.1 / 3.1 / 10.7** | 2.56 | 4.44 | 2.16 | 0.188 | n/a, unmatted | 1.60 |
-| take-plausible | 3 | n/a | **FAIL** | **8.6 / 4.8 / 17.3** | **4.76** | 5.49 | 4.40 | 0.238 | n/a, unmatted | 0.49 |
-| ad-harbor-daniel | 2 | -240 early | **FAIL** | **14.7 / 3.3 / 13.0** | 2.56 | 4.42 | 2.17 | 0.187 | n/a, unmatted | 0.93 |
-| ad-harbor-elena | 2 | -240 early | **FAIL** | **11.1 / 3.5 / 10.7** | 1.83 | 4.39 | 2.15 | 0.188 | n/a, unmatted | 1.52 |
-| ad-lantern | 2 | -240 early | **FAIL** | **12.6 / 2.5 / 19.1** | 2.49 | 3.13 | 1.74 | 0.118 | n/a, unmatted | 1.26 |
-| ad-slowroad | 2 | -240 early | **FAIL** | **31.8 / 3.4 / 22.8** | 4.12 | 5.58 | 3.37 | 0.244 | n/a, unmatted | 1.49 |
-| take-copy | 2 | n/a | n/a | **8.2 / 5.0 / 17.0** | **4.82** | 5.38 | 4.27 | 0.248 | n/a, unmatted | 0.99 |
-| take-image | 2 | -240 early | **FAIL** | **8.5 / 4.4 / 17.0** | 4.32 | 5.49 | 4.26 | 0.238 | n/a, unmatted | 1.21 |
-| ad-quiethours | 1 | -200 early | n/a | **17.6 / 3.0 / 18.3** | 2.95 | 4.09 | 1.99 | 0.139 | n/a, unmatted | 0.98 |
+| Clip | Flags | sync lag ms | lipsync | level face / scene / relation | eye bg (max 4.5) | scene (target 7.5) | bg detail (max 5.5) | hand ratio |
+|---|---|---|---|---|---|---|---|---|
+| ad-orchard | 4 | **240 late** | **FAIL** | **18.0 / 2.9 / 9.4** | **4.71** | 6.01 | 3.85 | 0.134 |
+| take-loop | 4 | **240 late** | **FAIL** | **7.1 / 4.9 / 22.1** | **4.79** | 5.30 | 4.27 | 0.248 |
+| take-prison | 4 | **160 late** | **FAIL** | **7.8 / 5.2 / 21.5** | **5.00** | 5.52 | 4.27 | 0.246 |
+| ad-harbor-maya | 3 | **240 late** | **FAIL** | **11.1 / 3.1 / 10.7** | 2.56 | 4.44 | 2.16 | 0.188 |
+| take-plausible | 3 | n/a | **FAIL** | **8.6 / 4.8 / 17.3** | **4.76** | 5.49 | 4.40 | 0.238 |
+| ad-harbor-daniel | 2 | -240 early | **FAIL** | **14.7 / 3.3 / 13.0** | 2.56 | 4.42 | 2.17 | 0.187 |
+| ad-harbor-elena | 2 | -240 early | **FAIL** | **11.1 / 3.5 / 10.7** | 1.83 | 4.39 | 2.15 | 0.188 |
+| ad-lantern | 2 | -240 early | **FAIL** | **12.6 / 2.5 / 19.1** | 2.49 | 3.13 | 1.74 | 0.118 |
+| ad-slowroad | 2 | -240 early | **FAIL** | **31.8 / 3.4 / 22.8** | 4.12 | 5.58 | 3.37 | 0.244 |
+| take-copy | 2 | n/a | n/a | **8.2 / 5.0 / 17.0** | **4.82** | 5.38 | 4.27 | 0.248 |
+| take-image | 2 | -240 early | **FAIL** | **8.5 / 4.4 / 17.0** | 4.32 | 5.49 | 4.26 | 0.238 |
+| ad-quiethours | 1 | -200 early | n/a | **17.6 / 3.0 / 18.3** | 2.95 | 4.09 | 1.99 | 0.139 |
 
-The readings come from the same probes that score the hero render higher on this page, run on the masters before the web encode. A value in bold is a reading the probe itself flagged. The brokerage variants are three rows because they are three renders, and the coffee spot is the one re-roll of the shoot: its first take passed the gates and failed the eye on a hand gripping the mug, which no probe here looks at, so it was rendered again from a fresh voice draw. The second take reproduced the same hand almost frame for frame, because the flat tier is close to deterministic for one look and one set of words, and it shipped on a second look as plausible rather than pretty. That is the honest state of hands on this tier.
+The readings come from the same probes that score the hero render higher on this page, run on the masters before the web encode. A value in bold is a reading the probe itself flagged. Separation is not shown because these clips are unmatted, so there is no fill to measure against, and the spasm ratios are disclosures rather than verdicts and stay in the probe log. The brokerage variants are three rows because they are three renders, and the coffee spot is the one re-roll of the shoot: its first take passed the gates and failed the eye on a hand gripping the mug, which no probe here looks at, so it was rendered again from a fresh voice draw. The second take reproduced the same hand almost frame for frame, because the flat tier is close to deterministic for one look and one set of words, and it shipped on a second look as plausible rather than pretty. That is the honest state of hands on this tier.
 
 The commentary on incarceration states a paradox and two ratios; the figures behind them are here. The United States holds 542 people per 100,000 residents in prisons and jails ([World Prison Brief](https://www.prisonstudies.org/country/united-states-america), end of 2023) and fields 230 sworn officers per 100,000 ([FBI, 2024](https://hrc-prod-requests.s3-us-west-2.amazonaws.com/assets/images/Reported-Crimes-in-the-Nation-Quick-Stats.pdf)), against roughly 344 per 100,000 across the European Union (1,551,663 officers, [Eurostat](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Police,_court_and_prison_personnel_statistics), over a population of 451.3 million on 1 January 2025; the rate is derived here, and 230 against 344 is the "third fewer" in the clip). In 2024, 61.4% of its murders were cleared (FBI, same report), the "six in ten".
 
