@@ -50,7 +50,7 @@ The hard part is not making the video. It is deciding, without a person in the r
   </tr>
 </table>
 
-> The avatar is generated. She is not a real person and not a likeness of one. Her voice is a clone of a consented source. Every asset on this page comes from **one** run of the pipeline, deliberately, because a montage of lucky takes would hide the thing this repo is about.
+> The avatar is generated. She is not a real person and not a likeness of one. Her voice is a clone of a consented source. The three clips above and the frame study below come from **one** run of the pipeline, deliberately, because a montage of lucky takes would hide the thing this repo is about. The twelve short spots further down are twelve governed runs, one render each, and every one of them is scored on the same page.
 
 ---
 
@@ -59,6 +59,7 @@ The hard part is not making the video. It is deciding, without a person in the r
 | If you want to | Go to |
 |---|---|
 | See whether it works | The three clips above, all from [one run](#what-actually-happens-to-her) |
+| See her do the job | [Ten spots, one avatar, every one scored](#ten-spots-one-avatar-every-one-scored) |
 | Run something yourself | [What ships here](#what-ships-here-and-what-does-not), then [Running it](#running-it) |
 | Read the argument | [Evals lead this](#evals-lead-this) |
 | Build your own | [`docs/SETUP.md`](docs/SETUP.md), consent line first |
@@ -95,6 +96,52 @@ Left is how the work goes today. Right is what changes. Every claim on the right
 | Someone has to be awake for it. | It runs overnight, and tells you if it did not. |
 
 **No row above claims a time saving, and that is deliberate.** Claiming one needs a defined manual procedure, at least five timed human runs, and the same quality bar applied to both. The procedure and the bar are written down in [`docs/MANUAL-BASELINE.md`](docs/MANUAL-BASELINE.md); the five runs have not happened, so the comparison is about how the work is governed rather than how long it takes. The full accounting of what is not claimed, and what it would take to claim it, is [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md).
+
+## Ten spots, one avatar, every one scored
+
+The worst number on this board belongs to the level probe, which flags every one of the twelve for face luminance wander, with the travel spot at 31.8 against a bar of 8.0; the lip-sync probe fails ten of the twelve; the eye model rejects five on background brightness; four run late on sync. They are listed before the clips because a report card that shows only the good marks is an advert, and because two of those probes are the ones this page already calls unreliable: the level bar was calibrated from a single clip, and the lip-sync verdict is the same metric that fails the hero render above.
+
+Five advertisements for brands that do not exist and five short commentaries, all presented by the same generated avatar in the same cloned voice, rendered on the flat tier for 1 credit per render, and scored by the probes below before any of them was allowed onto this page. The ads are there to show a buyer the range of the thing: a coffee subscription, on-call software, a neighbourhood brokerage, a sleep app, a travel agency. The brokerage spot was rendered three times from one template with three different first names, which is what a variant pool looks like before an ad platform picks from it. The commentaries are the author's own positions, voiced in the first person, and the words are credited on the frame. Every spot ends on the same sentence, a promise that the pipeline behind it is public with the link under the video, and the link under every tile below is this repository. Every clip is under thirty seconds by design: the flat tier's motion budget runs out at about thirty seconds and refills by playing the frame backward, a defect the probes in this repository can measure and the page would rather avoid than explain.
+
+<table>
+  <tr>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad-orchard.gif" alt="Orchard Hill Coffee, a fictional coffee subscription, presented by the generated avatar" width="100%"><br><sub><b>Orchard Hill Coffee.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad-orchard.mp4">&#9654; with sound</a></sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad-lantern.gif" alt="Lantern Street, fictional on-call software, presented by the generated avatar" width="100%"><br><sub><b>Lantern Street.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad-lantern.mp4">&#9654; with sound</a></sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad-harbor-maya.gif" alt="Harbor Lane Realty, a fictional brokerage, one template rendered with three first names" width="100%"><br><sub><b>Harbor Lane Realty.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad-harbor-maya.mp4">&#9654; Maya</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad-harbor-daniel.mp4">&#9654; Daniel</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad-harbor-elena.mp4">&#9654; Elena</a></sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad-quiethours.gif" alt="Quiet Hours, a fictional sleep app, presented by the generated avatar" width="100%"><br><sub><b>Quiet Hours.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad-quiethours.mp4">&#9654; with sound</a></sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad-slowroad.gif" alt="Slow Road Travel, a fictional travel agency, presented by the generated avatar" width="100%"><br><sub><b>Slow Road Travel.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad-slowroad.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+  <tr>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-take-image.gif" alt="Commentary: artificial intelligence is made in the image of man" width="100%"><br><sub><b>In the image of man.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-take-image.mp4">&#9654; with sound</a></sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-take-plausible.gif" alt="Commentary: a generative system fails plausibly" width="100%"><br><sub><b>Fails plausibly.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-take-plausible.mp4">&#9654; with sound</a></sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-take-prison.gif" alt="Commentary: the United States is over-prisoned and under-policed" width="100%"><br><sub><b>Over-prisoned, under-policed.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-take-prison.mp4">&#9654; with sound</a></sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-take-loop.gif" alt="Commentary: human on the loop, not in the loop" width="100%"><br><sub><b>On the loop.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-take-loop.mp4">&#9654; with sound</a></sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-take-copy.gif" alt="Commentary: decide for yourself, because you are a copy of me" width="100%"><br><sub><b>Children, not clones.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-take-copy.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+> **Disclosure.** Every clip above is presented by a generated avatar speaking in a cloned voice whose source consented to the cloning. Each clip carries that label on the frame for its whole length, and it is stated here as well, because the EU AI Act's Article 50 and California's AI Transparency Act both require it as of August 2026. The five brands are fictional and exist only to show category range; their names were chosen to avoid any company or mark found in a search, which is not the same as a clearance search. Nothing is for sale, and nobody in these clips is a customer, because the FTC rule on consumer reviews and testimonials (16 CFR Part 465) bans fabricated ones whether a person or a model wrote them. No provenance manifest is embedded in the files yet; that is listed as not done rather than implied.
+
+### Scored, failures first
+
+| Clip | Flags | sync lag ms | lipsync | level face / scene / relation | eye bg (max 4.5) | scene (target 7.5) | bg detail (max 5.5) | hand ratio | separation | spasm |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ad-orchard | 4 | **240 late** | **FAIL** | **18.0 / 2.9 / 9.4** | **4.71** | 6.01 | 3.85 | 0.134 | n/a, unmatted | 1.64 |
+| take-loop | 4 | **240 late** | **FAIL** | **7.1 / 4.9 / 22.1** | **4.79** | 5.30 | 4.27 | 0.248 | n/a, unmatted | 0.97 |
+| take-prison | 4 | **160 late** | **FAIL** | **7.8 / 5.2 / 21.5** | **5.00** | 5.52 | 4.27 | 0.246 | n/a, unmatted | 0.44 |
+| ad-harbor-maya | 3 | **240 late** | **FAIL** | **11.1 / 3.1 / 10.7** | 2.56 | 4.44 | 2.16 | 0.188 | n/a, unmatted | 1.60 |
+| take-plausible | 3 | n/a | **FAIL** | **8.6 / 4.8 / 17.3** | **4.76** | 5.49 | 4.40 | 0.238 | n/a, unmatted | 0.49 |
+| ad-harbor-daniel | 2 | -240 early | **FAIL** | **14.7 / 3.3 / 13.0** | 2.56 | 4.42 | 2.17 | 0.187 | n/a, unmatted | 0.93 |
+| ad-harbor-elena | 2 | -240 early | **FAIL** | **11.1 / 3.5 / 10.7** | 1.83 | 4.39 | 2.15 | 0.188 | n/a, unmatted | 1.52 |
+| ad-lantern | 2 | -240 early | **FAIL** | **12.6 / 2.5 / 19.1** | 2.49 | 3.13 | 1.74 | 0.118 | n/a, unmatted | 1.26 |
+| ad-slowroad | 2 | -240 early | **FAIL** | **31.8 / 3.4 / 22.8** | 4.12 | 5.58 | 3.37 | 0.244 | n/a, unmatted | 1.49 |
+| take-copy | 2 | n/a | n/a | **8.2 / 5.0 / 17.0** | **4.82** | 5.38 | 4.27 | 0.248 | n/a, unmatted | 0.99 |
+| take-image | 2 | -240 early | **FAIL** | **8.5 / 4.4 / 17.0** | 4.32 | 5.49 | 4.26 | 0.238 | n/a, unmatted | 1.21 |
+| ad-quiethours | 1 | -200 early | n/a | **17.6 / 3.0 / 18.3** | 2.95 | 4.09 | 1.99 | 0.139 | n/a, unmatted | 0.98 |
+
+The readings come from the same probes that score the hero render higher on this page, run on the masters before the web encode. A value in bold is a reading the probe itself flagged. The brokerage variants are three rows because they are three renders, and the coffee spot is the one re-roll of the shoot: its first take passed the gates and failed the eye on a hand gripping the mug, which no probe here looks at, so it was rendered again from a fresh voice draw. The second take reproduced the same hand almost frame for frame, because the flat tier is close to deterministic for one look and one set of words, and it shipped on a second look as plausible rather than pretty. That is the honest state of hands on this tier.
+
+The commentary on incarceration states a paradox and two ratios; the figures behind them are here. The United States holds 542 people per 100,000 residents in prisons and jails ([World Prison Brief](https://www.prisonstudies.org/country/united-states-america), end of 2023) and fields 230 sworn officers per 100,000 ([FBI, 2024](https://hrc-prod-requests.s3-us-west-2.amazonaws.com/assets/images/Reported-Crimes-in-the-Nation-Quick-Stats.pdf)), against roughly 344 per 100,000 across the European Union (1,551,663 officers, [Eurostat](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Police,_court_and_prison_personnel_statistics), over a population of 451.3 million on 1 January 2025; the rate is derived here, and 230 against 344 is the "third fewer" in the clip). In 2024, 61.4% of its murders were cleared (FBI, same report), the "six in ten".
 
 ## What holds when nobody is watching
 
