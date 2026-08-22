@@ -120,8 +120,6 @@ Five advertisements for brands that do not exist and five short commentaries, al
   </tr>
 </table>
 
-> **Disclosure.** Every clip above is presented by a generated avatar speaking in a cloned voice whose source consented to the cloning. Each clip carries that label on the frame for its whole length, and it is stated here as well, because the EU AI Act's Article 50 and California's AI Transparency Act both require it as of August 2026. The five brands are fictional and exist only to show category range; their names were chosen to avoid any company or mark found in a search, which is not the same as a clearance search. Nothing is for sale, and nobody in these clips is a customer, because the FTC rule on consumer reviews and testimonials (16 CFR Part 465) bans fabricated ones whether a person or a model wrote them. No provenance manifest is embedded in the files yet; that is listed as not done rather than implied.
-
 ### Scored, failures first
 
 | Clip | Flags | sync lag ms | lipsync | level face / scene / relation | eye bg (max 4.5) | scene (target 7.5) | bg detail (max 5.5) | hand ratio |
