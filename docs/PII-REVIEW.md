@@ -91,6 +91,6 @@ At sufficient caution every specific technical detail reads as internal, so the 
 
 The deterministic layer is the gate. It is the one wired to block a commit, and the one that must stay at zero.
 
-**The media branch is scanned by hand.** The twelve spots on the README live on the `archive-media` branch, which carries no hooks and no CI. Every file there was written with its container metadata stripped and then checked with the same tag list the deterministic scanner uses, and the check printed nothing, before it was committed.
+**The media branch is scanned by hand.** The spots on the README live on the `archive-media` branch, which carries no hooks and no CI. Every file there was written with its container metadata stripped and then checked with the same tag list the deterministic scanner uses, and the check printed nothing, before it was committed.
 
 **What none of this covers:** the roster used for third-party name matching only contains names that were enrolled in it. Anyone unenrolled has no coverage from that check at all, which is why the judgement layer exists and why the highest-risk source files were excluded from this repository entirely rather than redacted. Redaction assumes you can enumerate what to remove.
