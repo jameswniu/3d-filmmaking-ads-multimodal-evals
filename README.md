@@ -565,3 +565,16 @@ The engineering debt is tracked separately in [`docs/ROADMAP.md`](docs/ROADMAP.m
 ---
 
 Built by James Niu. Licensed [GPL-3.0](LICENSE).
+
+
+## The same five spots, three engines (shoot-20260824)
+
+The five product spots above were reshot scene for scene on three text-to-video engines, with the narrations, the avatar closers, and the brand cards reused unchanged so the only variable is the engine. Every scene prompt carries the same realism guard paragraph, each brand now has its own score, and the one scene an engine refused on content policy was rewritten softer and rerun rather than dropped. Forty six scenes landed across the three legs for about fifteen dollars of metered spend.
+
+| Spot | Engines |
+|---|---|
+| **Orchard Hill Coffee** | <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-orchard.mp4">&#9654; Omni Flash</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-orchard.mp4">&#9654; Wan 3.0</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-orchard.mp4">&#9654; Seedance 2.0</a> |
+| **Lantern Street** | <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-lantern.mp4">&#9654; Omni Flash</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-lantern.mp4">&#9654; Wan 3.0</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-lantern.mp4">&#9654; Seedance 2.0</a> |
+| **Harbor Lane Realty** | <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-harbor.mp4">&#9654; Omni Flash</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-harbor.mp4">&#9654; Wan 3.0</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-harbor.mp4">&#9654; Seedance 2.0</a> |
+| **Quiet Hours** | <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-quiet.mp4">&#9654; Omni Flash</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-quiet.mp4">&#9654; Wan 3.0</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-quiet.mp4">&#9654; Seedance 2.0</a> |
+| **Slow Road Travel** | <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-slowroad.mp4">&#9654; Omni Flash</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-slowroad.mp4">&#9654; Wan 3.0</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-slowroad.mp4">&#9654; Seedance 2.0</a> |
