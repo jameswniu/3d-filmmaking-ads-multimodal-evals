@@ -571,6 +571,19 @@ Built by James Niu. Licensed [GPL-3.0](LICENSE).
 
 The five product spots above were reshot scene for scene on three text-to-video engines, with the narrations, the avatar closers, and the brand cards reused unchanged so the only variable is the engine. Every scene prompt carries the same realism guard paragraph, each brand now has its own score, and the one scene an engine refused on content policy was rewritten softer and rerun rather than dropped. Forty six scenes landed across the three legs for about fifteen dollars of metered spend.
 
+
+<table>
+  <tr>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-orchard.gif" alt="Orchard Hill Coffee, reshot, best engine take" width="100%"><br><sub><b>Orchard Hill Coffee.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-orchard.mp4">&#9654; with sound</a> <br>Omni Flash</sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-lantern.gif" alt="Lantern Street, reshot, best engine take" width="100%"><br><sub><b>Lantern Street.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-lantern.mp4">&#9654; with sound</a> <br>Wan 3.0</sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-harbor.gif" alt="Harbor Lane Realty, reshot, best engine take" width="100%"><br><sub><b>Harbor Lane Realty.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-harbor.mp4">&#9654; with sound</a> <br>Seedance 2.0</sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-quiet.gif" alt="Quiet Hours, reshot, best engine take" width="100%"><br><sub><b>Quiet Hours.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-quiet.mp4">&#9654; with sound</a> <br>Wan 3.0</sub></td>
+    <td width="20%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-slowroad.gif" alt="Slow Road Travel, reshot, best engine take" width="100%"><br><sub><b>Slow Road Travel.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-slowroad.mp4">&#9654; with sound</a> <br>Omni Flash</sub></td>
+  </tr>
+</table>
+
+Every engine take of every spot:
+
 | Spot | Engines |
 |---|---|
 | **Orchard Hill Coffee** | <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-orchard.mp4">&#9654; Omni Flash</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-orchard.mp4">&#9654; Wan 3.0</a> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-orchard.mp4">&#9654; Seedance 2.0</a> |
