@@ -15,7 +15,7 @@
 
 **An advertising-grade AI filmmaking pipeline where the evals are the product.**
 
-| Who it is for | The difference |
+| Who It Is For | The Difference |
 |:---|:---|
 | An ad team that cannot watch every render, because it runs on a schedule against metered APIs. [What changes for them](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals#an-ad-team-before-and-after) | The render path is not the hard part. Ten scoring models were built and killed in one day for disagreeing with the labels. [The five hard problems](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals#the-five-hard-problems-in-talking-head-video) |
 | **The flow** | **The benchmark** |
@@ -61,7 +61,7 @@ This branch is loop engineering applied to multi-modal AI generation, with the h
 
 The workflow is the industry's own systematic testing loop, run by an agent instead of a team.
 
-| Phase | The industry step | What ran here |
+| Phase | The Industry Step | What Ran Here |
 |---|---|---|
 | 01 | Hypothesis | The four-phase grammar and the hook-first rule, held as creative invariants |
 | 02 | Ad variations | Five brands, four versions each, one variable moved per cell, the engine |
@@ -75,11 +75,11 @@ The measurements came from research, not taste. The offline gates on this page d
 
 What this page adds up to is a multi-model router built on autonomously feature-engineered evals, evals tailored to the user rather than to the model. No engine sweeps the catalogue. Wan 3.0 takes the two spots that turn on legible story text and composed calm, Seedance 2.0 takes the two that turn on clean eyes and a steady face, and the sleep brand routes to the premium HeyGen baseline, which wins every calm row on its panel. The router has no cheapness bias, it pays up when the audience calls for it. Omni Flash wins no panel and keeps its seat anyway, native ambient audio and the freest human motion, and a served user may respond to exactly that, which is why the pool stays four deep. The presenter's closers stay vendor-rendered inside every version because the baseline still owns identity. And the comparison is a fair race by construction: the three challenger engines sit in one price class, about sixty cents to a dollar a scene, so no column wins by outspending another, and a four-deep pool per spot costs a few dollars, which is what lets an ad platform serve each user the version that user responds to.
 
-| Version | Engine | What the scenes cost |
+| Version | Engine | What the Scenes Cost |
 |---|---|---|
 | A0 | HeyGen video agent, the baseline | 116 vendor credits for its sixteen scenes and seven closers, read off the balance |
-| B1 | Omni Flash | about sixty cents a scene, nine dollars for its fifteen |
-| B2 and B3 | Wan 3.0 and Seedance 2.0 | about thirty-two dollars together for their thirty scenes, roughly a dollar a scene |
+| B1 | Omni Flash | About sixty cents a scene, nine dollars for its fifteen |
+| B2 and B3 | Wan 3.0 and Seedance 2.0 | About thirty-two dollars together for their thirty scenes, roughly a dollar a scene |
 
 ### The question this page expects
 
@@ -104,11 +104,11 @@ The feeling this spot sells is morning energy and craving, so its panel gates ge
 
 | Probe | A0 HeyGen | B1 Omni Flash | B2 Wan 3.0 | **B3 Seedance 2.0, the WINNER** |
 |---|---|---|---|---|
-| gesture energy, higher is better, gates | 0.468 | 0.609 | **0.787** | 0.664 |
-| background clutter, lower is better, bar 5.5 | 4.89 | **3.52** | 5.15 | 6.57 |
-| eye rejection, lower is better, reports | 9.86 | 8.68 | 12.79 | **7.69** |
-| scene simplicity, lower is calmer, reports | 7.37 | **6.7** | 8.10 | **6.7** |
-| face level wander, lower is steadier, reports | 148.9 | 150.6 | 150.3 | **114.5** |
+| Gesture energy, higher is better, gates | 0.468 | 0.609 | **0.787** | 0.664 |
+| Background clutter, lower is better, bar 5.5 | 4.89 | **3.52** | 5.15 | 6.57 |
+| Eye rejection, lower is better, reports | 9.86 | 8.68 | 12.79 | **7.69** |
+| Scene simplicity, lower is calmer, reports | 7.37 | **6.7** | 8.10 | **6.7** |
+| Face level wander, lower is steadier, reports | 148.9 | 150.6 | 150.3 | **114.5** |
 
 **B3 Seedance 2.0 takes three rows, the cleanest eye read, the steadiest face, and a tie for calmest scene.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-orchard.mp4), about twenty seconds with sound.
 
@@ -127,12 +127,12 @@ The feeling is three-in-the-morning relief, dark calm and a legible screen, so t
 
 | Probe | A0 HeyGen | B1 Omni Flash | **B2 Wan 3.0, the WINNER** | B3 Seedance 2.0 |
 |---|---|---|---|---|
-| eye rejection, lower is better, gates at 4.5 | 5.58 | 6.46 | 4.01 | **3.56** |
-| background clutter, lower is better, gates at 5.5 | **2.75** | 4.08 | 3.95 | 6.5 |
-| scene simplicity, lower is calmer, gates | 4.63 | 4.4 | **4.24** | 4.38 |
-| gesture energy, for this audience lower is calmer | 0.433 | **0.411** | 0.547 | 0.514 |
-| face level wander, lower is steadier, reports | 148.6 | 156.3 | **119.7** | 128.9 |
-| system banner legible on the phone, eye verdict | no | no | **yes** | no |
+| Eye rejection, lower is better, gates at 4.5 | 5.58 | 6.46 | 4.01 | **3.56** |
+| Background clutter, lower is better, gates at 5.5 | **2.75** | 4.08 | 3.95 | 6.5 |
+| Scene simplicity, lower is calmer, gates | 4.63 | 4.4 | **4.24** | 4.38 |
+| Gesture energy, for this audience lower is calmer | 0.433 | **0.411** | 0.547 | 0.514 |
+| Face level wander, lower is steadier, reports | 148.6 | 156.3 | **119.7** | 128.9 |
+| System banner legible on the phone, eye verdict | No | No | **Yes** | No |
 
 **B2 Wan 3.0 takes three rows, calmest scene, steadiest face, and the only system banner legibly on the phone.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-lantern.mp4), about twenty seconds with sound.
 
@@ -151,12 +151,12 @@ The feeling is neighborhood trust and warmth, so this panel reads richness upwar
 
 | Probe | A0 HeyGen | B1 Omni Flash | **B2 Wan 3.0, the WINNER** | B3 Seedance 2.0 |
 |---|---|---|---|---|
-| gesture energy, higher is better, gates | 0.71 | 0.694 | **0.729** | 0.523 |
-| background richness, higher sells the staging | 3.65 | 6.6 | **10.5** | 6.4 |
-| eye rejection, lower is better, reports | 11.5 | **5.95** | 9.05 | 7.05 |
-| face level wander, lower is steadier, reports | 250 | 143.7 | 189.6 | **135.6** |
-| scene simplicity, lower is calmer, reports | 7.76 | **6.36** | 7.61 | 6.58 |
-| For Sale sign legible, eye verdict | **yes** | no | no | **yes** |
+| Gesture energy, higher is better, gates | 0.71 | 0.694 | **0.729** | 0.523 |
+| Background richness, higher sells the staging | 3.65 | 6.6 | **10.5** | 6.4 |
+| Eye rejection, lower is better, reports | 11.5 | **5.95** | 9.05 | 7.05 |
+| Face level wander, lower is steadier, reports | 250 | 143.7 | 189.6 | **135.6** |
+| Scene simplicity, lower is calmer, reports | 7.76 | **6.36** | 7.61 | 6.58 |
+| For Sale sign legible, eye verdict | **Yes** | No | No | **Yes** |
 
 **Three versions tie at two rows, so the gated row decides. B2 Wan 3.0 has the biggest wave and the richest staging.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-harbor.mp4), about twenty seconds with sound.
 
@@ -175,12 +175,12 @@ The feeling is permission to rest, so this panel flips gesture, calm is better h
 
 | Probe | **A0 HeyGen, the WINNER** | B1 Omni Flash | B2 Wan 3.0 | B3 Seedance 2.0 |
 |---|---|---|---|---|
-| gesture energy, for this audience lower is calmer | **0.463** | 0.804 | 0.628 | 0.544 |
-| scene simplicity, lower is calmer, gates | **4.18** | 4.78 | 5.54 | 4.51 |
-| background clutter, lower is better, bar 5.5 | **1.3** | 4.64 | 6.76 | 5.43 |
-| eye rejection, lower is better, reports | **4.46** | 6.69 | 7.09 | 6.16 |
-| face level wander, lower is steadier, reports | 122.8 | **75.5** | 96.9 | 81.2 |
-| sleep score legible on the phone, eye verdict | no | no | **yes** | no |
+| Gesture energy, for this audience lower is calmer | **0.463** | 0.804 | 0.628 | 0.544 |
+| Scene simplicity, lower is calmer, gates | **4.18** | 4.78 | 5.54 | 4.51 |
+| Background clutter, lower is better, bar 5.5 | **1.3** | 4.64 | 6.76 | 5.43 |
+| Eye rejection, lower is better, reports | **4.46** | 6.69 | 7.09 | 6.16 |
+| Face level wander, lower is steadier, reports | 122.8 | **75.5** | 96.9 | 81.2 |
+| Sleep score legible on the phone, eye verdict | No | No | **Yes** | No |
 
 **A0 HeyGen sweeps the four calm rows, and calm is the product. This is the spot where the router pays for the premium engine.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-a0-quiet.mp4), about twenty seconds with sound.
 
@@ -199,11 +199,11 @@ The feeling is wanderlust, motion and place, so this panel gates gesture upward 
 
 | Probe | A0 HeyGen | B1 Omni Flash | B2 Wan 3.0 | **B3 Seedance 2.0, the WINNER** |
 |---|---|---|---|---|
-| gesture energy, higher is better, gates | 0.681 | 0.847 | **0.918** | 0.712 |
-| background busy-ness, higher feels like travel | 8.54 | 6.07 | **12.28** | 7.07 |
-| eye rejection, lower is better, reports | 7.37 | 6.55 | 8.79 | **5.91** |
-| scene simplicity, lower is calmer, reports | 7.4 | 6.81 | 7.94 | **6.25** |
-| face level wander, lower is steadier, reports | 130.6 | 94.7 | 127.3 | **79.5** |
+| Gesture energy, higher is better, gates | 0.681 | 0.847 | **0.918** | 0.712 |
+| Background busy-ness, higher feels like travel | 8.54 | 6.07 | **12.28** | 7.07 |
+| Eye rejection, lower is better, reports | 7.37 | 6.55 | 8.79 | **5.91** |
+| Scene simplicity, lower is calmer, reports | 7.4 | 6.81 | 7.94 | **6.25** |
+| Face level wander, lower is steadier, reports | 130.6 | 94.7 | 127.3 | **79.5** |
 
 **B3 Seedance 2.0 takes three rows, the cleanest eye read, the calmest frame and the steadiest face, against B2's bigger motion.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-slowroad.mp4), about twenty seconds with sound.
 
@@ -211,19 +211,19 @@ The pipeline and the evals that gate every render live on [main](https://github.
 
 ### Scored, failures first
 
-| Clip | Flags | sync lag ms | lipsync | level face / scene / relation | eye bg (max 4.5) | scene (target 7.5) | bg detail (max 5.5) | hand ratio |
+| Clip | Flags | Sync Lag (Ms) | Lipsync | Level Face / Scene / Relation | Eye BG (Max 4.5) | Scene (Target 7.5) | BG Detail (Max 5.5) | Hand Ratio |
 |---|---|---|---|---|---|---|---|---|
-| ad2-harbor-elena | 5 | **240 late** | **FAIL** | **249.5 / 190.3 / 35.8** | **11.32** | **n/a** | 3.21 | 0.739 |
+| ad2-harbor-elena | 5 | **240 late** | **FAIL** | **249.5 / 190.3 / 35.8** | **11.32** | **8.08** | 3.21 | 0.739 |
 | take-loop | 4 | **240 late** | **FAIL** | **7.1 / 4.9 / 22.1** | **4.79** | 5.30 | 4.27 | 0.248 |
 | take-prison | 4 | **160 late** | **FAIL** | **7.8 / 5.2 / 21.5** | **5.00** | 5.52 | 4.27 | 0.246 |
-| ad2-harbor-daniel | 4 | -240 early | **FAIL** | **250.0 / 190.2 / 42.6** | **11.32** | **n/a** | 3.21 | 0.709 |
-| ad2-harbor-maya | 4 | -240 early | **FAIL** | **250.0 / 190.2 / 42.1** | **11.32** | **n/a** | 3.21 | 0.713 |
-| ad2-orchard | 4 | -240 early | **FAIL** | **148.7 / 107.7 / 111.0** | **9.53** | **n/a** | 4.52 | 0.471 |
-| ad2-slowroad | 4 | n/a | **FAIL** | **136.2 / 139.7 / 116.6** | **7.07** | 6.98 | **8.36** | 0.686 |
-| take-plausible | 3 | n/a | **FAIL** | **8.6 / 4.8 / 17.3** | **4.76** | 5.49 | 4.40 | 0.238 |
+| ad2-harbor-daniel | 4 | -240 early | **FAIL** | **250.0 / 190.2 / 42.6** | **11.32** | **8.18** | 3.21 | 0.709 |
+| ad2-harbor-maya | 4 | -240 early | **FAIL** | **250.0 / 190.2 / 42.1** | **11.32** | **8.09** | 3.21 | 0.713 |
+| ad2-orchard | 4 | -240 early | **FAIL** | **148.7 / 107.7 / 111.0** | **9.53** | **7.67** | 4.52 | 0.471 |
+| ad2-slowroad | 4 | -160 early | **FAIL** | **136.2 / 139.7 / 116.6** | **7.07** | 6.98 | **8.36** | 0.686 |
+| take-plausible | 3 | -40 early | **FAIL** | **8.6 / 4.8 / 17.3** | **4.76** | 5.49 | 4.40 | 0.238 |
 | film-image | 3 | -240 early | PASS | **170.4 / 167.9 / 130.8** | **5.73** | 7.06 | **7.11** | 0.674 |
 | ad2-lantern | 3 | -240 early | **FAIL** | **150.1 / 94.4 / 66.5** | **5.29** | 4.18 | 2.30 | 0.437 |
-| take-copy | 2 | n/a | n/a | **8.2 / 5.0 / 17.0** | **4.82** | 5.38 | 4.27 | 0.248 |
+| take-copy | 2 | 0 on time | **REVIEW** | **8.2 / 5.0 / 17.0** | **4.82** | 5.38 | 4.27 | 0.248 |
 | take-image | 2 | -240 early | **FAIL** | **8.5 / 4.4 / 17.0** | 4.32 | 5.49 | 4.26 | 0.238 |
 | ad2-quiet | 2 | -240 early | **FAIL** | **123.0 / 147.1 / 149.8** | 4.16 | 3.68 | 0.86 | 0.465 |
 
