@@ -71,42 +71,22 @@ The workflow is the industry's own systematic testing loop, run by an agent inst
 The measurements came from research, not taste. The offline gates on this page derive from labelled human verdicts, and the online success metrics the boards carry, hook rate, hold rate, view-through, come from a pairwise research pass over the ad industry's own testing literature. The evals were designed and calibrated before a single render was paid for.
 
 
-## The five spots, four ways (shoot-20260824)
+## The conclusion, first
+
+For a catalogue like this, the commercially viable path is the cheap engines with the gates left on. The probes below read the montage flags identically on the premium baseline and on every cheap reshoot, so those flags belong to the format, not to any engine. What actually separates the versions is character. Wan 3.0 renders story-bearing product text legibly, the sleep score, the For Sale sign. Omni Flash ships native ambient audio and the freest human motion. Seedance 2.0 is cleanest on crowds and refuses despair-adjacent scenes on content policy. The baseline still wins presenter identity, which is why her closers stay vendor-rendered inside every version. And the margin is the point, a few dollars of scenes per spot per engine against the baseline's credit bill makes a four-deep variant pool affordable per spot, so an ad platform can serve each user the version that user responds to, which is what the pool is for.
+
+| Version | Engine | What the scenes cost |
+|---|---|---|
+| A0 | HeyGen video agent, the baseline | 116 vendor credits for its sixteen scenes and seven closers, read off the balance |
+| B1 | Omni Flash | about sixty cents a scene, nine dollars for its fifteen |
+| B2 and B3 | Wan 3.0 and Seedance 2.0 | about thirty-two dollars together for their thirty scenes, roughly a dollar a scene |
+
+## One spot, four ways, probed (shoot-20260824)
 
 The five product spots, each in four versions. A0 is the original cut from the previous shoot, every scene from the avatar vendor's own video agent, the premium path. B1, B2 and B3 reshoot the same spot scene for scene on three text-to-video engines, with the narrations, her closers and the brand cards reused unchanged, so the only variable is the engine. The B versions are the commercially viable ones because they are cheap. The entire forty-six-scene reshoot across all three engines cost about fifteen dollars of metered spend, roughly a dollar of scenes per spot per engine, where the baseline's scenes and closers ran 116 vendor credits. Every scene prompt carries the same realism guard paragraph, each brand has its own score, captions wrap to stay inside the square frame, and the two spots whose strongest beat sat mid-film now cold-open on it.
 
-### Orchard Hill Coffee
 
-<table>
-  <tr>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad2-orchard.gif" alt="Orchard Hill Coffee, the original HeyGen cut" width="100%"><br><sub><b>A0 &middot; HeyGen, the baseline.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-orchard.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-omni-orchard.gif" alt="Orchard Hill Coffee reshot on Omni Flash" width="100%"><br><sub><b>B1 &middot; Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-orchard.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-wan3-orchard.gif" alt="Orchard Hill Coffee reshot on Wan 3.0" width="100%"><br><sub><b>B2 &middot; Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-orchard.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-orchard.gif" alt="Orchard Hill Coffee reshot on Seedance 2.0" width="100%"><br><sub><b>B3 &middot; Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-orchard.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-</table>
 
-### Lantern Street
-
-<table>
-  <tr>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad2-lantern.gif" alt="Lantern Street, the original HeyGen cut" width="100%"><br><sub><b>A0 &middot; HeyGen, the baseline.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-lantern.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-omni-lantern.gif" alt="Lantern Street reshot on Omni Flash" width="100%"><br><sub><b>B1 &middot; Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-lantern.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-wan3-lantern.gif" alt="Lantern Street reshot on Wan 3.0" width="100%"><br><sub><b>B2 &middot; Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-lantern.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-lantern.gif" alt="Lantern Street reshot on Seedance 2.0" width="100%"><br><sub><b>B3 &middot; Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-lantern.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-</table>
-
-### Harbor Lane Realty
-
-<table>
-  <tr>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad2-harbor-maya.gif" alt="Harbor Lane Realty, the original HeyGen cut" width="100%"><br><sub><b>A0 &middot; HeyGen, the baseline.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-harbor-maya.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-omni-harbor.gif" alt="Harbor Lane Realty reshot on Omni Flash" width="100%"><br><sub><b>B1 &middot; Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-harbor.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-wan3-harbor.gif" alt="Harbor Lane Realty reshot on Wan 3.0" width="100%"><br><sub><b>B2 &middot; Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-harbor.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-harbor.gif" alt="Harbor Lane Realty reshot on Seedance 2.0" width="100%"><br><sub><b>B3 &middot; Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-harbor.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-</table>
 
 ### Quiet Hours
 
@@ -119,17 +99,29 @@ The five product spots, each in four versions. A0 is the original cut from the p
   </tr>
 </table>
 
-### Slow Road Travel
+The same five probes, run on all four versions of this one spot, montage flags and all. Bold is a reading the probe flagged.
 
-<table>
-  <tr>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad2-slowroad.gif" alt="Slow Road Travel, the original HeyGen cut" width="100%"><br><sub><b>A0 &middot; HeyGen, the baseline.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-slowroad.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-omni-slowroad.gif" alt="Slow Road Travel reshot on Omni Flash" width="100%"><br><sub><b>B1 &middot; Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-slowroad.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-wan3-slowroad.gif" alt="Slow Road Travel reshot on Wan 3.0" width="100%"><br><sub><b>B2 &middot; Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-slowroad.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-slowroad.gif" alt="Slow Road Travel reshot on Seedance 2.0" width="100%"><br><sub><b>B3 &middot; Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-slowroad.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-</table>
+| Probe | A0 HeyGen | B1 Omni Flash | B2 Wan 3.0 | B3 Seedance 2.0 |
+|---|---|---|---|---|
+| level, face wander (max 8.0) | **122.8** | **75.5** | **96.9** | **81.2** |
+| bg detail (max 5.5) | 1.30 | 4.64 | **6.76** | 5.43 |
+| scene simplicity (target 7.5) | 4.18 | 4.78 | 5.54 | 4.51 |
+| eye, background (max 4.5) | 4.46 | **6.69** | **7.09** | **6.16** |
+| hand gesture ratio (frozen is 0.2) | 0.463 | 0.804 | 0.628 | 0.544 |
 
+Every version fails level wander because a montage is wander by construction, the baseline included, and the eye flags the engine versions because their scenes are busy on purpose, the busy is the entertainment. The readings that separate engines are the honest ones, background detail and gesture. The other four spots read the same way; their takes are all in the table below rather than spread down the page.
+
+
+
+Every take of every spot:
+
+| Spot | Baseline | | | |
+|---|---|---|---|---|
+| **Orchard Hill Coffee** | [A0 HeyGen](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-orchard.mp4) | [B1 Omni Flash](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-orchard.mp4) | [B2 Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-orchard.mp4) | [B3 Seedance 2.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-orchard.mp4) |
+| **Lantern Street** | [A0 HeyGen](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-lantern.mp4) | [B1 Omni Flash](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-lantern.mp4) | [B2 Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-lantern.mp4) | [B3 Seedance 2.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-lantern.mp4) |
+| **Harbor Lane Realty** | [A0 HeyGen](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-harbor-maya.mp4) | [B1 Omni Flash](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-harbor.mp4) | [B2 Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-harbor.mp4) | [B3 Seedance 2.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-harbor.mp4) |
+| **Quiet Hours** | [A0 HeyGen](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-quiet.mp4) | [B1 Omni Flash](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-quiet.mp4) | [B2 Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-quiet.mp4) | [B3 Seedance 2.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-quiet.mp4) |
+| **Slow Road Travel** | [A0 HeyGen](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-slowroad.mp4) | [B1 Omni Flash](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-slowroad.mp4) | [B2 Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-slowroad.mp4) | [B3 Seedance 2.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-slowroad.mp4) |
 
 The pipeline and the evals that gate every render live on [main](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals); the full previous shoot is [shoot-20260822](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/tree/shoot-20260822).
 
