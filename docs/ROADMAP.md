@@ -154,3 +154,5 @@ by tests that fail on the previous code.
 
 This is gated on the back-port, not on the calendar. Delete them when the
 private tree is green, not before.
+
+- The second content track is documentary. The ad track ran first because its feedback loops are shorter; the same eval discipline, the guard template and the presenter identity rules carry over unchanged. Later, deliberately.
