@@ -229,6 +229,15 @@ Separation is why the evals can exist at all. A single end-to-end model would le
 
 ---
 
+
+## What an autonomous hologram pipeline with self-deriving evals is for, in the next year
+
+The honest version, not the pitch. Glasses-free light-field panels are shipping hardware in 2026, desk size up to storefront size, and the 77-view quilt this pipeline renders is their native food. Three uses are real inside a year.
+
+The first is retail and venue advertising. The product spots on the shoot branches are flat cuts of renders this pipeline already holds volumetrically, so the same spot can run as a light-field loop in a store window or on a counter panel, and the walk-by depth is the stopping power. The second is the embodied agent surface. The presenter is already one identity with a cloned voice, gated looks and a closer grammar; put her on a desk panel in front of a booking or concierge agent and she is the face of it, a receptionist that renders. The third is variant pools at physical scale, the brokerage closer that rendered three times with three first names is the pattern for per-location spots, a hundred storefronts each holding their own name and offer with no crew.
+
+The evals are what make any of that shippable rather than a demo. A kiosk plays unattended at two in the morning; nobody is there to notice a bad render, so the gates have to notice first, and every threshold on this page derives from labelled human verdicts and goes red in CI when it drifts outside its bracket. The relabel stage is the self-learning half, new verdicts move the bars as engines and looks change. Autonomy is not the pipeline running without people. It is the pipeline being safe to leave running because captured judgement stands guard.
+
 ## Architecture
 
 <p align="center">
