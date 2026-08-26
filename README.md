@@ -15,7 +15,7 @@
 
 **An advertising-grade AI filmmaking pipeline where the evals are the product.**
 
-| Who it is for | The difference |
+| Who It Is For | The Difference |
 |:---|:---|
 | An ad team that cannot watch every render, because it runs on a schedule against metered APIs. [What changes for them](#an-ad-team-before-and-after) | The render path is not the hard part. Ten scoring models were built and killed in one day for disagreeing with the labels. [The five hard problems](#the-five-hard-problems-in-talking-head-video) |
 | **The flow** | **The benchmark** |
@@ -56,7 +56,7 @@ The hard part is not making the video. It is deciding, without a person in the r
 
 ## Start here
 
-| If you want to | Go to |
+| If You Want To | Go To |
 |---|---|
 | See whether it works | The three clips above, all from [one run](#what-actually-happens-to-her) |
 | See her do the job | [The shoots](#the-shoots) |
@@ -69,7 +69,7 @@ The hard part is not making the video. It is deciding, without a person in the r
 
 Making a convincing video of a person who does not exist is now the easy part. Getting it right without a human watching is not. These five are what the field is still stuck on, and the right column says plainly which ones this system solves.
 
-| | The challenge | Where this stack stands |
+| | The Challenge | Where This Stack Stands |
 |---|---|---|
 | 1 | **Audiovisual synchrony.** Does the mouth match the sound? Scored as LSE-C and LSE-D through SyncNet. ITU-R BT.1359 puts human detection at roughly 45 ms of audio lead and 125 ms of lag, so the target is under two frames. | **Open.** A metric here agreed with the eye 8 times out of 8 and shipped as a blocker. It then swung 6 to 10 frames against itself inside a single clip and was demoted the same hour. |
 | 2 | **Identity drift.** Is it the same person thirty seconds later, and in tomorrow's take? Measured as ArcFace cosine similarity against a reference face. | **Constrained, not measured.** 174 identity records and 279 approved looks pinned to one allowlist. Pinning avoids the drift rather than detecting it. |
@@ -109,7 +109,7 @@ Each shoot lives on its own branch, with its own page and media. Main keeps the 
 
 Nobody is awake when this runs. These five jobs are what stands in for a person overnight, and each one is listed with how often it runs and what it is looking for.
 
-| Runs unattended | Cadence | What it catches |
+| Runs Unattended | Cadence | What It Catches |
 |---|---|---|
 | The scheduled run | Daily | 10 of 10 consecutive days, 0 missed |
 | The transcript check | Before every spend | A script that did not survive synthesis, 541 of 541 words on this clip |
@@ -155,7 +155,7 @@ So the job is to capture a person's judgement in advance, and have it standing g
 label  ->  derive  ->  gate  ->  render  ->  relabel
 ```
 
-| Stage | What it does | What it produced |
+| Stage | What It Does | What It Produced |
 |---|---|---|
 | **Label** | Human verdicts, kept as data | 113 stills, 67 clips, 174 frame-level identity records, 677 pairwise A/B verdicts, a ledger of 14 renders with 7 kept and 3 rejected |
 | **Derive** | Turns those verdicts into numbered bars | 16 of the 16 named gating thresholds in [`probes/`](probes/), each bracketed by a labelled pass and a labelled fail. Move one outside its bracket and CI goes red |
@@ -176,7 +176,7 @@ Four things that loop taught, each of which cost something:
 
 The probe battery is one set of instruments. What changes per content category is which subset gates and which merely reports, and that subset is the category definition. The same engines rank differently under each subset, so every category gets its own winner, measured rather than argued.
 
-| Probe | Advertising | Documentary | Third category, open |
+| Probe | Advertising | Documentary | Third Category, Open |
 |---|---|---|---|
 | Physics and groundedness judge | Reports, absurd beats are the entertainment | Gates hard, reality must hold | To be picked with the category |
 | On-screen text | Gates where text is the story beat, a score, a sign | Gates at zero tolerance, no invented signage | |
@@ -234,7 +234,7 @@ The filmmaking claim, in one frame: this is not one generative model producing a
   <img src="assets/separations.svg" alt="Four separations: voice from animation, person from background, flat from depth, one view into 77" width="100%">
 </p>
 
-| | What comes apart | Why it matters | Governed by |
+| | What Comes Apart | Why It Matters | Governed By |
 |---|---|---|---|
 | **1** | **The voice from the animation.** Audio is synthesized first and drives the render, never the reverse. | The performance is fixed and inspectable before a frame exists. A bad read costs characters, not credits. | 3-draw median, transcript diff, settle beat |
 | **2** | **The person from the background.** A matting pass lifts her off the room. | Anything frozen behind her betrays the frame as dead; removing it removes the tell. Hair is where this is won or lost. | `bg_detail`, matte tuning |
@@ -306,10 +306,10 @@ The ten stages below are the real pipeline. **This repository is the measurement
 half of it.** Being specific, because a reader who clones and finds the floor
 missing has learned something worse than this paragraph tells them:
 
-| Stage | Code here? | Where it lives |
+| Stage | Code Here? | Where It Lives |
 |---|---|---|
-| 5 matte, 7 depth, 8 quilt | **yes**, runnable | `pipeline/`, against the committed `samples/` pair |
-| 6 evals, and the gates | **yes**, runnable | `probes/`, `guards/`, `evals/` |
+| 5 matte, 7 depth, 8 quilt | **Yes**, runnable | `pipeline/`, against the committed `samples/` pair |
+| 6 evals, and the gates | **Yes**, runnable | `probes/`, `guards/`, `evals/` |
 | 0 wake, 2 voice, 4 render, 9 cast | No | Vendor calls and a scheduler in a private tree |
 | 1 script | No, disclosed | A separate private repo |
 | 3 look | Partial | `pipeline/pick_engine.sh` chooses the engine; the generation call is not here |
@@ -333,7 +333,7 @@ instead of a traceback, but they cannot do their job here.
 
 Ten stages run unattended, and the fork at stage 5 is where the evals stop being able to score the output. Full detail, every stage: [`docs/PIPELINE.md`](docs/PIPELINE.md).
 
-| | Stage | What it does |
+| | Stage | What It Does |
 |---|---|---|
 | 0 | **Wake** | Supervised or unattended? |
 | 1 | **Script** | Whose words, and whose register? |
@@ -350,7 +350,7 @@ Ten stages run unattended, and the fork at stage 5 is where the evals stop being
 
 The lesson on the left, what happened on the right.
 
-| Lesson | What happened |
+| Lesson | What Happened |
 |---|---|
 | **Count attempts, not outcomes.** | A rule asked of the model was ignored. Moved into code, where it cannot be negotiated with, it held every time. The first thing it blocked was its own author. |
 | **A metric that agrees with you is not a metric yet.** | One check matched the eye 8 times out of 8 and was wired in as a blocker. Measured against itself in thirds, it disagreed by up to 10 frames. Demoted within the hour. |
@@ -411,7 +411,7 @@ Measured, not estimated. Every figure carries its sample size, because a rate wi
 
 The scheduled pipeline renders on the **flat tier**: 1 credit, now measured at three lengths. The premium tiers scale hard, so the multiple on a 3-minute clip is 58x, not 5x.
 
-| Engine tier | ~11s | ~126s | ~169s | Shape |
+| Engine Tier | ~11s | ~126s | ~169s | Shape |
 |---|---|---|---|---|
 | Flat tier (scheduled default) | 1 credit | 1 credit | 1 credit | Flat with length, three measured points |
 | Premium tiers | 5 credits | 43 credits | **58 credits** | Scales, and not knowably linear |
@@ -432,7 +432,7 @@ Voice is metered per character and synthesis costs zero render credits, which is
 
 Each demoed stage maps to a module in [`pipeline/`](pipeline/), ported from the working tree with identities parameterized, the same treatment the guards got.
 
-| Stage | Module | What it is |
+| Stage | Module | What It is |
 |---|---|---|
 | 5, matte | `matte_video.py` | Background removal tuned at the hair, with the dated verdicts behind each threshold |
 | 7, depth | `depth_infer.py` | Per-frame monocular depth on Apple Silicon MPS |
