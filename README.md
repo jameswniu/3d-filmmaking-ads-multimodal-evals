@@ -101,7 +101,7 @@ The five product spots, each in four versions. A0 is the original cut from the p
 
 The same five probes, run on all four versions of this one spot, montage flags and all. Bold is a reading the probe flagged.
 
-| Probe | A0 HeyGen | B1 Omni Flash | B2 Wan 3.0 | B3 Seedance 2.0 |
+| Probe | A0 HeyGen | B1 Omni Flash | **B2 Wan 3.0, the winner** | B3 Seedance 2.0 |
 |---|---|---|---|---|
 | level, face wander (max 8.0) | **122.8** | **75.5** | **96.9** | **81.2** |
 | bg detail (max 5.5) | 1.30 | 4.64 | **6.76** | 5.43 |
@@ -109,7 +109,9 @@ The same five probes, run on all four versions of this one spot, montage flags a
 | eye, background (max 4.5) | 4.46 | **6.69** | **7.09** | **6.16** |
 | hand gesture ratio (frozen is 0.2) | 0.463 | 0.804 | 0.628 | 0.544 |
 
-Every version fails level wander because a montage is wander by construction, the baseline included, and the eye flags the engine versions because their scenes are busy on purpose, the busy is the entertainment. The readings that separate engines are the honest ones, background detail and gesture. The other four spots read the same way; their takes are all in the table below rather than spread down the page.
+Every version fails level wander because a montage is wander by construction, the baseline included, and the eye flags the engine versions because their scenes are busy on purpose, the busy is the entertainment. The readings that separate engines are the honest ones, background detail and gesture.
+
+**The winner under the advertising subset is B2, Wan 3.0.** It is the only version that renders the story-bearing text legibly, the sleep score of 32 that the whole spot turns on, it holds the strongest gesture-to-flag balance of the three cheap engines, and its one flagged reading, background detail, is the category's deliberate busyness rather than a defect. Omni Flash is the runner-up on free motion and native ambient audio. The baseline keeps the identity crown and nothing else. The other four spots read the same way and reach the same verdict; their takes are in the table below rather than spread down the page.
 
 
 
