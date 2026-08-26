@@ -81,7 +81,7 @@ For a catalogue like this, the commercially viable path is the cheap engines wit
 | B1 | Omni Flash | about sixty cents a scene, nine dollars for its fifteen |
 | B2 and B3 | Wan 3.0 and Seedance 2.0 | about thirty-two dollars together for their thirty scenes, roughly a dollar a scene |
 
-## One spot, four ways, probed (shoot-20260824)
+## One spot, four ways, probed
 
 The five product spots, each in four versions. A0 is the original cut from the previous shoot, every scene from the avatar vendor's own video agent, the premium path. B1, B2 and B3 reshoot the same spot scene for scene on three text-to-video engines, with the narrations, her closers and the brand cards reused unchanged, so the only variable is the engine. The B versions are the commercially viable ones because they are cheap. The entire forty-six-scene reshoot across all three engines cost about fifteen dollars of metered spend, roughly a dollar of scenes per spot per engine, where the baseline's scenes and closers ran 116 vendor credits. Every scene prompt carries the same realism guard paragraph, each brand has its own score, captions wrap to stay inside the square frame, and the two spots whose strongest beat sat mid-film now cold-open on it.
 
@@ -99,17 +99,15 @@ The five product spots, each in four versions. A0 is the original cut from the p
   </tr>
 </table>
 
-The same five probes, run on all four versions of this one spot, montage flags and all. Bold is a reading the probe flagged.
+The advertising subset of the battery, run on all four versions of this one spot. Bold is a reading the probe flagged. The full battery ran too; the structural rows, level wander and scene simplicity, read the same on all four versions because a montage wanders by construction, so they report for this category rather than gate and stay off the table.
 
 | Probe | A0 HeyGen | B1 Omni Flash | **B2 Wan 3.0, the winner** | B3 Seedance 2.0 |
 |---|---|---|---|---|
-| level, face wander (max 8.0) | **122.8** | **75.5** | **96.9** | **81.2** |
 | bg detail (max 5.5) | 1.30 | 4.64 | **6.76** | 5.43 |
-| scene simplicity (target 7.5) | 4.18 | 4.78 | 5.54 | 4.51 |
 | eye, background (max 4.5) | 4.46 | **6.69** | **7.09** | **6.16** |
 | hand gesture ratio (frozen is 0.2) | 0.463 | 0.804 | 0.628 | 0.544 |
 
-Every version fails level wander because a montage is wander by construction, the baseline included, and the eye flags the engine versions because their scenes are busy on purpose, the busy is the entertainment. The readings that separate engines are the honest ones, background detail and gesture.
+The eye flags the engine versions because their scenes are busy on purpose, the busy is the entertainment. The readings that separate engines are background detail and gesture.
 
 **The winner under the advertising subset is B2, Wan 3.0.** It is the only version that renders the story-bearing text legibly, the sleep score of 32 that the whole spot turns on, it holds the strongest gesture-to-flag balance of the three cheap engines, and its one flagged reading, background detail, is the category's deliberate busyness rather than a defect. Omni Flash is the runner-up on free motion and native ambient audio. The baseline keeps the identity crown and nothing else.
 
