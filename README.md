@@ -83,7 +83,7 @@ For a catalogue like this, the commercially viable path is the cheap engines wit
 
 ## The five spots, four ways each, probed
 
-Every spot in all four versions, inline, with the advertising subset of the probe battery under each row and the winner declared. The full battery ran on all twenty versions; the structural rows, level wander and scene simplicity, read the same on every version because a montage wanders by construction, so for this category they report rather than gate and stay off the tables. Bold is a flagged reading. The measured winners agreed with the earlier blind eye picks on all five rows.
+Every spot in all four versions, inline, with the advertising subset of the probe battery under each row and the winner declared. The full battery ran on all twenty versions; the structural rows, level wander and scene simplicity, read the same on every version because a montage wanders by construction, so for this category they report rather than gate and stay off the tables. Read every table the same way. The first two rows measure clutter and want LOW numbers, under their bars. The gesture row measures energy and wants HIGH, an ad sells with motion. Bold is a reading past its bar. A winner is the best BALANCE under the advertising subset, so a row can win while carrying a flag when its flag is the smallest and its strengths are the largest. The measured winners agreed with the earlier blind eye picks on all five rows.
 
 ### Orchard Hill Coffee
 
@@ -98,9 +98,9 @@ Every spot in all four versions, inline, with the advertising subset of the prob
 
 | Probe | A0 HeyGen, the baseline | **B1 Omni Flash, the winner** | B2 Wan 3.0 | B3 Seedance 2.0 |
 |---|---|---|---|---|
-| bg detail (max 5.5) | 4.89 | 3.52 | 5.15 | **6.57** |
-| eye, background (max 4.5) | **9.86** | **8.68** | **12.79** | **7.69** |
-| hand gesture ratio (frozen is 0.2) | 0.468 | 0.609 | 0.787 | 0.664 |
+| background clutter, lower is better, passes under 5.5 | 4.89 | 3.52 | 5.15 | **6.57** |
+| eye rejection, lower is better, passes under 4.5 | **9.86** | **8.68** | **12.79** | **7.69** |
+| gesture energy, higher is better, a frozen talking head is 0.2 | 0.468 | 0.609 | 0.787 | 0.664 |
 
 **B1 Omni Flash wins, the only background inside the pass band and the biggest smoke gag.** [&#9654; Watch the winner](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-orchard.mp4), about twenty seconds with sound.
 
@@ -117,9 +117,9 @@ Every spot in all four versions, inline, with the advertising subset of the prob
 
 | Probe | A0 HeyGen, the baseline | B1 Omni Flash | **B2 Wan 3.0, the winner** | B3 Seedance 2.0 |
 |---|---|---|---|---|
-| bg detail (max 5.5) | 2.75 | 4.08 | 3.95 | **6.5** |
-| eye, background (max 4.5) | **5.58** | **6.46** | 4.01 | 3.56 |
-| hand gesture ratio (frozen is 0.2) | 0.433 | 0.411 | 0.547 | 0.514 |
+| background clutter, lower is better, passes under 5.5 | 2.75 | 4.08 | 3.95 | **6.5** |
+| eye rejection, lower is better, passes under 4.5 | **5.58** | **6.46** | 4.01 | 3.56 |
+| gesture energy, higher is better, a frozen talking head is 0.2 | 0.433 | 0.411 | 0.547 | 0.514 |
 
 **B2 Wan 3.0 wins, the only version with the system banner legibly on the phone, and an eye pass.** [&#9654; Watch the winner](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-lantern.mp4), about twenty seconds with sound.
 
@@ -136,9 +136,9 @@ Every spot in all four versions, inline, with the advertising subset of the prob
 
 | Probe | A0 HeyGen, the baseline | B1 Omni Flash | B2 Wan 3.0 | **B3 Seedance 2.0, the winner** |
 |---|---|---|---|---|
-| bg detail (max 5.5) | 3.65 | **6.6** | **10.5** | **6.4** |
-| eye, background (max 4.5) | **11.5** | **5.95** | **9.05** | **7.05** |
-| hand gesture ratio (frozen is 0.2) | 0.71 | 0.694 | 0.729 | 0.523 |
+| background clutter, lower is better, passes under 5.5 | 3.65 | **6.6** | **10.5** | **6.4** |
+| eye rejection, lower is better, passes under 4.5 | **11.5** | **5.95** | **9.05** | **7.05** |
+| gesture energy, higher is better, a frozen talking head is 0.2 | 0.71 | 0.694 | 0.729 | 0.523 |
 
 **B3 Seedance 2.0 wins, the cleanest For Sale sign and the least flagged background of the cheap takes.** [&#9654; Watch the winner](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-harbor.mp4), about twenty seconds with sound.
 
@@ -155,9 +155,9 @@ Every spot in all four versions, inline, with the advertising subset of the prob
 
 | Probe | A0 HeyGen, the baseline | B1 Omni Flash | **B2 Wan 3.0, the winner** | B3 Seedance 2.0 |
 |---|---|---|---|---|
-| bg detail (max 5.5) | 1.3 | 4.64 | **6.76** | 5.43 |
-| eye, background (max 4.5) | 4.46 | **6.69** | **7.09** | **6.16** |
-| hand gesture ratio (frozen is 0.2) | 0.463 | 0.804 | 0.628 | 0.544 |
+| background clutter, lower is better, passes under 5.5 | 1.3 | 4.64 | **6.76** | 5.43 |
+| eye rejection, lower is better, passes under 4.5 | 4.46 | **6.69** | **7.09** | **6.16** |
+| gesture energy, higher is better, a frozen talking head is 0.2 | 0.463 | 0.804 | 0.628 | 0.544 |
 
 **B2 Wan 3.0 wins, the only legible sleep score, the beat the spot turns on.** [&#9654; Watch the winner](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-quiet.mp4), about twenty seconds with sound.
 
@@ -174,9 +174,9 @@ Every spot in all four versions, inline, with the advertising subset of the prob
 
 | Probe | A0 HeyGen, the baseline | **B1 Omni Flash, the winner** | B2 Wan 3.0 | B3 Seedance 2.0 |
 |---|---|---|---|---|
-| bg detail (max 5.5) | **8.54** | **6.07** | **12.28** | **7.07** |
-| eye, background (max 4.5) | **7.37** | **6.55** | **8.79** | **5.91** |
-| hand gesture ratio (frozen is 0.2) | 0.681 | 0.847 | 0.918 | 0.712 |
+| background clutter, lower is better, passes under 5.5 | **8.54** | **6.07** | **12.28** | **7.07** |
+| eye rejection, lower is better, passes under 4.5 | **7.37** | **6.55** | **8.79** | **5.91** |
+| gesture energy, higher is better, a frozen talking head is 0.2 | 0.681 | 0.847 | 0.918 | 0.712 |
 
 **B1 Omni Flash wins, near-top gesture with the only near-band background.** [&#9654; Watch the winner](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-slowroad.mp4), about twenty seconds with sound.
 
@@ -184,7 +184,7 @@ The pipeline and the evals that gate every render live on [main](https://github.
 
 ### Scored, failures first
 
-| Clip | Flags | sync lag ms | lipsync | level face / scene / relation | eye bg (max 4.5) | scene (target 7.5) | bg detail (max 5.5) | hand ratio |
+| Clip | Flags | sync lag ms | lipsync | level face / scene / relation | eye bg (max 4.5) | scene (target 7.5) | background clutter, lower is better, passes under 5.5 | hand ratio |
 |---|---|---|---|---|---|---|---|---|
 | ad2-harbor-elena | 5 | **240 late** | **FAIL** | **249.5 / 190.3 / 35.8** | **11.32** | **n/a** | 3.21 | 0.739 |
 | take-loop | 4 | **240 late** | **FAIL** | **7.1 / 4.9 / 22.1** | **4.79** | 5.30 | 4.27 | 0.248 |
