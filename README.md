@@ -111,7 +111,9 @@ The same five probes, run on all four versions of this one spot, montage flags a
 
 Every version fails level wander because a montage is wander by construction, the baseline included, and the eye flags the engine versions because their scenes are busy on purpose, the busy is the entertainment. The readings that separate engines are the honest ones, background detail and gesture.
 
-**The winner under the advertising subset is B2, Wan 3.0.** It is the only version that renders the story-bearing text legibly, the sleep score of 32 that the whole spot turns on, it holds the strongest gesture-to-flag balance of the three cheap engines, and its one flagged reading, background detail, is the category's deliberate busyness rather than a defect. Omni Flash is the runner-up on free motion and native ambient audio. The baseline keeps the identity crown and nothing else. The other four spots read the same way and reach the same verdict; their takes are in the table below rather than spread down the page.
+**The winner under the advertising subset is B2, Wan 3.0.** It is the only version that renders the story-bearing text legibly, the sleep score of 32 that the whole spot turns on, it holds the strongest gesture-to-flag balance of the three cheap engines, and its one flagged reading, background detail, is the category's deliberate busyness rather than a defect. Omni Flash is the runner-up on free motion and native ambient audio. The baseline keeps the identity crown and nothing else.
+
+Watch the winner before reading anything further, twenty seconds with sound, [Quiet Hours on Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-quiet.mp4). The numbers above are the reason it won; the spot is the proof. The other four spots read the same way and reach the same verdict; their takes are in the table below rather than spread down the page.
 
 
 
