@@ -55,6 +55,22 @@ The hard part is not making the video. It is deciding, without a person in the r
 ---
 
 
+## How this ran, and what it is actually showing
+
+This branch is not a demo of multi-vendor ad generation. It is the repo's eval discipline applied to multi-modular advertising, end to end, with nobody driving. The author wrote no scripts for this shoot. He supplied the architecture and the framework, the four-phase ad grammar held conceptually rather than literally, a realism guard paragraph, a rule that the most arresting beat opens the film, a rule that every human on screen is the same presenter, and the agent loop-engineered the rest, boards, prompts, engine calls, quality gates, re-rolls, remasters and delivery, with every request and landing in an append-only ledger.
+
+The workflow is the industry's own systematic testing loop, run by an agent instead of a team.
+
+| Phase | The industry step | What ran here |
+|---|---|---|
+| 01 | Hypothesis | The four-phase grammar and the hook-first rule, held as creative invariants |
+| 02 | Ad variations | Five brands, four versions each, one variable moved per cell, the engine |
+| 03 | Tests | Probes and judges gate every render before money moves, verdicts ledgered, defects withdrawn and re-rolled |
+| 04 | Winners and iterate | The picked takes lead each row, the baseline's report card sits below, the next shoot inherits every ruling |
+
+The measurements came from research, not taste. The offline gates on this page derive from labelled human verdicts, and the online success metrics the boards carry, hook rate, hold rate, view-through, come from a pairwise research pass over the ad industry's own testing literature. The evals were designed and calibrated before a single render was paid for.
+
+
 ## The five spots, four ways (shoot-20260824)
 
 The five product spots, each in four versions. A0 is the original cut from the previous shoot, every scene from the avatar vendor's own video agent, the premium path. B1, B2 and B3 reshoot the same spot scene for scene on three text-to-video engines, with the narrations, her closers and the brand cards reused unchanged, so the only variable is the engine. The B versions are the commercially viable ones because they are cheap. The entire forty-six-scene reshoot across all three engines cost about fifteen dollars of metered spend, roughly a dollar of scenes per spot per engine, where the baseline's scenes and closers ran 116 vendor credits. Every scene prompt carries the same realism guard paragraph, each brand has its own score, captions wrap to stay inside the square frame, and the two spots whose strongest beat sat mid-film now cold-open on it.
