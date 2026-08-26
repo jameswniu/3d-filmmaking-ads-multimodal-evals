@@ -81,59 +81,106 @@ For a catalogue like this, the commercially viable path is the cheap engines wit
 | B1 | Omni Flash | about sixty cents a scene, nine dollars for its fifteen |
 | B2 and B3 | Wan 3.0 and Seedance 2.0 | about thirty-two dollars together for their thirty scenes, roughly a dollar a scene |
 
-## One spot, four ways, probed
+## The five spots, four ways each, probed
 
-The five product spots, each in four versions. A0 is the original cut from the previous shoot, every scene from the avatar vendor's own video agent, the premium path. B1, B2 and B3 reshoot the same spot scene for scene on three text-to-video engines, with the narrations, her closers and the brand cards reused unchanged, so the only variable is the engine. The B versions are the commercially viable ones because they are cheap. The entire forty-six-scene reshoot across all three engines cost about fifteen dollars of metered spend, roughly a dollar of scenes per spot per engine, where the baseline's scenes and closers ran 116 vendor credits. Every scene prompt carries the same realism guard paragraph, each brand has its own score, captions wrap to stay inside the square frame, and the two spots whose strongest beat sat mid-film now cold-open on it.
+Every spot in all four versions, inline, with the advertising subset of the probe battery under each row and the winner declared. The full battery ran on all twenty versions; the structural rows, level wander and scene simplicity, read the same on every version because a montage wanders by construction, so for this category they report rather than gate and stay off the tables. Bold is a flagged reading. The measured winners agreed with the earlier blind eye picks on all five rows.
 
+### Orchard Hill Coffee
 
+<table>
+  <tr>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad2-orchard.gif" alt="Orchard Hill Coffee, HeyGen, the baseline" width="100%"><br><sub><b>A0 &middot; HeyGen, the baseline.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-orchard.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-omni-orchard.gif" alt="Orchard Hill Coffee, Omni Flash" width="100%"><br><sub><b>B1 &middot; Omni Flash, the winner.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-orchard.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-wan3-orchard.gif" alt="Orchard Hill Coffee, Wan 3.0" width="100%"><br><sub><b>B2 &middot; Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-orchard.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-orchard.gif" alt="Orchard Hill Coffee, Seedance 2.0" width="100%"><br><sub><b>B3 &middot; Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-orchard.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
 
+| Probe | A0 HeyGen, the baseline | **B1 Omni Flash, the winner** | B2 Wan 3.0 | B3 Seedance 2.0 |
+|---|---|---|---|---|
+| bg detail (max 5.5) | 4.89 | 3.52 | 5.15 | **6.57** |
+| eye, background (max 4.5) | **9.86** | **8.68** | **12.79** | **7.69** |
+| hand gesture ratio (frozen is 0.2) | 0.468 | 0.609 | 0.787 | 0.664 |
+
+**B1 Omni Flash wins, the only background inside the pass band and the biggest smoke gag.** [&#9654; Watch the winner](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-orchard.mp4), about twenty seconds with sound.
+
+### Lantern Street
+
+<table>
+  <tr>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad2-lantern.gif" alt="Lantern Street, HeyGen, the baseline" width="100%"><br><sub><b>A0 &middot; HeyGen, the baseline.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-lantern.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-omni-lantern.gif" alt="Lantern Street, Omni Flash" width="100%"><br><sub><b>B1 &middot; Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-lantern.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-wan3-lantern.gif" alt="Lantern Street, Wan 3.0" width="100%"><br><sub><b>B2 &middot; Wan 3.0, the winner.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-lantern.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-lantern.gif" alt="Lantern Street, Seedance 2.0" width="100%"><br><sub><b>B3 &middot; Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-lantern.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+| Probe | A0 HeyGen, the baseline | B1 Omni Flash | **B2 Wan 3.0, the winner** | B3 Seedance 2.0 |
+|---|---|---|---|---|
+| bg detail (max 5.5) | 2.75 | 4.08 | 3.95 | **6.5** |
+| eye, background (max 4.5) | **5.58** | **6.46** | 4.01 | 3.56 |
+| hand gesture ratio (frozen is 0.2) | 0.433 | 0.411 | 0.547 | 0.514 |
+
+**B2 Wan 3.0 wins, the only version with the system banner legibly on the phone, and an eye pass.** [&#9654; Watch the winner](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-lantern.mp4), about twenty seconds with sound.
+
+### Harbor Lane Realty
+
+<table>
+  <tr>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad2-harbor-maya.gif" alt="Harbor Lane Realty, HeyGen, the baseline" width="100%"><br><sub><b>A0 &middot; HeyGen, the baseline.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-harbor-maya.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-omni-harbor.gif" alt="Harbor Lane Realty, Omni Flash" width="100%"><br><sub><b>B1 &middot; Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-harbor.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-wan3-harbor.gif" alt="Harbor Lane Realty, Wan 3.0" width="100%"><br><sub><b>B2 &middot; Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-harbor.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-harbor.gif" alt="Harbor Lane Realty, Seedance 2.0" width="100%"><br><sub><b>B3 &middot; Seedance 2.0, the winner.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-harbor.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+| Probe | A0 HeyGen, the baseline | B1 Omni Flash | B2 Wan 3.0 | **B3 Seedance 2.0, the winner** |
+|---|---|---|---|---|
+| bg detail (max 5.5) | 3.65 | **6.6** | **10.5** | **6.4** |
+| eye, background (max 4.5) | **11.5** | **5.95** | **9.05** | **7.05** |
+| hand gesture ratio (frozen is 0.2) | 0.71 | 0.694 | 0.729 | 0.523 |
+
+**B3 Seedance 2.0 wins, the cleanest For Sale sign and the least flagged background of the cheap takes.** [&#9654; Watch the winner](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-harbor.mp4), about twenty seconds with sound.
 
 ### Quiet Hours
 
 <table>
   <tr>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad2-quiet.gif" alt="Quiet Hours, the original HeyGen cut" width="100%"><br><sub><b>A0 &middot; HeyGen, the baseline.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-quiet.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-omni-quiet.gif" alt="Quiet Hours reshot on Omni Flash" width="100%"><br><sub><b>B1 &middot; Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-quiet.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-wan3-quiet.gif" alt="Quiet Hours reshot on Wan 3.0" width="100%"><br><sub><b>B2 &middot; Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-quiet.mp4">&#9654; with sound</a></sub></td>
-    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-quiet.gif" alt="Quiet Hours reshot on Seedance 2.0" width="100%"><br><sub><b>B3 &middot; Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-quiet.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad2-quiet.gif" alt="Quiet Hours, HeyGen, the baseline" width="100%"><br><sub><b>A0 &middot; HeyGen, the baseline.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-quiet.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-omni-quiet.gif" alt="Quiet Hours, Omni Flash" width="100%"><br><sub><b>B1 &middot; Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-quiet.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-wan3-quiet.gif" alt="Quiet Hours, Wan 3.0" width="100%"><br><sub><b>B2 &middot; Wan 3.0, the winner.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-quiet.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-quiet.gif" alt="Quiet Hours, Seedance 2.0" width="100%"><br><sub><b>B3 &middot; Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-quiet.mp4">&#9654; with sound</a></sub></td>
   </tr>
 </table>
 
-The advertising subset of the battery, run on all four versions of this one spot. Bold is a reading the probe flagged. The full battery ran too; the structural rows, level wander and scene simplicity, read the same on all four versions because a montage wanders by construction, so they report for this category rather than gate and stay off the table.
-
-| Probe | A0 HeyGen | B1 Omni Flash | **B2 Wan 3.0, the winner** | B3 Seedance 2.0 |
+| Probe | A0 HeyGen, the baseline | B1 Omni Flash | **B2 Wan 3.0, the winner** | B3 Seedance 2.0 |
 |---|---|---|---|---|
-| bg detail (max 5.5) | 1.30 | 4.64 | **6.76** | 5.43 |
+| bg detail (max 5.5) | 1.3 | 4.64 | **6.76** | 5.43 |
 | eye, background (max 4.5) | 4.46 | **6.69** | **7.09** | **6.16** |
 | hand gesture ratio (frozen is 0.2) | 0.463 | 0.804 | 0.628 | 0.544 |
 
-The eye flags the engine versions because their scenes are busy on purpose, the busy is the entertainment. The readings that separate engines are background detail and gesture.
+**B2 Wan 3.0 wins, the only legible sleep score, the beat the spot turns on.** [&#9654; Watch the winner](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-quiet.mp4), about twenty seconds with sound.
 
-**The winner under the advertising subset is B2, Wan 3.0.** It is the only version that renders the story-bearing text legibly, the sleep score of 32 that the whole spot turns on, it holds the strongest gesture-to-flag balance of the three cheap engines, and its one flagged reading, background detail, is the category's deliberate busyness rather than a defect. Omni Flash is the runner-up on free motion and native ambient audio. The baseline keeps the identity crown and nothing else.
+### Slow Road Travel
 
-Watch the winner before reading anything further, twenty seconds with sound, [Quiet Hours on Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-quiet.mp4). The numbers above are the reason it won; the spot is the proof. The other four spots read the same way and reach the same verdict; their takes are in the table below rather than spread down the page.
+<table>
+  <tr>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260822-ad2-slowroad.gif" alt="Slow Road Travel, HeyGen, the baseline" width="100%"><br><sub><b>A0 &middot; HeyGen, the baseline.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-slowroad.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-omni-slowroad.gif" alt="Slow Road Travel, Omni Flash" width="100%"><br><sub><b>B1 &middot; Omni Flash, the winner.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-slowroad.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-wan3-slowroad.gif" alt="Slow Road Travel, Wan 3.0" width="100%"><br><sub><b>B2 &middot; Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-slowroad.mp4">&#9654; with sound</a></sub></td>
+    <td width="25%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-slowroad.gif" alt="Slow Road Travel, Seedance 2.0" width="100%"><br><sub><b>B3 &middot; Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-slowroad.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
 
-
-
-Every take of every spot, with the winner of each row under the advertising subset. The subset scored all twenty versions, and the measured winners agreed with the earlier blind eye picks on all five rows.
-
-| Spot | Baseline | | | |
+| Probe | A0 HeyGen, the baseline | **B1 Omni Flash, the winner** | B2 Wan 3.0 | B3 Seedance 2.0 |
 |---|---|---|---|---|
-| **Orchard Hill Coffee** | [A0 HeyGen](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-orchard.mp4) | **[B1 Omni Flash](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-orchard.mp4), the winner** | [B2 Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-orchard.mp4) | [B3 Seedance 2.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-orchard.mp4) |
-| **Lantern Street** | [A0 HeyGen](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-lantern.mp4) | [B1 Omni Flash](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-lantern.mp4) | **[B2 Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-lantern.mp4), the winner** | [B3 Seedance 2.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-lantern.mp4) |
-| **Harbor Lane Realty** | [A0 HeyGen](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-harbor-maya.mp4) | [B1 Omni Flash](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-harbor.mp4) | [B2 Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-harbor.mp4) | **[B3 Seedance 2.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-harbor.mp4), the winner** |
-| **Quiet Hours** | [A0 HeyGen](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-quiet.mp4) | [B1 Omni Flash](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-quiet.mp4) | **[B2 Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-quiet.mp4), the winner** | [B3 Seedance 2.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-quiet.mp4) |
-| **Slow Road Travel** | [A0 HeyGen](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260822-ad2-slowroad.mp4) | **[B1 Omni Flash](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-slowroad.mp4), the winner** | [B2 Wan 3.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-wan3-slowroad.mp4) | [B3 Seedance 2.0](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-slowroad.mp4) |
+| bg detail (max 5.5) | **8.54** | **6.07** | **12.28** | **7.07** |
+| eye, background (max 4.5) | **7.37** | **6.55** | **8.79** | **5.91** |
+| hand gesture ratio (frozen is 0.2) | 0.681 | 0.847 | 0.918 | 0.712 |
 
-Why each row fell the way it did, one clause apiece.
+**B1 Omni Flash wins, near-top gesture with the only near-band background.** [&#9654; Watch the winner](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-omni-slowroad.mp4), about twenty seconds with sound.
 
-- Orchard Hill Coffee, B1 Omni Flash, the only background inside the pass band and the biggest smoke gag.
-- Lantern Street, B2 Wan 3.0, the only version with the system banner legibly on the phone, and an eye pass.
-- Harbor Lane Realty, B3 Seedance 2.0, the cleanest For Sale sign and the least flagged background of the cheap takes.
-- Quiet Hours, B2 Wan 3.0, the only legible sleep score, the beat the spot turns on.
-- Slow Road Travel, B1 Omni Flash, near-top gesture with the only near-band background.
-
-The pipeline and the evals that gate every render live on [main](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals); the full previous shoot is [shoot-20260822](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/tree/shoot-20260822).
+The pipeline and the evals that gate every render live on [main](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals).
 
 ### Scored, failures first
 
