@@ -172,6 +172,22 @@ Four things that loop taught, each of which cost something:
 
 **Full doctrine, with every number and every retraction: [`docs/EVALS.md`](docs/EVALS.md).**
 
+## One battery, three categories, a winner per category
+
+The probe battery is one set of instruments. What changes per content category is which subset gates and which merely reports, and that subset is the category definition. The same engines rank differently under each subset, so every category gets its own winner, measured rather than argued.
+
+| Probe | Advertising | Documentary | Third category, open |
+|---|---|---|---|
+| Physics and groundedness judge | Reports, absurd beats are the entertainment | Gates hard, reality must hold | To be picked with the category |
+| On-screen text | Gates where text is the story beat, a score, a sign | Gates at zero tolerance, no invented signage | |
+| Level wander | Reports, a montage wanders by construction | Gates, long takes must hold | |
+| Background detail and eye | High tolerance, busy on purpose | Moderate, the subject leads | |
+| Gesture ratio | Gates upward, energy sells | Reports, stillness is allowed | |
+| Presenter identity and lip sync | Gates on closers only | Gates hard on interview subjects | |
+| Cost per scene | Gates, the pool must be affordable | Reports, one good take beats four cheap ones | |
+
+Under the advertising subset, this shoot's winner is Wan 3.0, which held story-bearing text legibly where the others dropped it, with Omni Flash the runner-up on free human motion and native ambient audio; the full readings are on [shoot-20260824](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/tree/shoot-20260824). The documentary subset has no winner yet because the documentary shoot has not run. The third category is deliberately open until it earns its slot.
+
 ## The render behind those clips, scored by this repo's own probes
 
 **The video on this page did not pass its own checks.** Two of them failed, and they are listed first rather than buried, because a report card showing only the good marks is an advert. Every clip above is a treatment of this one render, picked from a grid of three looks, three voice clones and three engine tiers, one variable moved per cell.
