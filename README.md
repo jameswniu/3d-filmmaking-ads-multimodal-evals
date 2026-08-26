@@ -186,7 +186,7 @@ The probe battery is one set of instruments. What changes per content category i
 | Presenter identity and lip sync | Gates on closers only | Gates hard on interview subjects | |
 | Cost per scene | Gates, the pool must be affordable | Reports, one good take beats four cheap ones | |
 
-Under the advertising subset, this shoot's winner is Wan 3.0, which held story-bearing text legibly where the others dropped it, with Omni Flash the runner-up on free human motion and native ambient audio; the full readings are on [shoot-20260824](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/tree/shoot-20260824). The documentary subset has no winner yet because the documentary shoot has not run. The third category is deliberately open until it earns its slot.
+Under the advertising subset, scored per spot as most rows taken, no engine sweeps: Wan 3.0 takes the two spots that turn on legible story text and composed calm, Seedance 2.0 takes the two that turn on clean eyes and a steady face, and the sleep brand routes to the premium HeyGen baseline, so the WINNER is declared per audience rather than per catalogue, which is the routing thesis in one line; the full panels are on [shoot-20260824](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/tree/shoot-20260824). The documentary subset has no winner yet because the documentary shoot has not run. The third category is deliberately open until it earns its slot.
 
 ## The render behind those clips, scored by this repo's own probes
 
