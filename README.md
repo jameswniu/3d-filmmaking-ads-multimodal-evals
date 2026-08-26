@@ -184,7 +184,7 @@ The pipeline and the evals that gate every render live on [main](https://github.
 
 ### Scored, failures first
 
-| Clip | Flags | sync lag ms | lipsync | level face / scene / relation | eye bg (max 4.5) | scene (target 7.5) | background clutter, lower is better, passes under 5.5 | hand ratio |
+| Clip | Flags | sync lag ms | lipsync | level face / scene / relation | eye bg (max 4.5) | scene (target 7.5) | bg detail (max 5.5) | hand ratio |
 |---|---|---|---|---|---|---|---|---|
 | ad2-harbor-elena | 5 | **240 late** | **FAIL** | **249.5 / 190.3 / 35.8** | **11.32** | **n/a** | 3.21 | 0.739 |
 | take-loop | 4 | **240 late** | **FAIL** | **7.1 / 4.9 / 22.1** | **4.79** | 5.30 | 4.27 | 0.248 |
