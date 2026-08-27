@@ -50,7 +50,7 @@ The hard part is not making the video. It is deciding, without a person in the r
   </tr>
 </table>
 
-> The avatar is generated. She is not a real person and not a likeness of one. Her voice is a clone of a consented source. The three clips above and the frame study below come from **one** run of the pipeline, deliberately, because a montage of lucky takes would hide the thing this repo is about. The five spots further down ran four ways each, twenty governed versions, and every one of them is scored on this page.
+> The avatar is generated. She is not a real person and not a likeness of one. Her voice is a clone of a consented source. The three clips above and the frame study below come from **one** run of the pipeline, deliberately, because a montage of lucky takes would hide the thing this repo is about. The five spots further down ran four ways each, twenty governed versions; the redo above them adds eight more from the same discipline, and every one of them is scored on this page.
 
 ---
 
@@ -84,6 +84,94 @@ What this page adds up to is a multi-model router built on autonomously feature-
 ### The question this page expects
 
 Why not put all of this in the prompt instead, and skip the judging. It is in the prompt, every engine got the same brief with the audience written into it, and the four columns under each spot are what four models did with identical words. A prompt is a request, and a generation is a draw against it: the Wan take was told to put the system banner on the phone's own screen and floated it in mid-air anyway, until a re-roll landed it. Judging after is also the only way to choose between models, because a prompt steers one engine but cannot tell you which engine to buy for this audience. So the loop holds both ends. The prompts know the user going in, the panel checks the feeling actually landed coming out, and the next dollar routes on the count. A router with gates.
+
+## The redo, absurd first, and the four-engine router
+
+The five spots further down were the like-for-like reshoot. These four are what happened when the curator kept rejecting. A literal, message-first cut tested worse, and the grammar that survived is the one he named: open ABSURD at three or four times the volume, hand them the coherent model by the second line, and keep every quirk visual with nobody narrating it. The mailbox erupts like a geyser and the whole block turns. The three a.m. descent is a full charge. A whole street waves back. A luggage tag tears free and flies the spot like a small bird, and lands when she does.
+
+His eye then caught the lip-sync, and the complaint became instruments. A caption gate now checks that every burned subtitle says what is being spoken, when it is spoken. A face-located mouth probe, calibrated on controls with the audio shifted 0.4 seconds each way, reads each closer's lip lag, and the builder trims or pads that closer by its own measured number, so the delivered lag reads zero. The probe's first deployment had its sign inverted and doubled the error; the gate caught it before anything shipped, which is this repository's whole argument in one sentence.
+
+Each spot ships in two versions: its winning engine from the reshoot below, and an Omni Flash leg from the same boards, narrations, closers, beds and captions, so every row is pure engine. Bold is the best reading in its row, and the WINNER takes the most rows.
+
+### Orchard Hill Coffee, redone
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-seedance2-orchard.gif" alt="Seedance 2.0" width="100%"><br><sub><b>Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-seedance2-orchard.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-orchard.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-orchard.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+| Probe | Seedance 2.0 | **Omni Flash, the WINNER** |
+|---|---|---|
+| Gesture energy, higher is better | 0.595 | **0.716** |
+| Background clutter, lower is better | 8.70 | **3.06** |
+| Eye rejection, lower is better | **5.28** | 6.07 |
+| Scene simplicity, lower is calmer | 7.27 | **6.95** |
+| Face level wander, lower is steadier | **189** | 202 |
+
+**Omni Flash takes three rows, the bigger gesture, a background nearly three times cleaner, and the calmer scene.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-orchard.mp4), with sound.
+
+### Lantern Street, redone
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-wan3-lantern.gif" alt="Wan 3.0" width="100%"><br><sub><b>Wan 3.0, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-wan3-lantern.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-lantern.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-lantern.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+| Probe | **Wan 3.0, the WINNER** | Omni Flash |
+|---|---|---|
+| Eye rejection, lower is better | **4.00** | 5.45 |
+| Background clutter, lower is better | 4.88 | **3.25** |
+| Scene simplicity, lower is calmer | **5.20** | 5.99 |
+| Gesture energy, for this audience lower is calmer | **0.510** | 0.675 |
+| Face level wander, lower is steadier | **97.4** | 145 |
+| System banner legible on the phone, eye verdict | **Yes** | **Yes** |
+
+**Wan 3.0 takes four rows, the cleaner eye read, the calmer scene, the stiller hands and the steadiest face.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-wan3-lantern.mp4), with sound.
+
+### Harbor Lane Realty, redone
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-wan3-harbor.gif" alt="Wan 3.0" width="100%"><br><sub><b>Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-wan3-harbor.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-harbor.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-harbor.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+| Probe | Wan 3.0 | **Omni Flash, the WINNER** |
+|---|---|---|
+| Gesture energy, higher is better | **0.894** | 0.691 |
+| Background richness, higher sells the staging | **11.5** | 6.55 |
+| Eye rejection, lower is better | 6.42 | **5.94** |
+| Face level wander, lower is steadier | 191 | **150** |
+| Scene simplicity, lower is calmer | 8.75 | **7.24** |
+| For Sale sign legible, eye verdict | **Yes** | **Yes** |
+
+**Omni Flash takes three rows, the cleaner eye read, the steadier face and the simpler scene, against Wan's bigger wave and richer staging. Omni is also the engine that gave the whole street waving back.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-harbor.mp4), with sound.
+
+### Slow Road Travel, redone
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-seedance2-slowroad.gif" alt="Seedance 2.0" width="100%"><br><sub><b>Seedance 2.0, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-seedance2-slowroad.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-slowroad.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-slowroad.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+| Probe | **Seedance 2.0, the WINNER** | Omni Flash |
+|---|---|---|
+| Gesture energy, higher is better | **0.760** | 0.480 |
+| Background busy-ness, higher feels like travel | 3.87 | **6.93** |
+| Eye rejection, lower is better | **4.27** | 7.37 |
+| Scene simplicity, lower is calmer | **6.75** | 7.64 |
+| Face level wander, lower is steadier | **112** | 146 |
+
+**Seedance 2.0 takes four rows, twice the gesture energy, the cleanest eye read, the calmer frame and the steadier face.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-seedance2-slowroad.mp4), with sound.
+
+With four engines in the pool, the router's answer is Orchard to Omni Flash, Lantern to Wan 3.0, Harbor to Omni Flash, and Slow Road to Seedance 2.0. Omni pays its way on the spots where a clean frame beats the biggest gesture, at about sixty-three cents a scene with native ambient sound; Wan and Seedance keep the spots where calm and steadiness carry, at about a dollar a scene. Quiet Hours sits out the redo because its WINNER below is the premium baseline itself.
 
 ## The five spots, four ways each, probed
 
