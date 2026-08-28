@@ -85,6 +85,72 @@ What this page adds up to is a multi-model router built on autonomously feature-
 
 Why not put all of this in the prompt instead, and skip the judging. It is in the prompt, every engine got the same brief with the audience written into it, and the four columns under each spot are what four models did with identical words. A prompt is a request, and a generation is a draw against it: the Wan take was told to put the system banner on the phone's own screen and floated it in mid-air anyway, until a re-roll landed it. Judging after is also the only way to choose between models, because a prompt steers one engine but cannot tell you which engine to buy for this audience. So the loop holds both ends. The prompts know the user going in, the panel checks the feeling actually landed coming out, and the next dollar routes on the count. A router with gates.
 
+## Five real products, to prove the grammar is not brand-specific
+
+The spots above and below sell invented brands, which is the easy case: the story can bend to whatever the
+pipeline renders well. So the same pipeline ran again against five real, currently shipping AI products,
+with their positioning pulled from their own live pages and checked by a second engine under an adversarial
+default-refute mandate before a single scene was boarded. Nothing here bends to the render. The claim each
+spot closes on is the claim the company actually makes.
+
+**These are spec ads.** They are not affiliated with, endorsed by, or produced for Google, OpenAI,
+Perplexity or Meta, none of these companies has seen them, and every tagline on every end card is written
+here rather than lifted from the brand. They exist to show that the loop can take a real product's real
+positioning and build the ad around it.
+
+All five shot on Omni Flash at about sixty-three cents a scene, fifteen scenes with zero content
+rejections, each one gated on caption timing, closer alignment and lip sync before it was allowed out.
+
+### Gemini
+
+<table>
+  <tr>
+    <td width="42%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-gemini.gif" alt="Gemini spec ad" width="100%"><br><sub><a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-gemini.mp4">&#9654; with sound</a></sub></td>
+    <td width="58%" valign="top"><sub>A kitchen plastered floor to ceiling in sticky notes, and an avalanche of more when he opens a cupboard. Then every note in the room streams into his phone at once, and one stubborn one drifts down and lands on the fridge.<br><br><b>The promise it closes on:</b> Google's personal assistant, hands free, across the apps you already use.<br><br>Positioning verified against the company's own current pages in a pairwise research pass with an adversarial second engine; the tagline on the card is ours.</sub></td>
+  </tr>
+</table>
+
+### ChatGPT
+
+<table>
+  <tr>
+    <td width="42%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-chatgpt.gif" alt="ChatGPT spec ad" width="100%"><br><sub><a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-chatgpt.mp4">&#9654; with sound</a></sub></td>
+    <td width="58%" valign="top"><sub>He has been deciding between two identical jars long enough that a cobweb has grown between his elbow and the shelf and dust has settled on his shoulders. One tap, the web snaps, and a strand floats up like a surrender flag.<br><br><b>The promise it closes on:</b> Help with everyday questions and ideas.<br><br>Positioning verified against the company's own current pages in a pairwise research pass with an adversarial second engine; the tagline on the card is ours.</sub></td>
+  </tr>
+</table>
+
+### Perplexity
+
+<table>
+  <tr>
+    <td width="42%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-perplexity.gif" alt="Perplexity spec ad" width="100%"><br><sub><a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-perplexity.mp4">&#9654; with sound</a></sub></td>
+    <td width="58%" valign="top"><sub>Her laptop erupts four hundred pages to the ceiling and buries her to the chest. The blizzard reverses and folds itself into a single page in her open palm, one last sheet settling upside down on top.<br><br><b>The promise it closes on:</b> An answer engine that hands back the answer with its sources attached.<br><br>Positioning verified against the company's own current pages in a pairwise research pass with an adversarial second engine; the tagline on the card is ours.</sub></td>
+  </tr>
+</table>
+
+### Meta AI
+
+<table>
+  <tr>
+    <td width="42%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-metaai.gif" alt="Meta AI spec ad" width="100%"><br><sub><a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-metaai.mp4">&#9654; with sound</a></sub></td>
+    <td width="58%" valign="top"><sub>Her paper to-do list has unrolled out the front door, down the porch and three houses along the pavement. She puts on the glasses and the whole scroll rolls back up so fast it knocks a plant pot off the rail, which she catches without looking.<br><br><b>The promise it closes on:</b> A personal agent that works on your behalf.<br><br>Positioning verified against the company's own current pages in a pairwise research pass with an adversarial second engine; the tagline on the card is ours.</sub></td>
+  </tr>
+</table>
+
+### Google Pics
+
+<table>
+  <tr>
+    <td width="42%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-pics.gif" alt="Google Pics spec ad" width="100%"><br><sub><a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-pics.mp4">&#9654; with sound</a></sub></td>
+    <td width="58%" valign="top"><sub>He holds a printed photograph whose furniture is moving on its own, a sofa sliding out of the frame, a lamp walking in, while the real room behind him stays perfectly still. Far away in the picture, a tiny sofa wanders off down a street.<br><br><b>The promise it closes on:</b> Image creation and editing that brings your exact vision to life, down to a single object.<br><br>Positioning verified against the company's own current pages in a pairwise research pass with an adversarial second engine; the tagline on the card is ours.</sub></td>
+  </tr>
+</table>
+
+Every one of the five carries the same structure, which the [capture-attention law](#the-question-this-page-expects)
+makes explicit: open on something absurd and unexplained in a photoreal world, make it worse in the middle
+beat with the product still absent, and let the product be the only thing that closes the puzzle. The
+board itself is gated on that before any money is spent, and the gate has already sent boards back.
+
 ## The redo, absurd first, and the four-engine router
 
 The five spots further down were the like-for-like reshoot. These four are what happened when the curator kept rejecting. A literal, message-first cut tested worse, and the grammar that survived is the one he named: open ABSURD at three or four times the volume, hand them the coherent model by the second line, and keep every quirk visual with nobody narrating it. The mailbox erupts like a geyser and the whole block turns. The three a.m. descent is a full charge. A whole street waves back. A luggage tag tears free and flies the spot like a small bird, and lands when she does.
