@@ -40,12 +40,12 @@ The hard part is not making the video. It is deciding, without a person in the r
     <td width="33%" align="center" valign="top">
       <br>
       <img src="assets/views-sweep.gif" alt="Six of the 77 camera views of one instant, cycled" width="100%"><br>
-      <sub><b>Six of the 77 views, one instant.</b> Spread across the whole sweep rather than neighbours, because adjacent views differ by <b>0.25 px</b> and a block of them reads as one photo repeated. These are warped at the full square framing rather than cropped out of the quilt, so they sit at the same scale as the clips beside them; the panel's own tiles trim top and bottom to a 1.57 aspect. Every frame of the clip carries its own 77. <b><a href="assets/quilt-video.mp4?raw=true">&#9654; full quilt video</a></b></sub>
+      <sub><b>Six of the 77 views, one instant.</b> Spread across the whole sweep rather than neighbours, because adjacent views differ by <b>0.25 px</b> and a block of them reads as one photo repeated. These are warped at the full square framing rather than cropped out of the quilt, so they sit at the same scale as the clips beside them; the panel's own tiles trim top and bottom to a 1.57 aspect. Every frame of the clip carries its own 77. <b><a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/main/assets/quilt-video.mp4">&#9654; full quilt video</a></b></sub>
     </td>
     <td width="33%" align="center" valign="top">
       <br><br>
       <img src="assets/hologram-full.gif" alt="The avatar explaining the 77-view quilt while the simulated view sweeps, subtitles held still" width="100%"><br>
-      <sub><b>And she explains her own pipeline, in the final treatment.</b> The full narration under the simulated view sweep the first cell demonstrates, one pass, start to finish. This loop is her describing the very grid the middle cell shows: one moment, seventy-seven positions. GIFs are mute and the voice is half the point: <b><a href="assets/hologram-full.mp4?raw=true">&#9654; watch with sound (2:49)</a></b></sub>
+      <sub><b>And she explains her own pipeline, in the final treatment.</b> The full narration under the simulated view sweep the first cell demonstrates, one pass, start to finish. This loop is her describing the very grid the middle cell shows: one moment, seventy-seven positions. GIFs are mute and the voice is half the point: <b><a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/main/assets/hologram-full.mp4">&#9654; watch with sound (2:49)</a></b></sub>
     </td>
   </tr>
 </table>
