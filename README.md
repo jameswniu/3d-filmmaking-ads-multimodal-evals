@@ -15,6 +15,16 @@
 
 **An advertising-grade AI filmmaking pipeline where the evals are the product.**
 
+Three steps, start to finish. Each one is a deliverable you can watch.
+
+<table>
+  <tr>
+    <td width="33%" align="center" valign="top"><a href="#step-1-pick-the-model"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260824-cell-seedance2-orchard.gif" alt="Step 1, pick the model" width="100%"></a><br><sub><b>Step 1. Pick the model.</b><br>Four engines run the same brief and a panel picks a different winner per audience.<br><a href="#step-1-pick-the-model">See the race</a></sub></td>
+    <td width="33%" align="center" valign="top"><a href="#step-2-pick-the-recipe"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-harbor.gif" alt="Step 2, pick the recipe" width="100%"></a><br><sub><b>Step 2. Pick the recipe.</b><br>The curator rejects cuts until the grammar survives: absurd first, coherent by line two.<br><a href="#step-2-pick-the-recipe">See the redo</a></sub></td>
+    <td width="33%" align="center" valign="top"><a href="#step-3-generalize-it"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-claude.gif" alt="Step 3, generalize it" width="100%"></a><br><sub><b>Step 3. Generalize it.</b><br>Ten real AI products, real positioning, nothing bends to the render. The precision is the selling point.<br><a href="#step-3-generalize-it">See the spec ads</a></sub></td>
+  </tr>
+</table>
+
 | Who It Is For | The Difference |
 |:---|:---|
 | An ad team that cannot watch every render, because it runs on a schedule against metered APIs. [What changes for them](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals#an-ad-team-before-and-after) | The render path is not the hard part. Ten scoring models were built and killed in one day for disagreeing with the labels. [The five hard problems](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals#the-five-hard-problems-in-talking-head-video) |
@@ -57,7 +67,17 @@ The hard part is not making the video. It is deciding, without a person in the r
 
 ## How this ran, and what it is actually showing
 
-This branch is loop engineering applied to multi-modal AI generation, with the human on the loop, not in the loop. It is not a demo of multi-vendor ad generation; it is the repo's eval discipline running an entire ad production, end to end, with nobody driving. Ads are the first track because their feedback loops are shortest; documentary is next, and the light-field work on main is the third display target the same gated pipeline already feeds. The author wrote no scripts for this shoot. He supplied the architecture and the framework, the four-phase ad grammar held conceptually rather than literally, a realism guard paragraph, a rule that the most arresting beat opens the film, a rule that every human on screen is the same presenter, and the agent loop-engineered the rest, boards, prompts, engine calls, quality gates, re-rolls, remasters and delivery, with every request and landing in an append-only ledger.
+This branch is loop engineering applied to multi-modal AI generation, with the human on the loop, not in the loop. It is the repo's eval discipline running an entire ad production, end to end, with nobody driving. Ads are the first track because their feedback loops are shortest; documentary is next, and the light-field work on main is the third display target the same gated pipeline already feeds.
+
+The author wrote no scripts for this shoot. He supplied five things.
+
+- the architecture and the framework
+- the four-phase ad grammar, held conceptually rather than literally
+- a realism guard paragraph
+- the rule that the most arresting beat opens the film
+- the rule that every human on screen is the same presenter
+
+The agent loop-engineered the rest: boards, prompts, engine calls, quality gates, re-rolls, remasters and delivery, with every request and landing in an append-only ledger.
 
 The workflow is the industry's own systematic testing loop, run by an agent instead of a team.
 
@@ -73,7 +93,15 @@ The measurements came from research, not taste. The offline gates on this page d
 
 ## The conclusion, first
 
-What this page adds up to is a multi-model router built on autonomously feature-engineered evals, evals tailored to the user rather than to the model. No engine sweeps the catalogue. Wan 3.0 takes the two spots that turn on legible story text and composed calm, Seedance 2.0 takes the two that turn on clean eyes and a steady face, and the sleep brand routes to the premium HeyGen baseline, which wins every calm row on its panel. The router has no cheapness bias, it pays up when the audience calls for it. Omni Flash wins no panel and keeps its seat anyway, native ambient audio and the freest human motion, and a served user may respond to exactly that, which is why the pool stays four deep. The presenter's closers stay vendor-rendered inside every version because the baseline still owns identity. And the comparison is a fair race by construction: the three challenger engines sit in one price class, about sixty cents to a dollar a scene, so no column wins by outspending another, and a four-deep pool per spot costs a few dollars, which is what lets an ad platform serve each user the version that user responds to.
+What this page adds up to is a multi-model router built on autonomously feature-engineered evals, evals tailored to the user rather than to the model. No engine sweeps the catalogue.
+
+- Wan 3.0 takes the two spots that turn on legible story text and composed calm.
+- Seedance 2.0 takes the two that turn on clean eyes and a steady face.
+- The sleep brand routes to the premium HeyGen baseline, which wins every calm row on its panel. The router has no cheapness bias; it pays up when the audience calls for it.
+- Omni Flash wins no panel and keeps its seat anyway, native ambient audio and the freest human motion, and a served user may respond to exactly that. The pool stays four deep.
+- The presenter's closers stay vendor-rendered inside every version, because the baseline still owns identity.
+
+The comparison is a fair race by construction. The three challenger engines sit in one price class, about sixty cents to a dollar a scene, so no column wins by outspending another. A four-deep pool per spot costs a few dollars, which is what lets an ad platform serve each user the version that user responds to.
 
 | Version | Engine | What the Scenes Cost |
 |---|---|---|
@@ -85,11 +113,7 @@ What this page adds up to is a multi-model router built on autonomously feature-
 
 Why not put all of this in the prompt instead, and skip the judging. It is in the prompt, every engine got the same brief with the audience written into it, and the four columns under each spot are what four models did with identical words. A prompt is a request, and a generation is a draw against it: the Wan take was told to put the system banner on the phone's own screen and floated it in mid-air anyway, until a re-roll landed it. Judging after is also the only way to choose between models, because a prompt steers one engine but cannot tell you which engine to buy for this audience. So the loop holds both ends. The prompts know the user going in, the panel checks the feeling actually landed coming out, and the next dollar routes on the count. A router with gates.
 
-## The journey on this page, in three steps
-
-Everything below reads as one flow, and each step opens with its winner already named. First pick the model: five invented brands run four engines each, probed per audience, and the router picks a different winner per spot. Then pick the recipe: the curator rejects cuts until the grammar survives, absurd first, coherent by the second line, quirks visual. Then generalize it: the same flow pointed at ten real AI products with verified positioning, which is what shows the precision the flow itself carries. The first two steps happen on ordinary products and services, coffee, sleep, homes, travel; the third is where it generalizes.
-
-## Step one, pick the model
+## Step 1. Pick the model
 
 Four engines ran the same five briefs, and the panels picked a different winner per audience, which is the router's whole argument. Five spots, four ways each, every version probed inline below.
 
@@ -214,15 +238,15 @@ The feeling is wanderlust, motion and place, so this panel gates gesture upward 
 **B3 Seedance 2.0 takes three rows, the cleanest eye read, the calmest frame and the steadiest face, against B2's bigger motion.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-slowroad.mp4), about twenty seconds with sound.
 
 
-## Step two, pick the recipe
+## Step 2. Pick the recipe
 
 The recipe that survived the curator: open absurd at three or four times the volume, hand over the coherent model by the second line, and keep every quirk visual with nobody narrating it. This is the redo, and it also splits the router two engines deep per spot.
 
-The five spots in step one were the like-for-like reshoot. These four are what happened when the curator kept rejecting. A literal, message-first cut tested worse, and the grammar that survived is the one he named: open ABSURD at three or four times the volume, hand them the coherent model by the second line, and keep every quirk visual with nobody narrating it. The mailbox erupts like a geyser and the whole block turns. The three a.m. descent is a full charge. A whole street waves back. A luggage tag tears free and flies the spot like a small bird, and lands when she does.
+The five spots in step 1 were the like-for-like reshoot. These four are what happened when the curator kept rejecting. A literal, message-first cut tested worse, and the grammar that survived is the one he named: open ABSURD at three or four times the volume, hand them the coherent model by the second line, and keep every quirk visual with nobody narrating it. The mailbox erupts like a geyser and the whole block turns. The three a.m. descent is a full charge. A whole street waves back. A luggage tag tears free and flies the spot like a small bird, and lands when she does.
 
 His eye then caught the lip-sync, and the complaint became instruments. A caption gate now checks that every burned subtitle says what is being spoken, when it is spoken. A face-located mouth probe, calibrated on controls with the audio shifted 0.4 seconds each way, reads each closer's lip lag, and the builder trims or pads that closer by its own measured number, so the delivered lag reads zero. The probe's first deployment had its sign inverted and doubled the error; the gate caught it before anything shipped, which is this repository's whole argument in one sentence.
 
-Each spot ships in two versions: its winning engine from step one, and an Omni Flash leg from the same boards, narrations, closers, beds and captions, so every row is pure engine. Bold is the best reading in its row, and the WINNER takes the most rows.
+Each spot ships in two versions: its winning engine from step 1, and an Omni Flash leg from the same boards, narrations, closers, beds and captions, so every row is pure engine. Bold is the best reading in its row, and the WINNER takes the most rows.
 
 ### Orchard Hill Coffee, redone
 
@@ -302,9 +326,9 @@ Each spot ships in two versions: its winning engine from step one, and an Omni F
 
 **Seedance 2.0 takes four rows, twice the gesture energy, the cleanest eye read, the calmer frame and the steadier face.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-seedance2-slowroad.mp4), with sound.
 
-With four engines in the pool, the router's answer is Orchard to Omni Flash, Lantern to Wan 3.0, Harbor to Omni Flash, and Slow Road to Seedance 2.0. Omni pays its way on the spots where a clean frame beats the biggest gesture, at about sixty-three cents a scene with native ambient sound; Wan and Seedance keep the spots where calm and steadiness carry, at about a dollar a scene. Quiet Hours sits out the redo because its WINNER in step one is the premium baseline itself.
+With four engines in the pool, the router's answer is Orchard to Omni Flash, Lantern to Wan 3.0, Harbor to Omni Flash, and Slow Road to Seedance 2.0. Omni pays its way on the spots where a clean frame beats the biggest gesture, at about sixty-three cents a scene with native ambient sound; Wan and Seedance keep the spots where calm and steadiness carry, at about a dollar a scene. Quiet Hours sits out the redo because its WINNER in step 1 is the premium baseline itself.
 
-## Step three, generalize it
+## Step 3. Generalize it
 
 This step is the generalization across products and services: the same flow pointed at ten real AI products with their real positioning. It shows how much precision the flow achieves when nothing is allowed to bend to the render, and that is the selling point of the whole loop.
 
@@ -415,4 +439,11 @@ The pipeline and the evals that gate every render live on [main](https://github.
 | take-image | 2 | -240 early | **FAIL** | **8.5 / 4.4 / 17.0** | 4.32 | 5.49 | 4.26 | 0.238 |
 | ad2-quiet | 2 | -240 early | **FAIL** | **123.0 / 147.1 / 149.8** | 4.16 | 3.68 | 0.86 | 0.465 |
 
-The readings come from the same probes that score the hero render higher on this page, run on the masters before the web encode. A value in bold is a reading the probe itself flagged. Separation is not shown because these clips are unmatted, so there is no fill to measure against, and the spasm ratios are disclosures rather than verdicts and stay in the probe log. The remade spots score the way montages score: the level probe reads every hard cut as luminance wander, and the lip-sync probe watches crowd scenes where nobody on camera is the narrator, so its verdict fails even where her own closer is in time. The brokerage variants are three rows because they are three renders, and their third scene runs at 1.26x slow motion because the line outran the footage, which is the kind of call an edit makes and a probe then bills it for. The one re-roll of the batch was the software spot's third scene, regenerated for a clearer product beat after the first take came back as a close-up of the cat. This table is the page's floor, the original shoot's report card that every version above is measured against.
+This table is the page's floor, the original shoot's report card that every version above is measured against. How to read it:
+
+- The readings come from the same probes that score the hero render higher on this page, run on the masters before the web encode.
+- A value in bold is a reading the probe itself flagged.
+- Separation is not shown because these clips are unmatted, so there is no fill to measure against; the spasm ratios are disclosures, not verdicts, and stay in the probe log.
+- The remade spots score the way montages score. The level probe reads every hard cut as luminance wander, and the lip-sync probe watches crowd scenes where nobody on camera is the narrator, so its verdict fails even where her own closer is in time.
+- The brokerage variants are three rows because they are three renders, and their third scene runs at 1.26x slow motion because the line outran the footage, which is the kind of call an edit makes and a probe then bills it for.
+- The one re-roll of the batch was the software spot's third scene, regenerated for a clearer product beat after the first take came back as a close-up of the cat.
