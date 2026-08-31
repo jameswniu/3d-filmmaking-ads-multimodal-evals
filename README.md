@@ -50,7 +50,7 @@ The hard part is not making the video. It is deciding, without a person in the r
   </tr>
 </table>
 
-> The avatar is generated. She is not a real person and not a likeness of one. Her voice is a clone of a consented source. The three clips above and the frame study below come from **one** run of the pipeline, deliberately, because a montage of lucky takes would hide the thing this repo is about. The five spots further down ran four ways each, twenty governed versions; the redo above them adds eight more from the same discipline, and every one of them is scored on this page.
+> The avatar is generated. She is not a real person and not a likeness of one. Her voice is a clone of a consented source. The three clips above and the frame study below come from **one** run of the pipeline, deliberately, because a montage of lucky takes would hide the thing this repo is about. The five spots further down ran four ways each, twenty governed versions; the redo after them adds eight more from the same discipline, and every one of them is scored on this page.
 
 ---
 
@@ -85,184 +85,13 @@ What this page adds up to is a multi-model router built on autonomously feature-
 
 Why not put all of this in the prompt instead, and skip the judging. It is in the prompt, every engine got the same brief with the audience written into it, and the four columns under each spot are what four models did with identical words. A prompt is a request, and a generation is a draw against it: the Wan take was told to put the system banner on the phone's own screen and floated it in mid-air anyway, until a re-roll landed it. Judging after is also the only way to choose between models, because a prompt steers one engine but cannot tell you which engine to buy for this audience. So the loop holds both ends. The prompts know the user going in, the panel checks the feeling actually landed coming out, and the next dollar routes on the count. A router with gates.
 
-## Ten real products, to prove the grammar is not brand-specific
+## The journey on this page, in three steps
 
-The spots above and below sell invented brands, which is the easy case: the story can bend to whatever the
-pipeline renders well. So the same pipeline ran again against ten real, currently shipping AI products,
-with their positioning pulled from their own live pages and checked by a second engine under an adversarial
-default-refute mandate before a single scene was boarded. Nothing here bends to the render. The claim each
-spot closes on is the claim the company actually makes.
+Everything below reads as one flow, and each step opens with its winner already named. First pick the model: five invented brands run four engines each, probed per audience, and the router picks a different winner per spot. Then pick the recipe: the curator rejects cuts until the grammar survives, absurd first, coherent by the second line, quirks visual. Then generalize it: the same flow pointed at ten real AI products with verified positioning, which is what shows the precision the flow itself carries. The first two steps happen on ordinary products and services, coffee, sleep, homes, travel; the third is where it generalizes.
 
-**These are spec ads.** They are not affiliated with, endorsed by, or produced for Google, OpenAI,
-Perplexity, Meta, xAI, Z.ai, Moonshot AI or Anthropic, none of these companies has seen them, and every
-tagline on every end card is written here rather than lifted from the brand. They exist to show that the
-loop can take a real product's real positioning and build the ad around it.
+## Step one, pick the model
 
-All ten shot on Omni Flash at about sixty-three cents a scene, thirty scenes between the two batches, each
-gated on caption timing, closer alignment and lip sync before it was allowed out. The first batch landed
-with zero content rejections. The second spent its re-rolls on art direction instead, including a billboard
-of corrupted headline text that was pulled for being illegible, replaced with clean colour fields, and then
-put back, because the glitch was the point.
-
-### Claude &middot; Claude Code
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-claude.gif" alt="Claude spec ad" width="100%"><br><sub><b>Claude.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260830-claude.mp4">&#9654; with sound</a></sub></td>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-claudecode.gif" alt="Claude Code spec ad" width="100%"><br><sub><b>Claude Code.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260830-claudecode.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top"><sub>Forty versions of you are arguing around the table and every one of them is sure. One man reads the wreckage with a folded paper crane beside him, and the argument settles into a single page.<br><br><b>The promise it closes on:</b> A thoughtful collaborator for serious work, until the answer is one page.</sub></td>
-    <td width="50%" valign="top"><sub>His code grew legs overnight: a wall of test patterns and scrolling terminals finishes the feature while he sips the coffee.<br><br><b>The promise it closes on:</b> The agent in your terminal that reads the codebase, fixes the bugs and ships the feature.</sub></td>
-  </tr>
-</table>
-
-### Google Pics &middot; Gemini
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-pics.gif" alt="Google Pics spec ad" width="100%"><br><sub><b>Google Pics.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-pics.mp4">&#9654; with sound</a></sub></td>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-gemini.gif" alt="Gemini spec ad" width="100%"><br><sub><b>Gemini.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-gemini.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top"><sub>He holds a printed photograph whose furniture is moving on its own, a sofa sliding out of the frame, a lamp walking in, while the real room behind him stays perfectly still.<br><br><b>The promise it closes on:</b> Image creation and editing that brings your exact vision to life, down to a single object.</sub></td>
-    <td width="50%" valign="top"><sub>A kitchen plastered floor to ceiling in sticky notes, and an avalanche of more when he opens a cupboard. Then every note in the room streams into his phone at once, and one stubborn one lands on the fridge.<br><br><b>The promise it closes on:</b> Google's personal assistant, hands free, across the apps you already use.</sub></td>
-  </tr>
-</table>
-
-### Z.ai &middot; Kimi
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-zai.gif" alt="Z.ai spec ad" width="100%"><br><sub><b>Z.ai.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260830-zai.mp4">&#9654; with sound</a></sub></td>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-kimi.gif" alt="Kimi spec ad" width="100%"><br><sub><b>Kimi.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260830-kimi.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top"><sub>Her studio apartment is smaller than the problem she is solving, until the walls give way and she is sitting in a warehouse floor of glowing workstations that are suddenly all hers.<br><br><b>The promise it closes on:</b> Frontier open models, the same weights the big labs guard, priced for builders.</sub></td>
-    <td width="50%" valign="top"><sub>One question at the door of a library that is snowing pages. A brass mail slot swallows the whole ribbon-tied stack and hands a single card back through the wall.<br><br><b>The promise it closes on:</b> A million pages read in a breath, answered with the one line that matters.</sub></td>
-  </tr>
-</table>
-
-### ChatGPT &middot; Perplexity
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-chatgpt.gif" alt="ChatGPT spec ad" width="100%"><br><sub><b>ChatGPT.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-chatgpt.mp4">&#9654; with sound</a></sub></td>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-perplexity.gif" alt="Perplexity spec ad" width="100%"><br><sub><b>Perplexity.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-perplexity.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top"><sub>He has been deciding between two identical jars long enough that a cobweb has grown between his elbow and the shelf. One tap, the web snaps, and a strand floats up like a surrender flag.<br><br><b>The promise it closes on:</b> Help with everyday questions and ideas.</sub></td>
-    <td width="50%" valign="top"><sub>Her laptop erupts four hundred pages to the ceiling and buries her to the chest. The blizzard reverses and folds itself into a single page in her open palm.<br><br><b>The promise it closes on:</b> An answer engine that hands back the answer with its sources attached.</sub></td>
-  </tr>
-</table>
-
-### Meta AI &middot; Grok
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-metaai.gif" alt="Meta AI spec ad" width="100%"><br><sub><b>Meta AI.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-metaai.mp4">&#9654; with sound</a></sub></td>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-grok.gif" alt="Grok spec ad" width="100%"><br><sub><b>Grok.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260830-grok.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top"><sub>Her paper to-do list has unrolled out the front door and three houses along the pavement. She puts on the glasses and the whole scroll rolls back up so fast it knocks a plant pot off the rail.<br><br><b>The promise it closes on:</b> A personal agent that works on your behalf.</sub></td>
-    <td width="50%" valign="top"><sub>A night newsstand cycles corrupted headlines into static above one unmoving man, and by daylight the street's newspapers are storming past him. The whole street changes its mind three times before your coffee cools.<br><br><b>The promise it closes on:</b> Real-time answers with the sources still warm, from where news breaks first.</sub></td>
-  </tr>
-</table>
-
-Every one of the ten carries the same structure, which the [capture-attention law](#the-question-this-page-expects)
-makes explicit: open on something absurd and unexplained in a photoreal world, make it worse in the middle
-beat with the product still absent, and let the product be the only thing that closes the puzzle. The
-board itself is gated on that before any money is spent, and the gate has already sent boards back.
-
-## The redo, absurd first, and the four-engine router
-
-The five spots further down were the like-for-like reshoot. These four are what happened when the curator kept rejecting. A literal, message-first cut tested worse, and the grammar that survived is the one he named: open ABSURD at three or four times the volume, hand them the coherent model by the second line, and keep every quirk visual with nobody narrating it. The mailbox erupts like a geyser and the whole block turns. The three a.m. descent is a full charge. A whole street waves back. A luggage tag tears free and flies the spot like a small bird, and lands when she does.
-
-His eye then caught the lip-sync, and the complaint became instruments. A caption gate now checks that every burned subtitle says what is being spoken, when it is spoken. A face-located mouth probe, calibrated on controls with the audio shifted 0.4 seconds each way, reads each closer's lip lag, and the builder trims or pads that closer by its own measured number, so the delivered lag reads zero. The probe's first deployment had its sign inverted and doubled the error; the gate caught it before anything shipped, which is this repository's whole argument in one sentence.
-
-Each spot ships in two versions: its winning engine from the reshoot below, and an Omni Flash leg from the same boards, narrations, closers, beds and captions, so every row is pure engine. Bold is the best reading in its row, and the WINNER takes the most rows.
-
-### Orchard Hill Coffee, redone
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-seedance2-orchard.gif" alt="Seedance 2.0" width="100%"><br><sub><b>Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-seedance2-orchard.mp4">&#9654; with sound</a></sub></td>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-orchard.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-orchard.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-</table>
-
-| Probe | Seedance 2.0 | **Omni Flash, the WINNER** |
-|---|---|---|
-| Gesture energy, higher is better | 0.595 | **0.716** |
-| Background clutter, lower is better | 8.70 | **3.06** |
-| Eye rejection, lower is better | **5.28** | 6.07 |
-| Scene simplicity, lower is calmer | 7.27 | **6.95** |
-| Face level wander, lower is steadier | **189** | 202 |
-
-**Omni Flash takes three rows, the bigger gesture, a background nearly three times cleaner, and the calmer scene.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-orchard.mp4), with sound.
-
-### Lantern Street, redone
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-wan3-lantern.gif" alt="Wan 3.0" width="100%"><br><sub><b>Wan 3.0, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-wan3-lantern.mp4">&#9654; with sound</a></sub></td>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-lantern.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-lantern.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-</table>
-
-| Probe | **Wan 3.0, the WINNER** | Omni Flash |
-|---|---|---|
-| Eye rejection, lower is better | **4.00** | 5.45 |
-| Background clutter, lower is better | 4.88 | **3.25** |
-| Scene simplicity, lower is calmer | **5.20** | 5.99 |
-| Gesture energy, for this audience lower is calmer | **0.510** | 0.675 |
-| Face level wander, lower is steadier | **97.4** | 145 |
-| System banner legible on the phone, eye verdict | **Yes** | **Yes** |
-
-**Wan 3.0 takes four rows, the cleaner eye read, the calmer scene, the stiller hands and the steadiest face.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-wan3-lantern.mp4), with sound.
-
-### Harbor Lane Realty, redone
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-wan3-harbor.gif" alt="Wan 3.0" width="100%"><br><sub><b>Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-wan3-harbor.mp4">&#9654; with sound</a></sub></td>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-harbor.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-harbor.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-</table>
-
-| Probe | Wan 3.0 | **Omni Flash, the WINNER** |
-|---|---|---|
-| Gesture energy, higher is better | **0.894** | 0.691 |
-| Background richness, higher sells the staging | **11.5** | 6.55 |
-| Eye rejection, lower is better | 6.42 | **5.94** |
-| Face level wander, lower is steadier | 191 | **150** |
-| Scene simplicity, lower is calmer | 8.75 | **7.24** |
-| For Sale sign legible, eye verdict | **Yes** | **Yes** |
-
-**Omni Flash takes three rows, the cleaner eye read, the steadier face and the simpler scene, against Wan's bigger wave and richer staging. Omni is also the engine that gave the whole street waving back.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-harbor.mp4), with sound.
-
-### Slow Road Travel, redone
-
-<table>
-  <tr>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-seedance2-slowroad.gif" alt="Seedance 2.0" width="100%"><br><sub><b>Seedance 2.0, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-seedance2-slowroad.mp4">&#9654; with sound</a></sub></td>
-    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-slowroad.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-slowroad.mp4">&#9654; with sound</a></sub></td>
-  </tr>
-</table>
-
-| Probe | **Seedance 2.0, the WINNER** | Omni Flash |
-|---|---|---|
-| Gesture energy, higher is better | **0.760** | 0.480 |
-| Background busy-ness, higher feels like travel | 3.87 | **6.93** |
-| Eye rejection, lower is better | **4.27** | 7.37 |
-| Scene simplicity, lower is calmer | **6.75** | 7.64 |
-| Face level wander, lower is steadier | **112** | 146 |
-
-**Seedance 2.0 takes four rows, twice the gesture energy, the cleanest eye read, the calmer frame and the steadier face.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-seedance2-slowroad.mp4), with sound.
-
-With four engines in the pool, the router's answer is Orchard to Omni Flash, Lantern to Wan 3.0, Harbor to Omni Flash, and Slow Road to Seedance 2.0. Omni pays its way on the spots where a clean frame beats the biggest gesture, at about sixty-three cents a scene with native ambient sound; Wan and Seedance keep the spots where calm and steadiness carry, at about a dollar a scene. Quiet Hours sits out the redo because its WINNER below is the premium baseline itself.
-
-## The five spots, four ways each, probed
+Four engines ran the same five briefs, and the panels picked a different winner per audience, which is the router's whole argument. Five spots, four ways each, every version probed inline below.
 
 Every spot in all four versions, inline, each with its own panel: five instruments from the one battery, plus a story-text row where a legible prop carries the deciding beat. The panels are feature engineering pointed at the audience instead of the model. The loop picks each brand's instruments, and the direction of good, from the feeling that spot has to invoke in its target user; a coffee ad reads energy upward, a sleep ad flips the same instrument, calm sells. **Bold is the best reading in its row**, in that row's own direction, and the **WINNER is the version that takes the most rows**. When versions tie on rows, the row the panel gates on decides.
 
@@ -383,6 +212,188 @@ The feeling is wanderlust, motion and place, so this panel gates gesture upward 
 | Face level wander, lower is steadier, reports | 130.6 | 94.7 | 127.3 | **79.5** |
 
 **B3 Seedance 2.0 takes three rows, the cleanest eye read, the calmest frame and the steadiest face, against B2's bigger motion.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260824-seedance2-slowroad.mp4), about twenty seconds with sound.
+
+
+## Step two, pick the recipe
+
+The recipe that survived the curator: open absurd at three or four times the volume, hand over the coherent model by the second line, and keep every quirk visual with nobody narrating it. This is the redo, and it also splits the router two engines deep per spot.
+
+The five spots in step one were the like-for-like reshoot. These four are what happened when the curator kept rejecting. A literal, message-first cut tested worse, and the grammar that survived is the one he named: open ABSURD at three or four times the volume, hand them the coherent model by the second line, and keep every quirk visual with nobody narrating it. The mailbox erupts like a geyser and the whole block turns. The three a.m. descent is a full charge. A whole street waves back. A luggage tag tears free and flies the spot like a small bird, and lands when she does.
+
+His eye then caught the lip-sync, and the complaint became instruments. A caption gate now checks that every burned subtitle says what is being spoken, when it is spoken. A face-located mouth probe, calibrated on controls with the audio shifted 0.4 seconds each way, reads each closer's lip lag, and the builder trims or pads that closer by its own measured number, so the delivered lag reads zero. The probe's first deployment had its sign inverted and doubled the error; the gate caught it before anything shipped, which is this repository's whole argument in one sentence.
+
+Each spot ships in two versions: its winning engine from step one, and an Omni Flash leg from the same boards, narrations, closers, beds and captions, so every row is pure engine. Bold is the best reading in its row, and the WINNER takes the most rows.
+
+### Orchard Hill Coffee, redone
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-seedance2-orchard.gif" alt="Seedance 2.0" width="100%"><br><sub><b>Seedance 2.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-seedance2-orchard.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-orchard.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-orchard.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+| Probe | Seedance 2.0 | **Omni Flash, the WINNER** |
+|---|---|---|
+| Gesture energy, higher is better | 0.595 | **0.716** |
+| Background clutter, lower is better | 8.70 | **3.06** |
+| Eye rejection, lower is better | **5.28** | 6.07 |
+| Scene simplicity, lower is calmer | 7.27 | **6.95** |
+| Face level wander, lower is steadier | **189** | 202 |
+
+**Omni Flash takes three rows, the bigger gesture, a background nearly three times cleaner, and the calmer scene.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-orchard.mp4), with sound.
+
+### Lantern Street, redone
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-wan3-lantern.gif" alt="Wan 3.0" width="100%"><br><sub><b>Wan 3.0, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-wan3-lantern.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-lantern.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-lantern.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+| Probe | **Wan 3.0, the WINNER** | Omni Flash |
+|---|---|---|
+| Eye rejection, lower is better | **4.00** | 5.45 |
+| Background clutter, lower is better | 4.88 | **3.25** |
+| Scene simplicity, lower is calmer | **5.20** | 5.99 |
+| Gesture energy, for this audience lower is calmer | **0.510** | 0.675 |
+| Face level wander, lower is steadier | **97.4** | 145 |
+| System banner legible on the phone, eye verdict | **Yes** | **Yes** |
+
+**Wan 3.0 takes four rows, the cleaner eye read, the calmer scene, the stiller hands and the steadiest face.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-wan3-lantern.mp4), with sound.
+
+### Harbor Lane Realty, redone
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-wan3-harbor.gif" alt="Wan 3.0" width="100%"><br><sub><b>Wan 3.0.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-wan3-harbor.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-harbor.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-harbor.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+| Probe | Wan 3.0 | **Omni Flash, the WINNER** |
+|---|---|---|
+| Gesture energy, higher is better | **0.894** | 0.691 |
+| Background richness, higher sells the staging | **11.5** | 6.55 |
+| Eye rejection, lower is better | 6.42 | **5.94** |
+| Face level wander, lower is steadier | 191 | **150** |
+| Scene simplicity, lower is calmer | 8.75 | **7.24** |
+| For Sale sign legible, eye verdict | **Yes** | **Yes** |
+
+**Omni Flash takes three rows, the cleaner eye read, the steadier face and the simpler scene, against Wan's bigger wave and richer staging. Omni is also the engine that gave the whole street waving back.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-harbor.mp4), with sound.
+
+### Slow Road Travel, redone
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-seedance2-slowroad.gif" alt="Seedance 2.0" width="100%"><br><sub><b>Seedance 2.0, the WINNER.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-seedance2-slowroad.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260826-cell-omni-slowroad.gif" alt="Omni Flash" width="100%"><br><sub><b>Omni Flash.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-omni-slowroad.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+</table>
+
+| Probe | **Seedance 2.0, the WINNER** | Omni Flash |
+|---|---|---|
+| Gesture energy, higher is better | **0.760** | 0.480 |
+| Background busy-ness, higher feels like travel | 3.87 | **6.93** |
+| Eye rejection, lower is better | **4.27** | 7.37 |
+| Scene simplicity, lower is calmer | **6.75** | 7.64 |
+| Face level wander, lower is steadier | **112** | 146 |
+
+**Seedance 2.0 takes four rows, twice the gesture energy, the cleanest eye read, the calmer frame and the steadier face.** [&#9654; Watch the WINNER](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260826-seedance2-slowroad.mp4), with sound.
+
+With four engines in the pool, the router's answer is Orchard to Omni Flash, Lantern to Wan 3.0, Harbor to Omni Flash, and Slow Road to Seedance 2.0. Omni pays its way on the spots where a clean frame beats the biggest gesture, at about sixty-three cents a scene with native ambient sound; Wan and Seedance keep the spots where calm and steadiness carry, at about a dollar a scene. Quiet Hours sits out the redo because its WINNER in step one is the premium baseline itself.
+
+## Step three, generalize it
+
+This step is the generalization across products and services: the same flow pointed at ten real AI products with their real positioning. It shows how much precision the flow achieves when nothing is allowed to bend to the render, and that is the selling point of the whole loop.
+
+The spots above sell invented brands, which is the easy case: the story can bend to whatever the
+pipeline renders well. So the same pipeline ran again against ten real, currently shipping AI products,
+with their positioning pulled from their own live pages and checked by a second engine under an adversarial
+default-refute mandate before a single scene was boarded. Nothing here bends to the render. The claim each
+spot closes on is the claim the company actually makes.
+
+**These are spec ads.** They are not affiliated with, endorsed by, or produced for Google, OpenAI,
+Perplexity, Meta, xAI, Z.ai, Moonshot AI or Anthropic, none of these companies has seen them, and every
+tagline on every end card is written here rather than lifted from the brand. They exist to show that the
+loop can take a real product's real positioning and build the ad around it.
+
+All ten shot on Omni Flash at about sixty-three cents a scene, thirty scenes between the two batches, each
+gated on caption timing, closer alignment and lip sync before it was allowed out. The first batch landed
+with zero content rejections. The second spent its re-rolls on art direction instead, including a billboard
+of corrupted headline text that was pulled for being illegible, replaced with clean colour fields, and then
+put back, because the glitch was the point.
+
+### Claude &middot; Claude Code
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-claude.gif" alt="Claude spec ad" width="100%"><br><sub><b>Claude.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260830-claude.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-claudecode.gif" alt="Claude Code spec ad" width="100%"><br><sub><b>Claude Code.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260830-claudecode.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><sub>Forty versions of you are arguing around the table and every one of them is sure. One man reads the wreckage with a folded paper crane beside him, and the argument settles into a single page.<br><br><b>The promise it closes on:</b> A thoughtful collaborator for serious work, until the answer is one page.</sub></td>
+    <td width="50%" valign="top"><sub>His code grew legs overnight: a wall of test patterns and scrolling terminals finishes the feature while he sips the coffee.<br><br><b>The promise it closes on:</b> The agent in your terminal that reads the codebase, fixes the bugs and ships the feature.</sub></td>
+  </tr>
+</table>
+
+### Google Pics &middot; Gemini
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-pics.gif" alt="Google Pics spec ad" width="100%"><br><sub><b>Google Pics.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-pics.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-gemini.gif" alt="Gemini spec ad" width="100%"><br><sub><b>Gemini.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-gemini.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><sub>He holds a printed photograph whose furniture is moving on its own, a sofa sliding out of the frame, a lamp walking in, while the real room behind him stays perfectly still.<br><br><b>The promise it closes on:</b> Image creation and editing that brings your exact vision to life, down to a single object.</sub></td>
+    <td width="50%" valign="top"><sub>A kitchen plastered floor to ceiling in sticky notes, and an avalanche of more when he opens a cupboard. Then every note in the room streams into his phone at once, and one stubborn one lands on the fridge.<br><br><b>The promise it closes on:</b> Google's personal assistant, hands free, across the apps you already use.</sub></td>
+  </tr>
+</table>
+
+### Z.ai &middot; Kimi
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-zai.gif" alt="Z.ai spec ad" width="100%"><br><sub><b>Z.ai.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260830-zai.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-kimi.gif" alt="Kimi spec ad" width="100%"><br><sub><b>Kimi.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260830-kimi.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><sub>Her studio apartment is smaller than the problem she is solving, until the walls give way and she is sitting in a warehouse floor of glowing workstations that are suddenly all hers.<br><br><b>The promise it closes on:</b> Frontier open models, the same weights the big labs guard, priced for builders.</sub></td>
+    <td width="50%" valign="top"><sub>One question at the door of a library that is snowing pages. A brass mail slot swallows the whole ribbon-tied stack and hands a single card back through the wall.<br><br><b>The promise it closes on:</b> A million pages read in a breath, answered with the one line that matters.</sub></td>
+  </tr>
+</table>
+
+### ChatGPT &middot; Perplexity
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-chatgpt.gif" alt="ChatGPT spec ad" width="100%"><br><sub><b>ChatGPT.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-chatgpt.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-perplexity.gif" alt="Perplexity spec ad" width="100%"><br><sub><b>Perplexity.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-perplexity.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><sub>He has been deciding between two identical jars long enough that a cobweb has grown between his elbow and the shelf. One tap, the web snaps, and a strand floats up like a surrender flag.<br><br><b>The promise it closes on:</b> Help with everyday questions and ideas.</sub></td>
+    <td width="50%" valign="top"><sub>Her laptop erupts four hundred pages to the ceiling and buries her to the chest. The blizzard reverses and folds itself into a single page in her open palm.<br><br><b>The promise it closes on:</b> An answer engine that hands back the answer with its sources attached.</sub></td>
+  </tr>
+</table>
+
+### Meta AI &middot; Grok
+
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260827-cell-metaai.gif" alt="Meta AI spec ad" width="100%"><br><sub><b>Meta AI.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260827-metaai.mp4">&#9654; with sound</a></sub></td>
+    <td width="50%" align="center" valign="top"><img src="https://raw.githubusercontent.com/jameswniu/3d-filmmaking-ads-multimodal-evals/archive-media/shoot-20260830-cell-grok.gif" alt="Grok spec ad" width="100%"><br><sub><b>Grok.</b> <a href="https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/raw/archive-media/shoot-20260830-grok.mp4">&#9654; with sound</a></sub></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><sub>Her paper to-do list has unrolled out the front door and three houses along the pavement. She puts on the glasses and the whole scroll rolls back up so fast it knocks a plant pot off the rail.<br><br><b>The promise it closes on:</b> A personal agent that works on your behalf.</sub></td>
+    <td width="50%" valign="top"><sub>A night newsstand cycles corrupted headlines into static above one unmoving man, and by daylight the street's newspapers are storming past him. The whole street changes its mind three times before your coffee cools.<br><br><b>The promise it closes on:</b> Real-time answers with the sources still warm, from where news breaks first.</sub></td>
+  </tr>
+</table>
+
+Every one of the ten carries the same structure, which the [capture-attention law](#the-question-this-page-expects)
+makes explicit: open on something absurd and unexplained in a photoreal world, make it worse in the middle
+beat with the product still absent, and let the product be the only thing that closes the puzzle. The
+board itself is gated on that before any money is spent, and the gate has already sent boards back.
 
 The pipeline and the evals that gate every render live on [main](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals).
 
