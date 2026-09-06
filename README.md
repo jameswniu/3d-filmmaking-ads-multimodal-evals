@@ -59,7 +59,6 @@ The hard part is not making the video. It is deciding, without a person in the r
 | If You Want To | Go To |
 |---|---|
 | See whether it works | The three clips above, all from [one run](#what-actually-happens-to-her) |
-| See her do the job | [The shoots](#the-shoots) |
 | Run something yourself | [What ships here](#what-ships-here-and-what-does-not), then [Running it](#running-it) |
 | Read the argument | [Evals lead this](#evals-lead-this) |
 | Build your own | [`docs/SETUP.md`](docs/SETUP.md), consent line first |
@@ -96,14 +95,6 @@ Left is how the work goes today. Right is what changes. Every claim on the right
 | Someone has to be awake for it. | It runs overnight, and tells you if it did not. |
 
 **No row above claims a time saving, and that is deliberate.** Claiming one needs a defined manual procedure, at least five timed human runs, and the same quality bar applied to both. The procedure and the bar are written down in [`docs/MANUAL-BASELINE.md`](docs/MANUAL-BASELINE.md); the five runs have not happened, so the comparison is about how the work is governed rather than how long it takes. The full accounting of what is not claimed, and what it would take to claim it, is [`docs/NOT-MEASURED.md`](docs/NOT-MEASURED.md).
-
-## The shoots
-
-Each shoot lives on its own branch, with its own page and media. Main keeps the pipeline and the evals.
-
-- [shoot-20260822](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/tree/shoot-20260822): the six-vignette thesis cut, the five product spots in vignette grammar with her closers, the five commentaries, and the scored-failures table.
-- [shoot-20260824](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/tree/shoot-20260824): the same five spots reshot like for like on three engines, Omni Flash, Wan 3.0 and Seedance 2.0, with the picked takes as preview cards.
-
 
 ## What holds when nobody is watching
 
@@ -186,8 +177,6 @@ The probe battery is one set of instruments. What changes per content category i
 | Presenter identity and lip sync | Gates on closers only | Gates hard on interview subjects | |
 | Cost per scene | Gates, the pool must be affordable | Reports, one good take beats four cheap ones | |
 
-Under the advertising subset, scored per spot as most rows taken, no engine sweeps: Wan 3.0 takes the two spots that turn on legible story text and composed calm, Seedance 2.0 takes the two that turn on clean eyes and a steady face, and the sleep brand routes to the premium HeyGen baseline, so the WINNER is declared per audience rather than per catalogue, which is the routing thesis in one line; the full panels are on [shoot-20260824](https://github.com/jameswniu/3d-filmmaking-ads-multimodal-evals/tree/shoot-20260824). The documentary subset has no winner yet because the documentary shoot has not run. The third category is deliberately open until it earns its slot.
-
 ## The render behind those clips, scored by this repo's own probes
 
 **The video on this page did not pass its own checks.** Two of them failed, and they are listed first rather than buried, because a report card showing only the good marks is an advert. Every clip above is a treatment of this one render, picked from a grid of three looks, three voice clones and three engine tiers, one variable moved per cell.
@@ -250,7 +239,7 @@ Separation is why the evals can exist at all. A single end-to-end model would le
 
 The honest version, not the pitch. Glasses-free light-field panels are shipping hardware in 2026, desk size up to storefront size, and the 77-view quilt this pipeline renders is their native food. Three uses are real inside a year.
 
-The first is retail and venue advertising. The product spots on the shoot branches are flat cuts of renders this pipeline already holds volumetrically, so the same spot can run as a light-field loop in a store window or on a counter panel, and the walk-by depth is the stopping power. The second is the embodied agent surface. The presenter is already one identity with a cloned voice, gated looks and a closer grammar; put her on a desk panel in front of a booking or concierge agent and she is the face of it, a receptionist that renders. The third is variant pools at physical scale, the brokerage closer that rendered three times with three first names is the pattern for per-location spots, a hundred storefronts each holding their own name and offer with no crew.
+The first is retail and venue advertising. A product spot cut from renders this pipeline already holds volumetrically can run as a light-field loop in a store window or on a counter panel, and the walk-by depth is the stopping power. The second is the embodied agent surface. The presenter is already one identity with a cloned voice, gated looks and a closer grammar; put her on a desk panel in front of a booking or concierge agent and she is the face of it, a receptionist that renders. The third is variant pools at physical scale, the brokerage closer that rendered three times with three first names is the pattern for per-location spots, a hundred storefronts each holding their own name and offer with no crew.
 
 The evals are what make any of that shippable rather than a demo. A kiosk plays unattended at two in the morning; nobody is there to notice a bad render, so the gates have to notice first, and every threshold on this page derives from labelled human verdicts and goes red in CI when it drifts outside its bracket. The relabel stage is the self-learning half, new verdicts move the bars as engines and looks change. Autonomy is not the pipeline running without people. It is the pipeline being safe to leave running because captured judgement stands guard.
 
