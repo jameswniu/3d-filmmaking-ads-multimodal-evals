@@ -278,8 +278,24 @@ fi
 # replaying clip again (the scheduled-replay failure), and never auto-kills an approved static.
 # (First wiring was removed by a blanket rebase I requested for other reasons; restored the
 # same morning on the grounds that it should never have been dropped.)
-MP="$(dirname "$0")/mirror_probe.py"
-if [ -f "$MP" ] && [ -z "$ARROWOK" ]; then
+MP="$SKILL/mirror_probe.py"
+# The replay detector lives beside the other probes, in probes/, not beside this
+# gate in guards/. Resolving it against this script's own directory pointed at a
+# path that has never existed, and the `[ -f "$MP" ]` guard then read that as
+# "no probe here, carry on", so the replay check was skipped in silence on every
+# single run and a replaying clip passed the gate. A probe that cannot run must
+# fail closed like unreadable input, not evaporate.
+if [ ! -f "$MP" ]
+then
+  echo "SHIP-GATE HOLD, mirror_probe.py not found at $MP. The replay check cannot run, failing closed."
+  # The receipt goes first, as it does on every other failing path in this
+  # file. Leaving it behind means a clip that passed yesterday still holds a
+  # valid-looking receipt today, when the probe install is broken and nothing
+  # has been checked. A HOLD that leaves an approval standing is not a hold.
+  rm -f "$MARK"
+  exit 64
+fi
+if [ -z "$ARROWOK" ]; then
   MPOUT=$(python3 "$MP" "${RAW:-$F}" 2>&1); MPRC=$?
   echo "$MPOUT" | head -2 | sed 's/^/  /'
   if [ "$MPRC" = "1" ]; then
@@ -291,10 +307,34 @@ if [ -f "$MP" ] && [ -z "$ARROWOK" ]; then
       echo "go shorter, composite over a real plate, or avatar_iv with my explicit yes."
       echo "If the scene is time-SYMMETRIC (calm swell, flame flicker, static interior; my 2026-07-26 rule), rerun with"
       echo "REPLAYOK=\"<why nothing in frame can reveal it>\" (logged, not silent)."
+      # The receipt goes with the rejection. This is the branch where it
+      # matters most: the probe has just said the clip replays itself, and
+      # leaving a valid-looking approval behind lets the next reader of /tmp
+      # conclude it shipped clean. Every other failing path in this file drops
+      # the receipt; this one could not, because until the probe path was fixed
+      # this branch was unreachable and nobody had ever been here.
+      rm -f "$MARK"
       exit 3
     fi
   fi
   [ "$MPRC" = "0" ] && ARROWOK=1
+  # A probe that RAN but could not reach a verdict is the same silent skip as a
+  # probe that was never found, wearing different clothes. This one returns 64
+  # for footage it cannot read or that is too short to judge, and 3 when there
+  # is not enough visual signal to decide. Neither was handled: both fell
+  # through to the directional check, and with no directional argument the run
+  # walked on to touch the receipt and print PASS. That is a shipping receipt
+  # for a clip nothing examined.
+  case "$MPRC" in
+    0|1) ;;
+    *)
+      echo "SHIP-GATE HOLD, the replay probe ran but reached no verdict (exit $MPRC)."
+      echo "64 means it could not read the footage or the clip is too short to judge;"
+      echo "3 means there was not enough visual signal to decide. Unexamined is not"
+      echo "clean, so this fails closed exactly like a missing probe."
+      rm -f "$MARK"
+      exit 64 ;;
+  esac
 fi
 if [ -n "$DIRECTIONAL" ] && [ -z "$ARROWOK" ]; then
   SLIT="/tmp/slit-$(basename "$F").png"
