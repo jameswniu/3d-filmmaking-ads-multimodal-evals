@@ -298,6 +298,35 @@ fi
 if [ -z "$ARROWOK" ]; then
   MPOUT=$(python3 "$MP" "${RAW:-$F}" 2>&1); MPRC=$?
   echo "$MPOUT" | head -2 | sed 's/^/  /'
+  # THE EXIT CODE ALONE CANNOT BE TRUSTED. The probe uses 1 for "this clip
+  # replays itself", and python also exits 1 on any uncaught exception, so a
+  # probe that died on an import error or a bad frame is indistinguishable from
+  # one that reached a verdict. With REPLAYOK set, that crash walked straight
+  # into the override branch and the clip shipped with a receipt behind it and
+  # no replay check at all. The probe prints a MIRROR verdict line on both of
+  # its real outcomes and on neither of its failures, so the line is what makes
+  # the exit code mean something.
+  # The verdict line must be ANCHORED and must AGREE with the exit code. A bare
+  # substring test is not enough: a SyntaxError in the probe makes python quote
+  # the offending source line back at you, and the offending line here is the
+  # one that prints the verdict, so the traceback contains the word MIRROR and
+  # a loose match reads a crash as a decision. The traceback quotes the source
+  # indented, and stderr is folded into this output, so only a line that STARTS
+  # with the verdict counts. Pairing it with the exit code closes the other
+  # half: a FORWARD verdict cannot arrive with a replay exit, or the other way.
+  MPVERDICT="$(printf '%s\n' "$MPOUT" | grep -c '^MIRROR \(FORWARD\|REPLAYS\):')"
+  if [ "$MPVERDICT" -lt 1 ] \
+     || { [ "$MPRC" = "0" ] && ! printf '%s\n' "$MPOUT" | grep -q '^MIRROR FORWARD:'; } \
+     || { [ "$MPRC" = "1" ] && ! printf '%s\n' "$MPOUT" | grep -q '^MIRROR REPLAYS:'; }
+  then
+    echo "SHIP-GATE HOLD, the replay probe gave no verdict matching its exit code ($MPRC)."
+    echo "A real run prints MIRROR FORWARD: with 0 or MIRROR REPLAYS: with 1, at the"
+    echo "start of a line. Anything else is a crash wearing a verdict's exit code,"
+    echo "and python quotes the printing line back in a traceback, so a loose match"
+    echo "on the word would read the crash as a decision."
+    rm -f "$MARK"
+    exit 64
+  fi
   if [ "$MPRC" = "1" ]; then
     if [ -n "${REPLAYOK:-}" ]; then
       echo "  REPLAY OVERRIDE (logged): $REPLAYOK"

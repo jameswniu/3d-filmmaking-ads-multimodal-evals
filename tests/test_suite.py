@@ -918,26 +918,107 @@ def test_ship_gate_finds_the_replay_probe_and_fails_closed_without_it():
     assert 'rm -f "$MARK"' in replay_branch[:replay_branch.index("exit 3")], (
         "a clip the probe just REJECTED keeps its approval receipt")
 
-    # The fail-closed path is exercised rather than read. Pointing the gate at
-    # a probes directory holding no mirror_probe.py must stop the run at 64.
-    with tempfile.TemporaryDirectory() as tmp:
-        env = dict(os.environ, PIPELINE_PROBES=tmp)
-        clip = os.path.join(tmp, "clip.mp4")
-        srt = os.path.join(tmp, "clip.srt")
-        for path in (clip, srt):
-            with open(path, "w") as fh:
-                fh.write("not a real asset, only needs to be non-empty\n")
-        r = subprocess.run(["bash", gate, clip, srt], cwd=ROOT, env=env,
-                           capture_output=True, text=True, timeout=120)
-        blob = r.stdout + r.stderr
-        assert r.returncode != 0, (
-            "the gate passed with no replay probe available\n" + blob)
-        # 64 is this gate's own unreadable-input code. Reaching it proves the
-        # run stopped ON the missing probe rather than somewhere incidental.
-        if "mirror_probe.py not found" in blob:
-            assert r.returncode == 64, (
-                "a missing replay probe must fail closed with 64, the same code "
-                f"unreadable input uses; got {r.returncode}\n{blob}")
+    # The four outcomes are EXECUTED, not read. Driving the whole gate cannot
+    # reach this section without real video: the geometry check reads the file
+    # with ffprobe and exits 64 first, so a test that feeds it a text file named
+    # clip.mp4 and asserts "nonzero" is only proving the gate rejects a text
+    # file. That was the previous version of this test, and deleting the branch
+    # under test would have left it green.
+    #
+    # So the section is lifted out by its own anchors and run with the probe
+    # stubbed to each exit code it can return. If the anchors ever move, the
+    # extraction raises and this test fails loudly, which is the correct signal.
+    block = text[text.index('MP="$SKILL/mirror_probe.py"'):]
+    block = block[:block.index('if [ -n "$DIRECTIONAL" ]')]
+
+    def run_replay(probe_exit, replayok="", says=None):
+        """probe_exit None means no probe file at all.
+
+        `says` is what the probe prints. The default carries the MIRROR verdict
+        line a real probe always prints; passing something else stands in for a
+        probe that crashed, which python reports with the same exit 1 the probe
+        uses for a detected replay.
+        """
+        with tempfile.TemporaryDirectory() as tmp:
+            skill = os.path.join(tmp, "probes")
+            os.makedirs(skill)
+            if probe_exit is not None:
+                with open(os.path.join(skill, "mirror_probe.py"), "w") as fh:
+                    line = says if says is not None else (
+                        "MIRROR REPLAYS: stub" if probe_exit == 1 else "MIRROR FORWARD: stub")
+                    fh.write(f"import sys\nprint({line!r})\nsys.exit({probe_exit})\n")
+            mark = os.path.join(tmp, "receipt")
+            with open(mark, "w") as fh:
+                fh.write("a receipt from a previous pass\n")
+            prelude = ('set -uo pipefail\n'
+                       'SKILL="$T_SKILL"\nMARK="$T_MARK"\nF="$T_MARK"\n'
+                       'ARROWOK=""\nREPLAYOK="$T_REPLAYOK"\n')
+            r = subprocess.run(
+                ["bash", "-c", prelude + block + "\nexit 0\n"],
+                env=dict(os.environ, T_SKILL=skill, T_MARK=mark,
+                         T_REPLAYOK=replayok),
+                capture_output=True, text=True, timeout=60)
+            return r.returncode, r.stdout + r.stderr, os.path.exists(mark)
+
+    rc, out, receipt = run_replay(None)
+    assert rc == 64, f"a missing probe must fail closed with 64, got {rc}\n{out}"
+    assert "mirror_probe.py not found" in out, out
+    assert not receipt, "the missing-probe HOLD left an existing receipt standing"
+
+    for code in (3, 64):
+        rc, out, receipt = run_replay(code)
+        assert rc == 64, (
+            f"a probe that ran and returned {code} reached no verdict, which must "
+            f"fail closed like a missing probe; got {rc}\n{out}")
+        assert "no verdict" in out, out
+        assert not receipt, (
+            f"an inconclusive probe (exit {code}) left an existing receipt standing")
+
+    rc, out, receipt = run_replay(1)
+    assert rc == 3, f"a detected replay must hold with 3, got {rc}\n{out}"
+    assert "replays itself" in out, out
+    assert not receipt, (
+        "the clip the probe just REJECTED kept its approval receipt, which is "
+        "the worst case of all: it still looks signed off")
+
+    rc, out, receipt = run_replay(1, replayok="the scene is time symmetric")
+    assert rc == 0, f"a declared REPLAYOK override must pass, got {rc}\n{out}"
+    assert "REPLAY OVERRIDE" in out, out
+    assert receipt, "an override is a pass, so the receipt must survive"
+
+    rc, out, receipt = run_replay(0)
+    assert rc == 0, f"a clean probe must pass, got {rc}\n{out}"
+    assert receipt, "a clean probe must not remove the receipt"
+
+    # A crashed probe exits 1, and so does a detected replay. Only the verdict
+    # line tells them apart, and with REPLAYOK set the crash used to walk into
+    # the override branch and ship the clip with a receipt and no replay check
+    # behind it. Both the bare crash and the crash under an override must hold.
+    crashes = (
+        ("a bare crash", "", "Traceback: ImportError"),
+        ("a crash under an override", "declared symmetric", "Traceback: ImportError"),
+        # The nastiest one, and it was live until an adversary reproduced it. A
+        # SyntaxError makes python quote the offending SOURCE LINE back at you,
+        # and the offending line in this probe is the one that prints the
+        # verdict, so the traceback contains the word MIRROR. stderr is folded
+        # into the gate's capture, so a loose substring test read that crash as
+        # a decision and shipped the clip.
+        ("a traceback quoting the verdict line", "declared symmetric",
+         '    print(f"MIRROR {out[chr(39)+chr(39)]}: ...  SyntaxError'),
+    )
+    for label, ok, says in crashes:
+        rc, out, receipt = run_replay(1, replayok=ok, says=says)
+        assert rc == 64, (
+            f"{label} exits 1 exactly like a real replay verdict, so without an "
+            f"anchored verdict line it must fail closed; got {rc}\n{out}")
+        assert "no verdict matching its exit code" in out, out
+        assert not receipt, f"{label} left an approval receipt standing"
+
+    # The verdict must also AGREE with the exit code, or a probe half-rewritten
+    # between the two could report forward motion while exiting on a replay.
+    rc, out, receipt = run_replay(1, says="MIRROR FORWARD: stub")
+    assert rc == 64, f"a FORWARD verdict with a replay exit must hold; got {rc}\n{out}"
+    assert not receipt, "a contradictory verdict left an approval receipt standing"
 
     # A probe that RAN and reached no verdict is the same silent skip wearing
     # different clothes, and it only became reachable here once the probe
